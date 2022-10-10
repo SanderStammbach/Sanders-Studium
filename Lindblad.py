@@ -1,4 +1,5 @@
 # /bin/env/python
+from calendar import c
 from ctypes import c_char_p
 from email import message_from_file
 import imp
@@ -23,6 +24,7 @@ from qutip import tensor as tensor
 from qutip import dag as dag
 from qutip import steadystate as steadystate
 from qutip import *
+from qutip import ptrace 
 #Konstante Grössen
 ##############################################################################
 omega_1=0
@@ -38,7 +40,7 @@ nph=30     # Maximale Photonen im cavity
  
 Th=100.    # temperature of the hot bath
 Tc=20.     # temperature of the cold bath
-Tenv=0. 
+Tenv=1. 
 g=5
 
 b_fock=qutip.states.fock(nph,0) #m)/fock(N,#m)
@@ -65,7 +67,8 @@ proj_1=tensor(vg*vg.dag(),qutip.identity(nph))
 proj_2=tensor(vb*vb.dag(),qutip.identity(nph))
 proj_3=tensor(va*va.dag(),qutip.identity(nph))
 
-a=qutip.tensor(qutip.destroy(3),qutip.identity(nph))
+a=qutip.tensor(qutip.identity(3),qutip.destroy(nph))
+
 
 ################################################################
 #implementierung von dem Hamilton
@@ -75,7 +78,7 @@ H_int=h*g*(Trans_12*a.dag()+a*Trans_12.dag())
 
 H=H_free+H_int
 
-print(H_int,H_free,H)
+#print(H_int,H_free,H)
 #H=Hfree+Hint
 ################################################################
 kappa=0.1
@@ -89,12 +92,12 @@ def n(omega,T):
     n=1/(np.exp(h*omega/(kb*T))-1)
     return n
 
-gamma_1=(n(gamma_h,Th)+1)*gamma_h #### unsicher wegen vorfaktor 1/2 
-gamma_2=(n(gamma_h,Th))*gamma_h
-gamma_3=(n(gamma_c,Th)+1)*gamma_c
-gamma_4=(n(gamma_c,Th))*gamma_c
-gamma_5=(n(gamma_f,Th)+1)*gamma_f
-gamma_6=(n(gamma_f,Th))*gamma_f
+gamma_1=(n(omega_h,Th)+1)*gamma_h #### unsicher wegen vorfaktor 1/2 
+gamma_2=(n(omega_h,Th))*gamma_h
+gamma_3=(n(omega_c,Tc)+1)*gamma_c
+gamma_4=(n(omega_c,Tc))*gamma_c
+gamma_5=(n(omega_f,Tenv)+1)*gamma_f ####goes to zero
+gamma_6=(n(omega_f,Tenv))*gamma_f
 
 print(gamma_1)
 ############################################################################################
@@ -129,7 +132,37 @@ print(rho)
 qutip.plot_wigner_fock_distribution(rho)
 plt.show()
 
-#########################################################
+
+
+rho_f=rho.ptrace(1)  ### State in the cavity
+print(rho_f)
+qutip.plot_wigner_fock_distribution(rho_f)
+plt.show()
+##########################################################################################################
+#Kapitel Temperatur
+c_op_list.remove(np.sqrt(gamma_6)*A6)
+c_op_list.remove(np.sqrt(gamma_5)*A5)
+#P=[]
+#for i in range(nph):
+#   P[i]=np.trace(b_fock[i]*b_fock[i].dag()*rho_f)
+print("erstes element", c_op_list[1])
+
+def D(c_op_list,rho):
+    D=[]
+    for i in range(4):
+        D.append(c_op_list[i]*rho*c_op_list[i].dag()-1/2*(c_op_list[i].dag()*c_op_list[i]*rho-rho*c_op_list[i].dag()*c_op_list[i]))
+    return D
+
+
+    
+Liste_von_Q=[]
+
+Liste_von_Q.append(np.trace(H*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1])))
+Liste_von_Q.append(np.trace(H*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3])))
+
+print(Liste_von_Q)
+
+######################################################################################################################################################################
 #random testing
 
 H = 2*np.pi * 0.1 * qutip.sigmax()
@@ -145,5 +178,9 @@ ax.set_ylabel('Expectation values')
 ax.legend(("Sigma-Z", "Sigma-Y"))
 #plt.show()
 ket = basis(5,2)
-print(ket*ket.dag())
+#print(ket*ket.dag())
+
+
+
 #result=mesolve(H, rho0, tlist)
+#print(D(c_op_list,rho)[3])
