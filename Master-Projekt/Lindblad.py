@@ -39,7 +39,7 @@ omega_h=omega_3-omega_1  # frequency of the atomic transition that is coupled to
 omega_c=omega_3-omega_2
 
 h=1
-nph=60    # Maximale Photonen im cavity 
+nph=30    # Maximale Photonen im cavity 
  
 Th=1000.    # temperature of the hot bath
 Tc=20.     # temperature of the cold bath
@@ -47,15 +47,14 @@ Tenv=1.
 g=1
 
 
-nh=10
-nc=0
-nf=3
+nh=8.629
+nc=1
+nf=0.01    #Beschreibt den cavity/Photonen. 
 
 
-kappa=0.1
 gamma_h=1
 gamma_c=1
-gamma_f=1
+kappa=0.001
 kb=1
 
 b_fock=qutip.states.fock(nph,0) #m)/fock(N,#m)
@@ -116,8 +115,8 @@ gamma_1=(nh+1)*gamma_h #### unsicher wegen vorfaktor 1/2
 gamma_2=(nh)*gamma_h
 gamma_3=(nc+1)*gamma_c
 gamma_4=(nc)*gamma_c
-gamma_5=(nf+1)*gamma_f ####goes to zero
-gamma_6=(nf)*gamma_f
+kappa_5=(nf+1)*kappa ####goes to zero
+kappa_6=(nf)*kappa
 print(gamma_1)
 
 
@@ -149,8 +148,8 @@ c_op_list.append(np.sqrt(gamma_1)*A1)
 c_op_list.append(np.sqrt(gamma_2)*A2)
 c_op_list.append(np.sqrt(gamma_3)*A3)
 c_op_list.append(np.sqrt(gamma_4)*A4)
-c_op_list.append(np.sqrt(gamma_5)*A5)
-c_op_list.append(np.sqrt(gamma_6)*A6)
+c_op_list.append(np.sqrt(kappa_5)*A5)
+c_op_list.append(np.sqrt(kappa_6)*A6)
 
 
 #print(c_op_list)
@@ -203,10 +202,10 @@ Liste_von_Q=float_list
 g_list=[]
 
 Energie_VS_g=[]
-for i in range(100):
+for i in range(200):
     list_temp=[]
-    list_temp=Energie.EnergieCalculator(i/10, H_free,Trans_12,Trans_13, Trans_23,a,nh,nf,nc,h,kb,kappa,gamma_h,gamma_c,gamma_f,c_op_list)
-    g_list.append(i/10)  #Erstellt eine Liste mit Wären von g 
+    list_temp=Energie.EnergieCalculator(i/100, H_free,Trans_12,Trans_13, Trans_23,a,nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list)
+    g_list.append(i/100)  #Erstellt eine Liste mit Wären von g 
     Energie_VS_g.append(list_temp)
 
 #Liste von Stings in floats konvertieren
@@ -224,7 +223,7 @@ with open('Speicherort.csv','w') as temp_file:
 import matplotlib.pyplot as plt
 fig, ax = plt.subplots()
 ax.set_xlabel('Kopplungskonstante g')
-ax.set_ylabel('Wärme_Energie')
+ax.set_ylabel('Wärme_Energie [J]')
 plt.plot(g_list,Energie_VS_g,"ob")
 plt.show()
 

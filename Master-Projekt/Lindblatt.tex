@@ -54,6 +54,8 @@ Experimentally we need two different reservoir. The high-temperature reservoir c
  
 
 \section{Theory}
+\subsection{Model}
+
 The efficiency is given by the formula:
 \begin{equation}
 \eta_M=\frac{\nu_s}{\nu_p}
@@ -64,6 +66,11 @@ The master equation is:
 \begin{equation}
 \dot{\rho}(t)=\frac{1}{i \hbar}[H,\rho]+ \mathcal{L}\rho
 \end{equation}
+The first part is the vonNeuman equation. 
+$\mathcal{L}$ have three parts. $\mathcal{L}_h$describe the interaction with the hot bath.
+$\mathcal{L}_c$ Describe the interaction with the cold bath.
+$\mathcal{L}_{cav}$Describe the Photons which leaves the cavity. so if we have a small $\kappa$ means less photons will leave and stay in the cavity. we see that in the Fockplott.
+
 The interaction Hamiltonian or Jaynes-Cummings Hamiltonian is:
 \begin{equation}
 H_{int}=\hbar g(\sigma_{12}a^{\dag}+\sigma_{21}a)
@@ -86,6 +93,13 @@ The interaction with the various environmental heat baths is described by the Li
 \kappa\biggl[ \frac{1}{\exp[\frac{\hbar w_f}{k_b T_f}]-1}+1\biggr] \cdot\biggl( 2 a\rho a^{\dag} -a^{\dag}a\rho-\rho a^{\dag}a\biggr)$$\\$$
 \kappa\biggl[ \frac{1}{\exp[\frac{\hbar w_f}{k_b T_f}]-1}\biggr]\cdot \biggl(2 a^{\dag}\rho a -aa^{\dag}\rho-\rho a a^{\dag}\biggr)$$\\$$
 \end{equation}
+
+ When we work with density matrices, its commen Since we are working with density matrices here, it is easy to work with expectation values with $<A>=Tr[A*\rho]$.
+
+
+\section{Calculation}
+
+\subsection{Software}
 
 
 
