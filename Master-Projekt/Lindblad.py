@@ -41,9 +41,9 @@ omega_c=omega_3-omega_2
 h=1
 nph=30    # Maximale Photonen im cavity 
  
-Th=1000.    # temperature of the hot bath
+Th=1000000.    # temperature of the hot bath
 Tc=20.     # temperature of the cold bath
-Tenv=1. 
+Tenv=0.001 
 g=1
 
 
@@ -103,14 +103,15 @@ print(H-H.dag(),H_int-H_int.dag(),H_free-H_free.dag(),"sollte null geben!!!!!!!!
 def n(omega,T):
     n=1/(np.exp(h*omega/(kb*T))-1)
     return n
+"""
+gamma_1=(n(omega_h,Th)+1)*gamma_h #### unsicher wegen vorfaktor 1/2 
+gamma_2=(n(omega_h,Th))*gamma_h
+gamma_3=(n(omega_c,Tc)+1)*gamma_c
+gamma_4=(n(omega_c,Tc))*gamma_c
+kappa_5=(n(omega_f,Tenv)+1)*kappa####goes to zero
+kappa_6=(n(omega_f,Tenv))*kappa
 
-#gamma_1=(n(omega_h,Th)+1)*gamma_h #### unsicher wegen vorfaktor 1/2 
-#gamma_2=(n(omega_h,Th))*gamma_h
-#gamma_3=(n(omega_c,Tc)+1)*gamma_c
-#gamma_4=(n(omega_c,Tc))*gamma_c
-#gamma_5=(n(omega_f,Tenv)+1)*gamma_f ####goes to zero
-#gamma_6=(n(omega_f,Tenv))*gamma_f
-
+"""
 gamma_1=(nh+1)*gamma_h #### unsicher wegen vorfaktor 1/2 
 gamma_2=(nh)*gamma_h
 gamma_3=(nc+1)*gamma_c
@@ -119,21 +120,15 @@ kappa_5=(nf+1)*kappa ####goes to zero
 kappa_6=(nf)*kappa
 print(gamma_1)
 
-
 ######################################################################################################
 #Vorfaktoren rechenr
 def T(omega,n):
-    T=h*omega/(kb*(np.log((1/n))+1))
+    T=h*omega/(kb*(np.log((1/n)+1)))
     return T
 
 print("Die Temperatur des warmen Bades ist: ",T(omega_h,Th))
 ######################################################################################################
-#A1=qutip.tensor(Trans_13,qutip.identity(nph))
-#A2=qutip.tensor(Trans_13.dag(),qutip.identity(nph))
-#A3=qutip.tensor(Trans_23,qutip.identity(nph))
-#A4=qutip.tensor(Trans_23.dag(),qutip.identity(nph))
-#A5=qutip.tensor(qutip.identity(nph),a) 
-#A6=qutip.tensor(qutip.identity(nph),a.dag())
+
 
 A1=Trans_13
 A2=Trans_13.dag()
@@ -166,13 +161,7 @@ print(rho_f)
 qutip.plot_wigner_fock_distribution(rho_f)
 plt.show()
 ##########################################################################################################
-#Kapitel Temperatur
-#c_op_list.remove(np.sqrt(gamma_6)*A6)
-#c_op_list.remove(np.sqrt(gamma_5)*A5)
-#P=[]
-#for i in range(nph):
-#   P[i]=np.trace(b_fock[i]*b_fock[i].dag()*rho_f)
-#print("erstes element", c_op_list[1])
+
 
 
 
@@ -258,4 +247,5 @@ ket = basis(5,2)
 #print(D(c_op_list,rho)[3])
 
 
-
+print("Die Temperatur des warmen Bades ist: ",T(omega_h,nh))
+print("Die Temperatur des kalten Bades ist: ",T(omega_c,nc))

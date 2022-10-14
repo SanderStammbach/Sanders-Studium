@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.5.2)  13 OCT 2022 17:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.5.2)  14 OCT 2022 11:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -419,11 +419,6 @@ been already used, duplicate ignored
                    \relax 
 l.48 \newpage
               [1] [2]
-Underfull \hbox (badness 10000) in paragraph at lines 88--88
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 89--89
 
  []
@@ -434,7 +429,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 90--90
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 92--92
+Underfull \hbox (badness 10000) in paragraph at lines 91--91
 
  []
 
@@ -448,7 +443,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 94--94
 
  []
 
-[3] [4] (./Lindblatt.aux)
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 95--95
+
+ []
+
+[4] (./Lindblatt.aux)
 Package rerunfilecheck Info: File `Lindblatt.out' has not changed.
 (rerunfilecheck)             Checksum: CB7D9B2CD49718C896206288E401396A;453.
  ) 
@@ -469,7 +469,7 @@ share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/
 symbols/msbm10.pfb>
-Output written on Lindblatt.pdf (5 pages, 111326 bytes).
+Output written on Lindblatt.pdf (5 pages, 111864 bytes).
 PDF statistics:
  114 PDF objects out of 1000 (max. 8388607)
  86 compressed objects within 1 object stream
