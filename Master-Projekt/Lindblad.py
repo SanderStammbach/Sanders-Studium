@@ -183,9 +183,9 @@ Liste_von_Q.append(np.trace(H_free*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5])))
 print(Liste_von_Q)
 
 
-float_list= list(np.float_(Liste_von_Q))
-print(float_list)    
-Liste_von_Q=float_list
+#loat_list= list(np.float_(Liste_von_Q))
+#print(float_list)    
+#Liste_von_Q=float_list
 
 
 g_list=[]
@@ -198,7 +198,7 @@ for i in range(200):
     Energie_VS_g.append(list_temp)
 
 #Liste von Stings in floats konvertieren
-float_list2=list(np.float_(Energie_VS_g))
+#float_list2=list(np.float_(Energie_VS_g))
 print(Energie_VS_g)  
 
 #Speicherern der Liste in csv datei
@@ -213,7 +213,12 @@ import matplotlib.pyplot as plt
 fig, ax = plt.subplots()
 ax.set_xlabel('Kopplungskonstante g')
 ax.set_ylabel('Wärme_Energie [J]')
-plt.plot(g_list,Energie_VS_g,"ob")
+plt.title('Energie/Wärmefluss')
+plt.plot(np.asarray(g_list)[:200],np.asarray(Energie_VS_g)[:200,0],label='Th')
+plt.plot(np.asarray(g_list)[:200],np.asarray(Energie_VS_g)[:200,1],label='Tc')
+plt.plot(np.asarray(g_list)[:200],np.asarray(Energie_VS_g)[:200,2],label='Tenv')
+legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
+legend.get_frame().set_facecolor('C0')
 plt.show()
 
 #with open("Speicherort.csv", "wb") as f:
@@ -222,7 +227,7 @@ plt.show()
 
 ######################################################################################################################################################################
 #random testing
-
+# Muss ich noch tensoriesieren mit 30 also psi0
 H = 2*np.pi * 0.1 * qutip.sigmax()
 psi0 = basis(2, 0)
 times = np.linspace(0.0, 10.0, 100)
