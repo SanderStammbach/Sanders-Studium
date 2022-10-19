@@ -26,7 +26,7 @@ from qutip import dag as dag
 from qutip import steadystate as steadystate
 from qutip import *
 from qutip import ptrace 
-from Loup_for_different_coupling import Energie as Energie
+from Loup_for_different_coupling import Diverse_Loups as Diverse_Loups
 import csv
 #Konstante Grössen
 ########################################################################################################
@@ -41,20 +41,20 @@ omega_c=omega_3-omega_2
 h=1
 nph=30    # Maximale Photonen im cavity 
  
-Th=1000000.    # temperature of the hot bath
+Th=100.    # temperature of the hot bath
 Tc=20.     # temperature of the cold bath
-Tenv=0.001 
-g=1
+Tenv=0.0000000000000000000000000001
+g=5
 
 
-nh=8.629
-nc=1
-nf=0.01    #Beschreibt den cavity/Photonen. 
+nh=6
+nc=4
+nf=1    #Beschreibt den cavity/Photonen. 
 
 
-gamma_h=1
-gamma_c=1
-kappa=0.001
+gamma_h=40
+gamma_c=40
+kappa=0.01
 kb=1
 
 b_fock=qutip.states.fock(nph,0) #m)/fock(N,#m)
@@ -65,7 +65,7 @@ b_comp=tensor( b_atom, b_fock)
 
 #psi1=basis(b_atom,1)
 #psi2=basis(b_atom,2)
-#psi3=basis(b_atom,3)
+#psi3=basis(b_atom,3)31
 
 # hier ist ein wenig gebastel mit den transitionsoperatoren
 
@@ -94,7 +94,7 @@ H=H_free+H_int
 
 print(H-H.dag(),H_int-H_int.dag(),H_free-H_free.dag(),"sollte null geben!!!!!!!!!!!!!!!!!!!!!!!!")
 
-#print(H_int,H_free,H)
+#print(H_int,H_free,H)31
 #H=Hfree+Hint
 #########################################################################################################
 
@@ -166,7 +166,7 @@ plt.show()
 
 
 ##########################################################################################################
-#Berechnen der Wärme als Tr(H*rho)
+#Berechnen der Wärme als Tr(H_free*rho) oder Tr[H_free*L(rho,A)] D is one of the Liovillien therme (L)! 
 def D(c_op_list,rho):
     D=[]
     for i in range(6):
@@ -193,7 +193,7 @@ g_list=[]
 Energie_VS_g=[]
 for i in range(200):
     list_temp=[]
-    list_temp=Energie.EnergieCalculator(i/100, H_free,Trans_12,Trans_13, Trans_23,a,nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list)
+    list_temp=Diverse_Loups.EnergieCalculator(i/100, H_free,Trans_12,Trans_13, Trans_23,a,nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list)
     g_list.append(i/100)  #Erstellt eine Liste mit Wären von g 
     Energie_VS_g.append(list_temp)
 
@@ -221,6 +221,12 @@ legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
 legend.get_frame().set_facecolor('C0')
 plt.show()
 
+
+
+######################################################################################################################################################
+#Berechnung
+Trace_list_temp,nh_list_temp=Diverse_Loups.Funktion(proj_1,proj_2,proj_3,H,nc,nf,gamma_h,gamma_c,kappa,A1,A2,A3,A4,A5,A6)
+
 #with open("Speicherort.csv", "wb") as f:
 #    writer = csv.writer(f)
 #    writer.writerows(Energie_VS_g)
@@ -228,20 +234,20 @@ plt.show()
 ######################################################################################################################################################################
 #random testing
 # Muss ich noch tensoriesieren mit 30 also psi0
-H = 2*np.pi * 0.1 * qutip.sigmax()
-psi0 = basis(2, 0)
+#H = 2*np.pi * 0.1 * qutip.sigmax()
+psi0 = tensor(basis(3, 1),basis(30))
 times = np.linspace(0.0, 10.0, 100)
 
-result = qutip.sesolve(H, psi0, times, [qutip.sigmaz(), qutip.sigmay()])
+#result = qutip.sesolve(H, psi0, times, [qutip.sigmaz(), qutip.sigmay()])
+result = qutip.sesolve(H, psi0, times,c_op_list)
 fig, ax = plt.subplots()
 ax.plot(result.times, result.expect[0])
 ax.plot(result.times, result.expect[1])
 ax.set_xlabel('Time')
 ax.set_ylabel('Expectation values')
 ax.legend(("Sigma-Z", "Sigma-Y"))
-#plt.show()
-ket = basis(5,2)
-#print(ket*ket.dag())
+plt.show()
+
 
 
 
@@ -254,3 +260,4 @@ ket = basis(5,2)
 
 print("Die Temperatur des warmen Bades ist: ",T(omega_h,nh))
 print("Die Temperatur des kalten Bades ist: ",T(omega_c,nc))
+print(Trace_list_temp)
