@@ -55,23 +55,20 @@ Experimentally we need two different reservoir. The high-temperature reservoir c
 
 \section{Theory}
 \subsection{Model}
-The Basic of our system is a three-level quantum system. This three level system is driven by a hot bath and a cold bath. Those have the temperature $T_c$ and $T_h$. This quantum system lives in a cavity. 
-In my calculation, the thermal bath is constant, so i can use the Lindblad-masterequation. 
-The efficiency is given by the formula:
-\begin{equation}
-\eta_M=\frac{\nu_s}{\nu_p}
-\end{equation}
+The Basic of this work is a three-level quantum system in a cavity. This three level system is driven by a hot bath and a cold bath. Those have the temperature $T_c$ and $T_h$. This quantum system lives in a cavity. 
+In my calculation, the thermal bath is constant, so i can use the Lindblad-masterequation to derive the density matrix $\rho$.
+ 
+
 
 \newpage
+We can estimate the density matrices with the following differential equation.
 The master equation is:
 \begin{equation}
 \dot{\rho}(t)=\frac{1}{i \hbar}[H,\rho]+ \mathcal{L}\rho
 \end{equation}
-The first part is the vonNeuman equation. The von Neumanequation is the analog of the Schrödinger-equation but for density matrices. This part of the equation is unitary and therefore the process is reversible.
-The non-unitary part of the equation 
-$\mathcal{L}$ have three parts. $\mathcal{L}_h$describe the interaction with the hot bath.
-$\mathcal{L}_c$ Describe the interaction with the cold bath.
-$\mathcal{L}_{cav}$Describe the Photons which leaves the cavity. so if we have a small $\kappa$ means less photons will leave and stay in the cavity. we see that in the Fockplott.
+This equation 
+The first part is the vonNeuman equation. The von Neumanequation is the analog of the Schrödinger-equation but for density matrices. This part of the equation is unitary and therefore the process is reversible. So the unitary evolution is described by the Neuman equation.
+
 
 The interaction Hamiltonian or Jaynes-Cummings Hamiltonian is:
 \begin{equation}
@@ -85,6 +82,10 @@ The total Hamiltonian
 \begin{equation}
 H=H_{free}+H_{int}
 \end{equation}
+The non-unitary part of the equation is depended from the coupling with the thermal bath.
+$\mathcal{L}$ have three parts. $\mathcal{L}_h$describe the interaction with the hot bath.
+$\mathcal{L}_c$ Describe the interaction with the cold bath.
+$\mathcal{L}_{cav}$Describe the Photons which leaves the cavity. so if we have a small $\kappa$ means less photons will leave and stay in the cavity. we see that in the Fockplott.
 The interaction with the various environmental heat baths is described by the Liouvillian:
 \begin{equation}
 \mathcal{L}\hat{\rho}=\frac{\gamma_h}{2}\biggl[  \frac{1}{\exp[\frac{\hbar \omega_h}{k_b T_h}]-1}+1   \biggr]\cdot \biggl(2 \sigma_{13}\cdot\rho\cdot \sigma_{13}^{\dag}-\sigma_{13}^{\dag}\sigma_{13}\rho-\rho\sigma_{13}^{\dag}\sigma_{13}\biggr) $$\\$$
@@ -98,7 +99,10 @@ The interaction with the various environmental heat baths is described by the Li
 
  When we work with density matrices, its commen Since we are working with density matrices here, it is easy to work with expectation values with $<A>=Tr[A*\rho]$.
 
-
+The efficiency is given by the formula:
+\begin{equation}
+\eta_M=\frac{\nu_s}{\nu_p}
+\end{equation}
 \section{Calculation}
 In our case only $\omega_f$ interact with the light.
 

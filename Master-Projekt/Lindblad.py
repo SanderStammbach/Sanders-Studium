@@ -225,8 +225,17 @@ plt.show()
 
 ######################################################################################################################################################
 #Berechnung
-Trace_list_temp,nh_list_temp=Diverse_Loups.Funktion(proj_1,proj_2,proj_3,H,nc,nf,gamma_h,gamma_c,kappa,A1,A2,A3,A4,A5,A6)
-
+Trace_list,nh_list=Diverse_Loups.Funktion(proj_1,proj_2,proj_3,H,nc,nf,gamma_h,gamma_c,kappa,A1,A2,A3,A4,A5,A6)
+fig, ax = plt.subplots()
+ax.set_xlabel('n_h')
+ax.set_ylabel('Wärme_Energie [J]')
+plt.title('Energie/Wärmefluss')
+plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,0],label='Th')
+plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,1],label='Tc')
+plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,2],label='Tenv')
+legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
+legend.get_frame().set_facecolor('C0')
+plt.show()
 #with open("Speicherort.csv", "wb") as f:
 #    writer = csv.writer(f)
 #    writer.writerows(Energie_VS_g)
