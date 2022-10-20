@@ -27,6 +27,7 @@ from qutip import steadystate as steadystate
 from qutip import *
 from qutip import ptrace 
 from Loup_for_different_coupling import Diverse_Loups as Diverse_Loups
+import multiprocessing as mp
 import csv
 #Konstante Grössen
 ########################################################################################################
@@ -225,14 +226,23 @@ plt.show()
 
 ######################################################################################################################################################
 #Berechnung
-Trace_list,nh_list=Diverse_Loups.Funktion(proj_1,proj_2,proj_3,H,nc,nf,gamma_h,gamma_c,kappa,A1,A2,A3,A4,A5,A6)
-fig, ax = plt.subplots()
-ax.set_xlabel('n_h')
-ax.set_ylabel('Wärme_Energie [J]')
-plt.title('Energie/Wärmefluss')
-plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,0],label='Th')
-plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,1],label='Tc')
-plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,2],label='Tenv')
+nh_list=[]
+Trace_list=[]
+
+for j in range(100):
+    Trace_list_temp=Diverse_Loups.Funktion(nh,proj_1,proj_2,proj_3,H,nc,nf,gamma_h,gamma_c,kappa,A1,A2,A3,A4,A5,A6)
+    Trace_list.append(Trace_list_temp)
+
+    nh_list.append(nh)
+    nh=nh+0.5
+
+fig2, ax = plt.subplots()
+ax.set_xlabel(' different n_h factor [nh]')
+ax.set_ylabel('Wahrscheindlichkeit')
+plt.title('Working title')
+plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,0],label='P1')
+plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,1],label='P2')
+plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,2],label='P3')
 legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
 legend.get_frame().set_facecolor('C0')
 plt.show()

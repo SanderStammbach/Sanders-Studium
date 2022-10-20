@@ -63,40 +63,39 @@ class Diverse_Loups():
 
 
 
-    def Funktion(proj_1,proj_2,proj_3,H,nc,nf,gamma_h,gamma_c,kappa,A1,A2,A3,A4,A5,A6):
+    def Funktion(nh,proj_1,proj_2,proj_3,H,nc,nf,gamma_h,gamma_c,kappa,A1,A2,A3,A4,A5,A6):
         nh_list=[]
         Trace_list=[]
-        nh=0
-        for j in range(100):
+        
+        
 
-            gamma_1=(nh+1)*gamma_h #### unsicher wegen vorfaktor 1/2 
-            gamma_2=(nh)*gamma_h
-            gamma_3=(nc+1)*gamma_c
-            gamma_4=(nc)*gamma_c
-            kappa_5=(nf+1)*kappa ####goes to zero
-            kappa_6=(nf)*kappa
+        gamma_1=(nh+1)*gamma_h #### unsicher wegen vorfaktor 1/2 
+        gamma_2=(nh)*gamma_h
+        gamma_3=(nc+1)*gamma_c
+        gamma_4=(nc)*gamma_c
+        kappa_5=(nf+1)*kappa ####goes to zero
+        kappa_6=(nf)*kappa
 
-            c_op_list=[]    
-            c_op_list.append(np.sqrt(gamma_1)*A1)
-            c_op_list.append(np.sqrt(gamma_2)*A2)
-            c_op_list.append(np.sqrt(gamma_3)*A3)
-            c_op_list.append(np.sqrt(gamma_4)*A4)
-            c_op_list.append(np.sqrt(kappa_5)*A5)
-            c_op_list.append(np.sqrt(kappa_6)*A6)
+        c_op_list=[]    
+        c_op_list.append(np.sqrt(gamma_1)*A1)
+        c_op_list.append(np.sqrt(gamma_2)*A2)
+        c_op_list.append(np.sqrt(gamma_3)*A3)
+        c_op_list.append(np.sqrt(gamma_4)*A4)
+        c_op_list.append(np.sqrt(kappa_5)*A5)
+        c_op_list.append(np.sqrt(kappa_6)*A6)
             
 
-            rho = steadystate(H, c_op_list)
-            Trace_list.append(np.trace(proj_1*rho))
-            Trace_list.append(np.trace(proj_2*rho))
-            Trace_list.append(np.trace(proj_3*rho))
-            nh_list.append(nh)
-            nh=nh+0.5
+        rho = steadystate(H, c_op_list)
+        Trace_list.append(np.trace(proj_1*rho))
+        Trace_list.append(np.trace(proj_2*rho))
+        Trace_list.append(np.trace(proj_3*rho))
+        
 
-            float_list2= list(np.float_(Trace_list))
-            #print(float_list)    
-            Trace_list=float_list2
+        float_list2= list(np.float_(Trace_list))
+        #print(float_list)    
+        Trace_list=float_list2
 
-        return Trace_list,nh_list; 
+        return Trace_list
             
 
         #A1=Trans_13
