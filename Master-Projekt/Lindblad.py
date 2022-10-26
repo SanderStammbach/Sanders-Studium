@@ -4,6 +4,7 @@ from ctypes import c_char_p
 from email import message_from_file
 import imp
 from tkinter import messagebox
+from turtle import color, title
 from typing import List
 from IPython.display import display
 from re import A, U
@@ -45,16 +46,16 @@ nph=30    # Maximale Photonen im cavity
 Th=100.    # temperature of the hot bath
 Tc=20.     # temperature of the cold bath
 Tenv=0.0000000000000000000000000001
-g=5
+g=3
 
 
-nh=6
-nc=4
-nf=1    #Beschreibt den cavity/Photonen. 
+nh=2.6
+nc=0.001
+nf=0.02    #Beschreibt den cavity/Photonen. 
 
 
-gamma_h=40
-gamma_c=40
+gamma_h=35*0.01
+gamma_c=35*0.01
 kappa=0.01
 kb=1
 
@@ -62,11 +63,8 @@ b_fock=qutip.states.fock(nph,0) #m)/fock(N,#m)
 b_atom=basis(3)
 b_comp=tensor( b_atom, b_fock)
 
+#rho2=tensor(basis(6,4),basis(6,4).dag())
 
-
-#psi1=basis(b_atom,1)
-#psi2=basis(b_atom,2)
-#psi3=basis(b_atom,3)31
 
 # hier ist ein wenig gebastel mit den transitionsoperatoren
 
@@ -75,8 +73,8 @@ vb=qutip.Qobj(qutip.qutrit_basis()[1])
 vg=qutip.Qobj(qutip.qutrit_basis()[0])
 
 Trans_13=tensor(vg*va.dag(),qutip.identity(nph))
-Trans_23=tensor(vg*vb.dag(),qutip.identity(nph))
-Trans_12=tensor(va*vb.dag(),qutip.identity(nph))
+Trans_23=tensor(vb*va.dag(),qutip.identity(nph))
+Trans_12=tensor(vg*vb.dag(),qutip.identity(nph))
 
 proj_1=tensor(vg*vg.dag(),qutip.identity(nph))
 proj_2=tensor(vb*vb.dag(),qutip.identity(nph))
@@ -159,11 +157,12 @@ rho = steadystate(H, c_op_list)
 
 rho_f=rho.ptrace(1)  ### State in the cavity
 print(rho_f)
-qutip.plot_wigner_fock_distribution(rho_f)
+qutip.plot_wigner_fock_distribution(rho_f,colorbar='colorbar')
 plt.show()
 ##########################################################################################################
 
-
+#qutip.plot_wigner_fock_distribution(rho2,colorbar='colorbar')
+#plt.show()
 
 
 ##########################################################################################################

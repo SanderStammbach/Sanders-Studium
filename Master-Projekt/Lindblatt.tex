@@ -48,18 +48,25 @@
 \newpage
 \section{Introduction}
 
-The most important question in thermodynamics is, how to convert thermal energy into work. For such tasks it exist many classical engines, as example the steam-machine. To quantify heat-engines, its commen to look at the ergotropy. In my master-project I will quantify the a three level maser. The three-level maser is a Quantum heat engine (short: QHE).
-The work extraction from a classicle heat engine is a moving piston. But in this case it is a driving field..
+One of the most important question in thermodynamics is, how to convert thermal energy into work. For such tasks it exist many classical engines, as example the steam-machine. To quantify heat-engines, its commen to look at the ergotropy. In my master-project I will quantify the a three level maser. The three-level maser is a Quantum heat engine (short: QHE).
+The work extraction from a classicle heat engine is a moving piston. But in this case it is a driving field.
 Experimentally we need two different reservoir. The high-temperature reservoir can be realized by a gas noise lamp and the filter by a wave guide cutting off the lower frequencies.
  
 
 \section{Theory}
-\subsection{Model}
+\subsection{3-level-Maser}
+In a three level system you have the three energy levels E1<E2<E3. Pumping is from the lowest level to the highest level E3. The condition for the third level is that it falls to the middle level E2 very quickly. On average, the system is almost not in the third state. The second system should then have a higher decay time, so that a population inversion can build up. This means that several particles are in the energetically higher state. From this state they come almost exclusively through stimulated emission into the deeper system E1. Stimulated emission is a necessary condition for coherent light. Coherent light Means they have the same phase and same frequency.
+\subsection{hase-averaged coherent states}
+The output of a Laser is coherent light.
+The quantum description of coherent light is a coherent state. The photon number distribution of coherent light is a poisson distribution. 
+
+\subsection{Lindblad-Master-Equation}
 The Basic of our system is a three-level quantum system. This three level system is driven by a hot bath and a cold bath. Those have the temperature $T_c$ and $T_h$. This quantum system lives in a cavity. 
-In my calculation, the thermal bath is constant, so i can use the Lindblad-masterequation. 
-The efficiency is given by the formula:
+In my calculation, the thermal bath is constant, so I can use the Lindblad-masterequation. 
+In the following figure is shown a three-level system:
+The efficiency of the maser is given by the formula:
 \begin{equation}
-\eta_M=\frac{\nu_s}{\nu_p}
+\eta_{maser}=\frac{\omega_f}{\omega_h}
 \end{equation}
 
 \newpage
@@ -67,7 +74,7 @@ The master equation is:
 \begin{equation}
 \dot{\rho}(t)=\frac{1}{i \hbar}[H,\rho]+ \mathcal{L}\rho
 \end{equation}
-The first part is the vonNeuman equation. The von Neumanequation is the analog of the Schrödinger-equation but for density matrices. This part of the equation is unitary and therefore the process is reversible.
+The first part is the von Neuman-equation. The von Neuman-equation is the analog of the Schrödinger-equation but for density matrices. This part of the equation is unitary and therefore the process is reversible.
 The non-unitary part of the equation 
 $\mathcal{L}$ have three parts. $\mathcal{L}_h$describe the interaction with the hot bath.
 $\mathcal{L}_c$ Describe the interaction with the cold bath.
@@ -85,6 +92,7 @@ The total Hamiltonian
 \begin{equation}
 H=H_{free}+H_{int}
 \end{equation}
+\newpage
 The interaction with the various environmental heat baths is described by the Liouvillian:
 \begin{equation}
 \mathcal{L}\hat{\rho}=\frac{\gamma_h}{2}\biggl[  \frac{1}{\exp[\frac{\hbar \omega_h}{k_b T_h}]-1}+1   \biggr]\cdot \biggl(2 \sigma_{13}\cdot\rho\cdot \sigma_{13}^{\dag}-\sigma_{13}^{\dag}\sigma_{13}\rho-\rho\sigma_{13}^{\dag}\sigma_{13}\biggr) $$\\$$
@@ -95,18 +103,134 @@ The interaction with the various environmental heat baths is described by the Li
 \kappa\biggl[ \frac{1}{\exp[\frac{\hbar w_f}{k_b T_f}]-1}+1\biggr] \cdot\biggl( 2 a\rho a^{\dag} -a^{\dag}a\rho-\rho a^{\dag}a\biggr)$$\\$$
 \kappa\biggl[ \frac{1}{\exp[\frac{\hbar w_f}{k_b T_f}]-1}\biggr]\cdot \biggl(2 a^{\dag}\rho a -aa^{\dag}\rho-\rho a a^{\dag}\biggr)$$\\$$
 \end{equation}
+The Liouvillian have different constants. The coupling constants $g$ for the Hamiltonian and the $\kappa$ for the Liouvillian part. The prefactor of the Liouvillian   will be summarized as $\bar{n}$. This is the Einsteinbose-distribution. this distribution is dependent on the temperature and the frequencies. 
 
- When we work with density matrices, its commen Since we are working with density matrices here, it is easy to work with expectation values with $<A>=Tr[A*\rho]$.
+ When we work with density matrices, its commen to work with expectation values with $<A>=Tr[A*\rho]$.
+ $A$ is a operator and describe a measurement.
+
+\subsection{Maser}
+A maser is a coherent state.  A coherent state is a superposition of several Fockstates.
+On the Wignerfunction it is a ring with minimal uncertainty relation. 
+The Wigenrfunction is a probability distribution in the phase space. 
+so the goal of this work is to find Einstein-Bose-distributions which yield a coherent state.
+ 
 
 
 \section{Calculation}
-In our case only $\omega_f$ interact with the light.
-
 \subsection{Software}
-For the hole implementation of the tree-level-system in a cavity I used qutip. Qutip is library in python, which allows to solve Masterequation pretty fast.
+For the hole implementation of the tree-level-system in a cavity, I used qutip. Qutip is library in python, which allows to solve Masterequation pretty fast.
+\subsection{implementation of the tree-levelsystem in qutip}
+In our case only $\omega_f$ interact with the light. 
+first i defined the frequencies $ \omega_c $, $ \omega_h$ and $ \omega_f$ 
+The constants $h $ and the bolzmanfactor $k_b$ are 1.
+alsou defined as constants are the three different Boseeinstein-distributions $n_h$, $n_c$ and $n_f$
+The transition-operators are  made by following qutip implementation: "Trans13=tensor(vg*va.dag(),qutip.identity(nph))". nph is the maximum of the photonnumber in the cavity. so I get 90 x 90 matrices. 
+similarly the projectors. 
+with those its easy to construct the hamiltoniens, $H_{free}$ and $H_{int}$ as in formula 3 and 4.
+To calculate the the density matrices for steadystates we can alsou use a qutip function, call steadystate().
+this function needs the total Hamiltonian and a list of the non-unitary operators as arguments.
+We can we can construct this list as a multiplication of our transition-operators and the tree different Boseeinstein-distributions times the different $\gamma$-factors. 
+as output of the function steady state we get the density-matrices for steady-states.
+\subsection{Calculations}
+First i made a Fockplot and a wigner function of the reduce density matrices $\rho_{free}$ . This procedure is done by only one function from qutip.
+with the density matrix times the $L_{p}\rho$ i calculated on the heat flux by taking the trace of $H \mathcal{L}\cdot \rho$. 
+and plot this for 200 different  $g$ `s 
+The goal was to get a Ring states
 
 
 
+\section{Results}
+
+
+
+\section{Discussion}
+
+\section{References}
+@article{Brasil2013,
+abstract = {We present a derivation of the Lindblad equation - an important tool for the treatment of nonunitary evo- lutions - that is accessible to undergraduate students in physics or mathematics with a basic background on quantum mechanics. We consider a specific case, corresponding to a very simple situation, where a primary system interacts with a bath of harmonic oscillators at zero temperature, with an interaction Hamiltonian that resembles the Jaynes-Cummings format. We start with the Born-Markov equation and, tracing out the bath degrees of freedom, we obtain an equation in the Lindblad form. The specific situation is very instructive, for it makes it easy to realize that the Lindblads represent the effect on the main system caused by the interaction with the bath, and that the Markov approximation is a fundamental condition for the emergence of the Lindbladian operator. The formal derivation of the Lindblad equation for a more general case requires the use of quantum dynamical semi-groups and broader considerations regarding the environment and temperature than we have considered in the particular case treated here. {\textcopyright} The Sociedade Brasileira de F{\'{i}}sica.},
+archivePrefix = {arXiv},
+arxivId = {1110.2122},
+author = {Brasil, Carlos Alexandre and Fanchini, Felipe Fernandes and Napolitano, Reginaldo de Jesus},
+doi = {10.1590/s1806-11172013000100003},
+eprint = {1110.2122},
+file = {:home/sander/Master-Projekt/1110.2122.pdf:pdf},
+issn = {01024744},
+journal = {Revista Brasileira de Ensino de Fisica},
+keywords = {Lindblad equation,Open quantum systems},
+number = {1},
+pages = {1--11},
+title = {{A simple derivation of the Lindblad equation}},
+volume = {35},
+year = {2013}
+}
+@article{Horowitz2020,
+abstract = {In equilibrium thermodynamics, there exists a well-established connection between dynamical fluctuations of a physical system and the dissipation of its energy into an environment. However, few similarly quantitative tools are available for the description of physical systems out of equilibrium. Here, we offer our perspective on the recent development of a new class of inequalities known as thermodynamic uncertainty relations, which have revealed that dissipation constrains current fluctuations in steady states arbitrarily far from equilibrium. We discuss the stochastic thermodynamic origin of these inequalities, and highlight recent efforts to expand their applicability, which have focused on connections between current fluctuations and the fluctuation theorems.},
+author = {Horowitz, Jordan M. and Gingrich, Todd R.},
+doi = {10.1038/s41567-019-0702-6},
+file = {:home/sander/Master-Projekt/TUR-s41567-019-0702-6.pdf:pdf},
+issn = {17452481},
+journal = {Nature Physics},
+number = {1},
+pages = {15--20},
+publisher = {Springer US},
+title = {{Thermodynamic uncertainty relations constrain non-equilibrium fluctuations}},
+url = {http://dx.doi.org/10.1038/s41567-019-0702-6},
+volume = {16},
+year = {2020}
+}
+@article{Li2017,
+abstract = {We study the statistics of the lasing output from a single-atom quantum heat engine, which was originally proposed by Scovil and Schulz-DuBois [H. E. D. Scovil and E. O. Schulz-DuBois, Phys. Rev. Lett. 2, 262 (1959)PRLTAO0031-900710.1103/PhysRevLett.2.262]. In this heat engine model, a single three-level atom is coupled with an optical cavity and is in contact with a hot and a cold heat bath together. We derive a fully quantum laser equation for this heat engine model and obtain the photon number distribution both below and above the lasing threshold. With the increase of the hot bath temperature, the population is inverted and lasing light comes out. However, we notice that if the hot bath temperature keeps increasing, the atomic decay rate is also enhanced, which weakens the lasing gain. As a result, another critical point appears at a very high temperature of the hot bath, after which the output light become thermal radiation again. To avoid this double-threshold behavior, we introduce a four-level heat engine model, where the atomic decay rate does not depend on the hot bath temperature. In this case, the lasing threshold is much easier to achieve and the double-threshold behavior disappears.},
+archivePrefix = {arXiv},
+arxivId = {1710.00902},
+author = {Li, Sheng Wen and Kim, Moochan B. and Agarwal, Girish S. and Scully, Marlan O.},
+doi = {10.1103/PhysRevA.96.063806},
+eprint = {1710.00902},
+file = {:home/sander/Master-Projekt/1710.00902.pdf:pdf},
+issn = {24699934},
+journal = {Physical Review A},
+number = {6},
+pages = {1--10},
+title = {{Quantum statistics of a single-atom Scovil-Schulz-DuBois heat engine}},
+volume = {96},
+year = {2017}
+}
+@article{Nation2022,
+abstract = {python},
+author = {Nation, P. D. and Johansson, J. R.},
+file = {:home/sander/Master-Projekt/qutip-doc-4.7.pdf:pdf},
+journal = {QuTip},
+pages = {241},
+title = {{QuTiP: Quantum Toolbox in Python 4.7.0}},
+url = {http://qutip.org/documentation.html},
+year = {2022}
+}
+@article{Niedenzu2019,
+abstract = {One of the fundamental questions in quantum thermodynamics concerns the decomposition of energetic changes into heat and work. Contrary to classical engines, the entropy change of the piston cannot be neglected in the quantum domain. As a consequence, different concepts of work arise, depending on the desired task and the implied capabilities of the agent using the work generated by the engine. Each work quantifier-from ergotropy to non-equilibrium free energy-has well defined operational interpretations. We analyse these work quantifiers for a heat-pumped three-level maser and derive the respective engine efficiencies. In the classical limit of strong maser intensities the engine efficiency converges towards the Scovil-Schulz-DuBois maser efficiency, irrespective of the work quantifier.},
+archivePrefix = {arXiv},
+arxivId = {1907.01353},
+author = {Niedenzu, Wolfgang and Huber, Marcus and Boukobza, Erez},
+doi = {10.22331/q-2019-10-14-195},
+eprint = {1907.01353},
+file = {:home/sander/Master-Projekt/1907.01353v2.pdf:pdf},
+issn = {2521327X},
+journal = {Quantum},
+pages = {1--13},
+title = {{Concepts of work in autonomous quantum heat engines}},
+volume = {3},
+year = {2019}
+}
+@article{Scovil1959,
+author = {Scovil, H. E.D. and Schulz-Dubois, E. O.},
+doi = {10.1103/PhysRevLett.2.262},
+file = {:home/sander/Master-Projekt/PhysRevLett.2.262.pdf:pdf},
+issn = {00319007},
+journal = {Physical Review Letters},
+number = {6},
+pages = {262--263},
+title = {{Three-level masers as heat engines}},
+volume = {2},
+year = {1959}
+}
 
 
 
