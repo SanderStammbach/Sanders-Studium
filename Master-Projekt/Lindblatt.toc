@@ -3,13 +3,13 @@
 \contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
 \contentsline {section}{\numberline {2}Theory}{2}{section.2}%
 \contentsline {subsection}{\numberline {2.1}3-level-Maser}{2}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}hase-averaged coherent states}{2}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Lindblad-Master-Equation}{2}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Maser}{5}{subsection.2.4}%
-\contentsline {section}{\numberline {3}Calculation}{6}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Software}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {2.2}phase-averaged coherent states (PHAV)}{2}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Lindblad-Master-Equation}{3}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Probability calculation}{5}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Calculation}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Software}{5}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}implementation of the tree-levelsystem in qutip}{6}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Calculations}{6}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.3}Out}{6}{subsection.3.3}%
 \contentsline {section}{\numberline {4}Results}{6}{section.4}%
 \contentsline {section}{\numberline {5}Discussion}{6}{section.5}%
 \contentsline {section}{\numberline {6}References}{6}{section.6}%

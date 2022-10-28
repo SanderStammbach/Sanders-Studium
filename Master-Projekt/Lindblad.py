@@ -227,13 +227,13 @@ plt.show()
 #Berechnung
 nh_list=[]
 Trace_list=[]
-
+nh=0 #set nh again to zero
 for j in range(100):
     Trace_list_temp=Diverse_Loups.Funktion(nh,proj_1,proj_2,proj_3,H,nc,nf,gamma_h,gamma_c,kappa,A1,A2,A3,A4,A5,A6)
     Trace_list.append(Trace_list_temp)
 
     nh_list.append(nh)
-    nh=nh+0.5
+    nh=nh+0.1
 
 fig2, ax = plt.subplots()
 ax.set_xlabel(' different n_h factor [nh]')
