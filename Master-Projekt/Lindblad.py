@@ -46,17 +46,18 @@ nph=30    # Maximale Photonen im cavity
 Th=100.    # temperature of the hot bath
 Tc=20.     # temperature of the cold bath
 Tenv=0.0000000000000000000000000001
-g=3
+
 
 
 nh=2.6
 nc=0.001
 nf=0.02    #Beschreibt den cavity/Photonen. 
-
-
-gamma_h=35*0.01
-gamma_c=35*0.01
 kappa=0.01
+g=14*kappa
+
+gamma_h=35*kappa
+gamma_c=35*kappa
+
 kb=1
 
 b_fock=qutip.states.fock(nph,0) #m)/fock(N,#m)
@@ -125,7 +126,7 @@ def T(omega,n):
     T=h*omega/(kb*(np.log((1/n)+1)))
     return T
 
-print("Die Temperatur des warmen Bades ist: ",T(omega_h,Th))
+print("Die Temperatur des warmen Bades ist: ",T(omega_h,nh))
 ######################################################################################################
 
 
@@ -157,6 +158,8 @@ rho = steadystate(H, c_op_list)
 
 rho_f=rho.ptrace(1)  ### State in the cavity
 print(rho_f)
+print("Die Temperatur des warmen Bades ist: ",T(omega_h,nh))
+print("Die Temperatur des kalten Bades ist: ",T(omega_c,nc))
 qutip.plot_wigner_fock_distribution(rho_f,colorbar='colorbar')
 plt.show()
 ##########################################################################################################
