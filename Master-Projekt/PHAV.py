@@ -39,11 +39,11 @@ nph=30
 
 b_fock=qutip.states.fock(nph,0)
 a=1
-rho_PHAV=np.exp(-np.abs(a)^2)**b_fock*b_fock.dag()
+#rho_PHAV=np.exp(-np.abs(a)^2)**b_fock*b_fock.dag()
 
 def W(x,y): 
     b=1.4
-    W = 2*np.exp(-2(np.abs(b)^2)+np.abs(x+y)^2)*0.9*(4*np.abs(x+y)*np.abs(b))
+    W = 2*np.exp(-2(np.absolute(b)**2)+np.absolute(x+y)**2)*0.9*(4*np.absolute(x+y)*np.absolute(b))
     return W
 
 
@@ -54,8 +54,8 @@ fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
 X = np.arange(-5, 5, 0.25)
 Y = np.arange(-5, 5, 0.25)
 X, Y = np.meshgrid(X, Y)
-R = np.sqrt(X**2 + Y**2)
-Z = np.sin(R)
+
+Z = 2*np.exp(-2*(np.absolute(0.9)**2+np.absolute(X+Y)**2))*0.9*(4*np.absolute(X+Y)*np.absolute(0.9))
 
 # Plot the surface.
 surf = ax.plot_surface(X, Y, Z, cmap=cm.coolwarm,

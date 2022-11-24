@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.11.8)  24 NOV 2022 13:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.11.8)  24 NOV 2022 17:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -710,45 +710,45 @@ l.57 \newpage
 File: Bilder-für-text/3-Level-System.png Graphic file (type png)
 <use Bilder-für-text/3-Level-System.png>
 Package pdftex.def Info: Bilder-für-text/3-Level-System.png  used on input lin
-e 132.
+e 138.
 (pdftex.def)             Requested size: 462.5198pt x 305.1346pt.
 
-Overfull \hbox (72.5198pt too wide) in paragraph at lines 132--137
+Overfull \hbox (72.5198pt too wide) in paragraph at lines 138--143
  [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 631.12819pt on input line 138.
+LaTeX Warning: Float too large for page by 678.79488pt on input line 144.
 
 [2]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Overfull \hbox (11.35pt too wide) in paragraph at lines 143--149
+Overfull \hbox (11.35pt too wide) in paragraph at lines 149--155
 \OT1/cmr/m/n/12 The first part of Eq.3 is the von Neuman-equation, the ana-log 
 of the Schr^^?odinger
  []
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 169--169
+Underfull \hbox (badness 10000) in paragraph at lines 175--175
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 171--171
+Underfull \hbox (badness 10000) in paragraph at lines 177--177
 
  []
 
 [4] [5]
-Underfull \hbox (badness 10000) in paragraph at lines 251--255
+Underfull \hbox (badness 10000) in paragraph at lines 257--261
 
  []
 
 <Bilder-für-text/Figure_1.png, id=139, 745.1037pt x 300.6432pt>
 File: Bilder-für-text/Figure_1.png Graphic file (type png)
 <use Bilder-für-text/Figure_1.png>
-Package pdftex.def Info: Bilder-für-text/Figure_1.png  used on input line 262.
+Package pdftex.def Info: Bilder-für-text/Figure_1.png  used on input line 268.
 
 (pdftex.def)             Requested size: 298.0362pt x 120.25514pt.
 
@@ -758,7 +758,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <Bilder-für-text/Figure_2.png, id=145, 740.0448pt x 289.08pt>
 File: Bilder-für-text/Figure_2.png Graphic file (type png)
 <use Bilder-für-text/Figure_2.png>
-Package pdftex.def Info: Bilder-für-text/Figure_2.png  used on input line 270.
+Package pdftex.def Info: Bilder-für-text/Figure_2.png  used on input line 276.
 
 (pdftex.def)             Requested size: 296.01268pt x 115.62994pt.
 
@@ -768,7 +768,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <Bilder-für-text/Figure_7.png, id=146, 682.2288pt x 289.08pt>
 File: Bilder-für-text/Figure_7.png Graphic file (type png)
 <use Bilder-für-text/Figure_7.png>
-Package pdftex.def Info: Bilder-für-text/Figure_7.png  used on input line 276.
+Package pdftex.def Info: Bilder-für-text/Figure_7.png  used on input line 282.
 
 (pdftex.def)             Requested size: 272.88667pt x 115.62994pt.
 
@@ -777,7 +777,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <Bilder-für-text/Figure_8.png, id=147, 682.2288pt x 289.08pt>
 File: Bilder-für-text/Figure_8.png Graphic file (type png)
 <use Bilder-für-text/Figure_8.png>
-Package pdftex.def Info: Bilder-für-text/Figure_8.png  used on input line 283.
+Package pdftex.def Info: Bilder-für-text/Figure_8.png  used on input line 289.
 
 (pdftex.def)             Requested size: 272.88667pt x 115.62994pt.
 
@@ -786,7 +786,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <Bilder-für-text/Energie_1.png, id=148, 462.528pt x 346.896pt>
 File: Bilder-für-text/Energie_1.png Graphic file (type png)
 <use Bilder-für-text/Energie_1.png>
-Package pdftex.def Info: Bilder-für-text/Energie_1.png  used on input line 306
+Package pdftex.def Info: Bilder-für-text/Energie_1.png  used on input line 312
 .
 (pdftex.def)             Requested size: 277.51894pt x 208.13919pt.
 [7]
@@ -796,35 +796,35 @@ File: Bilder-für-text/stationary-atomic-population.png Graphic file (type png)
 
 <use Bilder-für-text/stationary-atomic-population.png>
 Package pdftex.def Info: Bilder-für-text/stationary-atomic-population.png  use
-d on input line 314.
+d on input line 320.
 (pdftex.def)             Requested size: 367.27896pt x 223.74963pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 329--329
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 330--330
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 331--331
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 333--333
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 334--334
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 335--335
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 336--336
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 337--337
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 339--339
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 340--340
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 341--341
 
  []
 
@@ -839,8 +839,8 @@ Package logreq Info: Writing requests to 'Lindblatt.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 18652 strings out of 478238
- 324913 string characters out of 5850456
+ 18653 strings out of 478238
+ 324926 string characters out of 5850456
  1057158 words of memory out of 5000000
  36611 multiletter control sequences out of 15000+600000
  475916 words of font info for 54 fonts, out of 8000000 for 9000
@@ -856,10 +856,10 @@ share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist
 ublic/amsfonts/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.
 pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on Lindblatt.pdf (13 pages, 413127 bytes).
+Output written on Lindblatt.pdf (13 pages, 414847 bytes).
 PDF statistics:
- 262 PDF objects out of 1000 (max. 8388607)
- 204 compressed objects within 3 object streams
- 53 named destinations out of 1000 (max. 500000)
+ 263 PDF objects out of 1000 (max. 8388607)
+ 205 compressed objects within 3 object streams
+ 54 named destinations out of 1000 (max. 500000)
  177 words of extra memory for PDF output out of 10000 (max. 10000000)
 
