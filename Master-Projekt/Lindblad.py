@@ -50,7 +50,7 @@ Tenv=0.0000000000000000000000000001
 
 
 nh=2.6
-nc=0.001
+nc=0.01
 nf=0.02    #Beschreibt den cavity/Photonen. 
 kappa=0.01
 g=14*kappa
@@ -214,9 +214,9 @@ with open('Speicherort.csv','w') as temp_file:
 
 import matplotlib.pyplot as plt
 fig, ax = plt.subplots()
-ax.set_xlabel('Kopplungskonstante g')
-ax.set_ylabel('Wärme_Energie [J]')
-plt.title('Energie/Wärmefluss')
+ax.set_xlabel('coupling constant [g]')
+ax.set_ylabel('current [J]')
+plt.title('current/energyflux vs coupling constant')
 plt.plot(np.asarray(g_list)[:200],np.asarray(Energie_VS_g)[:200,0],label='Th')
 plt.plot(np.asarray(g_list)[:200],np.asarray(Energie_VS_g)[:200,1],label='Tc')
 plt.plot(np.asarray(g_list)[:200],np.asarray(Energie_VS_g)[:200,2],label='Tenv')
@@ -236,17 +236,24 @@ for j in range(100):
     Trace_list.append(Trace_list_temp)
 
     nh_list.append(nh)
-    nh=nh+0.1
+    nh=nh+0.3
 
 fig2, ax = plt.subplots()
-ax.set_xlabel(' different n_h factor [nh]')
-ax.set_ylabel('Wahrscheindlichkeit')
-plt.title('Working title')
+ax.set_xlabel('nh')
+ax.set_ylabel('probability')
+plt.title('stationary atomic population')
 plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,0],label='P1')
 plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,1],label='P2')
 plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,2],label='P3')
 legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
 legend.get_frame().set_facecolor('C0')
+#Linien in plt
+plt.axvline(x=2.6)
+plt.axvline(x=2.6)
+plt.axvline(x=5.5)
+plt.axvline(x=0.17)
+plt.axvline(x=20)
+
 plt.show()
 #with open("Speicherort.csv", "wb") as f:
 #    writer = csv.writer(f)
@@ -273,7 +280,20 @@ plt.show()
 
 
 
+nh2=0.1
+nh_list2=[]
+Entropy=[]
+for i in range(100):
+    list_temp=[]
+    list_temp=Diverse_Loups.Entropy(nh2,Trans_12,a, kb,h,g,H,H_free,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23)
+    #g_list.append(i/100)  #Erstellt eine Liste mit Wären von g 
+    Entropy.append(list_temp)
+    nh2=nh2+0.3
+    nh_list2.append(nh2)
 
+#Liste von Stings in floats konvertieren
+#float_list2=list(np.float_(Energie_VS_g))
+print(Entropy) 
 
 #result=mesolve(H, rho0, tlist)
 #print(D(c_op_list,rho)[3])
@@ -282,3 +302,15 @@ plt.show()
 print("Die Temperatur des warmen Bades ist: ",T(omega_h,nh))
 print("Die Temperatur des kalten Bades ist: ",T(omega_c,nc))
 print(Trace_list_temp)
+
+fig3, ax = plt.subplots()
+ax.set_xlabel('nh')
+ax.set_ylabel('Entropy')
+plt.title('Entropy Production')
+plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,0])
+
+legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
+legend.get_frame().set_facecolor('C0')
+#Linien in plt
+
+plt.show()

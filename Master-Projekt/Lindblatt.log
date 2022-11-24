@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.10.24)  3 NOV 2022 19:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.11.8)  24 NOV 2022 13:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -705,111 +705,144 @@ been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.57 \newpage
-              [1] [2]
-<Bilder-für-text/Theorie2.png, id=107, 1002.74625pt x 571.13374pt>
-File: Bilder-für-text/Theorie2.png Graphic file (type png)
-<use Bilder-für-text/Theorie2.png>
-Package pdftex.def Info: Bilder-für-text/Theorie2.png  used on input line 88.
-(pdftex.def)             Requested size: 401.0914pt x 228.44945pt.
+              [1]
+<Bilder-für-text/3-Level-System.png, id=103, 1156.32pt x 762.85pt>
+File: Bilder-für-text/3-Level-System.png Graphic file (type png)
+<use Bilder-für-text/3-Level-System.png>
+Package pdftex.def Info: Bilder-für-text/3-Level-System.png  used on input lin
+e 132.
+(pdftex.def)             Requested size: 462.5198pt x 305.1346pt.
 
-Overfull \hbox (11.0914pt too wide) in paragraph at lines 88--93
+Overfull \hbox (72.5198pt too wide) in paragraph at lines 132--137
  [][] 
  []
 
-[3 <./Bilder-für-text/Theorie2.png>]
-Overfull \hbox (0.89784pt too wide) in paragraph at lines 106--106
-[]\OT1/cmr/bx/n/14.4 Theoretical framework/Lindblad-Master-Equation 
+
+LaTeX Warning: Float too large for page by 631.12819pt on input line 138.
+
+[2]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Overfull \hbox (11.35pt too wide) in paragraph at lines 143--149
+\OT1/cmr/m/n/12 The first part of Eq.3 is the von Neuman-equation, the ana-log 
+of the Schr^^?odinger
+ []
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 169--169
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 171--171
+
  []
 
 [4] [5]
-Underfull \hbox (badness 10000) in paragraph at lines 149--149
+Underfull \hbox (badness 10000) in paragraph at lines 251--255
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 151--151
-
- []
-
-[6] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 231--235
-
- []
-
-<Bilder-für-text/Figure_1.png, id=152, 745.1037pt x 300.6432pt>
+<Bilder-für-text/Figure_1.png, id=139, 745.1037pt x 300.6432pt>
 File: Bilder-für-text/Figure_1.png Graphic file (type png)
 <use Bilder-für-text/Figure_1.png>
-Package pdftex.def Info: Bilder-für-text/Figure_1.png  used on input line 242.
+Package pdftex.def Info: Bilder-für-text/Figure_1.png  used on input line 262.
 
 (pdftex.def)             Requested size: 298.0362pt x 120.25514pt.
-[8 <./Bilder-für-text/Figure_1.png>]
-<Bilder-für-text/Figure_2.png, id=159, 740.0448pt x 289.08pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[6]
+<Bilder-für-text/Figure_2.png, id=145, 740.0448pt x 289.08pt>
 File: Bilder-für-text/Figure_2.png Graphic file (type png)
 <use Bilder-für-text/Figure_2.png>
-Package pdftex.def Info: Bilder-für-text/Figure_2.png  used on input line 250.
+Package pdftex.def Info: Bilder-für-text/Figure_2.png  used on input line 270.
 
 (pdftex.def)             Requested size: 296.01268pt x 115.62994pt.
 
-Underfull \hbox (badness 2027) in paragraph at lines 251--251
-[]\OT1/cmr/m/n/12 Figure 3: []The pa-ram-e-ters for the first plot are nh=2.6 n
-c=0.001
- []
 
-<Bilder-für-text/Figure_7.png, id=160, 682.2288pt x 289.08pt>
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<Bilder-für-text/Figure_7.png, id=146, 682.2288pt x 289.08pt>
 File: Bilder-für-text/Figure_7.png Graphic file (type png)
 <use Bilder-für-text/Figure_7.png>
-Package pdftex.def Info: Bilder-für-text/Figure_7.png  used on input line 256.
+Package pdftex.def Info: Bilder-für-text/Figure_7.png  used on input line 276.
 
 (pdftex.def)             Requested size: 272.88667pt x 115.62994pt.
 
-Underfull \hbox (badness 2384) in paragraph at lines 257--257
-[]\OT1/cmr/m/n/12 Figure 4: []The pa-ram-e-ters for the first plot are nh=20 nc
-=0.001
- []
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[9 <./Bilder-für-text/Figure_2.png> <./Bilder-für-text/Figure_7.png>]
-[10]
-Underfull \hbox (badness 10000) in paragraph at lines 290--290
+<Bilder-für-text/Figure_8.png, id=147, 682.2288pt x 289.08pt>
+File: Bilder-für-text/Figure_8.png Graphic file (type png)
+<use Bilder-für-text/Figure_8.png>
+Package pdftex.def Info: Bilder-für-text/Figure_8.png  used on input line 283.
 
- []
+(pdftex.def)             Requested size: 272.88667pt x 115.62994pt.
 
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-Underfull \hbox (badness 10000) in paragraph at lines 291--291
+<Bilder-für-text/Energie_1.png, id=148, 462.528pt x 346.896pt>
+File: Bilder-für-text/Energie_1.png Graphic file (type png)
+<use Bilder-für-text/Energie_1.png>
+Package pdftex.def Info: Bilder-für-text/Energie_1.png  used on input line 306
+.
+(pdftex.def)             Requested size: 277.51894pt x 208.13919pt.
+[7]
+<Bilder-für-text/stationary-atomic-population.png, id=153, 612.1269pt x 372.91
+32pt>
+File: Bilder-für-text/stationary-atomic-population.png Graphic file (type png)
 
- []
+<use Bilder-für-text/stationary-atomic-population.png>
+Package pdftex.def Info: Bilder-für-text/stationary-atomic-population.png  use
+d on input line 314.
+(pdftex.def)             Requested size: 367.27896pt x 223.74963pt.
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 292--292
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 294--294
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 295--295
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 296--296
+Underfull \hbox (badness 10000) in paragraph at lines 329--329
 
  []
 
-[11] (./Lindblatt.aux)
+
+Underfull \hbox (badness 10000) in paragraph at lines 330--330
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 331--331
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 333--333
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 334--334
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 335--335
+
+ []
+
+[8] [9 <./Bilder-für-text/3-Level-System.png>] [10 <./Bilder-für-text/Figure_
+1.png> <./Bilder-für-text/Figure_2.png> <./Bilder-für-text/Figure_7.png>]
+[11 <./Bilder-für-text/Figure_8.png> <./Bilder-für-text/Energie_1.png>]
+[12 <./Bilder-für-text/stationary-atomic-population.png>] (./Lindblatt.aux)
 Package rerunfilecheck Info: File `Lindblatt.out' has not changed.
-(rerunfilecheck)             Checksum: D4CF8129D5603EA2FB5EDD0C756FDB9A;2356.
+(rerunfilecheck)             Checksum: 10DD94C2DA1EFB2AEF835CC4BE06398B;2377.
 Package logreq Info: Writing requests to 'Lindblatt.run.xml'.
 \openout1 = `Lindblatt.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 18621 strings out of 478238
- 323804 string characters out of 5850455
- 1047158 words of memory out of 5000000
- 36589 multiletter control sequences out of 15000+600000
+ 18652 strings out of 478238
+ 324913 string characters out of 5850456
+ 1057158 words of memory out of 5000000
+ 36611 multiletter control sequences out of 15000+600000
  475916 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,8n,68p,742b,1962s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -820,12 +853,13 @@ c/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/
 share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/
-symbols/msbm10.pfb>
-Output written on Lindblatt.pdf (12 pages, 279391 bytes).
+ublic/amsfonts/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.
+pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
+Output written on Lindblatt.pdf (13 pages, 413127 bytes).
 PDF statistics:
- 234 PDF objects out of 1000 (max. 8388607)
- 188 compressed objects within 2 object streams
- 47 named destinations out of 1000 (max. 500000)
- 162 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 262 PDF objects out of 1000 (max. 8388607)
+ 204 compressed objects within 3 object streams
+ 53 named destinations out of 1000 (max. 500000)
+ 177 words of extra memory for PDF output out of 10000 (max. 10000000)
 
