@@ -30,6 +30,7 @@ from qutip import ptrace
 from Loup_for_different_coupling import Diverse_Loups as Diverse_Loups
 import multiprocessing as mp
 import csv
+from IPython.display import display, Latex
 #Konstante Grössen
 ########################################################################################################
 omega_1=0
@@ -49,7 +50,7 @@ Tenv=0.0000000000000000000000000001
 
 
 
-nh=2.6
+nh=2.3
 nc=0.01
 nf=0.02    #Beschreibt den cavity/Photonen. 
 kappa=0.01
@@ -253,6 +254,7 @@ plt.axvline(x=2.6)
 plt.axvline(x=5.5)
 plt.axvline(x=0.17)
 plt.axvline(x=20)
+plt.axvline(x=1.7)
 
 plt.show()
 #with open("Speicherort.csv", "wb") as f:
@@ -304,7 +306,7 @@ print("Die Temperatur des kalten Bades ist: ",T(omega_c,nc))
 print(Trace_list_temp)
 
 fig3, ax = plt.subplots()
-ax.set_xlabel('nh')
+ax.set_xlabel('n_h')
 ax.set_ylabel('Entropy')
 plt.title('Entropy Production')
 plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,0])
