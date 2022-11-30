@@ -1,48 +1,83 @@
 This is BibTeX, Version 0.99d (TeX Live 2022/Arch Linux)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: Lindblatt.aux
-I found no \citation commands---while reading file Lindblatt.aux
-I found no \bibdata command---while reading file Lindblatt.aux
-I found no \bibstyle command---while reading file Lindblatt.aux
-You've used 0 entries,
-            0 wiz_defined-function locations,
-            83 strings with 492 characters,
-and the built_in function-call counts, 0 in all, are:
-= -- 0
-> -- 0
-< -- 0
-+ -- 0
-- -- 0
-* -- 0
-:= -- 0
+The style file: biblatex.bst
+Reallocated glb_str_ptr (elt_size=8) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=8) to 20 items from 10.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Reallocated wiz_functions (elt_size=8) to 6000 items from 3000.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Database file #1: Lindblatt-blx.bib
+Database file #2: bibli.bib
+Database file #3: library.bib
+Repeated entry---line 1 of file library.bib
+ : @article{Allevi2013
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 53 of file library.bib
+ : @article{Li2017
+ :                ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 81 of file library.bib
+ : @article{Niedenzu2019
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 98 of file library.bib
+ : @article{Scovil1959
+ :                    ,
+I'm skipping whatever remains of this entry
+Biblatex version: 3.17
+Reallocated wiz_functions (elt_size=8) to 9000 items from 6000.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+You've used 5 entries,
+            6399 wiz_defined-function locations,
+            1255 strings with 12891 characters,
+and the built_in function-call counts, 46165 in all, are:
+= -- 3863
+> -- 540
+< -- 113
++ -- 1265
+- -- 248
+* -- 3725
+:= -- 5619
 add.period$ -- 0
-call.type$ -- 0
-change.case$ -- 0
-chr.to.int$ -- 0
-cite$ -- 0
-duplicate$ -- 0
-empty$ -- 0
-format.name$ -- 0
-if$ -- 0
+call.type$ -- 5
+change.case$ -- 44
+chr.to.int$ -- 45
+cite$ -- 8
+duplicate$ -- 4262
+empty$ -- 4092
+format.name$ -- 325
+if$ -- 9199
 int.to.chr$ -- 0
-int.to.str$ -- 0
+int.to.str$ -- 8
 missing$ -- 0
-newline$ -- 0
-num.names$ -- 0
-pop$ -- 0
-preamble$ -- 0
-purify$ -- 0
+newline$ -- 242
+num.names$ -- 164
+pop$ -- 1535
+preamble$ -- 1
+purify$ -- 75
 quote$ -- 0
-skip$ -- 0
+skip$ -- 777
 stack$ -- 0
-substring$ -- 0
-swap$ -- 0
-text.length$ -- 0
-text.prefix$ -- 0
-top$ -- 0
-type$ -- 0
+substring$ -- 7952
+swap$ -- 862
+text.length$ -- 139
+text.prefix$ -- 4
+top$ -- 1
+type$ -- 158
 warning$ -- 0
-while$ -- 0
+while$ -- 656
 width$ -- 0
-write$ -- 0
-(There were 3 error messages)
+write$ -- 238
+(There were 4 error messages)

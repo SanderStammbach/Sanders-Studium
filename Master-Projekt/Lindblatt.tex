@@ -15,8 +15,14 @@
 \usepackage{appendix}
 \usepackage{ amssymb }
 \usepackage{amsmath, amsthm}
-\usepackage[backend=biber,style=ieee,citestyle=numeric-comp, url=false, eprint=false, url=true, isbn=false, doi=false]{biblatex}
+%\usepackage[backend=biber,style=ieee,citestyle=numeric-comp, url=false, eprint=false, url=true, isbn=false, doi=false]{biblatex}
+\usepackage[style=authoryear, backend=bibtex]{biblatex}
+%\usepackage{biblatex}
+%\usepackage[backend=bibtex]{biblatex}
+%\bibliography{library.bib}
+\addbibresource{bibli.bib}
 \addbibresource{library.bib}
+
 \begin{document}
 \begin{titlepage}
 \begin{center}
@@ -56,7 +62,6 @@
 \tableofcontents
 \newpage
 \section{Introduction}
-
 One of the most important questions in thermodynamics is how to convert
 thermal energy into work. For such tasks exists many classical engines, as
 example the steam-machine. %To quantify heat-engines, it's common to look at the ergotropy.
@@ -65,20 +70,19 @@ The three-level maser is a Quantum heat engine ( QHE). The work
 extraction from a classical heat engine is often a moving piston.As example steam machines or a gasoline engine. But in this case
 it is a driving field. Albert Einstein, already discussed three ways of
 light-matter-interaction (spontaneous emission, absorption, and stimulated
-emission) in the year 1916(Quelle Wiki). In paper from 1959 [Quelle
-altes paper], Scovil and Schulz-DuBois investigated whether a laser is not
+emission) in the year 1916\cite{Li2017}. In paper from 1959.\cite{Scovil1959}  Scovil and Schulz-DuBois investigated whether a laser is not
 also a heat engine. In the paper, they take a maser as a device to transform
 heat into coherent radiation, because heat can make a population inversion.
 In their thermodynamic analytic, they use a single-atom laser. They made a
 groundwork for emerging theory of quantum thermodynamics. In practice and also for the calculations, two different reservoirs are necessary. The high-temperature reservoir can be
 realized by a gas noise lamp and the filter by a wave guide cutting off the
-lower frequencies. (Quelle main Paper)
+lower frequencies. \cite{Niedenzu2019}
 
 \section{Theory}
 \subsection{3-level-Maser Model}
 A Maser/Laser consists of two elements. One of them is a gain medium and the other one is an optical resonator. A gain medium is always a material with an atomic transition between two atomic states. When an atom falls from an energetically higher state to an energetically lower state, a photon is created.
 
-In a three level system the three energy levels are $E1,E2,E3$. Pumping is from the lowest level to the highest level, E3. The condition for the third level is that it falls to the middle level E2 very quickly. On average, the system is almost not in the third state. The resonator should then have a higher decay time, so that a population inversion can build up. This means that several particles are in the energetically higher state. From this state they come almost exclusively through stimulated emission into the lower state E1. Stimulated emission is a necessary condition for coherent light. Coherent light means the light have the same phase and same frequency. (Quelle Wiki)
+In a three level system the three energy levels are $E1,E2,E3$. Pumping is from the lowest level to the highest level, E3. The condition for the third level is that it falls to the middle level E2 very quickly. On average, the system is almost not in the third state. The resonator should then have a higher decay time, so that a population inversion can build up. This means that several particles are in the energetically higher state. From this state they come almost exclusively through stimulated emission into the lower state E1. Stimulated emission is a necessary condition for coherent light. Coherent light means the light have the same phase and same frequency. \cite{Li2017}
 
 In the case of this calculation, the higher level will be reached with a interaction of a warm bath. 
 
@@ -94,35 +98,11 @@ The function describe the probability distribution in phase space.
 w(x,p)=\frac{1}{2\pi \hbar}\int_{- \infty}^{\infty} d\xi e^{\frac{-i}{\hbar}p}\bra{x+\frac{1}{2}\xi}\rho\ket{x-\frac{1}{2}\xi}
 \end{equation}
 
-\newpage
-\subsection{Phase-averaged coherent states (PHAV)}
-The output of a laser is coherent light.
-The quantum description of coherent light is a coherent state. The photon number distribution of coherent light is a Poisson distribution. The randomized phase of a coherent state doesn't change the photon-number distribution. 
-The Wigner function from a coherent state itself is a Gaussian. But the Wigner function of a phase-average-state has a non-Gaussian Wigner function. 
-The mathematical description of a  PHAV is the same as a normal coherent state but with a random phase. So we get a new term of $exp(i\pi\phi)$ in it. 
-The normal coherent state could represented by following formula (Quelle 5):
-\begin{equation}
-\ket{\alpha}=e^{-1/2|\alpha|}\sum_{n=0}^{\infty}\frac{|\alpha|^n e^{in\phi}}{\sqrt{n!}} \ket{n},
-\end{equation}
-To get the phase average state will get reach with the integral around two $\pi$.
-\begin{equation}
-\rho_{PHAV}=\int_0 ^{2\pi}\frac{d\phi}{2\pi}\ket{\alpha}\bra{\alpha}=\sum_{n=0}^{infinity}p_{nn}.
-\end{equation}
-this is equal to:
-\begin{equation}
-\rho_{PHAV}= exp(-|\alpha|^2)\frac{|\alpha|^{2n}}{n!}.
-\end{equation}
-For the Wigner function we get finally following equation:
-\begin{equation}
-W(z)=2  exp\bigl[-2\bigl(|\beta|^2+|z|^2\bigr)\bigr) I_0 (4|\beta| |z|).
-\end{equation}
-Useful in the future.( Zitat Paper über PHAV) The consistent experimental and theoretical results we have obtained in the characterization of both PHAVs and their superpositions 2-PHAVs reinforce the
-possibility of using them for applications to communication protocols. 
 
 
 \subsection{Master-Equation} 
 An arbitrary state on this total
-Hilbert space can be described by a total density operator $\rho_{tot}(t)$.The total density operator is  can be written in the Hilbert space $ \rho_ {tot}= \rho_{atom}+\rho_{photon}$.  Encoded in this density
+Hilbert space can be described by a total density operator $\rho_{tot}(t)$.The total density operator is  can be written in the Hilbert space $ \rho_ {tot}= \rho_{atom}+\rho_{photon}$.  Encoded in this density \cite{Li2017}
 operator is a complete description of the total system's state at a given time t. To derive the $\rho_{tot}$ we can solve a specific differential equation. This equation is called Lindblad-master-equation Eq.3. 
 The Basic of our work is a three-level quantum system in a cavity. This three level system is driven by a hot bath and a cold bath. Those have the temperature $T_c$ and $T_h$. The cavity is build of two mirrors. One of the cavity have a small leaking, so that a small part of the photons can leave the cavity. This leaking is quantified by a constant $\kappa$.
 In the calculation, the thermal bath is constant, therefore 
@@ -180,13 +160,13 @@ The interaction with the various environmental heat baths is described by the Li
 \kappa n(\omega_f,T_f)\cdot \mathcal{D}[a^{\dag}]\rho.
 \end{aligned}
 \end{equation}
-The $\sigma_{ab} $ is the transition operator and defined as $ \ket{a}\bra{b}$. It describe the transition between a atomic state $a$ to $b$
-$\mathcal{D}$ is defined with this formula:
+The $\sigma_{ab} $ is the transition operator and defined as $ \ket{a}\bra{b}$. It describe the transition between a atomic state $a$ to $b$.
+$\mathcal{D}$ is defined with following formula:
 \begin{equation}
 \mathcal{D}[A]\rho=(2A \rho	A^{\dag}-A^{\dag}A\rho-\rho A^{\dag}A),
 \end{equation}
 
-The Bose-Einstein ocupation number. It is the mean number of excitations in the reservoir damping the oscillator  . It describes the mean occupation number $\langle n(E) \rangle$ of a quantum state of energy $E$, in thermodynamic equilibrium at absolute temperature $T $ for identical bosons as occupying particles. n depends on the temperature and the frequency.
+The Bose-Einstein occupation number. It is the mean number of excitations in the reservoir damping the oscillator  . It describes the mean occupation number $\langle n(E) \rangle$ of a quantum state of energy $E$, in thermodynamic equilibrium at absolute temperature $T $ for identical bosons as occupying particles. n depends on the temperature and the frequency.
 n is defined as:
 
 $
@@ -197,11 +177,38 @@ The Liouvillian has different constants. The coupling constants $g$ strong for t
 The coupling constant $g$ is given by $\frac{\Omega}{\hbar}$,
 
 
+\subsection{Phase-averaged coherent states (PHAV)}
+The output of a laser is coherent light.
+The quantum description of coherent light is a coherent state. The photon number distribution of coherent light is a Poisson distribution. The randomized phase of a coherent state doesn't change the photon-number distribution. 
+The Wigner function from a coherent state itself is a Gaussian. But the Wigner function of a phase-average-state has a non-Gaussian Wigner function. 
+The mathematical description of a  PHAV is the same as a normal coherent state but with a random phase. So we get a new term of $exp(i\pi\phi)$ in it. 
+The normal coherent state$ket{\alpha}$ could represented by following formula: \cite{Allevi2013}
+\begin{equation}
+\ket{\alpha}=e^{-1/2|\alpha|}\sum_{n=0}^{\infty}\frac{|\alpha|^n e^{in\phi}}{\sqrt{n!}} \ket{n},
+\end{equation}
+To get the phase average state will get reach with the integral around two $\pi$.
+\begin{equation}
+\rho_{PHAV}=\int_0 ^{2\pi}\frac{d\phi}{2\pi}\ket{\alpha}\bra{\alpha}=\sum_{n=0}^{infinity}p_{nn}.
+\end{equation}
+this is equal to:
+\begin{equation}
+\rho_{PHAV}= exp(-|\alpha|^2)\frac{|\alpha|^{2n}}{n!}.
+\end{equation}
+For the Wigner function we get finally following equation:
+\begin{equation}
+W(z)=2  exp\bigl[-2\bigl(|\beta|^2+|z|^2\bigr)\bigr) I_0 (4|\beta| |z|).
+\end{equation}
+The consistent experimental and theoretical results we have obtained in the characterization of both PHAVs and their superpositions 2-PHAVs reinforce the
+possibility of using them for applications to communication protocols. \cite{Allevi2013}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.2]{Bilder-für-text/PHAV.png}
+\caption{Plot of the Wigner function form a PHAV state}
+\end{figure}
 \subsection{Thermodynamics}
  When we work with density matrices, its common to work with expectation values with $\langle A \rangle=Tr[A\dot{\rho}]$.
  $A$ is a operator and describe a measurement.
 With this we can calculate the expectation value from an Operator. 
-
 To calculate the expected heat flow we can take the partial trace from 
 \begin{equation}
 \langle J\rangle=Tr[\rho_{free}\cdot \mathcal{L}_h[\rho]]+Tr[\rho_{free}\cdot \mathcal{L}_c[\rho]]+Tr[\rho_{free}\cdot \mathcal{L}_{cav}].
@@ -214,7 +221,6 @@ The equation gave the following result:
 Tr[\rho_{free}\cdot \mathcal{L}_h[\rho]]=\hbar \omega_h \gamma_h (2n+1) \cdot( P1-P3) ,
 \end{equation}
 For the calculation the $Tr[H_{free}\cdot \mathcal{L}_{cav}]$, I get the following result:
-
 \begin{equation}
 T[H_{free}\cdot \mathcal{L}_{cav}[\rho]]=2\hbar \omega_k (\bar{n}-\langle a^{\dag{}}a \rangle).
 \end{equation}
@@ -224,7 +230,6 @@ The efficiency is given by the following formula:
 \end{equation}
 
 
-
 \section{Methods}
 \subsection{Software}
 For the hole implementation of the tree-level-system in a cavity, I used qutip. Qutip is library in python, which allows to solve masterequation pretty easy.
@@ -232,24 +237,23 @@ Further calculation and methods was easily applied in python.
 \subsection{Implementation of the tree-level-system in qutip}
 Qutip can be used to solve master equations. For that we have to define constants.  
 In our case only $\omega_f$ interact with the light. 
-
-The constants $\hbar $ and the bolzmanfactor $k_B$ are 1.
-alsou defined as constants are the three different Bose Einstein occupation $n_h$, $n_c$ and $n_f$
+The constants $\hbar $ and the Boltzmann factor $k_B$ are 1.
+also defined as constants are the three different Bose Einstein occupation $n_h$, $n_c$ and $n_f$
 The transition-operators $\sigma_{ab}$ are  made by following qutip implementation:\\ $\sigma_{}ab=tensor(\ket{a}\bra{b}\cdot I_{(nph)}"$.\\
 In the same way I implemented also the other transition operators and 
-vg and v1 are basisstates.  nph is the maximum of the photonnumber in the cavity. If I set my maximum photon number to 30, I get 90 x 90 matrices. 
+vg and v1 are basisstates.  "nph" is the maximum of the photonnumber in the cavity. If I set my maximum photon number to 30, I get 90 x 90 matrices. 
 The projectors are implemented similarly, but wit the matrix $\ket{a}\bra{a}$
 With those its easy to construct the Hamiltoniens, $H_{free}$ and $H_{int}$, as in Eq.3 , Eq.4
 To calculate the the density matrices for steady states we can also use a qutip function, call steadystate().
 this function needs the total Hamiltonian and a list of the non-unitary operators as arguments.
 We can we can construct this list as a multiplication of our transition-operators and the tree different Bose Einstein occupation numbers times the different $\gamma$-factors. 
-As output of the function steady state we get the density-matrices for steady-states.
+As output of the function steady state we get the density-matrices for steady-states. \cite{Nation2022}
 \subsection{Further calculations for thermodynamics}
 First i made a Fockplot and a wigner function of the reduce density matrices $\rho_{free}$.
 Because $\rho=\rho_{atom}\otimes \rho_{free}$, I can make the partial trace of $\rho$ with qutip, to trace out the reduced density matrices $\rho_free$. The Fock-plot and the Wigner-plot is also done with a qutip function.
 with the density matrix times the $L_{p}\rho$ i calculated on the heat flux by taking the trace of $H \mathcal{L}\cdot \rho$. 
 and plot this for 200 different  $g$ `s 
-so the goal of this work is to find Einstein-Bose-distributions which yield a RAHV state.
+so the goal of this work is to find Einstein-Bose-distributions which yield a PHAV state.
 as in the paper (Quelle2) 
 A other useful scientific concept is the entropy. its also a physical physical property. 
 The entropy production is given by the formula $\dot{\sigma}=\sum_i ^3 \frac{Ji(n_h,n_c,n_cav)}{T_i((n_h,n_c,n_{cav}))}$
@@ -259,7 +263,7 @@ The entropy production is given by the formula $\dot{\sigma}=\sum_i ^3 \frac{Ji(
 \section{Results}
 \subsection{Lasing transition}
 The first Result are Fockplots and Wigner-density-plots.
-For all calculations, I set the parameters  $\hbar$ and $k_b$ equal to one. $\gamma_h, \gamma_c $ are set to 35*0.01
+For all calculations, I set the parameters  $\hbar$ and $k_b$ equal to one. $\gamma_h, \gamma_c $ are set to $35\cdot 0.01$
 I tested those with different set of parameters. 
 shown in Fig 2.\\
 
@@ -328,7 +332,7 @@ The figure 6 shows  for the parameters $n_h=n_c=2.6 n_f=0.02,\kappa=0.01 $ is sh
 \end{figure}
 
 
-\newpage
+
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.6]{Bilder-für-text/stationary-atomic-population}
@@ -340,25 +344,26 @@ The figure 6 shows  for the parameters $n_h=n_c=2.6 n_f=0.02,\kappa=0.01 $ is sh
 \includegraphics[scale=0.6]{Bilder-für-text/Entropy}
 \caption{The entropy production for $n_h$ from 0-30}
 \end{figure}
+\newpage
+\section{Discussion}
+With the condition that $n_c, n_cav$ is almost zero, the leaking $\kappa$ is small too, and the hot bath have a value between 1 and 5.5 When we compare the winger functions of the numerical calculated states with the Wigner plot of a PHAV state Fig.2, we see, that is pretty similar. As conclusion; it's possible to get a phase average coherent state. 
+In Figure 9 we see the average of the current, calculated with the formula Eq.13.  For different coupling constants, $g$
+we see, that the current increase at most between the $ 0<g<0.25$ 
+In figure 10 we see the probability in which state an atom is. If we increase the temperature from the hot bath, we see that the occupation probability of P 2 increase as well. However, the probability of an atom being in the P1 or P3 state decreases with increasing $n_h$. The probability of P1 and P2 is thus inversely proportional to the temperature.
+The problem is that the cycle of photons can be stopped, because the probability that the photons goes from the ground state into the highest state is too small.
+Figure 10 is consistent with the Wigner plots.
+For a good lasing is important to have a big entropy
+Another problem which has not been discussed  in this report is, that the temperatures can reach the ionization temperature. 
+The Fig.11 helps to get some conclusion about, when the system start to lasing and when it stops. With a too small temperature, It has not enough energy in the system and to have photons in the upper band. If $n_h$ change property, a maximum get reached. If the temperature increasing further, the system has too many photons in the upper band. Also, spontaneous  emission could be a problem, that the photons which leave the atoms are not in a coherent state anymore. \cite{Niedenzu2019}
+\cite{Scovil1959}
+\section{References}
+\printbibliography[title={Whole bibliography}]
+
+
 
 \newpage
-
-\section{Discussion}
-Wth the condition that $n_c, n_cav$ is almost zero, the leaking $\kappa$ is small too and the hot bath have a value between 1 and 5.5 When we compare the winger functions of the numerical calculated states with the Wigner plot of a PHAV state, we see, that is pretty similar. As conclusion; its possible to get a phase average coherent state. 
-In Figure 8 we see the average of the current, calculated with the formula Eq.13.  for different coupling constants $g$
-we see, that the current increase at most between the $ 0<g<0.25$ 
- 
-In figure 9 we we see the probability in which state a atom is. If we increase the temperature from the hot bath, we see that the occupation probability of P 2 increase as well. However, the probability of an atom being in the P1 or P3 state decreases with increasing nh. The probability of P1 and P2 is thus inversely proportional to the temperature.
-the problem is that the cycle of photen can be stopped, becausethe probability that the photons goes from the ground state in the highest state is to small.
-
-A other problem which has not been discussed  in this report is, that the temperatures can reach the ionization temperature. 
-\section{References}
-
-
-
-
 \section{Appendix}
-
+The hole Master equation without any substitution:
 \begin{equation}
 \mathcal{L}\hat{\rho}=\frac{\gamma_h}{2}\biggl[  \frac{1}{\exp[\frac{\hbar \omega_h}{k_b T_h}]-1}+1   \biggr]\cdot \biggl(2 \sigma_{13}\cdot\rho\cdot \sigma_{13}^{\dag}-\sigma_{13}^{\dag}\sigma_{13}\rho-\rho\sigma_{13}^{\dag}\sigma_{13}\biggr) $$\\$$
 +\frac{\gamma_h}{2}\bigg[  \frac{1}{\exp[\frac{\hbar \omega_h}{k_b T_H}]-1}\biggr] \cdot\biggl( 2 \sigma_{31}\cdot\rho\cdot \sigma_{31}^{\dag} -\sigma_{31}^{\dag}\sigma_{31}\rho-\rho\sigma_{31}^{\dag}\sigma_{31}\biggr)$$\\$$
@@ -369,4 +374,16 @@ A other problem which has not been discussed  in this report is, that the temper
 \kappa\biggl[ \frac{1}{\exp[\frac{\hbar w_f}{k_b T_f}]-1}\biggr]\cdot \biggl(2 a^{\dag}\rho a -aa^{\dag}\rho-\rho a a^{\dag}\biggr)$$\\$$
 \end{equation}
 
+
+\begin{figure}[hbtp]
+\caption{.}
+\centering
+\includegraphics[scale=0.5]{Bilder-für-text/Berechnung-Tr[HL].pdf}
+\end{figure}
+
+\begin{figure}[hbtp]
+\caption{.}
+\centering
+\includegraphics[scale=0.3]{Bilder-für-text/Berechnung-Tr[HL]2.png}
+\end{figure}
 \end{document}
