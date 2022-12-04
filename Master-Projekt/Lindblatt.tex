@@ -34,7 +34,7 @@
 
 
 \noindent\rule{\textwidth}{1pt}
-\Large\textbf{Fully quantum description of a tree level maser, driven by a thermal bath}\\
+\Large\textbf{Fully quantum description of a three level maser, driven by a thermal bath}\\
 \noindent\rule{\textwidth}{1pt}
 \vspace{0.5cm}
 \large{Master-Projekt}\\
@@ -64,75 +64,59 @@
 \section{Introduction}
 One of the most important questions in thermodynamics is how to convert
 thermal energy into work. For such tasks exists many classical engines, as
-example the steam-machine. %To quantify heat-engines, it's common to look at the ergotropy.
- In my master-project, I will quantify a three level maser.
-The three-level maser is a Quantum heat engine ( QHE). The work
-extraction from a classical heat engine is often a moving piston.As example steam machines or a gasoline engine. But in this case
-it is a driving field. Albert Einstein, already discussed three ways of
+example the steam machines or gasoline engines. %To quantify heat-engines, it's common to look at the ergotropy.
+In my master-project, I will quantify a three level maser, driven by the coupling of a hot and a cold bath.
+The three-level maser is a Quantum heat engine (QHE). The work extraction from a classical heat engine is often a moving piston. But in this case
+it is a driving field. In the year 1916 Albert Einstein, already discussed three ways of
 light-matter-interaction (spontaneous emission, absorption, and stimulated
-emission) in the year 1916\cite{Li2017}. In paper from 1959.\cite{Scovil1959}  Scovil and Schulz-DuBois investigated whether a laser is not
-also a heat engine. In the paper, they take a maser as a device to transform
-heat into coherent radiation, because heat can make a population inversion.
-In their thermodynamic analytic, they use a single-atom laser. They made a
+emission).[\cite{Li2017}]. \\In paper from 1959.  Scovil and Schulz-DuBois investigated whether a laser is not
+also a heat engine. In this paper, they take a maser as a device to transform heat into coherent radiation, because heat can make a population inversion. [\cite{Scovil1959}
+In their thermodynamic analysis, they use a single-atom laser. They made a
 groundwork for emerging theory of quantum thermodynamics. In practice and also for the calculations, two different reservoirs are necessary. The high-temperature reservoir can be
-realized by a gas noise lamp and the filter by a wave guide cutting off the
+realized by a gas lamp and the filter by a wave guide cutting off the
 lower frequencies. \cite{Niedenzu2019}
 
-\section{Theory}
-\subsection{3-level-Maser Model}
-A Maser/Laser consists of two elements. One of them is a gain medium and the other one is an optical resonator. A gain medium is always a material with an atomic transition between two atomic states. When an atom falls from an energetically higher state to an energetically lower state, a photon is created.
-
-In a three level system the three energy levels are $E1,E2,E3$. Pumping is from the lowest level to the highest level, E3. The condition for the third level is that it falls to the middle level E2 very quickly. On average, the system is almost not in the third state. The resonator should then have a higher decay time, so that a population inversion can build up. This means that several particles are in the energetically higher state. From this state they come almost exclusively through stimulated emission into the lower state E1. Stimulated emission is a necessary condition for coherent light. Coherent light means the light have the same phase and same frequency. \cite{Li2017}
-
-In the case of this calculation, the higher level will be reached with a interaction of a warm bath. 
-
-We denote the frequencies of $\omega_h=(E_2-E_g)/\hbar$, $\omega_c=(E_1-E_g)/\hbar$ and $\omega_f=(E_2-E_1)/\hbar$
-
-
-
-\subsection{Wigner function}
-A Wigner function is a representation of a general quantum state of light.
-The function describe the probability distribution in phase space.
-
-\begin{equation}
-w(x,p)=\frac{1}{2\pi \hbar}\int_{- \infty}^{\infty} d\xi e^{\frac{-i}{\hbar}p}\bra{x+\frac{1}{2}\xi}\rho\ket{x-\frac{1}{2}\xi}
-\end{equation}
-
-
-
-\subsection{Master-Equation} 
-An arbitrary state on this total
-Hilbert space can be described by a total density operator $\rho_{tot}(t)$.The total density operator is  can be written in the Hilbert space $ \rho_ {tot}= \rho_{atom}+\rho_{photon}$.  Encoded in this density \cite{Li2017}
-operator is a complete description of the total system's state at a given time t. To derive the $\rho_{tot}$ we can solve a specific differential equation. This equation is called Lindblad-master-equation Eq.3. 
-The Basic of our work is a three-level quantum system in a cavity. This three level system is driven by a hot bath and a cold bath. Those have the temperature $T_c$ and $T_h$. The cavity is build of two mirrors. One of the cavity have a small leaking, so that a small part of the photons can leave the cavity. This leaking is quantified by a constant $\kappa$.
-In the calculation, the thermal bath is constant, therefore 
-we can use the Lindblad-masterequation. 
-
-In this case w solve the master-equation for steady states
-A steady state is a state or condition of a system or process, here the energy states of an atom, that does not change in time, or the changes are negligibly.
-Therefore, it contains the hole description of the internal state of both the hot and cold heat baths,
-and of the work environment.
-In the following figure is shown a three-level system:
 \newpage
-\begin{figure}
+\section{System and model}
+\subsection{3-level-Maser Model}
+\begin{figure}[h!]
 \includegraphics[scale=0.4]{Bilder-für-text/3-Level-System.png}
-\caption{Schematic representation of three-level laser heat engine
+\caption{Schematic representation of a three-level laser heat engine
 continuously coupled to two reservoirs of temperatures $T_h$ and
 $T_c$ having coupling constants $\Gamma_h$ and $\Gamma_c$, respectively. The
 system is interacting with a classical single mode field. $\lambda$
 represents the strength of matter-field coupling. Source[6]}
 \end{figure}
+A Maser/Laser consists of two elements. One of them is a gain medium and the other one is an optical resonator. A gain medium is always a material with an atomic transition between two atomic states. When an atom falls from an energetically higher state to an energetically lower state, a photon is created.
+In a three level system the three energy levels are $E_1,E_2,E_3$. In a first part the system gets pumped from the lowest $E_1$ level to the highest level $ E_3$. The condition for the third level is that it falls to the middle level$ E2$ very quickly. On average, the system is almost not in the third state. The resonator should then have a higher decay time, so that a population inversion can build up. This means that several particles are in the energetically higher state. From this state they come almost exclusively through stimulated emission into the lower state $ E_1$. 
+Emission is a necessary condition for coherent light. Coherent light means all the photons have the same phase and same frequency. \cite{Li2017}
+In the case of this calculation, the higher level will be reached with a interaction of a hot bath.  
+We denote the frequencies of $\omega_h=(E_3-E_1)/\hbar$, $\omega_c=(E_2-E_1)/\hbar$ and $\omega_f=(E_2-E_1)/\hbar$
+
+
+\subsection{Master-Equation} 
+An arbitrary state on this the global Hilbert space of the system and the bath can be described by a total density operator $\rho_{tot}(t)$. The total density operator can be written in the Hilbert space $ \rho_ {tot}= \rho_{system}+\rho_{bath}$.  Encoded in this density 
+operator is a complete description of the total system's state at a given time t. \cite{Li2017}. To derive the $\rho_{tot}$ we can solve a specific differential equation. This equation is called Lindblad-master-equation \eqref{3}. 
+The Basic of this work is a three-level quantum system in a cavity. This three level system is driven by a hot and a cold bath. Those have the temperature $T_c$ and $T_h$. The cavity is build of two mirrors. One of the cavity have a small leaking, so that a small part of the photons can leave the cavity. This leaking is quantified by a constant $\kappa$.
+In the calculation, the thermal bath is constant, therefore 
+it is possible use the Lindblad-masterequation. 
+In this case the master-equation get solved for steady states
+A steady state is a state or condition of a system or process, here the energy states of an atom, that does not change in time, or the changes are negligibly.
+Therefore, it contains the hole description of the internal state of both the hot and cold heat baths,
+and of the work environment.
+In fig.1 is shown a three-level system:
+\newpage
+
 
 The master equation is:
 \begin{equation}
 \dot{\rho}(t)=\frac{1}{i \hbar}[H,\rho]+ \mathcal{L}_{h}\rho+ \mathcal{L}_{c}\rho+ \mathcal{L}_{cav}\rho.
 \end{equation}
-The first part of Eq.3 is the von Neuman-equation,  the analog of the Schrödinger equation but for density matrices. This part of the equation is unitary and therefore the process is reversible.
+The first part of Eq.3 is the von Neuman-equation,  the analogue of the Schrödinger equation but for density matrices. This part of the equation is unitary and therefore the process is reversible.
 The non-unitary part of the equation $\mathcal{L}\rho$ include the superoperator $\mathcal{L}$, which act on the density operator.  A superoperator is a linear operator acting on a vector space of linear operators, as example a density operator.
-$\mathcal{L}$ consist of three parts. $\mathcal{L}_h$describe the interaction with the hot bath.
+$\mathcal{L}$ consist of three parts. $\mathcal{L}_h $describe the interaction with the hot bath.
 $\mathcal{L}_c$ is the contribution from the interaction with the cold bath coupled with the atom.
-$\mathcal{L}_{cav}$ describe the photons which leave the cavity. So,if we have a small $\kappa$ means less photons will leave and stay in the cavity. we see that in the Fockplott.
-
+$\mathcal{L}_{cav}$ describe the photons which leave the cavity. So, if we have a small $\kappa$ means less photons will leave and stay in the cavity. we see that in the Fockplott.
 The Hamiltonian describes the energy. 
 The atomic field system is composed of two crucial 
 parts; the atomic states, the cavity field, and the interaction between the two.
@@ -176,10 +160,19 @@ The  prefactor $\gamma_c=\gamma_h$ describes the spontaneous decay rates and are
 The Liouvillian has different constants. The coupling constants $g$ strong for the Hamiltonian and the $\kappa$ for the Liouvillian part. 
 The coupling constant $g$ is given by $\frac{\Omega}{\hbar}$,
 
+\section{Lasing transition}
 
 \subsection{Phase-averaged coherent states (PHAV)}
 The output of a laser is coherent light.
-The quantum description of coherent light is a coherent state. The photon number distribution of coherent light is a Poisson distribution. The randomized phase of a coherent state doesn't change the photon-number distribution. 
+The quantum description of coherent light is a coherent state. The photon number distribution of coherent light is a Poisson distribution. The randomized phase of a coherent state doesn't change the photon-number distribution. \\
+
+A Wigner function is a representation of a general quantum state of light.
+The function describe the probability density in phase space.
+
+\begin{equation}
+w(x,p)=\frac{1}{2\pi \hbar}\int_{- \infty}^{\infty} d\xi e^{\frac{-i p \xi}{\hbar}}\bra{x+\frac{1}{2}\xi}\rho\ket{x-\frac{1}{2}\xi}
+\end{equation}
+
 The Wigner function from a coherent state itself is a Gaussian. But the Wigner function of a phase-average-state has a non-Gaussian Wigner function. 
 The mathematical description of a  PHAV is the same as a normal coherent state but with a random phase. So we get a new term of $exp(i\pi\phi)$ in it. 
 The normal coherent state$ket{\alpha}$ could represented by following formula: \cite{Allevi2013}
@@ -205,6 +198,8 @@ possibility of using them for applications to communication protocols. \cite{All
 \includegraphics[scale=0.2]{Bilder-für-text/PHAV.png}
 \caption{Plot of the Wigner function form a PHAV state}
 \end{figure}
+
+\subsection{Double threshold behaviour}
 \subsection{Thermodynamics}
  When we work with density matrices, its common to work with expectation values with $\langle A \rangle=Tr[A\dot{\rho}]$.
  $A$ is a operator and describe a measurement.
@@ -263,7 +258,7 @@ The entropy production is given by the formula $\dot{\sigma}=\sum_i ^3 \frac{Ji(
 \section{Results}
 \subsection{Lasing transition}
 The first Result are Fockplots and Wigner-density-plots.
-For all calculations, I set the parameters  $\hbar$ and $k_b$ equal to one. $\gamma_h, \gamma_c $ are set to $35\cdot 0.01$
+For all calculations, I set the parameters  $\hbar$ and $k_b$ equal to one. $\gamma_h, \gamma_c $ are set to $ 1$. And $\kappa=0.028$
 I tested those with different set of parameters. 
 shown in Fig 2.\\
 
@@ -328,15 +323,15 @@ The figure 6 shows  for the parameters $n_h=n_c=2.6 n_f=0.02,\kappa=0.01 $ is sh
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.6]{Bilder-für-text/Energie_1.png}
-\caption{Energy flux vs g with the parameters The parameters for the first plot are $n_h=n_c=2.6 n_f=0.02,\kappa=0.01 $}
+\caption{Energy flux vs g with the parameters The parameters for the first plot are $ n_h=n_c=2.6 n_f=0.02,\kappa=0.01 $}
 \end{figure}
 
 
 
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=0.6]{Bilder-für-text/stationary-atomic-population}
-\caption{The probability for a atom to sty in a state 0, 1 or 3 vs $n_h$ with the parameters The parameters for the first plot are $n_c=2.6 n_f=0.02,\kappa=0.01 $ and $n_h$ is from $0-10$ the blue lines marks the the values for $ n_h$ for which the Wigner functions are plotted }
+\includegraphics[scale=0.2]{Bilder-für-text/stationary-atomic-population}
+\caption{The probability for a atom to sty in a state 0, 1 or 3 vs $n_h$ with the parameters The parameters for the first plot are $n_c=2.6 ,n_f=0.02,\kappa=0.01 $ and $n_h$ is from $0-10$ the blue lines marks the the values for $ n_h$ for which the Wigner functions are plotted }
 \end{figure}
 
 \begin{figure}[hbtp]
@@ -346,7 +341,7 @@ The figure 6 shows  for the parameters $n_h=n_c=2.6 n_f=0.02,\kappa=0.01 $ is sh
 \end{figure}
 \newpage
 \section{Discussion}
-With the condition that $n_c, n_cav$ is almost zero, the leaking $\kappa$ is small too, and the hot bath have a value between 1 and 5.5 When we compare the winger functions of the numerical calculated states with the Wigner plot of a PHAV state Fig.2, we see, that is pretty similar. As conclusion; it's possible to get a phase average coherent state. 
+With the condition that $n_c, n_{cav}$ is almost zero, the leaking $\kappa$ is small too, and the hot bath have a value between 1 and 5.5 When we compare the winger functions of the numerical calculated states with the Wigner plot of a PHAV state Fig.2, we see, that is pretty similar. As conclusion; it's possible to get a phase average coherent state. 
 In Figure 9 we see the average of the current, calculated with the formula Eq.13.  For different coupling constants, $g$
 we see, that the current increase at most between the $ 0<g<0.25$ 
 In figure 10 we see the probability in which state an atom is. If we increase the temperature from the hot bath, we see that the occupation probability of P 2 increase as well. However, the probability of an atom being in the P1 or P3 state decreases with increasing $n_h$. The probability of P1 and P2 is thus inversely proportional to the temperature.
@@ -354,7 +349,8 @@ The problem is that the cycle of photons can be stopped, because the probability
 Figure 10 is consistent with the Wigner plots.
 For a good lasing is important to have a big entropy
 Another problem which has not been discussed  in this report is, that the temperatures can reach the ionization temperature. 
-The Fig.11 helps to get some conclusion about, when the system start to lasing and when it stops. With a too small temperature, It has not enough energy in the system and to have photons in the upper band. If $n_h$ change property, a maximum get reached. If the temperature increasing further, the system has too many photons in the upper band. Also, spontaneous  emission could be a problem, that the photons which leave the atoms are not in a coherent state anymore. \cite{Niedenzu2019}
+The Fig.11 helps to get some conclusion about, when the system start to lasing and when it stops. With a too small temperature, It has not enough energy in the system and to have photons in the upper band. If $n_h$ change property, a maximum get reached. If the temperature increasing further, the system has too many photons in the upper band, the Rabi oscillation between the 0 and the $E2$ doesn't exist any more.
+At higher heat of the warm bath, dephasing of the system occurs. Thus, it interacts more with the environment. This has the same effect as if the system is measured often. The Zeno effect then shows that the system no longer oscillates between two different states. Also, spontaneous  emission could be a problem, that the photons which leave the atoms are not in a coherent state anymore. \cite{Niedenzu2019}
 \cite{Scovil1959}
 \section{References}
 \printbibliography[title={Whole bibliography}]
@@ -386,4 +382,6 @@ The hole Master equation without any substitution:
 \centering
 \includegraphics[scale=0.3]{Bilder-für-text/Berechnung-Tr[HL]2.png}
 \end{figure}
+
+
 \end{document}

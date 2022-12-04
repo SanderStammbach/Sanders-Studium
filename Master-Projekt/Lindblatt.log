@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.11.8)  30 NOV 2022 18:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.11.8)  4 DEC 2022 15:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -679,7 +679,7 @@ Package biblatex Warning: BibTeX reported the following issues
 )
 Package biblatex Info: Reference section=0 on input line 26.
 Package biblatex Info: Reference segment=0 on input line 26.
-<Bilder-für-text/uni-basel-logo-ogtag.png, id=72, 501.875pt x 501.875pt>
+<Bilder-für-text/uni-basel-logo-ogtag.png, id=76, 501.875pt x 501.875pt>
 File: Bilder-für-text/uni-basel-logo-ogtag.png Graphic file (type png)
 <use Bilder-für-text/uni-basel-logo-ogtag.png>
 Package pdftex.def Info: Bilder-für-text/uni-basel-logo-ogtag.png  used on inp
@@ -715,99 +715,125 @@ been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.63 \newpage
-              [1] [2] [3]
-<Bilder-für-text/3-Level-System.png, id=130, 1156.32pt x 762.85pt>
+              [1] [2]
+<Bilder-für-text/3-Level-System.png, id=118, 1156.32pt x 753.81625pt>
 File: Bilder-für-text/3-Level-System.png Graphic file (type png)
 <use Bilder-für-text/3-Level-System.png>
 Package pdftex.def Info: Bilder-für-text/3-Level-System.png  used on input lin
-e 118.
-(pdftex.def)             Requested size: 462.5198pt x 305.1346pt.
+e 83.
+(pdftex.def)             Requested size: 462.5198pt x 301.52116pt.
 
-Overfull \hbox (72.5198pt too wide) in paragraph at lines 118--123
+Overfull \hbox (72.5198pt too wide) in paragraph at lines 83--88
 [][] 
  []
 
+[3 <./Bilder-für-text/3-Level-System.png>]
 
-Overfull \hbox (11.35pt too wide) in paragraph at lines 129--135
-\OT1/cmr/m/n/12 The first part of Eq.3 is the von Neuman-equation, the ana-log 
-of the Schr^^?odinger
+LaTeX Warning: Reference `3' on page 4 undefined on input line 99.
+
+[4] [5]
+Underfull \hbox (badness 10000) in paragraph at lines 166--168
+
  []
 
-[4 <./Bilder-für-text/3-Level-System.png>] [5] [6]
-<Bilder-für-text/PHAV.png, id=157, 1274.7625pt x 1012.78375pt>
+[6]
+<Bilder-für-text/PHAV.png, id=159, 1263.72125pt x 1000.73875pt>
 File: Bilder-für-text/PHAV.png Graphic file (type png)
 <use Bilder-für-text/PHAV.png>
-Package pdftex.def Info: Bilder-für-text/PHAV.png  used on input line 205.
-(pdftex.def)             Requested size: 254.94798pt x 202.55316pt.
- [7 <./Bilder-für-text/PHAV.png>]
-
-LaTeX Warning: Citation 'Nation2022' on page 8 undefined on input line 250.
-
-[8]
-Underfull \hbox (badness 10000) in paragraph at lines 265--269
+Package pdftex.def Info: Bilder-für-text/PHAV.png  used on input line 198.
+(pdftex.def)             Requested size: 252.73978pt x 200.14421pt.
+ [7 <./Bilder-für-text/PHAV.png>] [8]
+Underfull \hbox (badness 10000) in paragraph at lines 260--264
 
  []
 
-<Bilder-für-text/Figure_1.png, id=175, 745.1037pt x 300.6432pt>
+<Bilder-für-text/Figure_1.png, id=181, 745.1037pt x 300.6432pt>
 File: Bilder-für-text/Figure_1.png Graphic file (type png)
 <use Bilder-für-text/Figure_1.png>
-Package pdftex.def Info: Bilder-für-text/Figure_1.png  used on input line 276.
+Package pdftex.def Info: Bilder-für-text/Figure_1.png  used on input line 271.
 
 (pdftex.def)             Requested size: 298.0362pt x 120.25514pt.
-[9 <./Bilder-für-text/Figure_1.png>]
-<Bilder-für-text/Figure_2.png, id=182, 740.0448pt x 289.08pt>
+[9]
+<Bilder-für-text/Figure_2.png, id=187, 740.0448pt x 289.08pt>
 File: Bilder-für-text/Figure_2.png Graphic file (type png)
 <use Bilder-für-text/Figure_2.png>
-Package pdftex.def Info: Bilder-für-text/Figure_2.png  used on input line 284.
+Package pdftex.def Info: Bilder-für-text/Figure_2.png  used on input line 279.
 
 (pdftex.def)             Requested size: 296.01268pt x 115.62994pt.
-<Bilder-für-text/Figure_7.png, id=183, 682.2288pt x 289.08pt>
+<Bilder-für-text/Figure_7.png, id=188, 682.2288pt x 289.08pt>
 File: Bilder-für-text/Figure_7.png Graphic file (type png)
 <use Bilder-für-text/Figure_7.png>
-Package pdftex.def Info: Bilder-für-text/Figure_7.png  used on input line 290.
+Package pdftex.def Info: Bilder-für-text/Figure_7.png  used on input line 285.
 
 (pdftex.def)             Requested size: 272.88667pt x 115.62994pt.
-<Bilder-für-text/Figure_8.png, id=184, 682.2288pt x 289.08pt>
+<Bilder-für-text/Figure_8.png, id=189, 682.2288pt x 289.08pt>
 File: Bilder-für-text/Figure_8.png Graphic file (type png)
 <use Bilder-für-text/Figure_8.png>
-Package pdftex.def Info: Bilder-für-text/Figure_8.png  used on input line 297.
+Package pdftex.def Info: Bilder-für-text/Figure_8.png  used on input line 292.
 
 (pdftex.def)             Requested size: 272.88667pt x 115.62994pt.
-<Bilder-für-text/Figure_9.png, id=185, 815.9283pt x 323.0469pt>
+<Bilder-für-text/Figure_9.png, id=190, 815.9283pt x 323.0469pt>
+File: Bilder-für-text/Figure_9.png Graphic file (type png)
+<use Bilder-für-text/Figure_9.png>
+Package pdftex.def Info: Bilder-für-text/Figure_9.png  used on input line 298.
+
+(pdftex.def)             Requested size: 326.36554pt x 129.21646pt.
 File: Bilder-für-text/Figure_9.png Graphic file (type png)
 <use Bilder-für-text/Figure_9.png>
 Package pdftex.def Info: Bilder-für-text/Figure_9.png  used on input line 303.
 
 (pdftex.def)             Requested size: 326.36554pt x 129.21646pt.
-File: Bilder-für-text/Figure_9.png Graphic file (type png)
-<use Bilder-für-text/Figure_9.png>
-Package pdftex.def Info: Bilder-für-text/Figure_9.png  used on input line 308.
-
-(pdftex.def)             Requested size: 326.36554pt x 129.21646pt.
- [10 <./Bilder-für-text/Figure_2.png> <./Bilder-für-text/Figure_7.png>] [11 <
-./Bilder-für-text/Figure_8.png> <./Bilder-für-text/Figure_9.png>]
-<Bilder-für-text/Energie_1.png, id=203, 462.528pt x 346.896pt>
+ [10 <./Bilder-für-text/Figure_1.png> <./Bilder-für-text/Figure_2.png>]
+[11 <./Bilder-für-text/Figure_7.png> <./Bilder-für-text/Figure_8.png> <./Bild
+er-für-text/Figure_9.png>]
+<Bilder-für-text/Energie_1.png, id=209, 631.6398pt x 416.2752pt>
 File: Bilder-für-text/Energie_1.png Graphic file (type png)
 <use Bilder-für-text/Energie_1.png>
-Package pdftex.def Info: Bilder-für-text/Energie_1.png  used on input line 330
+Package pdftex.def Info: Bilder-für-text/Energie_1.png  used on input line 325
 .
-(pdftex.def)             Requested size: 277.51894pt x 208.13919pt.
-<Bilder-für-text/stationary-atomic-population.png, id=204, 462.528pt x 346.896
-pt>
+(pdftex.def)             Requested size: 378.9868pt x 249.76704pt.
+<Bilder-für-text/stationary-atomic-population.png, id=210, 2134.97626pt x 783.
+92876pt>
 File: Bilder-für-text/stationary-atomic-population.png Graphic file (type png)
 
 <use Bilder-für-text/stationary-atomic-population.png>
 Package pdftex.def Info: Bilder-für-text/stationary-atomic-population.png  use
-d on input line 338.
-(pdftex.def)             Requested size: 277.51894pt x 208.13919pt.
-<Bilder-für-text/Entropy.png, id=205, 570.2103pt x 346.896pt>
+d on input line 333.
+(pdftex.def)             Requested size: 426.98769pt x 156.78297pt.
+
+Overfull \hbox (36.98769pt too wide) in paragraph at lines 333--334
+ [][] 
+ []
+
+<Bilder-für-text/Entropy.png, id=211, 570.2103pt x 346.896pt>
 File: Bilder-für-text/Entropy.png Graphic file (type png)
 <use Bilder-für-text/Entropy.png>
-Package pdftex.def Info: Bilder-für-text/Entropy.png  used on input line 344.
+Package pdftex.def Info: Bilder-für-text/Entropy.png  used on input line 339.
 (pdftex.def)             Requested size: 342.12881pt x 208.13919pt.
- [12 <./Bilder-für-text/Energie_1.png>] [13 <./Bilder-für-text/stationary-ato
-mic-population.png> <./Bilder-für-text/Entropy.png>]
-[14] [15]
+[12] [13 <./Bilder-für-text/Energie_1.png> <./Bilder-für-text/stationary-atom
+ic-population.png>] [14 <./Bilder-für-text/Entropy.png>]
+Overfull \hbox (13.63464pt too wide) in paragraph at lines 356--356
+\OT1/cmr/m/n/12 Python 4.7.0''. In: \OT1/cmr/m/it/12 QuTip\OT1/cmr/m/n/12 , p. 
+241. \OT1/cmr/m/sc/12 url\OT1/cmr/m/n/12 : []$\OT1/cmtt/m/n/12 http : / / qutip
+ . org / documentation .
+ []
+
+[15]
+Underfull \hbox (badness 10000) in paragraph at lines 364--364
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 365--365
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 366--366
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 368--368
 
  []
@@ -822,33 +848,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 370--370
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 372--372
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 373--373
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 374--374
-
- []
-
-<Bilder-für-text/Berechnung-Tr[HL].pdf, id=248, 614.295pt x 803.5781pt>
+<Bilder-für-text/Berechnung-Tr[HL].pdf, id=257, 614.295pt x 803.5781pt>
 File: Bilder-für-text/Berechnung-Tr[HL].pdf Graphic file (type pdf)
 <use Bilder-für-text/Berechnung-Tr[HL].pdf>
 Package pdftex.def Info: Bilder-für-text/Berechnung-Tr[HL].pdf  used on input 
-line 381.
+line 377.
 (pdftex.def)             Requested size: 307.14674pt x 401.78807pt.
-<Bilder-für-text/Berechnung-Tr[HL]2.png.png, id=249, 1274.7625pt x 1012.78375p
+<Bilder-für-text/Berechnung-Tr[HL]2.png.png, id=258, 1274.7625pt x 1012.78375p
 t>
 File: Bilder-für-text/Berechnung-Tr[HL]2.png.png Graphic file (type png)
 <use Bilder-für-text/Berechnung-Tr[HL]2.png.png>
 Package pdftex.def Info: Bilder-für-text/Berechnung-Tr[HL]2.png.png  used on i
-nput line 387.
+nput line 383.
 (pdftex.def)             Requested size: 382.4317pt x 303.83746pt.
 [16] [17 <./Bilder-für-text/Berechnung-Tr[HL].pdf>] [18 <./Bilder-für-text/Be
 rechnung-Tr[HL]2.png.png>] (./Lindblatt.aux)
@@ -856,21 +867,16 @@ rechnung-Tr[HL]2.png.png>] (./Lindblatt.aux)
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `Lindblatt.out' has not changed.
-(rerunfilecheck)             Checksum: 9377E5425FF91835BC947EA44FBDC576;2357.
-
-Package biblatex Warning: Please (re)run BibTeX on the file(s):
-(biblatex)                Lindblatt
-(biblatex)                and rerun LaTeX afterwards.
-
+(rerunfilecheck)             Checksum: 7F264591ECF1634FC19331EC23235C4B;2603.
 Package logreq Info: Writing requests to 'Lindblatt.run.xml'.
 \openout1 = `Lindblatt.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 18921 strings out of 478238
- 330626 string characters out of 5850456
- 840265 words of memory out of 5000000
- 36856 multiletter control sequences out of 15000+600000
+ 18931 strings out of 478238
+ 330851 string characters out of 5850456
+ 840306 words of memory out of 5000000
+ 36864 multiletter control sequences out of 15000+600000
  476733 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,8n,68p,1849b,1944s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -887,10 +893,10 @@ s/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
 xmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texmf-dist/fonts
 /type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/pu
 blic/amsfonts/symbols/msbm7.pfb>
-Output written on Lindblatt.pdf (19 pages, 2028099 bytes).
+Output written on Lindblatt.pdf (19 pages, 2197508 bytes).
 PDF statistics:
- 403 PDF objects out of 1000 (max. 8388607)
- 304 compressed objects within 4 object streams
- 71 named destinations out of 1000 (max. 500000)
- 202 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 414 PDF objects out of 1000 (max. 8388607)
+ 315 compressed objects within 4 object streams
+ 73 named destinations out of 1000 (max. 500000)
+ 210 words of extra memory for PDF output out of 10000 (max. 10000000)
 

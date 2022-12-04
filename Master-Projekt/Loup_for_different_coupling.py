@@ -179,3 +179,37 @@ class Diverse_Loups():
         Liste_von_Entropy=float_list
 
         return(Liste_von_Entropy)
+
+    def Photonnumber(nh2,a,proj_1,proj_2,proj_3,H,nc,nf,gamma_h,gamma_c,kappa,A1,A2,A3,A4,A5,A6):
+        
+        Trace_list=[]
+        
+        
+
+        gamma_1=(nh2+1)*gamma_h #### unsicher wegen vorfaktor 1/2 
+        gamma_2=(nh2)*gamma_h
+        gamma_3=(nc+1)*gamma_c
+        gamma_4=(nc)*gamma_c
+        kappa_5=(nf+1)*kappa ####goes to zero
+        kappa_6=(nf)*kappa
+
+        c_op_list=[]    
+        c_op_list.append(np.sqrt(gamma_1)*A1)
+        c_op_list.append(np.sqrt(gamma_2)*A2)
+        c_op_list.append(np.sqrt(gamma_3)*A3)
+        c_op_list.append(np.sqrt(gamma_4)*A4)
+        c_op_list.append(np.sqrt(kappa_5)*A5)
+        c_op_list.append(np.sqrt(kappa_6)*A6)
+            
+
+        rho = steadystate(H, c_op_list)
+        Trace_list.append
+
+        n=np.trace(a.dag()*a*rho)
+        float_list2= list(np.float_(Trace_list))
+        #print(float_list)    
+        Trace_list=float_list2
+
+
+
+        return n 

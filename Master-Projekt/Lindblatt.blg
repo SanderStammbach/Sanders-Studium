@@ -28,6 +28,10 @@ Repeated entry---line 53 of file library.bib
  : @article{Li2017
  :                ,
 I'm skipping whatever remains of this entry
+Repeated entry---line 71 of file library.bib
+ : @article{Nation2022
+ :                    ,
+I'm skipping whatever remains of this entry
 Repeated entry---line 81 of file library.bib
  : @article{Niedenzu2019
  :                      ,
@@ -39,45 +43,45 @@ I'm skipping whatever remains of this entry
 Biblatex version: 3.17
 Reallocated wiz_functions (elt_size=8) to 9000 items from 6000.
 Reallocated singl_function (elt_size=8) to 100 items from 50.
-You've used 5 entries,
+You've used 6 entries,
             6399 wiz_defined-function locations,
-            1255 strings with 12891 characters,
-and the built_in function-call counts, 46165 in all, are:
-= -- 3863
-> -- 540
-< -- 113
-+ -- 1265
-- -- 248
-* -- 3725
-:= -- 5619
+            1265 strings with 13087 characters,
+and the built_in function-call counts, 54484 in all, are:
+= -- 4526
+> -- 649
+< -- 143
++ -- 1450
+- -- 295
+* -- 4421
+:= -- 6522
 add.period$ -- 0
-call.type$ -- 5
-change.case$ -- 44
+call.type$ -- 6
+change.case$ -- 54
 chr.to.int$ -- 45
-cite$ -- 8
-duplicate$ -- 4262
-empty$ -- 4092
-format.name$ -- 325
-if$ -- 9199
+cite$ -- 10
+duplicate$ -- 4997
+empty$ -- 4877
+format.name$ -- 392
+if$ -- 10919
 int.to.chr$ -- 0
-int.to.str$ -- 8
+int.to.str$ -- 10
 missing$ -- 0
-newline$ -- 242
-num.names$ -- 164
-pop$ -- 1535
+newline$ -- 280
+num.names$ -- 205
+pop$ -- 1884
 preamble$ -- 1
-purify$ -- 75
+purify$ -- 90
 quote$ -- 0
-skip$ -- 777
+skip$ -- 955
 stack$ -- 0
-substring$ -- 7952
-swap$ -- 862
-text.length$ -- 139
-text.prefix$ -- 4
+substring$ -- 9336
+swap$ -- 1027
+text.length$ -- 170
+text.prefix$ -- 5
 top$ -- 1
-type$ -- 158
+type$ -- 192
 warning$ -- 0
-while$ -- 656
+while$ -- 747
 width$ -- 0
-write$ -- 238
-(There were 4 error messages)
+write$ -- 275
+(There were 5 error messages)

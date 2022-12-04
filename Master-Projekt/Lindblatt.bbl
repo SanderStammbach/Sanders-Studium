@@ -167,6 +167,44 @@
     \warn{\item Invalid format of field 'month'}
   \endentry
 
+  \entry{Nation2022}{article}{}
+    \name{author}{2}{}{%
+      {{hash=NPD}{%
+         family={Nation},
+         familyi={N\bibinitperiod},
+         given={P.\bibnamedelima D.},
+         giveni={P\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=JJR}{%
+         family={Johansson},
+         familyi={J\bibinitperiod},
+         given={J.\bibnamedelima R.},
+         giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{NPDJJR1}
+    \strng{fullhash}{NPDJJR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2022}
+    \field{labeldatesource}{}
+    \field{sortinit}{N}
+    \field{sortinithash}{N}
+    \field{abstract}{%
+    python%
+    }
+    \field{pages}{241}
+    \field{title}{{QuTiP: Quantum Toolbox in Python 4.7.0}}
+    \verb{url}
+    \verb http://qutip.org/documentation.html
+    \endverb
+    \verb{file}
+    \verb :home/sander/Master-Projekt/qutip-doc-4.7.pdf:pdf
+    \endverb
+    \field{journaltitle}{QuTip}
+    \field{year}{2022}
+  \endentry
+
   \entry{Niedenzu2019}{article}{}
     \name{author}{3}{}{%
       {{hash=NW}{%

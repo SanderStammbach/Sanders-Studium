@@ -50,16 +50,19 @@ Tenv=0.0000000000000000000000000001
 
 
 
-nh=5.5
+nh=1
 nc=0.01
+
 nf=0.02    #Beschreibt den cavity/Photonen. 
-kappa=0.01
-g=14*kappa
 
-gamma_h=35*kappa
-gamma_c=35*kappa
 
+
+gamma_h=1
+gamma_c=1
+kappa=0.028
 kb=1
+g=14*kappa
+ 
 
 b_fock=qutip.states.fock(nph,0) #m)/fock(N,#m)
 b_atom=basis(3)
@@ -231,7 +234,7 @@ plt.show()
 #Berechnung
 nh_list=[]
 Trace_list=[]
-nh=0 #set nh again to zero
+nh=0.1 #set nh again to zero
 for j in range(100):
     Trace_list_temp=Diverse_Loups.Funktion(nh,proj_1,proj_2,proj_3,H,nc,nf,gamma_h,gamma_c,kappa,A1,A2,A3,A4,A5,A6)
     Trace_list.append(Trace_list_temp)
@@ -279,7 +282,7 @@ ax.legend(("Sigma-Z", "Sigma-Y"))
 plt.show()
 
 
-
+#Entropy. production
 
 
 nh2=0.1
@@ -322,3 +325,36 @@ plt.axvline(x=20)
 plt.axvline(x=1.7)
 
 plt.show()
+#################################################################################################################
+#photon number
+nh2=0.1
+nh_list2=[]
+Photonnumber_list=[]
+for i in range(100):
+    list_temp=[]
+    list_temp=Diverse_Loups.Photonnumber(nh2,a,proj_1,proj_2,proj_3,H,nc,nf,gamma_h,gamma_c,kappa,A1,A2,A3,A4,A5,A6)
+    #g_list.append(i/100)  #Erstellt eine Liste mit Wären von g 
+    Photonnumber_list.append(list_temp)
+    nh2=nh2+0.3
+    nh_list2.append(nh2)
+
+    print(Photonnumber_list)
+
+fig4, ax = plt.subplots()
+ax.set_xlabel('n_h')
+ax.set_ylabel('<n>')
+plt.title('Photonnumber vs n_h')
+plt.plot(np.asarray(nh_list2)[:100],np.asarray(Photonnumber_list)[:100],color='red')
+
+#legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
+#legend.get_frame().set_facecolor('C0')
+#Linien in plt
+plt.axvline(x=2.6)
+plt.axvline(x=2.6)
+plt.axvline(x=5.5)
+plt.axvline(x=0.17)
+plt.axvline(x=20)
+plt.axvline(x=1.7)
+plt.show()
+
+
