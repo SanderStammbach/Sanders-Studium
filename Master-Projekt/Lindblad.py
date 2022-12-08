@@ -249,7 +249,7 @@ plt.title('stationary atomic population')
 plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,0],label='P1')
 plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,1],label='P2')
 plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,2],label='P3')
-legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
+legend = ax.legend(loc='center right', shadow=True, fontsize='x-large')
 legend.get_frame().set_facecolor('C0')
 #Linien in plt
 plt.axvline(x=2.6)

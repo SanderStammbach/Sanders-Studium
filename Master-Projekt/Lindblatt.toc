@@ -10,11 +10,11 @@
 \contentsline {subsection}{\numberline {3.3}Thermodynamics}{8}{subsection.3.3}%
 \contentsline {section}{\numberline {4}Methods}{8}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Software}{8}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Implementation of the tree-level-system in qutip}{8}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.2}Implementation of the tree-level-system in qutip}{9}{subsection.4.2}%
 \contentsline {subsection}{\numberline {4.3}Further calculations for thermodynamics}{9}{subsection.4.3}%
 \contentsline {section}{\numberline {5}Results}{9}{section.5}%
 \contentsline {subsection}{\numberline {5.1}Lasing transition}{9}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Thermodynamics}{12}{subsection.5.2}%
-\contentsline {section}{\numberline {6}Discussion}{14}{section.6}%
+\contentsline {subsection}{\numberline {5.2}Thermodynamics}{13}{subsection.5.2}%
+\contentsline {section}{\numberline {6}Discussion}{15}{section.6}%
 \contentsline {section}{\numberline {7}References}{15}{section.7}%
-\contentsline {section}{\numberline {8}Appendix}{16}{section.8}%
+\contentsline {section}{\numberline {8}Appendix}{17}{section.8}%
