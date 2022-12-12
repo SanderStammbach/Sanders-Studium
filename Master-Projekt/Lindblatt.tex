@@ -73,8 +73,9 @@ emission).[\cite{Li2017}]. \\In a paper from 1959.  Scovil and Schulz-DuBois inv
 also a heat engine. In this paper, they take a maser as a device to transform heat into coherent radiation, because heat can make a population inversion. [\cite{Scovil1959}
 In their thermodynamic analysis, they use a single-atom laser. They made a
 groundwork for emerging theory of quantum thermodynamics. In practice and also for the calculations, two different reservoirs are necessary. The high-temperature reservoir can be
-realized by a gas lamp and the filter by a wave guide cutting off the
-lower frequencies. \cite{Niedenzu2019}
+realized by a fast and accurate
+estimation of the thermal occupation of propagating micro-
+wave modes is highly desirable. \cite{Scigliuzzo2020}
 
 \newpage
 \section{System and model}
@@ -90,16 +91,20 @@ represents the strength of matter-field coupling.}
 A Maser/Laser consists of two elements. One of them is a gain medium and the other one is an optical resonator. A gain medium is always a material with an atomic transition between two atomic states. When an atom falls from an energetically higher state to an energetically lower state, a photon is created.
 In a three level system the three energy levels are $E_1,E_2,E_3$. In a first part the system gets pumped from the lowest $E_1$ level to the highest level $ E_3$. The condition for the third level is that it falls to the middle level $ E_2$ very quickly. On average, the system is almost not in the third state. The resonator should then have a higher decay time, so that a population inversion can build up. This means that a particles is in the energetically higher state. From this state they come almost exclusively through stimulated emission into the lower state $ E_1$. 
 Emission is a necessary condition for coherent light. Coherent light means all the photons have the same phase and same frequency. \cite{Li2017}
-In the case of this calculation, the higher level will be reached with a interaction of a hot bath.  
+Here we consider, the higher level will be reached with a interaction of a hot bath.  
 We denote the frequencies of $\omega_h=(E_3-E_1)/\hbar$, $\omega_c=(E_2-E_1)/\hbar$ and $\omega_f=(E_2-E_1)/\hbar$
-
+Interesting is that we get each thermal photon from the bath a lasing photon. 
+The efficiency is given by the following formula:
+\begin{equation}
+\eta_{maser}=\frac{\omega_f}{\omega_h}<1-\frac{Tc}{Th}.
+\end{equation}
 
 \subsection{Master-Equation} 
 An arbitrary state on this the global Hilbert space of the system and the bath can be described by a total density operator $\rho_{tot}(t)$. The total density operator can be written in the Hilbert space $ \rho_ {tot}= \rho_{system}+\rho_{bath}$.  Encoded in this density 
 operator is a complete description of the total system's state at a given time t. \cite{Li2017}. To derive the $\rho_{tot}$ we can solve a specific differential equation. This equation is called Lindblad-master-equation \eqref{3}. 
 The Basic of this work is a three-level quantum system in a cavity. This three level system is driven by a hot and a cold bath. Those have the temperature $T_c$ and $T_h$. The cavity is build of two mirrors. One of the cavity have a small leaking, so that a small part of the photons can leave the cavity. This leaking is quantified by a constant $\kappa$.
-In the calculation, the thermal bath is constant, therefore 
-it is possible use the Lindblad-master equation. 
+In the calculation, the temperature of the thermal bath is constant, therefore 
+it is possible to use the Lindblad-master equation. 
 In this case the master equation is get solved for the steady states.
 A steady state is a state or condition of a system or process, here the energy states of an atom, that the density matrix of the state does not change in time, or the changes are negligibly. Therefore all observables do not change in time either. 
 It contains the whole description of the three-level system and the cavity.
@@ -142,11 +147,11 @@ The interaction with the various environmental heat baths is described by the Li
 +\frac{\gamma_h}{2}n(\omega_h,T_h)\cdot \mathcal{D}[\sigma_{31}]\rho \\
 +\frac{\gamma_c}{2}(n(\omega_c,T_c)+1)\cdot \mathcal{D}[\sigma_{23}]\rho
 +\frac{\gamma_c}{2}n(\omega_c,T_c) \cdot \mathcal{D}[\sigma_{32}]\rho \\
-\kappa((\omega_f,T_f)+1)	\cdot\mathcal{D}[a]\rho+
++\kappa((\omega_f,T_f)+1)	\cdot\mathcal{D}[a]\rho+
 \kappa n(\omega_f,T_f)\cdot \mathcal{D}[a^{\dag}]\rho.
 \end{aligned}
 \end{equation}
-The $\sigma_{ab} $ is the transition operator and defined as $ \ket{a}\bra{b}$. It describe the transition between a atomic state $a$ to $b$.
+The $\sigma_{12} $ is the transition operator and defined as $ \ket{1}\bra{2}$. Similar for $\sigma_{13}=\ket{1}\bra{3}, \sigma_{23}=\ket{2}\bra{3}=a$ . It describe the transition between a atomic state $a$ to $b$.
 $\mathcal{D}$ is defined with following formula:
 \begin{equation}
 \mathcal{D}[A]\rho=(2A \rho	A^{\dag}-A^{\dag}A\rho-\rho A^{\dag}A),
@@ -154,7 +159,6 @@ $\mathcal{D}$ is defined with following formula:
 
 The Bose-Einstein occupation number. It is the mean number of excitations in the reservoir damping the oscillator  . It describes the mean occupation number $\langle n(E) \rangle$ of a quantum state of energy $E$, in thermodynamic equilibrium at absolute temperature $T $ for identical bosons as occupying particles. n depends on the temperature and the frequency.
 $n$ is defined as:
-
 $
 n(\omega,T)=\frac{1}{\exp[\frac{\hbar \omega_i}{k_b T_i}]-1},
 $
@@ -226,10 +230,7 @@ For the calculation the $Tr[H_{free}\cdot \mathcal{L}_{cav}]$, I get the followi
 \begin{equation}
 T[H_{free}\cdot \mathcal{L}_{cav}[\rho]]=2\hbar \omega_k (n-\langle a^{\dag{}}a \rangle).
 \end{equation}
-The efficiency is given by the following formula:
-\begin{equation}
-\eta_{maser}=\frac{\omega_f}{\omega_h}<1-\frac{Tc}{Th}.
-\end{equation}
+
 
 
 \section{Methods}
@@ -282,35 +283,17 @@ We see, that the occupation-number in the fock-plot is most zero and the probabi
 
 In the second plot I took the same parameters again, but with a lower $\kappa$. We get a better distribution in the Fockplot and a RAHV state in the Wigner function. 
 
-\begin{figure}[hbtp]
+\begin{figure}[h!]
 \centering
-\includegraphics[scale=0.4]{Bilder-für-text/Figure_2.png}
-\caption{The parameters for the first plot are $n_h=2.6 n_c=0.001 n_f=0.02,\kappa=0.1$.The temperature for the warm bath is 460. Cavity with a big leaking}
+\includegraphics[scale=0.35]{Bilder-für-text/4-Fits.png}
+\caption{For all of the four fits the parameters are $n_c=0.001 n_f=0.02,\kappa=0.1$ just the parameter for $n_h$ Cavity with a small leaking.
+\textbf{a)}The parameters for the plot are $n_h=0.2 $.
+\textbf{b)}The parameters for the plot are $ n_h=2.6, n_c=0.01 n_f=0.02,\kappa=0.001$ 
+\textbf{c)}The parameters for the plot are $ n_h=5.5, n_c=0.01 n_f=0.02,\kappa=0.001$ 
+\textbf{d)}The parameters for the plot are$ n_h=20, n_c=0.001 n_f=0.02,\kappa=0.001$. 
+Diese caption wird noch umgestaltet}
 \end{figure}
 
-\begin{figure}[hbtp]
-\centering
-\includegraphics[scale=0.4]{Bilder-für-text/Figure_7.png}
-\caption{The parameters for the first plot are$ n_h=20 n_c=0.001 n_f=0.02,\kappa=0.001$. The temperature for the warm bath is 3074. Cavity with a small leaking}
-\end{figure}
-
-
-\begin{figure}[hbtp]
-\centering
-\includegraphics[scale=0.4]{Bilder-für-text/Figure_8.png}
-\caption{The parameters for the first plot are $ n_h=n_c=2.6 n_f=0.02,\kappa=0.001$ The temperature for the warm bath is 3074. Cavity with a small leaking}
-\end{figure}
-
-\begin{figure}[hbtp]
-\centering
-\includegraphics[scale=0.4]{Bilder-für-text/Figure_9.png}
-\caption{The parameters for the first plot are $ n_h=1.7 n_c=0.01 n_f=0.02,\kappa=0.001$ The temperature for the warm bath is 3074. Cavity with a small leaking}
-\end{figure}
-\begin{figure}[hbtp]
-\centering
-\includegraphics[scale=0.4]{Bilder-für-text/Figure_9.png}
-\caption{The parameters for the first plot are $ n_h=5.5 n_c=0.01 n_f=0.02,\kappa=0.001$ The temperature for the warm bath is 3074. Cavity with a small leaking}
-\end{figure}
 If we further consider  $n_h >>1$,
 then the cavity photon number increase again when increasing $n_h$ at the very
 high temperature regime, as shown in Fig. 4. This is because,
@@ -331,7 +314,7 @@ The figure 6 shows  for the parameters $n_h=n_c=2.6 n_f=0.02,\kappa=0.01 $ is sh
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.6]{Bilder-für-text/Energie_1.png}
-\caption{Energy flux vs g with the parameters The parameters for the first plot are $ n_h=n_c=2.6 n_f=0.02,\kappa=0.01 $}
+\caption{Energy flux vs g with the parameters The parameters for the first plot are $ n_h=2.6,n_c= n_f=0.02,\kappa=0.01 $}
 \end{figure}
 
 
@@ -390,4 +373,28 @@ The hole Master equation without any substitution:
 \end{figure}
 
 
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.4]{Bilder-für-text/Figure_7.png}
+\caption{The parameters for the first plot are$ n_h=20 n_c=0.001 n_f=0.02,\kappa=0.001$. The temperature for the warm bath is 3074. Cavity with a small leaking}
+\end{figure}
+
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.4]{Bilder-für-text/Figure_8.png}
+\caption{The parameters for the first plot are $ n_h=n_c=2.6 n_f=0.02,\kappa=0.001$ The temperature for the warm bath is 3074. Cavity with a small leaking}
+\end{figure}
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.4]{Bilder-für-text/Figure_9.png}
+\caption{The parameters for the first plot are $ n_h=1.7 n_c=0.01 n_f=0.02,\kappa=0.001$ The temperature for the warm bath is 3074. Cavity with a small leaking}
+\end{figure}
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.4]{Bilder-für-text/Figure_9.png}
+\caption{The parameters for the first plot are $ n_h=5.5 n_c=0.01 n_f=0.02,\kappa=0.001$ The temperature for the warm bath is 3074. Cavity with a small leaking}
+\end{figure}
 \end{document}

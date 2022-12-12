@@ -50,7 +50,7 @@ Tenv=0.0000000000000000000000000001
 
 
 
-nh=1
+nh=2.6
 nc=0.01
 
 nf=0.02    #Beschreibt den cavity/Photonen. 
@@ -218,8 +218,8 @@ with open('Speicherort.csv','w') as temp_file:
 
 import matplotlib.pyplot as plt
 fig, ax = plt.subplots()
-ax.set_xlabel('coupling constant [g]')
-ax.set_ylabel('current [J]')
+ax.set_xlabel('[g]')
+ax.set_ylabel('[J]')
 plt.title('current/energyflux vs coupling constant')
 plt.plot(np.asarray(g_list)[:200],np.asarray(Energie_VS_g)[:200,0],label='Th')
 plt.plot(np.asarray(g_list)[:200],np.asarray(Energie_VS_g)[:200,1],label='Tc')

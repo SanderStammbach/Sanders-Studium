@@ -270,6 +270,99 @@
     \warn{\item Invalid format of field 'month'}
   \endentry
 
+  \entry{Scigliuzzo2020}{article}{}
+    \name{author}{6}{}{%
+      {{hash=SM}{%
+         family={Scigliuzzo},
+         familyi={S\bibinitperiod},
+         given={Marco},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=BA}{%
+         family={Bengtsson},
+         familyi={B\bibinitperiod},
+         given={Andreas},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=BJC}{%
+         family={Besse},
+         familyi={B\bibinitperiod},
+         given={Jean\bibnamedelima Claude},
+         giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+      {{hash=WA}{%
+         family={Wallraff},
+         familyi={W\bibinitperiod},
+         given={Andreas},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=DP}{%
+         family={Delsing},
+         familyi={D\bibinitperiod},
+         given={Per},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=GS}{%
+         family={Gasparinetti},
+         familyi={G\bibinitperiod},
+         given={Simone},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {American Physical Society}%
+    }
+    \keyw{doi:10.1103/PhysRevX.10.041054
+  url:https://doi.org/10.1103/PhysRevX.10.041054,quantum information,quantum
+  physics}
+    \strng{namehash}{SM+1}
+    \strng{fullhash}{SMBABJCWADPGS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2020}
+    \field{labeldatesource}{}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{abstract}{%
+    The ability to control and measure the temperature of propagating microwave
+  modes down to very low temperatures is indispensable for quantum information
+  processing and may open opportunities for studies of heat transport at the
+  nanoscale, also in the quantum regime. Here, we propose and experimentally
+  demonstrate primary thermometry of propagating microwaves using a
+  transmon-type superconducting circuit. Our device operates continuously, with
+  a sensitivity down to 4×10-4 photons/Hz and a bandwidth of 40 MHz. We
+  measure the thermal occupation of the modes of a highly attenuated coaxial
+  cable in a range of 0.001 to 0.4 thermal photons, corresponding to a
+  temperature range from 35 mK to 210 mK at a frequency around 5 GHz. To
+  increase the radiation temperature in a controlled fashion, we either inject
+  calibrated, wideband digital noise, or heat the device and its environment.
+  This thermometry scheme can find applications in benchmarking and
+  characterization of cryogenic microwave setups, temperature measurements in
+  hybrid quantum systems, and quantum thermodynamics.%
+    }
+    \verb{doi}
+    \verb 10.1103/PhysRevX.10.041054
+    \endverb
+    \verb{eprint}
+    \verb 2003.13522
+    \endverb
+    \field{issn}{21603308}
+    \field{number}{4}
+    \field{pages}{41054}
+    \field{title}{{Primary Thermometry of Propagating Microwaves in the Quantum
+  Regime}}
+    \verb{url}
+    \verb https://doi.org/10.1103/PhysRevX.10.041054
+    \endverb
+    \field{volume}{10}
+    \verb{file}
+    \verb :home/sander/Master-Projekt/PhysRevX.10.041054.pdf:pdf
+    \endverb
+    \field{journaltitle}{Physical Review X}
+    \field{eprinttype}{arXiv}
+    \field{year}{2020}
+  \endentry
+
   \entry{Scovil1959}{article}{}
     \name{author}{2}{}{%
       {{hash=SHE}{%
