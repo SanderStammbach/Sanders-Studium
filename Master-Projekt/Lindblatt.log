@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.12.12)  18 DEC 2022 18:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.12.12)  18 DEC 2022 19:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -787,24 +787,19 @@ File: Bilder-für-text/4-fits2.png Graphic file (type png)
 Package pdftex.def Info: Bilder-für-text/4-fits2.png  used on input line 278.
 (pdftex.def)             Requested size: 306.80968pt x 461.24963pt.
  [11 <./Bilder-für-text/4-fits2.png>] [12]
-<Bilder-für-text/Energie_1.png, id=205, 615.7404pt x 471.2004pt>
+<Bilder-für-text/Energie_1.png, id=205, 574.5465pt x 453.1329pt>
 File: Bilder-für-text/Energie_1.png Graphic file (type png)
 <use Bilder-für-text/Energie_1.png>
 Package pdftex.def Info: Bilder-für-text/Energie_1.png  used on input line 340
 .
-(pdftex.def)             Requested size: 369.44708pt x 282.72241pt.
+(pdftex.def)             Requested size: 344.73056pt x 271.88184pt.
  [13 <./Bilder-für-text/Energie_1.png>]
-<Bilder-für-text/Entropy.png, id=212, 677.8926pt x 521.0667pt>
+<Bilder-für-text/Entropy.png, id=212, 633.8079pt x 474.0912pt>
 File: Bilder-für-text/Entropy.png Graphic file (type png)
 <use Bilder-für-text/Entropy.png>
 Package pdftex.def Info: Bilder-für-text/Entropy.png  used on input line 353.
-(pdftex.def)             Requested size: 406.7387pt x 312.64243pt.
-
-Overfull \hbox (16.7387pt too wide) in paragraph at lines 353--354
- [][] 
- []
-
-[14 <./Bilder-für-text/Entropy.png>]
+(pdftex.def)             Requested size: 380.28767pt x 284.45691pt.
+ [14 <./Bilder-für-text/Entropy.png>]
 Overfull \hbox (13.63464pt too wide) in paragraph at lines 372--372
 \OT1/cmr/m/n/12 Python 4.7.0''. In: \OT1/cmr/m/it/12 QuTip\OT1/cmr/m/n/12 , p. 
 241. \OT1/cmr/m/sc/12 url\OT1/cmr/m/n/12 : []$\OT1/cmtt/m/n/12 http : / / qutip
@@ -883,7 +878,7 @@ s/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
 xmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texmf-dist/fonts
 /type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/pu
 blic/amsfonts/symbols/msbm7.pfb>
-Output written on Lindblatt.pdf (20 pages, 2246005 bytes).
+Output written on Lindblatt.pdf (20 pages, 2242225 bytes).
 PDF statistics:
  410 PDF objects out of 1000 (max. 8388607)
  313 compressed objects within 4 object streams
