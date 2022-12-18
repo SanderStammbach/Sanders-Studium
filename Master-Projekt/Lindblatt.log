@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.12.12)  18 DEC 2022 15:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.12.12)  18 DEC 2022 18:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -679,7 +679,7 @@ Package biblatex Warning: BibTeX reported the following issues
 )
 Package biblatex Info: Reference section=0 on input line 31.
 Package biblatex Info: Reference segment=0 on input line 31.
-<Bilder-für-text/uni-basel-logo-ogtag.png, id=60, 501.875pt x 501.875pt>
+<Bilder-für-text/uni-basel-logo-ogtag.png, id=64, 501.875pt x 501.875pt>
 File: Bilder-für-text/uni-basel-logo-ogtag.png Graphic file (type png)
 <use Bilder-für-text/uni-basel-logo-ogtag.png>
 Package pdftex.def Info: Bilder-für-text/uni-basel-logo-ogtag.png  used on inp
@@ -716,7 +716,7 @@ been already used, duplicate ignored
                    \relax 
 l.66 \newpage
               [1] [2]
-<Bilder-für-text/3-Level-System.png, id=84, 1156.32pt x 753.81625pt>
+<Bilder-für-text/3-Level-System.png, id=103, 1156.32pt x 753.81625pt>
 File: Bilder-für-text/3-Level-System.png Graphic file (type png)
 <use Bilder-für-text/3-Level-System.png>
 Package pdftex.def Info: Bilder-für-text/3-Level-System.png  used on input lin
@@ -738,13 +738,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 193--195
  []
 
 [7]
-<Bilder-für-text/PHAV-rho.png, id=140, 841.2228pt x 331.7193pt>
+<Bilder-für-text/PHAV-rho.png, id=160, 841.2228pt x 331.7193pt>
 File: Bilder-für-text/PHAV-rho.png Graphic file (type png)
 <use Bilder-für-text/PHAV-rho.png>
 Package pdftex.def Info: Bilder-für-text/PHAV-rho.png  used on input line 221.
 
 (pdftex.def)             Requested size: 336.48315pt x 132.68536pt.
-<Bilder-für-text/PHAV.png, id=143, 1436.36626pt x 1129.21875pt>
+<Bilder-für-text/PHAV.png, id=163, 1436.36626pt x 1129.21875pt>
 File: Bilder-für-text/PHAV.png Graphic file (type png)
 <use Bilder-für-text/PHAV.png>
 Package pdftex.def Info: Bilder-für-text/PHAV.png  used on input line 235.
@@ -753,83 +753,71 @@ Package pdftex.def Info: Bilder-für-text/PHAV.png  used on input line 235.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<Bilder-für-text/Figure_1.png, id=144, 745.1037pt x 300.6432pt>
+<Bilder-für-text/Figure_1.png, id=164, 745.1037pt x 300.6432pt>
 File: Bilder-für-text/Figure_1.png Graphic file (type png)
 <use Bilder-für-text/Figure_1.png>
 Package pdftex.def Info: Bilder-für-text/Figure_1.png  used on input line 251.
 
 (pdftex.def)             Requested size: 298.0362pt x 120.25514pt.
 [8 <./Bilder-für-text/PHAV-rho.png>]
-<Bilder-für-text/stationary-atomic-population.png, id=153, 2134.97626pt x 783.
-92876pt>
-File: Bilder-für-text/stationary-atomic-population.png Graphic file (type png)
+<Bilder-für-text/Energy_1.png, id=173, 2262.4525pt x 921.4425pt>
+File: Bilder-für-text/Energy_1.png Graphic file (type png)
+<use Bilder-für-text/Energy_1.png>
+Package pdftex.def Info: Bilder-für-text/Energy_1.png  used on input line 268.
 
-<use Bilder-für-text/stationary-atomic-population.png>
-Package pdftex.def Info: Bilder-für-text/stationary-atomic-population.png  use
-d on input line 267.
-(pdftex.def)             Requested size: 426.98769pt x 156.78297pt.
+(pdftex.def)             Requested size: 452.48248pt x 184.28523pt.
 
-Overfull \hbox (36.98769pt too wide) in paragraph at lines 267--268
- [][] 
+Overfull \hbox (36.64082pt too wide) in paragraph at lines 267--269
+[]  [] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 271--273
+Underfull \hbox (badness 10000) in paragraph at lines 272--274
 
  []
 
 [9 <./Bilder-für-text/PHAV.png>] [10 <./Bilder-für-text/Figure_1.png> <./Bild
-er-für-text/stationary-atomic-population.png>]
-<Bilder-für-text/4-fits2.png, id=169, 557.83406pt x 838.63312pt>
+er-für-text/Energy_1.png>]
+<Bilder-für-text/4-fits2.png, id=188, 557.83406pt x 838.63312pt>
 File: Bilder-für-text/4-fits2.png Graphic file (type png)
 <use Bilder-für-text/4-fits2.png>
-Package pdftex.def Info: Bilder-für-text/4-fits2.png  used on input line 277.
+Package pdftex.def Info: Bilder-für-text/4-fits2.png  used on input line 278.
 (pdftex.def)             Requested size: 306.80968pt x 461.24963pt.
  [11 <./Bilder-für-text/4-fits2.png>] [12]
-<Bilder-für-text/Energie_1.png, id=186, 698.8509pt x 469.0323pt>
+<Bilder-für-text/Energie_1.png, id=205, 615.7404pt x 471.2004pt>
 File: Bilder-für-text/Energie_1.png Graphic file (type png)
 <use Bilder-für-text/Energie_1.png>
-Package pdftex.def Info: Bilder-für-text/Energie_1.png  used on input line 339
+Package pdftex.def Info: Bilder-für-text/Energie_1.png  used on input line 340
 .
-(pdftex.def)             Requested size: 419.31378pt x 281.42155pt.
+(pdftex.def)             Requested size: 369.44708pt x 282.72241pt.
+ [13 <./Bilder-für-text/Energie_1.png>]
+<Bilder-für-text/Entropy.png, id=212, 677.8926pt x 521.0667pt>
+File: Bilder-für-text/Entropy.png Graphic file (type png)
+<use Bilder-für-text/Entropy.png>
+Package pdftex.def Info: Bilder-für-text/Entropy.png  used on input line 353.
+(pdftex.def)             Requested size: 406.7387pt x 312.64243pt.
 
-Overfull \hbox (29.31378pt too wide) in paragraph at lines 339--340
+Overfull \hbox (16.7387pt too wide) in paragraph at lines 353--354
  [][] 
  []
 
-[13 <./Bilder-für-text/Energie_1.png>]
-Overfull \hbox (6.30928pt too wide) in paragraph at lines 345--347
-\OT1/cmr/m/n/12 prop-erty. The en-tropy pro-duc-tion is given by the for-mula $
-[] = [][] []$ 
- []
-
-<Bilder-für-text/Entropy.png, id=193, 570.2103pt x 346.896pt>
-File: Bilder-für-text/Entropy.png Graphic file (type png)
-<use Bilder-für-text/Entropy.png>
-Package pdftex.def Info: Bilder-für-text/Entropy.png  used on input line 351.
-(pdftex.def)             Requested size: 342.12881pt x 208.13919pt.
 [14 <./Bilder-für-text/Entropy.png>]
-Overfull \hbox (13.63464pt too wide) in paragraph at lines 370--370
+Overfull \hbox (13.63464pt too wide) in paragraph at lines 372--372
 \OT1/cmr/m/n/12 Python 4.7.0''. In: \OT1/cmr/m/it/12 QuTip\OT1/cmr/m/n/12 , p. 
 241. \OT1/cmr/m/sc/12 url\OT1/cmr/m/n/12 : []$\OT1/cmtt/m/n/12 http : / / qutip
  . org / documentation .
  []
 
 [15] [16]
-Underfull \hbox (badness 10000) in paragraph at lines 377--377
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 378--378
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 379--379
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 380--380
 
  []
 
@@ -839,53 +827,46 @@ Underfull \hbox (badness 10000) in paragraph at lines 381--381
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 382--382
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 383--383
 
  []
 
-<Bilder-für-text/Berechnung-Tr[HL].pdf, id=234, 614.295pt x 803.5781pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 384--384
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 385--385
+
+ []
+
+<Bilder-für-text/Berechnung-Tr[HL].pdf, id=255, 614.295pt x 803.5781pt>
 File: Bilder-für-text/Berechnung-Tr[HL].pdf Graphic file (type pdf)
 <use Bilder-für-text/Berechnung-Tr[HL].pdf>
 Package pdftex.def Info: Bilder-für-text/Berechnung-Tr[HL].pdf  used on input 
-line 390.
+line 392.
 (pdftex.def)             Requested size: 307.14674pt x 401.78807pt.
-<Bilder-für-text/Berechnung-Tr[HL]2.png.png, id=235, 1274.7625pt x 1012.78375p
+<Bilder-für-text/Berechnung-Tr[HL]2.png.png, id=256, 1274.7625pt x 1012.78375p
 t>
 File: Bilder-für-text/Berechnung-Tr[HL]2.png.png Graphic file (type png)
 <use Bilder-für-text/Berechnung-Tr[HL]2.png.png>
 Package pdftex.def Info: Bilder-für-text/Berechnung-Tr[HL]2.png.png  used on i
-nput line 396.
+nput line 398.
 (pdftex.def)             Requested size: 382.4317pt x 303.83746pt.
 [17] [18 <./Bilder-für-text/Berechnung-Tr[HL].pdf>] [19 <./Bilder-für-text/Be
 rechnung-Tr[HL]2.png.png>] (./Lindblatt.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-Package rerunfilecheck Warning: File `Lindblatt.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Lindblatt.out':
-(rerunfilecheck)             Before: 94363D551486D61C010B82E40DE651A3;2256
-(rerunfilecheck)             After:  96ABD6E969F2CEAC388F8AAEA7E4ED92;2340.
-
-Package biblatex Warning: Please rerun LaTeX.
-
+Package rerunfilecheck Info: File `Lindblatt.out' has not changed.
+(rerunfilecheck)             Checksum: 96ABD6E969F2CEAC388F8AAEA7E4ED92;2340.
 Package logreq Info: Writing requests to 'Lindblatt.run.xml'.
 \openout1 = `Lindblatt.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 18927 strings out of 478238
- 330708 string characters out of 5850455
- 840612 words of memory out of 5000000
- 36865 multiletter control sequences out of 15000+600000
+ 18923 strings out of 478238
+ 330376 string characters out of 5850455
+ 840794 words of memory out of 5000000
+ 36861 multiletter control sequences out of 15000+600000
  476733 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,8n,68p,1844b,1944s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -902,10 +883,10 @@ s/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
 xmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texmf-dist/fonts
 /type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/pu
 blic/amsfonts/symbols/msbm7.pfb>
-Output written on Lindblatt.pdf (20 pages, 2328520 bytes).
+Output written on Lindblatt.pdf (20 pages, 2246005 bytes).
 PDF statistics:
- 389 PDF objects out of 1000 (max. 8388607)
- 294 compressed objects within 3 object streams
+ 410 PDF objects out of 1000 (max. 8388607)
+ 313 compressed objects within 4 object streams
  70 named destinations out of 1000 (max. 500000)
- 168 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 176 words of extra memory for PDF output out of 10000 (max. 10000000)
 

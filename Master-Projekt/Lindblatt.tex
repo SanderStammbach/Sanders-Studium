@@ -23,11 +23,11 @@
 %\bibliography{library.bib}
 \addbibresource{bibli.bib}
 \addbibresource{library.bib}
-\makeatletter
-\def\eqref{\@ifstar\@eqref\@@eqref}
-\def\@eqref#1{\textup{\tagform@{\ref*{#1}}}}
-\def\@@eqref#1{\textup{\tagform@{\ref{#1}}}}
-\makeatother 
+%\makeatletter
+%\def\eqref{\@ifstar\@eqref\@@eqref}
+%\def\@eqref#1{\textup{\tagform@{\ref*{#1}}}}
+%\def\@@eqref#1{\textup{\tagform@{\ref{#1}}}}
+%\makeatother 
 \begin{document}
 \begin{titlepage}
 \begin{center}
@@ -263,8 +263,9 @@ To avoid this double threshold behaviour, we study a three-level system.
 This double threshold behaviour can perhaps described by the zeno effect.
 
 \begin{figure}[h!]
-\centering
-\includegraphics[scale=0.2]{Bilder-für-text/stationary-atomic-population}
+
+\hspace{-1cm}
+\includegraphics[scale=0.2]{Bilder-für-text/Energy_1.png}
 \caption{In Fig. 4a the probability for a atom to sty in a state 0, 1 or 3 vs $n_h$ with the parameters The parameters for the first plot are $n_c=2.6 ,n_f=0.02,\kappa=0.01 $ and $n_h$ is from $0-30$ the blue lines marks the the values for $ n_h$ for which the Wigner functions are plotted. In Fig. 4b we see, the the expectation value of the photon number versus different $n_h$ }
 \end{figure}
 
@@ -343,16 +344,17 @@ The figure 6 shows  for the parameters $n_h=n_c=2.6 n_f=0.02,\kappa=0.01 $ is sh
 \newpage
 \subsection{Entropy production}
 A other useful scientific concept is the entropy. its also a physical physical property. 
-The entropy production is given by the formula $\dot{\sigma}=\sum_i ^3 \frac{Ji(n_h,n_c,n_cav)}{T_i((n_h,n_c,n_{cav}))}$
-
+The entropy production is given by the formula\\ $\dot{\sigma} =\frac{J(n_h)}{T(n_c)}+\frac{J(n_c)}{T(n_h)}+\frac{J(n_{cav})}{T(n_{cav})}$.
 As already seen in Fig. 4b we have a optimum parameter $n_h$.  in Fig. 4a we see the probability for $P1,P2,P3$ is in the region of $n_h=5 $ well distributed. We see alsou that  this correspond with the average of the photon number.
+The higher the entropy, the more the state of the three-level system changes and the more photons are emitted.
+We see that the entropy production correlate with the average of photon number in Fig 4b
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.6]{Bilder-für-text/Entropy}
-\caption{The entropy production for different $n_h$.The parameters for the first plot are$n_c=0.001 n_f=0.02,\kappa=1$.}
+\caption{The entropy production for different $n_h$.The parameters for the first plot are$n_c=0.001 n_f=0.02,\kappa=1$. As in paper \cite{Li2017} is used the values for the frequencies $\omega_f=30\frac{1}{t},\omega_h=150\frac{1}{t}, omega_c=120\frac{1}{t}$.}
 \end{figure}
 
-We see that the entropy production correlate with the average of photon number in Fig 4b
+
 
 \newpage
 \section{Conclusion an d outlook}

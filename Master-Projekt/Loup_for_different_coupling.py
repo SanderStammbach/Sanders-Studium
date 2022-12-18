@@ -125,7 +125,7 @@ class Diverse_Loups():
         #c_op_list.append(np.sqrt(gamma_6)*A6)
 
        
-    def Entropy(nh,Trans_12,a, kb,h,g,H,H_free,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23):
+    def Entropy(nh,Trans_12,a, kb,h,g,H,H_free,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_c,omega_h,omega_f):
         A1=Trans_13
         A2=Trans_13.dag()
         A3=Trans_23
@@ -137,7 +137,7 @@ class Diverse_Loups():
 
         H=H_free+H_int
         
-    
+        
         
         
         gamma_1=(nh+1)*gamma_h #### unsicher wegen vorfaktor 1/2 
@@ -154,8 +154,8 @@ class Diverse_Loups():
         c_op_list.append(np.sqrt(gamma_4)*A4)
         c_op_list.append(np.sqrt(kappa_5)*A5)
         c_op_list.append(np.sqrt(kappa_6)*A6)
-        def T(n):
-            omega =50
+        def T(n,omega):
+            
             T=h*omega/(kb*(np.log((1/n)+1)))
             return T
 
@@ -171,10 +171,10 @@ class Diverse_Loups():
         Liste_von_Q_f=[]
         Liste_von_Q_c=[]
         Liste_von_Q_h=[]
-        Liste_von_Q.append(np.trace(H_free*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1]))/(T(nh))+np.trace(H_free*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3]))/T(nc)+np.trace(H_free*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5]))/T(nf))
-        Liste_von_Q.append(np.trace(H_free*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1]))/(T(nh)))#liste_von_Q_h
-        Liste_von_Q.append(np.trace(H_free*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3]))/(T(nc)))
-        Liste_von_Q.append(np.trace(H_free*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5]))/(T(nf)))
+        Liste_von_Q.append(np.trace(H_free*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1]))/(T(nh,omega_h))+np.trace(H_free*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3]))/T(nc,omega_c)+np.trace(H_free*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5]))/T(nf,omega_f))
+        Liste_von_Q.append(np.trace(H_free*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1]))/(T(nh,omega_h)))#liste_von_Q_h
+        Liste_von_Q.append(np.trace(H_free*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3]))/(T(nc,omega_c)))
+        Liste_von_Q.append(np.trace(H_free*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5]))/(T(nf,omega_f)))
             #Liste_von_Q.append(g)  g in der liste anfügen
 
         float_list= list(np.float_(Liste_von_Q))

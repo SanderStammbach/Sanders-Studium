@@ -54,7 +54,7 @@ Tenv=0.0000000000000000000000000001
 
 
 
-nh=2.9
+nh=2.6
 nc=0.02
 
 nf=0.02    #Beschreibt den cavity/Photonen. 
@@ -222,8 +222,8 @@ with open('Speicherort.csv','w') as temp_file:
 
 import matplotlib.pyplot as plt
 fig, ax = plt.subplots()
-ax.set_xlabel(r' $\frac{g}{\gamma_h}$', fontsize=19)
-ax.set_ylabel(r' $\frac{J}{\gamma_h \omega_h}$', fontsize=19)
+ax.set_xlabel(r' $\frac{g}{\gamma_h}$', fontsize=23)
+ax.set_ylabel(r' $\frac{J}{\gamma_h \omega_h}$', fontsize=23)
 plt.title('current/energyflux vs coupling constant')
 plt.plot(np.asarray(g_list)[:200],np.asarray(Energie_VS_g)[:200,0],label='Th')
 plt.plot(np.asarray(g_list)[:200],np.asarray(Energie_VS_g)[:200,1],label='Tc')
@@ -231,7 +231,7 @@ plt.plot(np.asarray(g_list)[:200],np.asarray(Energie_VS_g)[:200,2],label='Tenv')
 legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
 legend.get_frame().set_facecolor('C0')
 plt.show()
-""" r' $\frac{-e^{i\pi}}{2^n}$!',fontsize=19    """#für LATEX Labels r' $\frac{g}{\gamma}$', fontsize=19
+""" r' $\frac{-e^{i\pi}}{2^n}$!',fontsize=21    """#für LATEX Labels r' $\frac{g}{\gamma}$', fontsize=19
 
 ######################################################################################################################################################
 #Berechnung
@@ -246,7 +246,7 @@ for j in range(100):
     nh=nh+0.3
 
 fig2, ax = plt.subplots()
-ax.set_xlabel(r' $n_h$', fontsize=19)
+ax.set_xlabel(r' $n_h$', fontsize=21)
 ax.set_ylabel('probability')
 plt.title('stationary atomic population')
 plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,0],label='P1')
@@ -293,7 +293,7 @@ nh_list2=[]
 Entropy=[]
 for i in range(100):
     list_temp=[]
-    list_temp=Diverse_Loups.Entropy(nh2,Trans_12,a, kb,h,g,H,H_free,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23)
+    list_temp=Diverse_Loups.Entropy(nh2,Trans_12,a, kb,h,g,H,H_free,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_c,omega_h,omega_f)
     #g_list.append(i/100)  #Erstellt eine Liste mit Wären von g 
     Entropy.append(list_temp)
     nh2=nh2+0.3
@@ -346,9 +346,9 @@ for i in range(100):
     print(Photonnumber_list)
 
 fig4, ax = plt.subplots()
-ax.set_xlabel(r' $n_h$', fontsize=19)
-ax.set_ylabel(r' $\langle n \rangle$', fontsize=19)
-plt.title('Photonnumber vs n_h')
+ax.set_xlabel(r' $n_h$', fontsize=21)
+ax.set_ylabel(r' $\langle n \rangle$', fontsize=21)
+plt.title(r' Photonnumber vs $n_h$',fontsize=21)
 plt.plot(np.asarray(nh_list2)[:100],np.asarray(Photonnumber_list)[:100],color='red')
 
 #legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
