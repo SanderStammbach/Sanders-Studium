@@ -31,6 +31,10 @@ from Loup_for_different_coupling import Diverse_Loups as Diverse_Loups
 import multiprocessing as mp
 import csv
 from IPython.display import display, Latex
+plt.rcParams.update({
+    "text.usetex": True,
+    "font.family": "Helvetica"
+})
 #Konstante Grössen
 ########################################################################################################
 omega_1=0
@@ -50,8 +54,8 @@ Tenv=0.0000000000000000000000000001
 
 
 
-nh=2.6
-nc=0.01
+nh=2.9
+nc=0.02
 
 nf=0.02    #Beschreibt den cavity/Photonen. 
 
@@ -218,8 +222,8 @@ with open('Speicherort.csv','w') as temp_file:
 
 import matplotlib.pyplot as plt
 fig, ax = plt.subplots()
-ax.set_xlabel('[g]')
-ax.set_ylabel('[J]')
+ax.set_xlabel(r' $\frac{g}{\gamma_h}$', fontsize=19)
+ax.set_ylabel(r' $\frac{J}{\gamma_h \omega_h}$', fontsize=19)
 plt.title('current/energyflux vs coupling constant')
 plt.plot(np.asarray(g_list)[:200],np.asarray(Energie_VS_g)[:200,0],label='Th')
 plt.plot(np.asarray(g_list)[:200],np.asarray(Energie_VS_g)[:200,1],label='Tc')
@@ -227,8 +231,7 @@ plt.plot(np.asarray(g_list)[:200],np.asarray(Energie_VS_g)[:200,2],label='Tenv')
 legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
 legend.get_frame().set_facecolor('C0')
 plt.show()
-
-
+""" r' $\frac{-e^{i\pi}}{2^n}$!',fontsize=19    """#für LATEX Labels r' $\frac{g}{\gamma}$', fontsize=19
 
 ######################################################################################################################################################
 #Berechnung
@@ -243,7 +246,7 @@ for j in range(100):
     nh=nh+0.3
 
 fig2, ax = plt.subplots()
-ax.set_xlabel('nh')
+ax.set_xlabel(r' $n_h$', fontsize=19)
 ax.set_ylabel('probability')
 plt.title('stationary atomic population')
 plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,0],label='P1')
@@ -309,13 +312,15 @@ print("Die Temperatur des kalten Bades ist: ",T(omega_c,nc))
 print(Trace_list_temp)
 
 fig3, ax = plt.subplots()
-ax.set_xlabel('n_h')
+ax.set_xlabel(r' $n_h$', fontsize=19)
 ax.set_ylabel('Entropy')
 plt.title('Entropy Production')
-plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,0],color='red')
-
-#legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
-#legend.get_frame().set_facecolor('C0')
+plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,0],label=('h,f,c'),color='red')
+plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,1],label='h')
+plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,2],label='c')
+plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,3],label='f')
+legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
+legend.get_frame().set_facecolor('C0')
 #Linien in plt
 plt.axvline(x=2.6)
 plt.axvline(x=2.6)
@@ -341,8 +346,8 @@ for i in range(100):
     print(Photonnumber_list)
 
 fig4, ax = plt.subplots()
-ax.set_xlabel('n_h')
-ax.set_ylabel('<n>')
+ax.set_xlabel(r' $n_h$', fontsize=19)
+ax.set_ylabel(r' $\langle n \rangle$', fontsize=19)
 plt.title('Photonnumber vs n_h')
 plt.plot(np.asarray(nh_list2)[:100],np.asarray(Photonnumber_list)[:100],color='red')
 

@@ -168,10 +168,13 @@ class Diverse_Loups():
             return D
 
         Liste_von_Q=[] # ExpectValue for Thermal Energy
-
+        Liste_von_Q_f=[]
+        Liste_von_Q_c=[]
+        Liste_von_Q_h=[]
         Liste_von_Q.append(np.trace(H_free*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1]))/(T(nh))+np.trace(H_free*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3]))/T(nc)+np.trace(H_free*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5]))/T(nf))
-            
-            
+        Liste_von_Q.append(np.trace(H_free*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1]))/(T(nh)))#liste_von_Q_h
+        Liste_von_Q.append(np.trace(H_free*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3]))/(T(nc)))
+        Liste_von_Q.append(np.trace(H_free*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5]))/(T(nf)))
             #Liste_von_Q.append(g)  g in der liste anfügen
 
         float_list= list(np.float_(Liste_von_Q))

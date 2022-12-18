@@ -30,44 +30,39 @@ from qutip import ptrace
 from Loup_for_different_coupling import Diverse_Loups as Diverse_Loups
 import multiprocessing as mp
 import csv
+
 import matplotlib.pyplot as plt
 from matplotlib import cm
 from matplotlib.ticker import LinearLocator
 import numpy as np
-
+norm=8200
+#a=4 bestes ergebnis
+a=3
 nph=30
+b_fock_alt=qutip.states.fock(nph,0)
 
-b_fock=qutip.states.fock(nph,0)
-a=1
-#rho_PHAV=np.exp(-np.abs(a)^2)**b_fock*b_fock.dag()
+rho_alt=b_fock_alt*b_fock_alt.dag()
 
-def W(x,y): 
-    b=1.4
-    W = 2*np.exp(-2(np.absolute(b)**2)+np.absolute(x+y)**2)*0.9*(4*np.absolute(x+y)*np.absolute(b))
-    return W
+rho_alt_2=rho_alt
 
 
 
-fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
 
-# Make data.
-X = np.arange(-5, 5, 0.25)
-Y = np.arange(-5, 5, 0.25)
-X, Y = np.meshgrid(X, Y)
 
-Z = 2*np.exp(-2*(np.absolute(0.9)**2+np.absolute(X+Y)**2))*0.9*(4*np.absolute(X+Y)*np.absolute(0.9))
 
-# Plot the surface.
-surf = ax.plot_surface(X, Y, Z, cmap=cm.coolwarm,
-                       linewidth=0, antialiased=False)
+y=0
 
-# Customize the z axis.
-ax.set_zlim(-1.01, 1.01)
-ax.zaxis.set_major_locator(LinearLocator(10))
-# A StrMethodFormatter is used automatically
-ax.zaxis.set_major_formatter('{x:.02f}')
+for n in range(nph):
+    fock=qutip.states.fock(nph,n)
+    rho_PHAV=((np.exp(-1*(a**2))+(a**(2*n))/(np.math.factorial(n)))/8200)*(fock*fock.dag())
+   
+    x=(np.exp(-a*a)+(a**(2*n))/(np.math.factorial(n)))/8200
+    print(x)
+    y=x+y
+    rho_alt=rho_PHAV+rho_alt
 
-# Add a color bar which maps values to colors.
-fig.colorbar(surf, shrink=0.5, aspect=5)
 
+RHO=rho_alt-rho_alt_2
+qutip.plot_wigner_fock_distribution(RHO,colorbar='colorbar')
+print(RHO,y)
 plt.show()
