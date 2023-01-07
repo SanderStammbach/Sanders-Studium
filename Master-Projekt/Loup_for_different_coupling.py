@@ -29,7 +29,7 @@ from qutip import ptrace
 
 
 class Diverse_Loups():
-    def EnergieCalculator(g,H_free, Trans_12, Trans_13, Trans_23 , a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list):
+    def EnergieCalculator(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list):
 
         
 

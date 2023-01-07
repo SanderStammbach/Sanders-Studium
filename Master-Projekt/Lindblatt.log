@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.12.12)  18 DEC 2022 19:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.12.12)  7 JAN 2023 12:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -533,18 +533,26 @@ File: standard.bbx 2022/02/02 v3.17 biblatex bibliography style (PK/MW)
 \c@bbx:relatedcount=\count414
 \c@bbx:relatedtotal=\count415
 ))
-Package biblatex Info: Trying to load citation style 'authoryear'...
-Package biblatex Info: ... file 'authoryear.cbx' found.
+Package biblatex Info: Trying to load citation style 'numeric-comp'...
+Package biblatex Info: ... file 'numeric-comp.cbx' found.
 
-(/usr/share/texmf-dist/tex/latex/biblatex/cbx/authoryear.cbx
-File: authoryear.cbx 2022/02/02 v3.17 biblatex citation style (PK/MW)
+(/usr/share/texmf-dist/tex/latex/biblatex/cbx/numeric-comp.cbx
+File: numeric-comp.cbx 2022/02/02 v3.17 biblatex citation style (PK/MW)
+\c@cbx@tempcnta=\count416
+\c@cbx@tempcntb=\count417
+\c@cbx@tempcntc=\count418
+\c@cbx@tempcntd=\count419
 Package biblatex Info: Redefining '\cite'.
 Package biblatex Info: Redefining '\parencite'.
 Package biblatex Info: Redefining '\footcite'.
 Package biblatex Info: Redefining '\footcitetext'.
 Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\supercite'.
 Package biblatex Info: Redefining '\textcite'.
 Package biblatex Info: Redefining '\textcites'.
+Package biblatex Info: Redefining '\cites'.
+Package biblatex Info: Redefining '\parencites'.
+Package biblatex Info: Redefining '\smartcites'.
 )
 Package biblatex Info: Trying to load configuration file...
 Package biblatex Info: ... file 'biblatex.cfg' found.
@@ -560,7 +568,7 @@ Package: expl3 2022-04-10 L3 programming layer (loader)
 
 (/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-04-14 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count416
+\l__color_backend_stack_int=\count420
 \l__pdf_internal_box=\box53
 ))
 Package biblatex Info: ... and expl3
@@ -578,8 +586,8 @@ Package: blx-case-expl3 2022/02/02 v3.17 expl3 case changing code for biblatex
 Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (biblatex)                Loading 'csquotes' recommended.
 
-\@quotelevel=\count417
-\@quotereset=\count418
+\@quotelevel=\count421
+\@quotereset=\count422
 (./Lindblatt.aux)
 \openout1 = `Lindblatt.aux'.
 
@@ -603,16 +611,16 @@ LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 31.
 LaTeX Font Info:    ... okay on input line 31.
  (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count419
+\scratchcounter=\count423
 \scratchdimen=\dimen165
 \scratchbox=\box54
-\nofMPsegments=\count420
-\nofMParguments=\count421
+\nofMPsegments=\count424
+\nofMParguments=\count425
 \everyMPshowfont=\toks28
-\MPscratchCnt=\count422
+\MPscratchCnt=\count426
 \MPscratchDim=\dimen166
-\MPnumerator=\count423
-\makeMPintoPDFobject=\count424
+\MPnumerator=\count427
+\makeMPintoPDFobject=\count428
 \everyMPtoPDFconversion=\toks29
 ) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -634,7 +642,7 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 (/usr/share/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count425
+\c@section@level=\count429
 )
 LaTeX Info: Redefining \ref on input line 31.
 LaTeX Info: Redefining \pageref on input line 31.
@@ -720,93 +728,108 @@ l.66 \newpage
 File: Bilder-für-text/3-Level-System.png Graphic file (type png)
 <use Bilder-für-text/3-Level-System.png>
 Package pdftex.def Info: Bilder-für-text/3-Level-System.png  used on input lin
-e 88.
+e 87.
 (pdftex.def)             Requested size: 462.5198pt x 301.52116pt.
 
-Overfull \hbox (72.5198pt too wide) in paragraph at lines 88--93
+Overfull \hbox (72.5198pt too wide) in paragraph at lines 87--92
 [][] 
  []
 
 [3 <./Bilder-für-text/3-Level-System.png>] [4] [5] [6]
-Overfull \hbox (11.38626pt too wide) in paragraph at lines 192--192
-[]\OT1/cmr/bx/n/14.4 Wigner func-tion and Phase-averaged co-her-ent states
+Overfull \hbox (9.31958pt too wide) in paragraph at lines 190--190
+[]\OT1/cmr/bx/n/14.4 Wigner func-tion and phase-averaged co-her-ent states
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 193--195
+Underfull \hbox (badness 10000) in paragraph at lines 191--193
 
  []
 
 [7]
-<Bilder-für-text/PHAV-rho.png, id=160, 841.2228pt x 331.7193pt>
+<Bilder-für-text/PHAV-rho.png, id=164, 841.2228pt x 331.7193pt>
 File: Bilder-für-text/PHAV-rho.png Graphic file (type png)
 <use Bilder-für-text/PHAV-rho.png>
-Package pdftex.def Info: Bilder-für-text/PHAV-rho.png  used on input line 221.
+Package pdftex.def Info: Bilder-für-text/PHAV-rho.png  used on input line 220.
 
-(pdftex.def)             Requested size: 336.48315pt x 132.68536pt.
-<Bilder-für-text/PHAV.png, id=163, 1436.36626pt x 1129.21875pt>
-File: Bilder-für-text/PHAV.png Graphic file (type png)
-<use Bilder-für-text/PHAV.png>
-Package pdftex.def Info: Bilder-für-text/PHAV.png  used on input line 235.
-(pdftex.def)             Requested size: 287.26816pt x 225.83975pt.
+(pdftex.def)             Requested size: 462.67397pt x 182.44617pt.
 
+Overfull \hbox (35.45137pt too wide) in paragraph at lines 219--221
+[]  [][] 
+ []
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<Bilder-für-text/Figure_1.png, id=164, 745.1037pt x 300.6432pt>
+<Bilder-für-text/Figure_1.png, id=166, 745.1037pt x 300.6432pt>
 File: Bilder-für-text/Figure_1.png Graphic file (type png)
 <use Bilder-für-text/Figure_1.png>
-Package pdftex.def Info: Bilder-für-text/Figure_1.png  used on input line 251.
+Package pdftex.def Info: Bilder-für-text/Figure_1.png  used on input line 248.
 
-(pdftex.def)             Requested size: 298.0362pt x 120.25514pt.
-[8 <./Bilder-für-text/PHAV-rho.png>]
-<Bilder-für-text/Energy_1.png, id=173, 2262.4525pt x 921.4425pt>
+(pdftex.def)             Requested size: 409.8083pt x 165.35426pt.
+
+Overfull \hbox (19.8083pt too wide) in paragraph at lines 248--249
+ [][] 
+ []
+
+[8 <./Bilder-für-text/PHAV-rho.png>] [9 <./Bilder-für-text/Figure_1.png>]
+<Bilder-für-text/Energy_1.png, id=180, 2262.4525pt x 921.4425pt>
 File: Bilder-für-text/Energy_1.png Graphic file (type png)
 <use Bilder-für-text/Energy_1.png>
-Package pdftex.def Info: Bilder-für-text/Energy_1.png  used on input line 268.
+Package pdftex.def Info: Bilder-für-text/Energy_1.png  used on input line 266.
 
 (pdftex.def)             Requested size: 452.48248pt x 184.28523pt.
 
-Overfull \hbox (36.64082pt too wide) in paragraph at lines 267--269
+Overfull \hbox (36.64082pt too wide) in paragraph at lines 265--267
 []  [] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 272--274
-
- []
-
-[9 <./Bilder-für-text/PHAV.png>] [10 <./Bilder-für-text/Figure_1.png> <./Bild
-er-für-text/Energy_1.png>]
-<Bilder-für-text/4-fits2.png, id=188, 557.83406pt x 838.63312pt>
+[10]
+<Bilder-für-text/4-fits2.png, id=185, 557.83406pt x 838.63312pt>
 File: Bilder-für-text/4-fits2.png Graphic file (type png)
 <use Bilder-für-text/4-fits2.png>
-Package pdftex.def Info: Bilder-für-text/4-fits2.png  used on input line 278.
+Package pdftex.def Info: Bilder-für-text/4-fits2.png  used on input line 275.
 (pdftex.def)             Requested size: 306.80968pt x 461.24963pt.
- [11 <./Bilder-für-text/4-fits2.png>] [12]
-<Bilder-für-text/Energie_1.png, id=205, 574.5465pt x 453.1329pt>
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[11 <./Bilder-für-text/Energy_1.png>] [12 <./Bilder-für-text/4-fits2.png>]
+<Bilder-für-text/Energie_1.png, id=200, 609.9588pt x 458.9145pt>
 File: Bilder-für-text/Energie_1.png Graphic file (type png)
 <use Bilder-für-text/Energie_1.png>
-Package pdftex.def Info: Bilder-für-text/Energie_1.png  used on input line 340
+Package pdftex.def Info: Bilder-für-text/Energie_1.png  used on input line 335
 .
-(pdftex.def)             Requested size: 344.73056pt x 271.88184pt.
- [13 <./Bilder-für-text/Energie_1.png>]
-<Bilder-für-text/Entropy.png, id=212, 633.8079pt x 474.0912pt>
+(pdftex.def)             Requested size: 365.9781pt x 275.35081pt.
+<Bilder-für-text/Entropy.png, id=201, 633.8079pt x 474.0912pt>
 File: Bilder-für-text/Entropy.png Graphic file (type png)
 <use Bilder-für-text/Entropy.png>
-Package pdftex.def Info: Bilder-für-text/Entropy.png  used on input line 353.
+Package pdftex.def Info: Bilder-für-text/Entropy.png  used on input line 348.
 (pdftex.def)             Requested size: 380.28767pt x 284.45691pt.
- [14 <./Bilder-für-text/Entropy.png>]
-Overfull \hbox (13.63464pt too wide) in paragraph at lines 372--372
+
+[13] [14 <./Bilder-für-text/Energie_1.png>] [15 <./Bilder-für-text/Entropy.pn
+g>] [16]
+Overfull \hbox (13.63464pt too wide) in paragraph at lines 368--368
 \OT1/cmr/m/n/12 Python 4.7.0''. In: \OT1/cmr/m/it/12 QuTip\OT1/cmr/m/n/12 , p. 
 241. \OT1/cmr/m/sc/12 url\OT1/cmr/m/n/12 : []$\OT1/cmtt/m/n/12 http : / / qutip
  . org / documentation .
  []
 
-[15] [16]
+[17]
+Underfull \hbox (badness 10000) in paragraph at lines 375--375
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 376--376
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 377--377
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 379--379
 
  []
@@ -821,47 +844,32 @@ Underfull \hbox (badness 10000) in paragraph at lines 381--381
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 383--383
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 384--384
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 385--385
-
- []
-
-<Bilder-für-text/Berechnung-Tr[HL].pdf, id=255, 614.295pt x 803.5781pt>
+<Bilder-für-text/Berechnung-Tr[HL].pdf, id=259, 614.295pt x 803.5781pt>
 File: Bilder-für-text/Berechnung-Tr[HL].pdf Graphic file (type pdf)
 <use Bilder-für-text/Berechnung-Tr[HL].pdf>
 Package pdftex.def Info: Bilder-für-text/Berechnung-Tr[HL].pdf  used on input 
-line 392.
+line 388.
 (pdftex.def)             Requested size: 307.14674pt x 401.78807pt.
-<Bilder-für-text/Berechnung-Tr[HL]2.png.png, id=256, 1274.7625pt x 1012.78375p
+<Bilder-für-text/Berechnung-Tr[HL]2.png.png, id=260, 1274.7625pt x 1012.78375p
 t>
 File: Bilder-für-text/Berechnung-Tr[HL]2.png.png Graphic file (type png)
 <use Bilder-für-text/Berechnung-Tr[HL]2.png.png>
 Package pdftex.def Info: Bilder-für-text/Berechnung-Tr[HL]2.png.png  used on i
-nput line 398.
+nput line 394.
 (pdftex.def)             Requested size: 382.4317pt x 303.83746pt.
-[17] [18 <./Bilder-für-text/Berechnung-Tr[HL].pdf>] [19 <./Bilder-für-text/Be
+[18] [19 <./Bilder-für-text/Berechnung-Tr[HL].pdf>] [20 <./Bilder-für-text/Be
 rechnung-Tr[HL]2.png.png>] (./Lindblatt.aux)
 Package rerunfilecheck Info: File `Lindblatt.out' has not changed.
-(rerunfilecheck)             Checksum: 96ABD6E969F2CEAC388F8AAEA7E4ED92;2340.
+(rerunfilecheck)             Checksum: C5FAE31E6F3C966580A19601429691C1;2332.
 Package logreq Info: Writing requests to 'Lindblatt.run.xml'.
 \openout1 = `Lindblatt.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 18923 strings out of 478238
- 330376 string characters out of 5850455
- 840794 words of memory out of 5000000
- 36861 multiletter control sequences out of 15000+600000
+ 18986 strings out of 478238
+ 331641 string characters out of 5850455
+ 844044 words of memory out of 5000000
+ 36924 multiletter control sequences out of 15000+600000
  476733 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,8n,68p,1844b,1944s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -871,17 +879,18 @@ nts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></us
 r/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texmf-dist/fonts
-/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/pu
-blic/amsfonts/symbols/msbm7.pfb>
-Output written on Lindblatt.pdf (20 pages, 2241895 bytes).
+ist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><
+/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmtt12.pfb></usr/share/texmf-dist/fonts/type1/public/am
+sfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/sy
+mbols/msbm7.pfb>
+Output written on Lindblatt.pdf (21 pages, 1602514 bytes).
 PDF statistics:
- 410 PDF objects out of 1000 (max. 8388607)
- 313 compressed objects within 4 object streams
+ 418 PDF objects out of 1000 (max. 8388607)
+ 320 compressed objects within 4 object streams
  70 named destinations out of 1000 (max. 500000)
- 176 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 171 words of extra memory for PDF output out of 10000 (max. 10000000)
 
