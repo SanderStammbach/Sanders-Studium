@@ -253,18 +253,17 @@ In the second plot I took the same parameters again, but with a lower $\kappa$. 
 
 \newpage
 \subsection{Double threshold behaviour}
-Lasing starts once a threshold for emission is attained, however, increasing the heat flow too much will end up producing  thermal light instead of lasing. This configures a double threshold behaviour.
+Lasing starts once a threshold for emission is attained, however, increasing the heat flow too much will end up producing  thermal light instead of lasing. This configures is called a double threshold behaviour.
 %Laising gain is the output is a coherent state, which  we can  use as a laser.
-The lasing output decreases when $n_h$ is too high and this system shows a double threshold behaviour when the hot bath temperature $n_h$ is too low $(n_h \approx n_c)$, the excitation is too weak, and we say that the system
-is below the lasing threshold; with increasing $n_h$ further, population inversion happens and the lasing light comes out. But when $n_h$ keeps increasing, the lasing gain starts to decrease again and goes below the threshold. This is another critical point, after which the output light becomes thermal radiation again.
-To avoid this double threshold behaviour, we study a three-level system.
-This double threshold behaviour can describes by the zeno effect, because $n_h$ is too high, the system is pushed  in the highest state.
-With the plot  $Tr[n\rho] =\langle n\rangle$ against different $n_h$ Fig. 4a we see a  double threshold behaviour because with too high $n_h$ the expected photon number decrease again. The same thing is seen in the probability for the occupation number ($Tr[H \rho]$) Fig. 4a.  With high $n_h$ the probability for the system to stay in a the highest state increases as well. The robability he probability for the system to stay in a the state is described as $P1,P2,P3$  But in this case, the system can not give a lasing output, because lasing comes from the the transition from state $\ket{2}$ to $\ket{1}$ and if $P3$ is too high, the process is not possible anymore.  We see in Fig. 4a that the lasing start at the point $P2$ and $P1$ diverging. Thar happens at $n_h=0.2$.
-All the simulation are done with steady states.
+To avoid this double threshold behaviour, we study the steady states of a three-level system.
+This double threshold behaviour can can be explained by the zeno effect. 
+With the plot  $Tr[n\rho] =\langle n\rangle$ against different $n_h$ Fig. 4b we see this double threshold behaviour because, when the hot bath temperature $n_h$ is too low $(n_h \approx n_c)$ we have also a  low photon number. With increasing $n_h$, population inversion happens, the photon number increase and a PHAV state is the output. With too high $n_h$ the expected photon number decrease again and this system shows a double threshold behaviour, the excitation is too weak, and we say that the system is below the lasing threshold. This is another critical point, after which the output light becomes thermal radiation.\\
+The population inversion is seen by calculating the probability for the occupation number ($Tr[H \rho]$) Fig. 4a.  With high $n_h$ the probability for the system to stay in a the $P2$ state increases as well. Because the transition between the $E_2$ and $E_1$ happened by photon emission and this emission rate is slower as the decay rate from $E_3$ to $E_2$. 
+%All the simulation are done with steady states.
 \begin{figure}[h!]
 \hspace{-1cm}
 \includegraphics[scale=0.2]{Bilder-für-text/Energy_1.png}
-\caption{In Fig. 4a the probability for an atom to stay in a state $\ket{0}, \ket{2}$ or $\ket{3}$ vs $n_h$ with the parameters The parameters for the first plot are $n_c=2.6 ,n_f=0.02,\kappa=0.01 $. The blue lines marks the the values for $ n_h$ for which the Wigner functions are plotted. In Fig. 4b we see, the the expectation value of the photon number versus different $n_h$ }
+\caption{In Fig. 4a the probability for an atom to stay in a state $\ket{0}, \ket{2}$ or $\ket{3}$ vs $n_h$ with the parameters. With a increasing $n_h$ $P2$ increase as well. We call it population inversion.  The parameters for the first plot are $n_c=0.02 ,n_f=0.02,\kappa=0.01 $. The blue lines marks the the values for $ n_h$ for which the Wigner functions are plotted. In Fig. 4b we see, the the expectation value of the photon number versus different $n_h$ }
 \end{figure}
 \newpage
 In a first step, the reduce density matrices $\rho_{free}$ will be used to make Wigner and Fock plots.
@@ -353,16 +352,18 @@ We see that the entropy production correlate with the average of photon number i
 
 \newpage
 \section{Conclusion and outlook}
-In those numerical calculations are found PHAV states, which in a cavity, driven by the coupling of two different thermal bath. We found the double threshold behaviour from the system, by calculating different energy flux for different $n_h$
-With the condition that $n_c, n_{cav}$ is almost zero, the leaking $\kappa$ is small too, and the hot bath received a value between 1 and 5.5 When we compare the Winger functions of the numerical calculated states with the Wigner plot of a PHAV state Fig. 4a, we see, that pretty similar. As conclusion; it's possible to get a phase average coherent state. 
-In Fig. 6 we see the average of the current, calculated with the formula Eq. \eqref{13} For different coupling constants, $g$
-we see, that the current increase at most between the $ 0<g<0.25$ 
-In Fig. 4a we see the probability in which state an atom is. If we increase the temperature from the hot bath, we see that the occupation probability of $P2$ increase as well. However, the probability of an atom being in the $P1$ or $P3$ state decreases with increasing $n_h$. The probability $P1$ and $P2$ is thus inversely proportional to the temperature.
-The problem is that the cycle of photons can be stopped, because the probability that the photons goes from the ground state into the highest state is too small.
-Fig. 4a is consistent with the Wigner plots.
-Fig. 4b helps to get some conclusion about the system starts lasing and when it stops. With a too small temperature, It has not enough energy in the system and to have photons in the upper band. If $n_h$ increase more, a maximum lasing output is reached. If the temperature increasing further, the system is in the highest level, therefore the Rabi oscillation between $E_0$ and $E_2$ does not exist anymore.
-At higher heat of the warm bath, dephasing of the system occurs. Thus, it interacts more with the environment. This has the same effect as if the system is measured often. The Zeno effect then shows that the system no longer oscillates between two different states. Spontaneous  emission could be a problem too, that the photons which leave the atoms are not in a coherent state anymore.The consistent numerical and theoretical results we have obtained in the characterization of both PHAVs and their superpositions 2-PHAVs reinforce the
+In those numerical calculations are found PHAV states in a cavity, driven by the coupling of two different thermal bath. We found the double threshold behaviour from the system, by calculating different energy flux for different $n_h$. As in the paper \cite{Li2017}.
+With the condition that $n_c, n_{cav}$ is almost zero, the leaking $\kappa$ is small too, and the hot bath received a value between 1 and 5.5. When we compare the Winger functions of the numerical calculated states from a our three-level system Fig 4b,4c with the Wigner plot of a PHAV state Fig. 2, we see, that they are pretty similar. As conclusion; it's possible to get a phase average coherent state. 
+In Fig. 6 we see the average of the current, calculated with the formula Eq. \eqref{13} for different coupling constants $g$.
+The conclusion from Fig. 6 is, that the current increase at most between the $ 0<g<0.25$.
+In Fig. 4a we see the probability in which state the  system is. If we increase the temperature from the hot bath, we see that the occupation probability of $P2$ increase as well. A  population  inversion is visible.
+Fig. 4 helps to get some conclusion about the system starts lasing and when it stops. With a too small temperature, It has not enough energy in the system and the photon number is low Fig 4a. If $n_h$ increase more, a maximum lasing output is reached  Fig 4b,4c. If the temperature increasing further, the system is in the highest level, therefore the Rabi oscillation between $E_0$ and $E_2$ does not exist anymore and we get a thermal state Fig 4d.
+At higher heat of the warm bath, dephasing of the system occurs. Thus, it interacts more with the environment. This has the same effect as if the system is measured often. The Zeno effect then make that the system no longer oscillates between two different states. 
+%Spontaneous  emission could be a problem too, that the photons which leave the atoms are not in a coherent state anymore.
+The consistent numerical and theoretical results we have obtained in the characterization of both PHAV states.
+A motivation to get those PHAV states is; with two PHAV states reinforce the
 possibility of using them for applications to communication protocols \cite{Allevi2013}.
+In further calculation  we will look at the thermodynamic uncertainty relation (TUR) and a second laser as input.
 %\section{References}
 \printbibliography
 
