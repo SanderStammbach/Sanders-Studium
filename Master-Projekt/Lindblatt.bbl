@@ -16,7 +16,7 @@
   {}
 \endgroup
 
-\datalist[entry]{nyt/global//global/global}
+\datalist[entry]{nty/global//global/global}
   \entry{Allevi2013}{article}{}
     \name{author}{5}{}{%
       {{hash=AA}{%
@@ -54,8 +54,6 @@
     \strng{fullhash}{AABMMPMTAOS1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2013}
-    \field{labeldatesource}{}
     \field{sortinit}{A}
     \field{sortinithash}{A}
     \field{abstract}{%
@@ -119,8 +117,6 @@
     \strng{fullhash}{LSWKMBAGSSMO1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2017}
-    \field{labeldatesource}{}
     \field{sortinit}{L}
     \field{sortinithash}{L}
     \field{abstract}{%
@@ -186,8 +182,6 @@
     \strng{fullhash}{NPDJJR1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2022}
-    \field{labeldatesource}{}
     \field{sortinit}{N}
     \field{sortinithash}{N}
     \field{abstract}{%
@@ -254,8 +248,6 @@
     \strng{fullhash}{SMBABJCWADPGS1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2020}
-    \field{labeldatesource}{}
     \field{sortinit}{S}
     \field{sortinithash}{S}
     \field{abstract}{%
@@ -317,8 +309,6 @@
     \strng{fullhash}{SHESDEO1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{1959}
-    \field{labeldatesource}{}
     \field{sortinit}{S}
     \field{sortinithash}{S}
     \verb{doi}

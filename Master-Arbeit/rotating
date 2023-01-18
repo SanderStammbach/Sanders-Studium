@@ -1,0 +1,14 @@
+As always, we work in an interaction picture where the
+signal frequency has been shifted to zero. D represents
+the effective operating bandwidth of the amplifier. Com-
+ponents of the signal with frequencies (in the rotating
+frame) |ω| ␜ D are strongly amplified, while components
+with frequencies |ω| ␝ D are not amplified at all, but
+can in fact be slightly attenuated. As we already antici-
+pated, the amplification bandwidth D becomes progres-
+sively smaller as the
+√ pump power and G0 are increased,
+with the product G0 D remaining constant. In a para-
+metric amplifier increasing the gain via increasing the
+pump strength comes with a price: the effective operat-
+ing bandwidth is reduced.
