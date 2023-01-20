@@ -54,7 +54,7 @@ Tenv=0.0000000000000000000000000001
 
 
 
-nh=2.6
+nh=2.6 #Max bei 4.5
 nc=0.02
 
 nf=0.02    #Beschreibt den cavity/Photonen. 
@@ -315,10 +315,10 @@ fig3, ax = plt.subplots()
 ax.set_xlabel(r' $n_h$', fontsize=19)
 ax.set_ylabel('Entropy')
 plt.title('Entropy Production')
-plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,0],label=r' $J_h+J_{cav}+J_c$',color='red')
-plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,1],label=r' $J_h$')
-plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,2],label=r' $J_c$')
-plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,3],label=r' $J_{cav}$')
+plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,0],label=r' $\frac{J_h}{T_h}+\frac{J_{cav}}{T_{cav}}+\frac{J_c}{T_c}$',color='red')
+plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,1],label=r' $\frac{J_h}{T_h}$')
+plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,2],label=r' $\frac{J_c}{T_c}$')
+plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,3],label=r' $\frac{J_{cav}}{T_{cav}}$')
 legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
 legend.get_frame().set_facecolor('C0')
 #Linien in plt
