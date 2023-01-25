@@ -117,8 +117,9 @@ To derive the $\hat{\rho}$ we can solve a specific differential equation. This e
 The first part of eq \eqref{1} is the von Neuman equation,  the analogue of the Schrödinger equation for density matrices. This part of the equation is unitary and therefore the process is reversible.
 $H$ is the the Hamiltonian operator. 
 The Hamiltonian describes the energy. 
-The atomic field system is composed of two crucial 
-parts; the atomic states, the cavity field, and the interaction between the cavity and the state of the system.
+The field of the laser/maser is composed of three crucial 
+parts; the three-level system states, the cavity field, and the interaction between the cavity and the state of the system.
+The three-level system and  the  cavity are described in $H_{free}$
 The total Hamiltonian,
 \begin{equation}
 H=H_{free}+H_{int},
@@ -134,7 +135,7 @@ H_{int}=\hbar g(\sigma_{12}a^{\dag}+\sigma_{21}a).\label{3}
 $g$ is the coupling constant between the system and the photons.  
 %The coupling constant is $g$ is given by $\frac{\Omega}{\hbar}$.
 \newpage
-The interaction with the various environmental heat baths is described by the non-unitary Liouvillian. $\mathcal{L}_h$ describe the interaction with the hot bath, $\mathcal{L}_c$ is the contribution from the interaction with the cold bath coupled with the atom.  $\mathcal{L}_{cav}$ describe the interaction with the photons which are in the cavity.  Those $\mathcal{L}_{h,c,cav}$ are also called superoperators, which act on the density operator.  A superoperator is a linear operator acting on a vector space of linear operator. 
+The interaction with the various environmental heat baths is described by the non-unitary Liouvillian. $\mathcal{L}_h$ describe the interaction the system and the hot bath, $\mathcal{L}_c$ is the contribution from the interaction with the cold bath coupled with the atom.  $\mathcal{L}_{cav}$ describe the loss of the photons which are in the cavity.  Those $\mathcal{L}_{h,c,cav}$ are also called superoperators, which act on the density operator.  A superoperator is a linear operator acting on a vector space of linear operator. 
 The interaction with the various environmental heat baths is described by the Liouvillian:
 \begin{equation}
 \begin{aligned}
@@ -146,19 +147,19 @@ The interaction with the various environmental heat baths is described by the Li
 \kappa n(\omega_{cav},T_f)\cdot \mathcal{D}[a^{\dag}]\rho.
 \end{aligned}
 \end{equation}
-$\sigma_{12} $ is the transition operator and defined as $ \ket{1}\bra{2}$. Similar for $\sigma_{13}=\ket{1}\bra{3}, \sigma_{23}=\ket{2}\bra{3}$ . The transition operator describe the transition between one atomic state to a other.
+$\sigma_{12} $ is the transition operator and defined as $ \sigma_{12}=\ket{1}\bra{2}$. Similar for $\sigma_{13}=\ket{1}\bra{3}, \sigma_{23}=\ket{2}\bra{3}$ . The transition operator describe the transition between one atomic state to a other.
 $\mathcal{D}$ is defined with following formula
 \begin{equation}
 \mathcal{D}[A]\rho=(2A \rho	A^{\dag}-A^{\dag}A\rho-\rho A^{\dag}A).
 \end{equation}
-Where $A$ represents one of the transition operators $\sigma_{ab}$ and $a$ ladder operator.
+Where $A$ represents one of the transition operators $\sigma_{ab}$ or $a$ ladder operator.
 The Bose-Einstein occupation number is the mean number of excitations in the reservoir damping the oscillator. It describes the mean occupation number $\langle n(E) \rangle$ of a quantum state of energy $E$, in thermodynamic equilibrium at absolute temperature $T $ for identical bosons as occupying particles.$ n$ depends on the temperature and the frequency.
 $n$ is defined as:
 $
 n_i(\omega_i,T)=\frac{1}{\exp[\frac{\hbar \omega_i}{k_b T_i}]-1}.
 $
 $\kappa$ describes the rate of photons which leave the cavity.
-The  prefactor $\gamma_c ,\gamma_h$ describes the spontaneous decay rates and are set to one in this calculation.
+The  prefactor $\gamma_c ,\gamma_h$ describes the spontaneous decay rates. We set $\gamma_c ,\gamma_h$ to 1 in this calculation and express also $\kappa$  and $\omega_i$ in  therms of  
 In this case the master equation is solved for the steady states.
 A steady state is a state or condition of a system or process, that the density matrix of the state does not change in time, or the changes are negligibly. Therefore all observables do not change in time either. 
 It contains the whole description of the three-level system and the cavity.
@@ -169,9 +170,9 @@ The master equation is solved numerically. For that it is necessary to define th
 In our case, only the transition between $\ket{1}$ and $\ket{2}$ interact with the light. 
 %The constants $\hbar $ and the Boltzmann factor $k_B$ are 1.
 Defined as constants are the three different Bose-Einstein occupation $n_h$, $n_c$ and $n_f$
-The transition-operators $\sigma_{ab}$ are  made by qutip implementation of the tensor product of $\ket{a}\bra{b}$ and the identity matrices of size of maximum photon number. 
+The transition-operators $\sigma_{ab}$ are  made by qutip \cite{Nation2022} implementation of the tensor product of $\ket{a}\bra{b}$ and the identity matrices of size of maximum photon number. 
 %In the same way, I implemented the other transition operators and 
-$\ket{1}$ and $\ket{2}$ are basisstates. For our purpose, it will  always suffice to truncate the photon's Hilbertspace of $n=30$. So we get  90 x 90 matrices. 
+$\ket{1}$ and $\ket{2}$ are basis states. For our purpose, it will  always suffice to truncate the photon's Hilbert space at $n=29$. So we get  90 x 90 matrices. 
 The projectors are implemented similarly, with the matrix $\ket{a}\bra{a}$
 With those it is easy to construct the Hamiltonions, $H_{free}$ and $H_{int}$, as in Eq. \eqref{2} , Eq .\eqref{3}.
 To calculate the the density matrices for steady states we can also use a qutip function.
@@ -184,7 +185,7 @@ As output of the function steady-state we get the density-matrices for steady-st
 The output of a laser is coherent light.
 The quantum description of coherent light is a coherent state. The photon number distribution of coherent light is a Poisson distribution.
 In our case the output is a phase-averaged coherent state (PHAV). 
-Thats a coherent state which have a averaged phase $\phi$ around $2\pi$.
+Thats a coherent state which has a averaged phase $\phi$ around $2\pi$.
 Randomizing the phase of a coherent state doesn't change the photon-number distribution. \\
 
 A Wigner function is a representation of a general quantum state of light \cite{Allevi2013}.
@@ -193,13 +194,13 @@ The function describes the probability density in phase space.
 w(x,p)=\frac{1}{2\pi \hbar}\int_{- \infty}^{\infty} d\xi e^{\frac{-i p \xi}{\hbar}}\bra{x+\frac{1}{2}\xi}\rho\ket{x-\frac{1}{2}\xi}.\label{4}
 \end{equation}
 %The Wigner function from a coherent state is a Gaussian. 
-The Wigner function of a coherent and a phase-average-state is non-Gaussian, because $p_{nn} $ of Eq. \eqref{22}  is a  Poisson distribution. 
+The Wigner function of a coherent and a phase-average-state is non-Gaussian, because of Eq. \eqref{4}  is a  not a Gaussian. 
  So we get a new term of $\exp(i\pi\phi)$ in it. 
 The standard coherent state $\ket{\alpha}$ can be represented by following formula: 
 \begin{equation}
-\ket{\alpha}=e^{\frac{-|\alpha|}{2}}\sum_{n=0}^{\infty}\frac{|\alpha|^n e^{in\phi}}{\sqrt{n!}} \ket{n}.
+\ket{\alpha}=e^{\frac{-|\alpha|^2}{2}}\sum_{n=0}^{\infty}\frac{|\alpha|^n e^{in\phi}}{\sqrt{n!}} \ket{n}.
 \end{equation}
-Get the PHAV state will be obtained by integrating over the phase $\phi$.
+The PHAV state will be obtained by integrating over the phase $\phi$.
 \begin{equation}
 \rho_{PHAV}=\int_0 ^{2\pi}\frac{d\phi}{2\pi}\ket{\alpha(\phi)}\bra{\alpha(\phi)}=\sum_{n=0}^{\infty}p_{nn}\ket{n}\bra{n},\label{22}
 \end{equation}
@@ -207,7 +208,7 @@ thus is equal to
 \begin{equation}
 \rho_{PHAV}= \sum_{n=0}^{\infty}\exp(-|\alpha|^2)\frac{|\alpha|^{2n}}{n!} \ket{n}\bra{n}.\label{11}
 \end{equation}
-Eq. \eqref{11} is implemented in python to visualize a photon number distribution and Wigner plot  Eq \eqref{4}, shown in Fig \ref{21}.
+Eq. \eqref{11} is implemented in python to visualize a photon number distribution and Wigner plot  Eq \eqref{4}, shown in Fig 2.
 A Fock plot shows the occupation probability $p_{nn}$.
 So the goal of this work is to find a $n_h$ which yield a PHAV state,
 as in \cite{Allevi2013} 
@@ -220,7 +221,7 @@ This function is plotted in Fig. 2
 \begin{figure}[hbtp]
 \hspace{-1.4cm}
 \includegraphics[scale=0.55]{Bilder-für-text/PHAV-rho.png}\label{21}
-\caption{The Wigner-Fock plot of the density matrix of $\rho_{PHAV}$ wit the parameter $\alpha=3.5$.}
+\caption{The photon number distribution, also called Fock plot of the density matrix of $\rho_{PHAV}$ with the parameter $\alpha=3.5$, is shown in Fig. 2 at the left side. At The right side is the Wigner function illustrated.}
 \end{figure}
 
 
@@ -234,10 +235,10 @@ This function is plotted in Fig. 2
 
 \newpage
 \subsection{Double threshold behaviour and population inversion}
- When we work with density matrices, it is common to work with expectation values with $\langle A \rangle=Tr[A\dot{\rho}]$.
+ When we work with density matrices, it is common to work with expectation values with $\langle A \rangle=Tr[A\cdot\rho]$.
  $A$ is an operator and describe a measurement.
 With this, we can calculate the expectation value from an Operator. 
-The population inversion is seen by calculating the probability for the occupation number ($Tr[\ket{i}\bra{i} \rho]$) and i stands for the different occupation of the state. Fig. 3a.  With high $n_h$ the probability for the system to stay in a the state $\ket{2}$ increases as well. Because the transition between the $E_2$ and $E_1$ happened by photon emission and this emission rate is slower as the decay rate from $E_3$ to $E_2$. 
+The population inversion is seen by calculating the probability for the levels number ($Tr[\ket{i}\bra{i} \rho]$) and i stands for the different occupation of the state. Fig. 3a.  With high $n_h$ the probability for the system to stay in a the state $\ket{2}$ increases as well. If $P2>P1$, we speak about a population inversion.  
 %All the simulation are done with steady states.
 Lasing starts once a threshold for emission is attained, however, increasing the heat flow too much will end up producing  thermal light instead of lasing. This phenomena is called a double threshold behaviour.\cite{Li2017}
 %Laising gain is the output is a coherent state, which  we can  use as a laser.
@@ -245,21 +246,21 @@ To investigate this double threshold behaviour, we study the steady states of a 
 This double threshold behaviour can can be explained by the Zeno effect. 
 The Zeno effect describes that the transition from one state to the other can be stopped by rapid successive measurements. 
 The system behaves similarly when sufficient stimulation is applied quickly. 
-With the plot  $Tr[n\rho] =\langle n\rangle$ against different $n_h$ Fig. 3b we see this double threshold behaviour because, when the hot bath temperature $n_h$ is too low $(n_h \approx n_c)$ we have also a  low photon number. With increasing $n_h$, population inversion happens, the photon number increase and the output looks like a PHAV state,  see  Fig. 2. With too high $n_h$ the expected photon number decrease again and this system shows a double threshold behaviour, the excitation is too weak, and we say that the system is below the lasing threshold. This is another critical point, where the output light becomes a thermal state.
+With the plot  $Tr[n\rho] =\langle n\rangle$ against different $n_h$ Fig. 3b we see this double threshold behaviour because, when the hot bath temperature $n_h$ is too low $(n_h \approx n_c)$ we have also a  low photon number. With increasing $n_h$, population inversion happens, the photon number increase and the output looks like a PHAV state,  see  Fig. 2. With too high $n_h$ the average photon number decreases again and this system shows a double threshold behaviour, the excitation is too weak, and we say that the system is below the lasing threshold with the output light of a thermal state.
 \begin{figure}[h!]
 \hspace{-1cm}
 \includegraphics[scale=0.2]{Bilder-für-text/Energy_1.png}
-\caption{In Fig. 3a the probability for an atom to stay in a state $\ket{0}, \ket{2}$ or $\ket{3}$ vs $n_h$ with the parameters. With a increasing $n_h$ $P2$ increase as well. We call it population inversion.  The parameters for the first plot are $n_c=0.02 ,n_f=0.02,\kappa=0.01\gamma_h $. The blue lines mark the the values for $ n_h$ for which the Wigner functions are plotted. In Fig. 3b we see, the the expectation value of the photon number versus different $n_h$ }
+\caption{In Fig. 3a the probability for an atom to stay in a state $\ket{1}, \ket{2}$ or $\ket{3}$ vs $n_h$. With a increasing $n_h$ $P2$ increase as well until a population inversion happens $P2>P1$. The parameters for the first plot are $n_c=0.02 ,n_f=0.02,\kappa=0.01\gamma_h $. The blue lines mark the values of $ n_h$ for which the Wigner functions are plotted. In Fig. 3b we see, the expectation value of the photon number versus $n_h$ }
 \end{figure}
 \newpage
-A other way to see the double threshold behaviour of the three-level system is to analyse the Wigner function plot. For that the reduce density matrices $\rho_{free}$ will be used to make Wigner and Fock plots numerically. For the calculation of the coherent state, the information about the state are not necessary anymore and the system get traced out. 
+An other way to see the double threshold behaviour of the system is to analyse the Wigner function plot. For that the reduce density matrix $\rho_{free}$ will be used to make Wigner and Fock plots numerically. For the calculation of the coherent state, the information about the system state is not necessary and the system gets traced out. 
 It is possible to make the partial trace of $\rho$, to trace out the reduced density matrices $\rho_{free}$. 
 The first result are plots from the photon number distribution and the Wigner function.
   %$\hbar$ and $kb$ equal to one.
- For all calculations, I set the parameters $\gamma_h, \gamma_c $ are set to one. And $\kappa=0.028 \gamma_h$
+ For all calculations, I set the parameters $\gamma_h, \gamma_c $ are set to $\gamma=1$. And $\kappa=0.028 \gamma_h$
 I calculated Wigner functions for this set of parameters, shown in Fig. 4 and Fig. 5.\\
 Those rings which are shown in Fig. 4 and Fig. 5, are similar to the plot of Fig. 2.
-If we have a small $\kappa$ means less photons will not leave and stay in the cavity. we see that in the plot of the photon number distribution.
+If we have a small $\kappa$ means less photons will leave and stay in the cavity. we see that in the plot of the photon number distribution.
 In the first plot I set a high leaking-parameter $\kappa=\frac{1}{\gamma_h}$. Shown in Fig. 4.
 This means that many photons leave the cavity, and only a few remain in the cavity. 
 We see, that the occupation-number the photon number distribution is most zero and the probability for one photon is just 0.1.
@@ -267,14 +268,14 @@ We see, that the occupation-number the photon number distribution is most zero a
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.55]{Bilder-für-text/Figure_1.png}
-\caption{The parameters for the first plot are $n_h=2.6, n_c=0.001, n_f=0.02, \kappa=1\gamma_h $. With  the factor of $\kappa=1\gamma_h$ the leaking is to high for a lasing state.}
+\caption{The parameters for the first plot are $n_h=2.6, n_c=0.001, n_f=0.02, \kappa=1\gamma_h $. With  the factor of $\kappa=1\gamma_h$ the leaking is too high for a lasing state.}
 \end{figure}\newpage
 
 In the plots of Fig 5 I took the same parameters again, but with a lower $\kappa$. We get more photons in the cavity. We see the distribution in the photon number distribution plot and a PHAV state in the Wigner function. 
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.55]{Bilder-für-text/4-fits2.png}
-\caption{For all of the four the parameters are $n_c=0.001 n_f=0.02,\kappa=0.1\gamma_h$. Cavity with a small leaking.
+\caption{For all of the four the parameters are $n_c=0.001, n_f=0.02, \kappa=0.1\gamma_h$. Cavity with a small leaking.
 \textbf{a)}The parameters for $n_h$ are $n_h=0.2 $.
 \textbf{b)}$ n_h=2.6$ 
 \textbf{c)} $ n_h=5.5$ 
