@@ -1,0 +1,100 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\babel@aux[2]{}
+\@nameuse{bbl@beforestart}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax }
+\@writefile{lof}{\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax }
+\@writefile{lot}{\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax }
+\bibstyle{biblatex}
+\bibdata{Lindblatt-blx,bibli,library}
+\citation{biblatex-control}
+\abx@aux@refcontext{nty/global//global/global}
+\babel@aux{english}{}
+\babel@aux{english}{}
+\citation{Li2017}
+\abx@aux@cite{Li2017}
+\abx@aux@segm{0}{0}{Li2017}
+\citation{Scovil1959}
+\abx@aux@cite{Scovil1959}
+\abx@aux@segm{0}{0}{Scovil1959}
+\citation{Scigliuzzo2020}
+\abx@aux@cite{Scigliuzzo2020}
+\abx@aux@segm{0}{0}{Scigliuzzo2020}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{section.1}\protected@file@percent }
+\citation{Li2017}
+\abx@aux@cite{Li2017}
+\abx@aux@segm{0}{0}{Li2017}
+\citation{Li2017}
+\abx@aux@cite{Li2017}
+\abx@aux@segm{0}{0}{Li2017}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {2}System and model}{3}{section.2}\protected@file@percent }
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}3-level-Maser model}{3}{subsection.2.1}\protected@file@percent }
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Schematic representation of a three-level maser heat engine continuously coupled to two reservoirs of temperatures $T_h$; and $T_c$. The three energy levels are described by $E_1,E_2,E_3$. The system is interacting with a quantized single mode field. $\lambda $ represents the strength of matter-field coupling.}}{3}{figure.1}\protected@file@percent }
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Master-Equation}{3}{subsection.2.2}\protected@file@percent }
+\newlabel{1}{{2}{4}{Master-Equation}{equation.2.2}{}}
+\newlabel{2}{{4}{4}{Master-Equation}{equation.2.4}{}}
+\newlabel{3}{{5}{4}{Master-Equation}{equation.2.5}{}}
+\citation{Nation2022}
+\abx@aux@cite{Nation2022}
+\abx@aux@segm{0}{0}{Nation2022}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {3}Methods}{5}{section.3}\protected@file@percent }
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Implementation of the three-level-system in qutip}{5}{subsection.3.1}\protected@file@percent }
+\citation{Allevi2013}
+\abx@aux@cite{Allevi2013}
+\abx@aux@segm{0}{0}{Allevi2013}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {4}Lasing transition}{6}{section.4}\protected@file@percent }
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Wigner function and phase-averaged coherent states}{6}{subsection.4.1}\protected@file@percent }
+\newlabel{4}{{8}{6}{Wigner function and phase-averaged coherent states}{equation.4.8}{}}
+\newlabel{22}{{10}{6}{Wigner function and phase-averaged coherent states}{equation.4.10}{}}
+\citation{Allevi2013}
+\abx@aux@cite{Allevi2013}
+\abx@aux@segm{0}{0}{Allevi2013}
+\newlabel{11}{{11}{7}{Wigner function and phase-averaged coherent states}{equation.4.11}{}}
+\newlabel{21}{{4.1}{7}{Wigner function and phase-averaged coherent states}{equation.4.12}{}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces The Wigner-Fock plot of the density matrix of $\rho _{PHAV}$ wit the parameter $\alpha =3.5$.}}{7}{figure.2}\protected@file@percent }
+\citation{Li2017}
+\abx@aux@cite{Li2017}
+\abx@aux@segm{0}{0}{Li2017}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Double threshold behaviour and population inversion}{8}{subsection.4.2}\protected@file@percent }
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces In Fig. 3a the probability for an atom to stay in a state $\mathinner {|{0}\rangle }, \mathinner {|{2}\rangle }$ or $\mathinner {|{3}\rangle }$ vs $n_h$ with the parameters. With a increasing $n_h$ $P2$ increase as well. We call it population inversion. The parameters for the first plot are $n_c=0.02 ,n_f=0.02,\kappa =0.01\gamma _h $. The blue lines mark the the values for $ n_h$ for which the Wigner functions are plotted. In Fig. 3b we see, the the expectation value of the photon number versus different $n_h$ }}{8}{figure.3}\protected@file@percent }
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The parameters for the first plot are $n_h=2.6, n_c=0.001, n_f=0.02, \kappa =1\gamma _h $. With the factor of $\kappa =1\gamma _h$ the leaking is to high for a lasing state.}}{9}{figure.4}\protected@file@percent }
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces For all of the four the parameters are $n_c=0.001 n_f=0.02,\kappa =0.1\gamma _h$. Cavity with a small leaking. \textbf  {a)}The parameters for $n_h$ are $n_h=0.2 $. \textbf  {b)}$ n_h=2.6$ \textbf  {c)} $ n_h=5.5$ \textbf  {d)}$ n_h=20$. \textbf  {4b,4c}looks similar to a PHAV state from Fig 2. The blue lines from Fig 4 mark the values of $n_h$ where the plots from Fig 4 are done for. }}{10}{figure.5}\protected@file@percent }
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {5}Thermodynamics}{11}{section.5}\protected@file@percent }
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Heat currents}{11}{subsection.5.1}\protected@file@percent }
+\newlabel{13}{{14}{11}{Heat currents}{equation.5.14}{}}
+\citation{Li2017}
+\abx@aux@cite{Li2017}
+\abx@aux@segm{0}{0}{Li2017}
+\citation{Li2017}
+\abx@aux@cite{Li2017}
+\abx@aux@segm{0}{0}{Li2017}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Energy flux vs g with the parameters The parameters for the first plot are $ n_h=2.6,n_c= n_f=0.02,\kappa =0.01 $}}{12}{figure.6}\protected@file@percent }
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Entropy production}{12}{subsection.5.2}\protected@file@percent }
+\newlabel{666}{{19}{12}{Entropy production}{equation.5.19}{}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The entropy production for different $n_h$. The parameters for the first plot are$n_c=0.001 n_f=0.02,\kappa =1$. As in paper \cite {Li2017} is used the values for the frequencies $\omega _f=30\frac  {1}{\gamma },\omega _h=150\frac  {1}{\gamma }, \omega _c=120\frac  {1}{\gamma }$.}}{12}{figure.7}\protected@file@percent }
+\citation{Li2017}
+\abx@aux@cite{Li2017}
+\abx@aux@segm{0}{0}{Li2017}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion and outlook}{13}{section.6}\protected@file@percent }
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {7}Appendix}{14}{section.7}\protected@file@percent }
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Berechnung-Tr[HL]}}{14}{figure.8}\protected@file@percent }
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Berechnung-Tr[HL].}}{14}{figure.9}\protected@file@percent }
+\abx@aux@read@bbl@mdfivesum{nohash}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Software}{15}{subsection.7.1}\protected@file@percent }
+\gdef \@abspage@last{16}
