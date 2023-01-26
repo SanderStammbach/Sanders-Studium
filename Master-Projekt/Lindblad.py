@@ -224,7 +224,7 @@ import matplotlib.pyplot as plt
 fig, ax = plt.subplots()
 ax.set_xlabel(r' $\frac{g}{\gamma_h}$', fontsize=23)
 ax.set_ylabel(r' Heat current', fontsize=15)
-plt.title('current/energyflux vs coupling constant')
+plt.title('current/energy flux vs coupling constant')
 plt.plot(np.asarray(g_list)[:200],np.asarray(Energie_VS_g)[:200,0],label=r' $\frac{J_h}{\gamma_h \omega_h}$')
 plt.plot(np.asarray(g_list)[:200],np.asarray(Energie_VS_g)[:200,1],label=r' $\frac{J_c}{\gamma_c \omega_c}$')
 plt.plot(np.asarray(g_list)[:200],np.asarray(Energie_VS_g)[:200,2],label=r' $\frac{J_{cav}}{\gamma_{cav} \omega_{cav}}$')

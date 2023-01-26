@@ -268,14 +268,14 @@ We see, that the occupation-number the photon number distribution is most zero a
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.55]{Bilder-für-text/Figure_1.png}
-\caption{The parameters for the first plot are $n_h=2.6, n_c=0.001, n_f=0.02, \kappa=1\gamma_h $. With  the factor of $\kappa=1\gamma_h$ the leaking is too high for a lasing state.}
+\caption{The parameters for the first plot are $n_h=2.6, n_c=0.001, n_f=0.02, \kappa=1\gamma $. With  the factor of $\kappa=1\gamma_h$ the leaking is too high for a lasing state.}
 \end{figure}\newpage
 
 In the plots of Fig 5 I took the same parameters again, but with a lower $\kappa$. We get more photons in the cavity. We see the distribution in the photon number distribution plot and a PHAV state in the Wigner function. 
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.55]{Bilder-für-text/4-fits2.png}
-\caption{For all of the four the parameters are $n_c=0.001, n_f=0.02, \kappa=0.1\gamma_h$. Cavity with a small leaking.
+\caption{For all of the four the parameters are $n_c=0.001, n_f=0.02, \kappa=0.1\gamma$. Cavity with a small leaking.
 \textbf{a)}The parameters for $n_h$ are $n_h=0.2 $.
 \textbf{b)}$ n_h=2.6$ 
 \textbf{c)} $ n_h=5.5$ 
@@ -288,7 +288,7 @@ If we increase  $2n_h $,
 then the cavity photon number increases again when increasing $n_h$ at the
 high temperature regime, as shown in Fig. 5b, Fig 5c. 
 If we further increase  $n_h >10$, we see the double threshold behavior. 
-The state of Fig. 5d is done in a very high temperature region with the value of $n_h=20$. In this  case the output is a thermal state, so no coherent state anymore and the output is below the threshold.
+The state of Fig. 5d is done in a very high temperature region with the value of $n_h=20$. In this  case the output is a similar to a thermal state, so no PHAV state anymore and the output is below the threshold.
 %(Dieser Abschnitt ist zum teil übernommen und muss noch umgeeschrieben werden)
 \section{Thermodynamics}
 \subsection{Heat currents}
@@ -297,12 +297,12 @@ That is  equal to the equation
 \begin{equation}
 \Delta U=\Delta Q+\Delta W.
 \end{equation}
-In the case of this calculation with have no change in the work. Therefore it is possible to calculate the entropy production\eqref{666} only with the heat flow divide trough the temperature.
-To calculate the expected heat flow we can take the trace from $Tr[H_{frre}\mathcal{L}[\rho]]$. 
+In the case of this calculation $\Delta U$ is zero and then the first law says that $\langleJ_{tot}\rangle=0$. Therefore it is possible to calculate the entropy production\eqref{666} only with the heat flow divide trough the temperature.
+To calculate the average heat flow we can take the trace from $Tr[H_{frre}\mathcal{L}[\rho]]$. 
 \begin{equation}
 \langle J_{tot}\rangle=Tr[H_{free}\cdot \mathcal{L}_h[\rho]]+Tr[H_{free}\cdot \mathcal{L}_c[\rho]]+Tr[H_{free}\cdot \mathcal{L}_{cav}[\rho]].\label{13}
 \end{equation}
-A part of my work is to calculate the occupation number analytically. 
+A part of my work is to calculate the occupation probability of the states analytically. 
 The calculation is made in two steps. For the hot and the cold bath, we have a transition-operators in the trace.
 %The trick of this calculation is, to get the form $Tr[\sigma_{ab}\rho \sigma_{ab}^{\dag{}}]$.
 % because this corresponds to the probability that the system is in state b $(Pb)$
@@ -316,44 +316,44 @@ The same calculation can be done for the interaction with the cold bath.
 \end{equation}
 For the calculation the $Tr[H_{free}\cdot \mathcal{L}_{cav}]$, I get the following result
 \begin{equation}
-\langle J_{cav}\rangle=T[H_{free}\cdot \mathcal{L}_{cav}[\rho]]=2\hbar \omega_{cav}\kappa (\kappa-\langle a^{\dag{}}a \rangle).
+\langle J_{cav}\rangle=T[H_{free}\cdot \mathcal{L}_{cav}[\rho]]=2\hbar \omega_{cav}\kappa (n_f-\langle a^{\dag{}}a \rangle).
 \end{equation}
 The calculations are shown in Fig. 8 and Fig. 9 in the Appendix.
-With the density matrices it is possible to calculate the heat flux by taking $Tr[H \mathcal{L}\rho]$. 
+With the density matrix it is possible to calculate the heat flux by taking $Tr[H \mathcal{L}\rho]$. 
 and plot this for different  $g$. 
 
 In the second step of the calculation we look for $ \langle J_{tot}\rangle$ on different coupling constants $g$.
 %In other words, in the plot below, the Trace from the density matrices times the Liouvilian against the coupling constant is visualized.
 %The master equation depends on three different Liovillien therms.
  I calculated the expected heat flow. The cold interaction, the hot bath and the interaction with the cavity.
-Fig. 6 shows  for the parameters $n_h=n_c=2.6,  n_{cav}=0.02,\kappa=0.01 $ is shown below.
+Fig. 6 shows  for the parameters $n_h=2.6, n_c=n_{f}=0.02\gamma,\kappa=0.01\gamma$ is shown below.
 
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.6]{Bilder-für-text/Energie_1.png}
-\caption{Energy flux vs g with the parameters The parameters for the first plot are $ n_h=2.6,n_c= n_f=0.02,\kappa=0.01 $}
+\caption{Energy flux vs g with the parameters The parameters for the plot are $ n_h=2.6, n_c= n_f=0.02,\kappa=0.01\gamma $}
 \end{figure}
 
 
 \subsection{Entropy production}
 Another relevant concept is the entropy. It is also a physical physical property.
 Entropy is described by the second law of thermodynamics.  
-Entropy is defined it as the quotient of an infinitesimal amount of heat $\Delta Q_{rev}$to the instantaneous temperature.
+%Entropy is defined it as the quotient of an infinitesimal amount of heat $\Delta Q_{rev}$to the instantaneous temperature.
 \begin{equation}
 \Delta S = \frac{Q_{rev}}{T}
 \end{equation}
-The entropy production is given by the formula
+The entropy production rate is given by the formula
 \begin{equation}
  \dot{\sigma} =\frac{J(n_h)}{T(n_c)}+\frac{J(n_c)}{T(n_h)}+\frac{J(n_{cav})}{T(n_{cav})}.\label{666}
  \end{equation}
- It is the time derivative of the entropy.
+
 As already seen in Fig. 3b we have a optimum parameter $n_h$.  in Fig. 3a we see the probability for $P1,P2,P3$ is in the region of $n_h=5 $ well distributed. We see also that  this corresponds with the average of the photon number.
 The higher the entropy, the more the state of the three-level system changes and the more photons are emitted.
 We see that the entropy production correlate with the average of photon number in Fig 3b.
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.6]{Bilder-für-text/Entropy}
-\caption{The entropy production for different $n_h$. The parameters for the first plot are$n_c=0.001 n_f=0.02,\kappa=1$. As in paper \cite{Li2017} is used the values for the frequencies $\omega_f=30\frac{1}{\gamma},\omega_h=150\frac{1}{\gamma}, \omega_c=120\frac{1}{\gamma}$.}
+\caption{The entropy production for different $n_h$. The parameters for the first plot are $n_c=0.001, n_f=0.02,\kappa=1\gamma$. As in paper \cite{Li2017} is used the values for the frequencies $\omega_f=30\gamma,\omega_h=150\gamma, \omega_c=120\gamma$.}
 \end{figure}
 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.12.12)  25 JAN 2023 11:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.12.12)  25 JAN 2023 14:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -790,13 +790,23 @@ Package pdftex.def Info: Bilder-für-text/4-fits2.png  used on input line 277.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [11 <./Bilder-für-text/Figure_1.png>] [12 <./Bilder-für-text/4-fits2.png>]
-<Bilder-für-text/Energie_1.png, id=202, 514.5624pt x 449.5194pt>
+! Undefined control sequence.
+<recently read> \langleJ 
+                         
+l.300 ...nd then the first law says that $\langleJ
+                                                  _{tot}\rangle=0$. Therefor...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+<Bilder-für-text/Energie_1.png, id=202, 552.8655pt x 458.1918pt>
 File: Bilder-für-text/Energie_1.png Graphic file (type png)
 <use Bilder-für-text/Energie_1.png>
 Package pdftex.def Info: Bilder-für-text/Energie_1.png  used on input line 333
 .
-(pdftex.def)             Requested size: 308.73982pt x 269.7137pt.
-
+(pdftex.def)             Requested size: 331.72185pt x 274.9172pt.
 [13] [14 <./Bilder-für-text/Energie_1.png>]
 <Bilder-für-text/Entropy.png, id=219, 675.0018pt x 492.1587pt>
 File: Bilder-für-text/Entropy.png Graphic file (type png)
@@ -879,10 +889,10 @@ Package logreq Info: Writing requests to 'Lindblatt.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 18950 strings out of 478238
- 330891 string characters out of 5850455
- 840736 words of memory out of 5000000
- 36885 multiletter control sequences out of 15000+600000
+ 18951 strings out of 478238
+ 330898 string characters out of 5850455
+ 841736 words of memory out of 5000000
+ 36886 multiletter control sequences out of 15000+600000
  476733 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,8n,68p,1844b,1944s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -900,7 +910,7 @@ f-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmtt12.pfb></usr/share/texmf-dist/fonts/type1/public/am
 sfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/sy
 mbols/msbm7.pfb>
-Output written on Lindblatt.pdf (22 pages, 1653611 bytes).
+Output written on Lindblatt.pdf (22 pages, 1654530 bytes).
 PDF statistics:
  423 PDF objects out of 1000 (max. 8388607)
  324 compressed objects within 4 object streams
