@@ -30,11 +30,11 @@ from qutip import ptrace
 from Loup_for_different_coupling import Diverse_Loups as Diverse_Loups
 import multiprocessing as mp
 import csv
-from IPython.display import display, Latex
+"""from IPython.display import display, Latex
 plt.rcParams.update({
     "text.usetex": True,
     "font.family": "Helvetica"
-})
+})"""
 #Konstante Grössen
 ########################################################################################################
 omega_1=0
