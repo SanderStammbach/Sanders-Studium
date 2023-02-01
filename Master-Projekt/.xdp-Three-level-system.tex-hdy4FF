@@ -92,7 +92,7 @@ system is interacting with a quantized single mode field. $\lambda$
 represents the strength of matter-field coupling.}
 \end{figure}
 A maser/laser consists of two elements. One of them is a gain medium and the other one is an optical resonator. A gain medium is always a material with an atomic transition between two atomic states. When an atom decays from an energetically higher state to an energetically lower state, a photon is created.
-In a three level system the three energy levels are $E_1,E_2,E_3$ shown in Fig. 1. In a first part the system gets pumped from the lowest $E_1$ level to the highest level $ E_3$. The resonator should have a longer decay time, so that a population inversion can build up. This means that the system is in the energetically higher state. From this state they come almost exclusively through stimulated emission into the lower state $ E_1$.  The cavity is build of two mirrors. One of the cavity has a small leaking, so that a small part of the photons can leave the cavity. This leaking is quantified by a constant $\kappa$. 
+In a three level system the three energy levels are $E_1,E_2,E_3$ shown in Fig. 1. In a first part the system gets pumped from the lowest $E_1$ level to the highest level $ E_3$.The resonator should have a longer decay time, so that a population inversion can build up. This means that the system is in the energetically higher state. From this state they come almost exclusively through stimulated emission into the lower state $ E_1$.  The cavity is build of two mirrors. One of the cavity has a small leaking, so that a small part of the photons can leave the cavity. This leaking is quantified by a constant $\kappa$. 
 Stimulated emission is a necessary condition for coherent light. Coherent light means all the photons have the same phase and same frequency \cite{Li2017}.
 Here we consider that higher level will be reached with a interaction of a hot bath.  
 We denote the transition frequencies of $\omega_h=(E_3-E_1)/\hbar$, $\omega_c=(E_2-E_1)/\hbar$ and $\omega_{cav}=(E_2-E_1)/\hbar$.
@@ -114,8 +114,7 @@ The master equation is:
 \dot{\rho}(t)=\frac{1}{i \hbar}[H,\rho]+ \mathcal{L}_{h}\rho+ \mathcal{L}_{c}\rho+ \mathcal{L}_{cav}\rho. \label{1}
 \end{equation}
 To derive the $\hat{\rho}$ we can solve a specific differential equation. This equation is called Lindblad-master-equation \eqref{1}. 
-The first part of eq \eqref{1} is the von Neuman equation.%  the analogue of the Schrödinger equation for density matrices.
-This part of the equation is unitary and therefore the process is reversible.
+The first part of eq \eqref{1} is the von Neuman equation,  the analogue of the Schrödinger equation for density matrices. This part of the equation is unitary and therefore the process is reversible.
 $H$ is the the Hamiltonian operator. 
 The Hamiltonian describes the energy. 
 The field of the laser/maser is composed of three crucial 
@@ -135,7 +134,7 @@ H_{int}=\hbar g(\sigma_{12}a^{\dag}+\sigma_{21}a).\label{3}
 \end{equation}
 $g$ is the coupling constant between the system and the photons.  
 %The coupling constant is $g$ is given by $\frac{\Omega}{\hbar}$.
-
+\newpage
 The interaction with the various environmental heat baths is described by the non-unitary Liouvillian. $\mathcal{L}_h$ describe the interaction the system and the hot bath, $\mathcal{L}_c$ is the contribution from the interaction with the cold bath coupled with the atom.  $\mathcal{L}_{cav}$ describe the loss of the photons which are in the cavity.  Those $\mathcal{L}_{h,c,cav}$ are also called superoperators, which act on the density operator.  A superoperator is a linear operator acting on a vector space of linear operator. 
 The interaction with the various environmental heat baths is described by the Liouvillian:
 \begin{equation}
@@ -251,7 +250,7 @@ With the plot  $Tr[n\rho] =\langle n\rangle$ against different $n_h$ Fig. 3b we 
 \begin{figure}[h!]
 \hspace{-1cm}
 \includegraphics[scale=0.2]{Bilder-für-text/Energy_1.png}
-\caption{In Fig. 3a the probability for an atom to stay in a state $\ket{1}, \ket{2}$ or $\ket{3}$ vs $n_h$is plotted. With a increasing $n_h$ $P2$ increase as well until a population inversion happens $P2>P1$. The probability for $P1,P2,P3$ is in the region of $n_h=5 $ well distributed. The parameters for the first plot are $n_c=0.02 ,n_f=0.02,\kappa=0.01\gamma_h $. The blue lines mark the values of $ n_h$ for which the Wigner functions are plotted. In Fig. 3b we see, the expectation value of the photon number versus $n_h$.}
+\caption{In Fig. 3a the probability for an atom to stay in a state $\ket{1}, \ket{2}$ or $\ket{3}$ vs $n_h$. With a increasing $n_h$ $P2$ increase as well until a population inversion happens $P2>P1$. The parameters for the first plot are $n_c=0.02 ,n_f=0.02,\kappa=0.01\gamma_h $. The blue lines mark the values of $ n_h$ for which the Wigner functions are plotted. In Fig. 3b we see, the expectation value of the photon number versus $n_h$ }
 \end{figure}
 \newpage
 An other way to see the double threshold behaviour of the system is to analyse the Wigner function plot. For that the reduce density matrix $\rho_{free}$ will be used to make Wigner and Fock plots numerically. For the calculation of the coherent state, the information about the system state is not necessary and the system gets traced out. 
@@ -293,16 +292,12 @@ The state of Fig. 5d is done in a very high temperature region with the value of
 %(Dieser Abschnitt ist zum teil übernommen und muss noch umgeeschrieben werden)
 \section{Thermodynamics}
 \subsection{Heat currents}
-The first law of Thermodynamics says: "The change in internal energy of a closed system is equal to the sum of the change in heat and the change in work."
+The first law of Thermodynamics says:"The change in internal energy of a closed system is equal to the sum of the change in heat and the change in work."
 That is  equal to the equation
 \begin{equation}
 \Delta U=\Delta Q+\Delta W.
 \end{equation}
-In quantum mechanics  the equation can be  rewritten as
-\begin{equation}
-\frac{d\langle H \rangle}{dt}=Tr[H_{free}\mathcal{L}[\rho]]+Tr[\partial_t H \rho]. \label{d}
-\end{equation}
-In the case of this calculation with steady states $\Delta U$ or $\frac{d\langle H \rangle}{dt}$ is zero. $\Delta W$ is also zero. This can be justified because $\partial_t H=0 $ and therefore the the first law says that $\langle J_{tot} \rangle$ have to be zero.
+In the case of this calculation $\Delta U$ is zero and then the first law says that $\langleJ_{tot}\rangle=0$. Therefore it is possible to calculate the entropy production\eqref{666} only with the heat flow divide trough the temperature.
 To calculate the average heat flow we can take the trace from $Tr[H_{frre}\mathcal{L}[\rho]]$. 
 \begin{equation}
 \langle J_{tot}\rangle=Tr[H_{free}\cdot \mathcal{L}_h[\rho]]+Tr[H_{free}\cdot \mathcal{L}_c[\rho]]+Tr[H_{free}\cdot \mathcal{L}_{cav}[\rho]].\label{13}
@@ -313,61 +308,59 @@ The calculation is made in two steps. For the hot and the cold bath, we have a t
 % because this corresponds to the probability that the system is in state b $(Pb)$
 The equation gave the following result:
 \begin{equation}
-\langle J_h \rangle=Tr[H_{free}\cdot \mathcal{L}_h[\rho]]=\hbar \omega_h \gamma_h (2n_h+1) ( P1-P3) ,\label{a}
+\langle J_h \rangle=Tr[H_{free}\cdot \mathcal{L}_h[\rho]]=\hbar \omega_h \gamma_h (2n_h+1) ( P1-P3) ,
 \end{equation}
 The same calculation can be done for the interaction with the cold bath.
 \begin{equation}
-\langle J_c \rangle=Tr[H_{free}\cdot \mathcal{L}_c[\rho]]=\hbar \omega_c \gamma_c (2n_c+1) ( P2-P3) ,\label{b}
+\langle J_c \rangle=Tr[H_{free}\cdot \mathcal{L}_c[\rho]]=\hbar \omega_c \gamma_c (2n_c+1) ( P2-P3) ,
 \end{equation}
 For the calculation the $Tr[H_{free}\cdot \mathcal{L}_{cav}]$, I get the following result
 \begin{equation}
-\langle J_{cav}\rangle=T[H_{free}\cdot \mathcal{L}_{cav}[\rho]]=2\hbar \omega_{cav}\kappa (n_f-\langle a^{\dag{}}a \rangle).\label{c}
+\langle J_{cav}\rangle=T[H_{free}\cdot \mathcal{L}_{cav}[\rho]]=2\hbar \omega_{cav}\kappa (n_f-\langle a^{\dag{}}a \rangle).
 \end{equation}
-$J_h$ is a energy input in the system, therefore it has a other signe as $J_c, J_{cav}$.
 The calculations are shown in Fig. 8 and Fig. 9 in the Appendix.
 With the density matrix it is possible to calculate the heat flux by taking $Tr[H \mathcal{L}\rho]$. 
 and plot this for different  $g$. 
-%In the second step of the calculation we look for $ \langle J_{tot}\rangle$ on different coupling constants $g$.
+
+In the second step of the calculation we look for $ \langle J_{tot}\rangle$ on different coupling constants $g$.
 %In other words, in the plot below, the Trace from the density matrices times the Liouvilian against the coupling constant is visualized.
 %The master equation depends on three different Liovillien therms.
- I calculated the expected heat flows depends on he cold, the hot bath and the interaction with the cavity are shown in Fig.  6.
-%Fig. 6 shows  for the parameters $n_h=2.6, n_c=n_{f}=0.02\gamma,\kappa=0.01\gamma$ is shown below.
+ I calculated the expected heat flow. The cold interaction, the hot bath and the interaction with the cavity.
+Fig. 6 shows  for the parameters $n_h=2.6, n_c=n_{f}=0.02\gamma,\kappa=0.01\gamma$ is shown below.
 
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.6]{Bilder-für-text/Energie_1.png}
-\caption{Energy flux vs g with the parameters The parameters for the plot are $ n_h=2.6, n_c= n_f=0.02,\kappa=0.01\gamma $.  For the for the frequencies $\omega_f=30\gamma,\omega_h=150\gamma, \omega_c=120\gamma$ are used. }
+\caption{Energy flux vs g with the parameters The parameters for the plot are $ n_h=2.6, n_c= n_f=0.02,\kappa=0.01\gamma $}
 \end{figure}
+
+
 \subsection{Entropy production}
-Another relevant concept is the entropy. It is also a physical physical property which is described by the following equation.  
-\begin{equation}
-\Delta S = \sigma-\frac{Q}{T}
-\end{equation} 
-the second law of thermodynamics says that, for a isolated system, the entropy always remains the same or increases, but never becomes smaller and therefore the  entropy production rate $\dot{\sigma}$ should be zero or bigger.
-\begin{equation}
-\dot{\sigma}\geq 0
-\end{equation}
+Another relevant concept is the entropy. It is also a physical physical property.
+Entropy is described by the second law of thermodynamics.  
 %Entropy is defined it as the quotient of an infinitesimal amount of heat $\Delta Q_{rev}$to the instantaneous temperature.
-%\begin{equation}
-%\Delta S = \frac{Q}{T}
-%\end{equation} 
-It is possible to calculate the entropy production rate \eqref{666} only with the heat flow\eqref{a}-\eqref{c} divide trough the temperature \eqref{d}.
-The entropy production rate for steady state is then given by the formula
 \begin{equation}
- \dot{\sigma} =\frac{J_c}{T(n_c)}+\frac{J_h}{T(n_h)}+\frac{J_{cav}}{T(n_{cav})}.\label{666}
+\Delta S = \frac{Q_{rev}}{T}
+\end{equation}
+The entropy production rate is given by the formula
+\begin{equation}
+ \dot{\sigma} =\frac{J(n_h)}{T(n_c)}+\frac{J(n_c)}{T(n_h)}+\frac{J(n_{cav})}{T(n_{cav})}.\label{666}
  \end{equation}
-The entropy production rate for different $n_h$ is plotted in Fig. 7. We see a clear maximum at the value of $n_h \approx 5$.  Also noteworthy is the fact that the entropy production rate of the hot bath is lower than that of the cold bath, this is because the temperature of the hot bath is much higher, and therefore $\sigma=\frac{J_h}{T}$ is smaller than the entropy production rate of the cold bath. 
- We see also that the entropy production rate corresponds with the average of the photon number Fig. 3b.
-The blue lines in Fig. 5 mark the values of $ n_h$ for which the Wigner functions are plotted. In Fig. 3b we see, the expectation value of the photon number versus $n_h$. When we compare the lasing output Fig. 5 with the entropy, we see that the lasing output is a PHAV state, when the entropy production rate is high. Otherwise if $n_h$ is high, the entropy production rate is low again, has the consequence that the lasing output is a thermal state.
-The explanation for the thermal state is the high temperature in the system, which becomes dominant.
+
+As already seen in Fig. 3b we have a optimum parameter $n_h$.  in Fig. 3a we see the probability for $P1,P2,P3$ is in the region of $n_h=5 $ well distributed. We see also that  this corresponds with the average of the photon number.
+The higher the entropy, the more the state of the three-level system changes and the more photons are emitted.
+We see that the entropy production correlate with the average of photon number in Fig 3b.
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.6]{Bilder-für-text/Entropy}
 \caption{The entropy production for different $n_h$. The parameters for the first plot are $n_c=0.001, n_f=0.02,\kappa=1\gamma$. As in paper \cite{Li2017} is used the values for the frequencies $\omega_f=30\gamma,\omega_h=150\gamma, \omega_c=120\gamma$.}
 \end{figure}
+
+
+
 \newpage
 \section{Conclusion and outlook}
-In those numerical calculations are found states which  look similar to PHAV states, driven by the coupling of two different thermal bath. We found the double threshold behavior from the system, by calculating different energy flux for different $n_h$. As in the paper \cite{Li2017}.
+In those numerical calculations are found states which  look similar to PHAV states, driven by the coupling of two different thermal bath. We found the double threshold behaviour from the system, by calculating different energy flux for different $n_h$. As in the paper \cite{Li2017}.
 With the condition that $n_c, n_{cav}$ is almost zero, the leaking $\kappa$ is small too, and the hot bath received a value between 1 and 5.5. When we compare the Winger functions of the numerical calculated states from a our three-level system Fig 5b,5c with the Wigner plot of a PHAV state Fig. 2, we see, that they are pretty similar. As conclusion; it's possible to get a phase average coherent state. 
 In Fig. 6 we see the average of the current, calculated with the formula Eq. \eqref{13} for different coupling constants $g$.
 The conclusion from Fig. 6 is, that the current increase at most between the $ 0<g<0.25$.
@@ -402,13 +395,14 @@ The hole Master equation without any substitution:
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.5]{Bilder-für-text/Berechnung-Tr[HL].pdf}
-\caption{Calculation for $Tr[H \mathcal{L}]$.}
+\caption{Berechnung-Tr[HL]}
 \end{figure}
 
 \begin{figure}[hbtp]
+
 \centering
 \includegraphics[scale=0.3]{Bilder-für-text/Berechnung-Tr[HL]2.png}
-\caption{Calculation for $ Tr[H \mathcal{L}]$.}
+\caption{Berechnung-Tr[HL].}
 \end{figure}
 
 \subsection{Software}

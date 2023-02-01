@@ -54,10 +54,10 @@ Tenv=0.0000000000000000000000000001
 
 
 
-nh=2.6 #Max bei 4.5
+nh=10 #Max bei 4.5
 nc=0.02
 
-nf=0.02    #Beschreibt den cavity/Photonen. 
+nf=0.001   #Beschreibt den cavity/Photonen. 
 
 
 
@@ -233,6 +233,19 @@ legend.get_frame().set_facecolor('C0')
 plt.show()
 """ r' $\frac{-e^{i\pi}}{2^n}$!',fontsize=21    """#für LATEX Labels r' $\frac{g}{\gamma}$', fontsize=19
 
+fig, ax = plt.subplots()
+ax.set_xlabel(r' $\frac{g}{\gamma_h}$', fontsize=23)
+ax.set_ylabel(r' Heat current', fontsize=15)
+plt.title('current/energy flux vs coupling constant')
+plt.plot(np.asarray(g_list)[:200],np.asarray(Energie_VS_g)[:200,0],label=r' $J_h$')
+plt.plot(np.asarray(g_list)[:200],np.asarray(Energie_VS_g)[:200,1],label=r' $J_c$')
+plt.plot(np.asarray(g_list)[:200],np.asarray(Energie_VS_g)[:200,2],label=r' $J_{cav}$')
+legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
+legend.get_frame().set_facecolor('C0')
+plt.show()
+""" r' $\frac{-e^{i\pi}}{2^n}$!',fontsize=21    """#für LATEX Labels r' $\frac{g}{\gamma}$', fontsize=19
+
+
 ######################################################################################################################################################
 #Berechnung
 nh_list=[]
@@ -312,13 +325,14 @@ print("Die Temperatur des kalten Bades ist: ",T(omega_c,nc))
 print(Trace_list_temp)
 
 fig3, ax = plt.subplots()
+
 ax.set_xlabel(r' $n_h$', fontsize=19)
-ax.set_ylabel('Entropy')
-plt.title('Entropy Production')
+ax.set_ylabel('Entropy production rate')
+plt.title(r' Entropy Production  rate vs $n_h$ ')
 plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,0],label=r' $\frac{J_h}{T_h}+\frac{J_{cav}}{T_{cav}}+\frac{J_c}{T_c}$',color='red')
-plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,1],label=r' $\frac{J_h}{T_h}$')
-plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,2],label=r' $\frac{J_c}{T_c}$')
-plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,3],label=r' $\frac{J_{cav}}{T_{cav}}$')
+plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,1],label=r' $\frac{J_h}{T_h}$',color='green')
+plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,2],label=r' $\frac{J_c}{T_c}$',color='pink')
+plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,3],label=r' $\frac{J_{cav}}{T_{cav}}$',color='orange')
 legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
 legend.get_frame().set_facecolor('C0')
 #Linien in plt
