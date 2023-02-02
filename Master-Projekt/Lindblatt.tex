@@ -153,14 +153,14 @@ $\mathcal{D}$ is defined with following formula
 \begin{equation}
 \mathcal{D}[A]\rho=(2A \rho	A^{\dag}-A^{\dag}A\rho-\rho A^{\dag}A).
 \end{equation}
-Where $A$ represents one of the transition operators $\sigma_{ab}$ or $a$ ladder operator.
+Where $A$ represents one of the transition operators $\sigma_{ab}$ or a ladder operator $a$.
 The Bose-Einstein occupation number is the mean number of excitations in the reservoir damping the oscillator. It describes the mean occupation number $\langle n(E) \rangle$ of a quantum state of energy $E$, in thermodynamic equilibrium at absolute temperature $T $ for identical bosons as occupying particles.$ n$ depends on the temperature and the frequency.
 $n$ is defined as:
 $
 n_i(\omega_i,T)=\frac{1}{\exp[\frac{\hbar \omega_i}{k_b T_i}]-1}.
 $
 $\kappa$ describes the rate of photons which leave the cavity.
-The  prefactor $\gamma_c ,\gamma_h$ describes the spontaneous decay rates. We set $\gamma_c ,\gamma_h$ to 1 in this calculation and express also $\kappa$  and $\omega_i$ in  therms of  
+The  prefactor $\gamma_c ,\gamma_h$ describes the spontaneous decay rates. We set $\gamma_c ,\gamma_h  =\gamma=1$ in this calculation and express also $\kappa$  and $\omega_i$ in  therms of  $\gamma$.
 In this case the master equation is solved for the steady states.
 A steady state is a state or condition of a system or process, that the density matrix of the state does not change in time, or the changes are negligibly. Therefore all observables do not change in time either. 
 It contains the whole description of the three-level system and the cavity.
@@ -241,9 +241,7 @@ This function is plotted in Fig. 2
 With this, we can calculate the expectation value from an Operator. 
 The population inversion is seen by calculating the probability for the levels number ($Tr[\ket{i}\bra{i} \rho]$) and i stands for the different occupation of the state. Fig. 3a.  With high $n_h$ the probability for the system to stay in a the state $\ket{2}$ increases as well. If $P2>P1$, we speak about a population inversion.  
 %All the simulation are done with steady states.
-Lasing starts once a threshold for emission is attained, however, increasing the heat flow too much will end up producing  thermal light instead of lasing. This phenomena is called a double threshold behaviour.\cite{Li2017}
-%Laising gain is the output is a coherent state, which  we can  use as a laser.
-To investigate this double threshold behaviour, we study the steady states of a three-level system.
+Lasing starts once a threshold for emission is attained, however, increasing the heat flow too much will end up producing  thermal light instead of lasing. This phenomena is called a double threshold behaviour \cite{Li2017}. To investigate this double threshold behaviour, we study the steady states of a three-level system.
 This double threshold behaviour can can be explained by the Zeno effect. 
 The Zeno effect describes that the transition from one state to the other can be stopped by rapid successive measurements. 
 The system behaves similarly when sufficient stimulation is applied quickly. 
@@ -339,11 +337,11 @@ and plot this for different  $g$.
 \caption{Energy flux vs g with the parameters The parameters for the plot are $ n_h=2.6, n_c= n_f=0.02,\kappa=0.01\gamma $.  For the for the frequencies $\omega_f=30\gamma,\omega_h=150\gamma, \omega_c=120\gamma$ are used. }
 \end{figure}
 \subsection{Entropy production}
-Another relevant concept is the entropy. It is also a physical physical property which is described by the following equation.  
+Another relevant concept is the entropy. It is also a physical property which is described by the following equation.  
 \begin{equation}
 \Delta S = \sigma-\frac{Q}{T}
 \end{equation} 
-the second law of thermodynamics says that, for a isolated system, the entropy always remains the same or increases, but never becomes smaller and therefore the  entropy production rate $\dot{\sigma}$ should be zero or bigger.
+the second law of thermodynamics says that, for a isolated system, the entropy always remains the same or increases, but never becomes smaller. In terms of instantaneous quantities, this principle can be expressed by the entropy production rate $\dot \sigma$, which should always be larger or equal than zero.
 \begin{equation}
 \dot{\sigma}\geq 0
 \end{equation}
@@ -351,15 +349,16 @@ the second law of thermodynamics says that, for a isolated system, the entropy a
 %\begin{equation}
 %\Delta S = \frac{Q}{T}
 %\end{equation} 
-It is possible to calculate the entropy production rate \eqref{666} only with the heat flow\eqref{a}-\eqref{c} divide trough the temperature \eqref{d}.
+Since we are interested in steady-state quantities, it is possible to calculate the entropy production rate as the sums of the heat flow contributions \eqref{a}-\eqref{c} divided by the respective bath temperature \eqref{d}.
 The entropy production rate for steady state is then given by the formula
 \begin{equation}
  \dot{\sigma} =\frac{J_c}{T(n_c)}+\frac{J_h}{T(n_h)}+\frac{J_{cav}}{T(n_{cav})}.\label{666}
  \end{equation}
-The entropy production rate for different $n_h$ is plotted in Fig. 7. We see a clear maximum at the value of $n_h \approx 5$.  Also noteworthy is the fact that the entropy production rate of the hot bath is lower than that of the cold bath, this is because the temperature of the hot bath is much higher, and therefore $\sigma=\frac{J_h}{T}$ is smaller than the entropy production rate of the cold bath. 
- We see also that the entropy production rate corresponds with the average of the photon number Fig. 3b.
-The blue lines in Fig. 5 mark the values of $ n_h$ for which the Wigner functions are plotted. In Fig. 3b we see, the expectation value of the photon number versus $n_h$. When we compare the lasing output Fig. 5 with the entropy, we see that the lasing output is a PHAV state, when the entropy production rate is high. Otherwise if $n_h$ is high, the entropy production rate is low again, has the consequence that the lasing output is a thermal state.
-The explanation for the thermal state is the high temperature in the system, which becomes dominant.
+The entropy production rate for different $n_h$ is plotted in Fig. 7. We see a clear maximum at the value of $n_h \approx 5$.  Also noteworthy is the fact that the contribution to the entropy production rate from the hot/cold bath, this is because the temperature of the hot bath is much higher, and therefore $\sigma=\frac{J_h}{T}$ is smaller than the entropy production rate of the cold bath. 
+We also see that the plot of  the entropy production rate resembles that of the average  photon number Fig. 3.
+The blue lines in Fig. 5 mark the values of $ n_h$ for which the Wigner functions are plotted. In Fig. 3b we see, the expectation value of the photon number versus $n_h$. When we compare the lasing output Fig. 5 with the entropy, we see that the lasing output is a PHAV state, when the entropy production rate is high. 
+If $n_h$ is large, the coupling with the hot bath dominates with respect to the coupling to the cold bath and to the photons leaking outside the cavity. The larger $n_h$, the closer the system gets to be an equilibrium state with the hot bath. That's why the entropy production rates decreases for large  $n_h$. As consequence we get a PHAV state as laising output again.
+
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.6]{Bilder-für-text/Entropy}
