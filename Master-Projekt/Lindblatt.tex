@@ -288,10 +288,10 @@ That is  equal to the equation
 \end{equation}
 In quantum mechanics  the equation can be  rewritten as
 \begin{equation}
-\frac{d\langle H \rangle}{dt}=Tr[H_{free}\mathcal{L}[\rho]]+Tr[\partial_t H \rho]. \label{d}
+\frac{d\langle H \rangle}{dt}=Tr[H_{free} \cdot \mathcal{L}[\rho]]]+Tr[\partial_t H \rho]. \label{d}
 \end{equation}
 In the case of this calculation with steady states $\Delta U$ or $\frac{d\langle H \rangle}{dt}$ is zero. $\Delta W$ is also zero. This can be justified because $\partial_t H=0 $ and therefore the the first law says that $\langle J_{tot} \rangle$ have to be zero.
-To calculate the average heat flow we can take the trace from $Tr[H_{frre}\mathcal{L}[\rho]]$. 
+To calculate the average heat flow we can take the trace from $Tr[H_{frre}\cdot \mathcal{L}[\rho]]$. 
 \begin{equation}
 \langle J_{tot}\rangle=Tr[H_{free}\cdot \mathcal{L}_h[\rho]]+Tr[H_{free}\cdot \mathcal{L}_c[\rho]]+Tr[H_{free}\cdot \mathcal{L}_{cav}[\rho]].\label{13}
 \end{equation}
@@ -313,7 +313,7 @@ For the calculation the $Tr[H_{free}\cdot \mathcal{L}_{cav}]$, I get the followi
 \end{equation}
 $J_h$ is a energy input in the system, therefore it has a other signe as $J_c, J_{cav}$.
 The calculations are shown in Fig. 8 and Fig. 9 in the Appendix.
-With the density matrix it is possible to calculate the heat flux by taking $Tr[H \mathcal{L}\rho]$. 
+With the density matrix it is possible to calculate the heat flux by taking $Tr[H\cdot \mathcal{L}\rho]$. 
 and plot this for different  $g$. 
 %In the second step of the calculation we look for $ \langle J_{tot}\rangle$ on different coupling constants $g$.
 %In other words, in the plot below, the Trace from the density matrices times the Liouvilian against the coupling constant is visualized.
@@ -344,7 +344,7 @@ The entropy production rate for steady state is then given by the formula
 \begin{equation}
  \dot{\sigma} =\frac{J_c}{T(n_c)}+\frac{J_h}{T(n_h)}+\frac{J_{cav}}{T(n_{cav})}.\label{666}
  \end{equation}
-The entropy production rate for different $n_h$ is plotted in Fig. 7. We see a clear maximum at the value of $n_h \approx 5$.  Also noteworthy is the fact that the contribution to the entropy production rate from the hot/cold bath, this is because the temperature of the hot bath is much higher, and therefore $\sigma=\frac{J_h}{T}$ is smaller than the entropy production rate of the cold bath. 
+The entropy production rate for different $n_h$ is plotted in Fig. 7. We see a clear maximum at the value of $n_h \approx 5$.  The contribution to the entropy production rate from the hot bath is less than the contribution from the cold bath, this is because the temperature of the hot bath is much higher, and therefore $\sigma=\frac{J_h}{T}$ is smaller than the entropy production rate of the cold bath. 
 We also see that the plot of  the entropy production rate resembles that of the average  photon number Fig. 3.
 The blue lines in Fig. 5 mark the values of $ n_h$ for which the Wigner functions are plotted. In Fig. 3b we see, the expectation value of the photon number versus $n_h$. When we compare the lasing output Fig. 5 with the entropy, we see that the lasing output is a PHAV state, when the entropy production rate is high. 
 If $n_h$ is large, the coupling with the hot bath dominates with respect to the coupling to the cold bath and to the photons leaking outside the cavity. The larger $n_h$, the closer the system gets to be an equilibrium state with the hot bath. That's why the entropy production rates decreases for large  $n_h$. As consequence we get a PHAV state as laising output again.
@@ -361,7 +361,7 @@ With the condition that $n_c, n_{cav}$ is almost zero, the leaking $\kappa$ is s
 In Fig. 6 we see the average of the current, calculated with the formula Eq. \eqref{13} for different coupling constants $g$.
 The conclusion from Fig. 6 is, that the current increase at most between the $ 0<g<0.25$.
 In Fig. 5a we see the probability in which state the  system is. If we increase the temperature from the hot bath, we see that the occupation probability of $P2$ increase as well. A  population  inversion is visible.
-Fig. 3 helps to get some conclusion about the system starts lasing and when it stops. With a too small temperature, It has not enough energy in the system and the photon number is low Fig 5a. If $n_h$ increase more, a maximum lasing output is reached  Fig 5b,5c. If the temperature increasing further, the system is in the highest level, therefore the Rabi oscillation between $E_0$ and $E_2$ does not exist anymore and we get a thermal state Fig 5d.
+Fig. 3 helps to get some conclusion about the system starts lasing and when it stops. With a too small temperature, it has not enough energy in the system and the photon number is low Fig 5a. If $n_h$ increase more, a maximum lasing output is reached  Fig 5b,5c. If the temperature increasing further, the system is in the highest level, therefore the Rabi oscillation between $E_0$ and $E_2$ does not exist anymore and we get a thermal state Fig 5d.
 At higher heat of the warm bath, dephasing of the system occurs. Thus, it interacts more with the environment. This has the same effect as if the system is measured often. The Zeno effect then make that the system no longer oscillates between two different states. 
 %Spontaneous  emission could be a problem too, that the photons which leave the atoms are not in a coherent state anymore.
 The consistent numerical and theoretical results we have obtained in the characterization of both PHAV states.
@@ -413,4 +413,4 @@ The hot bath no longer has
 any weakening effect to the lasing, thus more lasing photons
 can be produced in the cavity, and the lasing power can be
 increased. But, still, the cavity photon number is limited due to
-the single atom feature.
+the single atom feature.%                                                                                               sander@sanders-arch ☺ ~/Sand
