@@ -344,6 +344,22 @@ plt.axvline(x=20)
 plt.axvline(x=1.7)
 
 plt.show()
+#Entropyplot wthout blue lines
+fig4, ax = plt.subplots()
+
+ax.set_xlabel(r' $n_h$', fontsize=19)
+ax.set_ylabel('Entropy production rate')
+plt.title(r' Entropy Production  rate vs $n_h$ ')
+plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,0],label=r' $\frac{J_h}{T_h}+\frac{J_{cav}}{T_{cav}}+\frac{J_c}{T_c}$',color='red')
+plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,1],label=r' $\frac{J_h}{T_h}$',color='green')
+plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,2],label=r' $\frac{J_c}{T_c}$',color='pink')
+plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,3],label=r' $\frac{J_{cav}}{T_{cav}}$',color='orange')
+legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
+legend.get_frame().set_facecolor('grey')
+#Linien in plt
+
+
+plt.show()
 #################################################################################################################
 #photon number
 nh2=0.1
