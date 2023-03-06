@@ -54,7 +54,7 @@ Tenv=0.0000000000000000000000000001
 
 
 
-nh=10 #Max bei 4.5
+nh=4.5 #Max bei 4.5
 nc=0.02
 
 nf=0.001   #Beschreibt den cavity/Photonen. 
@@ -245,7 +245,16 @@ legend.get_frame().set_facecolor('C0')
 plt.show()
 """ r' $\frac{-e^{i\pi}}{2^n}$!',fontsize=21    """#für LATEX Labels r' $\frac{g}{\gamma}$', fontsize=19
 
-
+fig, ax = plt.subplots()
+ax.set_xlabel(r' $\frac{g}{\gamma_h}$', fontsize=23)
+ax.set_ylabel(r' Heat current', fontsize=15)
+plt.title('current/energy flux vs coupling constant')
+plt.plot(np.asarray(g_list)[:200],np.asarray(Energie_VS_g)[:200,0],label=r' $J_h$')
+plt.plot(np.asarray(g_list)[:200],np.asarray(Energie_VS_g)[:200,1],label=r' $J_c$')
+plt.plot(np.asarray(g_list)[:200],np.asarray(Energie_VS_g)[:200,2],label=r' $J_{cav}$')
+legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
+legend.get_frame().set_facecolor('grey')
+plt.show()
 ######################################################################################################################################################
 #Berechnung
 nh_list=[]
@@ -276,6 +285,18 @@ plt.axvline(x=20)
 plt.axvline(x=1.7)
 
 plt.show()
+
+fig2, ax = plt.subplots()
+ax.set_xlabel(r' $n_h$', fontsize=21)
+ax.set_ylabel('probability')
+plt.title('stationary atomic population')
+plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,0],label='P1')
+plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,1],label='P2')
+plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,2],label='P3')
+legend = ax.legend(loc='center right', shadow=True, fontsize='x-large')
+legend.get_frame().set_facecolor('grey')
+plt.show()
+
 #with open("Speicherort.csv", "wb") as f:
 #    writer = csv.writer(f)
 #    writer.writerows(Energie_VS_g)
