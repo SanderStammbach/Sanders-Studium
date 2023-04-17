@@ -216,3 +216,70 @@ class Diverse_Loups():
 
 
         return n 
+    
+    def EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,proj_2,f):
+
+        
+
+        H_int=h*g*(Trans_12*a.dag()+a*Trans_12.dag())
+
+        H=H_free+H_int -omega_d*(a.dag()+a*proj_2) + f*(a+a.dag()) 
+        
+    
+        rho = steadystate(H, c_op_list) ######## Are you sure its with only photons H_free?
+        rho_f=rho.ptrace(1)
+
+        def D(c_op_list,rho):
+            D=[]
+            for i in range(6):
+                D.append(c_op_list[i]*rho*c_op_list[i].dag()-1/2*(c_op_list[i].dag()*c_op_list[i]*rho-rho*c_op_list[i].dag()*c_op_list[i]))
+            return D
+
+        Liste_von_Q=[] # ExpectValue for Thermal Energy
+
+        Liste_von_Q.append(np.trace(H_free*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1])))
+        Liste_von_Q.append(-1*np.trace(H_free*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3])))
+        Liste_von_Q.append(-1*np.trace(H_free*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5])))
+        #Liste_von_Q.append(g)  g in der liste anfügen
+
+        float_list= list(np.float_(Liste_von_Q))
+        print(float_list)    
+        Liste_von_Q=float_list
+
+        return(Liste_von_Q)
+
+    def P(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,proj_2,f):
+
+        
+
+        H_int=h*g*(Trans_12*a.dag()+a*Trans_12.dag())
+
+        H=H_free+H_int -omega_d*(a.dag()+a*proj_2) + f*(a+a.dag()) 
+        
+    
+        rho = steadystate(H, c_op_list) ######## Are you sure its with only photons H_free?
+        rho_f=rho.ptrace(1)
+      
+        def D(c_op_list,rho):
+            D=[]
+            
+            for i in range(6):
+                D.append(c_op_list[i]*rho*c_op_list[i].dag()-1/2*(c_op_list[i].dag()*c_op_list[i]*rho-rho*c_op_list[i].dag()*c_op_list[i]))
+                #dt_rho=dt_rho+(c_op_list[i]*rho*c_op_list[i].dag()-1/2*(c_op_list[i].dag()*c_op_list[i]*rho-rho*c_op_list[i].dag()*c_op_list[i]))
+            return D
+
+
+        n=(a.dag()*a)
+        Liste_von_n=[] # ExpectValue for Thermal Energy
+
+        Liste_von_n.append(np.trace(n*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1])))
+        Liste_von_n.append(-1*np.trace(n*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3])))
+        Liste_von_n.append(-1*np.trace(n*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5])))
+        #Liste_von_Q.append(g)  g in der liste anfügen
+
+        float_list= list(np.float_(Liste_von_n))
+        print(float_list)    
+        Liste_von_n=float_list
+
+        
+        return(Liste_von_n)
