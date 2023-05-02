@@ -53,10 +53,10 @@ omega_f= omega_2 - omega_1
 omega_h=omega_3-omega_1  # frequency of the atomic transition that is coupled to the hot bath
 omega_c=omega_3-omega_2
 print(ln(3))
-omega_d=omega_1/(ln(2)-1)
+omega_d=30
 
 h=1
-nph=30    # Maximale Photonen im cavity 
+nph=60    # Maximale Photonen im cavity 
  
 Th=100.    # temperature of the hot bath
 Tc=20.     # temperature of the cold bath
@@ -64,19 +64,19 @@ Tenv=0.0000000000000000000000000001
 
 
 
-nh=2.6
+nh=5
 nc=0.02
 
 nf=0.02    #Beschreibt den cavity/Photonen. 
 
-f =100
+f =0.03 
 
 gamma_h=1
 gamma_c=1
 kappa=0.028
 kb=1
 g=14*kappa
- 
+
 
 b_fock=qutip.states.fock(nph,0) #m)/fock(N,#m)
 b_atom=basis(3)
@@ -112,10 +112,10 @@ H=H_free+H_int
 
 
 
-Hdilde=H_free+H_int -omega_d*(a.dag()+a*proj_2) + f*(a+a.dag()) 
+#Hdilde=H_free+H_int -omega_d*(a.dag()*a+proj_2) + f*(a+a.dag()) 
 
-
-
+Hdilde=H_int+V +(omega_2-(omega_1+omega_d))*(a.dag()*a)+(omega_f-omega_d)*proj_2   
+print("dfjk",omega_d)
 ########################################################################################################
 A1=Trans_13
 A2=Trans_13.dag()
@@ -247,18 +247,14 @@ print(np.trace(rho))
 
 #D =j+k und das isch d zitableitig vo de varianz
 #print(L_List)
-P=Diverse_Loups.P(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,proj_2,f)
-print(P)
 
-
-
-
+########################################################################################################################################################################
 g_list=[]
 
 Energie_VS_g=[]
 for i in range(200):
     list_temp=[]
-    list_temp=Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,proj_2,f)
+    list_temp=Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2)
     g_list.append(i/100)  #Erstellt eine Liste mit Wären von g 
     Energie_VS_g.append(list_temp)
 
@@ -272,4 +268,15 @@ plt.plot(np.asarray(g_list)[:200],np.asarray(Energie_VS_g)[:200,1],label=r' $\fr
 plt.plot(np.asarray(g_list)[:200],np.asarray(Energie_VS_g)[:200,2],label=r' $\frac{J_{cav}}{\gamma_{cav} \omega_{cav}}$')
 legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
 legend.get_frame().set_facecolor('C0')
+plt.show()
+
+
+P_list=Diverse_Loups.P(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,f,omega_2)
+print("liste von P",P_list)
+PowerPlot, ax = plt.subplots() 
+ax.set_xlabel(r' g', fontsize=23)
+ax.set_ylabel(r' Power', fontsize=15)
+plt.plot(np.asarray(g_list)[:200],np.asarray(P_list)[:200],label=r' Kurve')
+
+
 plt.show()

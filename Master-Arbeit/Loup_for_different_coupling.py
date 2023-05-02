@@ -217,16 +217,39 @@ class Diverse_Loups():
 
         return n 
     
-    def EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,proj_2,f):
+    def EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2):
 
-        
+        gamma_1=(nh+1)*gamma_h #### unsicher wegen vorfaktor 1/2 
+        gamma_2=(nh)*gamma_h
+        gamma_3=(nc+1)*gamma_c
+        gamma_4=(nc)*gamma_c
+        kappa_5=(nf+1)*kappa ####goes to zero
+        kappa_6=(nf)*kappa
 
+        A1=Trans_13
+        A2=Trans_13.dag()
+        A3=Trans_23
+        A4=Trans_23.dag()
+        A5=a
+        A6=a.dag()
+########################################################################################################
+        c_op_list=[]
+
+        c_op_list.append(np.sqrt(gamma_1)*A1)
+        c_op_list.append(np.sqrt(gamma_2)*A2)
+        c_op_list.append(np.sqrt(gamma_3)*A3)
+        c_op_list.append(np.sqrt(gamma_4)*A4)
+        c_op_list.append(np.sqrt(kappa_5)*A5)
+        c_op_list.append(np.sqrt(kappa_6)*A6)
+
+        omega_1=0
+        V=f*a.dag()+f*a
         H_int=h*g*(Trans_12*a.dag()+a*Trans_12.dag())
-
-        H=H_free+H_int -omega_d*(a.dag()+a*proj_2) + f*(a+a.dag()) 
         
-    
-        rho = steadystate(H, c_op_list) ######## Are you sure its with only photons H_free?
+        H=H_free+H_int -omega_d*(a.dag()*a+proj_2) #+ f*(a+a.dag()) 
+        H_free1=H_free 
+        Hdilde=H_int+V +(omega_2-(30+omega_d))*(a.dag()*a)+(omega_f-omega_d)*proj_2   
+        rho = steadystate(Hdilde, c_op_list) ######## Are you sure its with only photons H_free?
         rho_f=rho.ptrace(1)
 
         def D(c_op_list,rho):
@@ -237,9 +260,9 @@ class Diverse_Loups():
 
         Liste_von_Q=[] # ExpectValue for Thermal Energy
 
-        Liste_von_Q.append(np.trace(H_free*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1])))
-        Liste_von_Q.append(-1*np.trace(H_free*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3])))
-        Liste_von_Q.append(-1*np.trace(H_free*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5])))
+        Liste_von_Q.append(np.trace(H_free1*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1])))
+        Liste_von_Q.append(-1.3*np.trace(H_free1*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3])))
+        Liste_von_Q.append(-1.3*np.trace(H_free1*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5])))
         #Liste_von_Q.append(g)  g in der liste anfügen
 
         float_list= list(np.float_(Liste_von_Q))
@@ -247,39 +270,33 @@ class Diverse_Loups():
         Liste_von_Q=float_list
 
         return(Liste_von_Q)
-
-    def P(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,proj_2,f):
-
-        
-
-        H_int=h*g*(Trans_12*a.dag()+a*Trans_12.dag())
-
-        H=H_free+H_int -omega_d*(a.dag()+a*proj_2) + f*(a+a.dag()) 
-        
     
-        rho = steadystate(H, c_op_list) ######## Are you sure its with only photons H_free?
-        rho_f=rho.ptrace(1)
+
+
+
+
+
+    def P(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,f,omega_2):
       
-        def D(c_op_list,rho):
-            D=[]
-            
-            for i in range(6):
-                D.append(c_op_list[i]*rho*c_op_list[i].dag()-1/2*(c_op_list[i].dag()*c_op_list[i]*rho-rho*c_op_list[i].dag()*c_op_list[i]))
+        def Ptr(H_free,Hdilde,rho):
+                Power=0
+                Power=(np.trace(H_free*Hdilde*rho-H_free*rho*Hdilde))
+                return Power
                 #dt_rho=dt_rho+(c_op_list[i]*rho*c_op_list[i].dag()-1/2*(c_op_list[i].dag()*c_op_list[i]*rho-rho*c_op_list[i].dag()*c_op_list[i]))
-            return D
+        P_list=[]
+        g=0
+        for i in range(200):
+            g=g+i/100
+            H_int=h*g*(Trans_12*a.dag()+a*Trans_12.dag())
 
+            H=H_free+H_int -omega_d*(a.dag()*a+proj_2) + f*(a+a.dag()) 
+        
+            V=f*a.dag()+f*a
+            Hdilde=H_int+V +(30-(30+omega_d))*(a.dag()*a)+(omega_f-omega_d)*proj_2  
+            rho = steadystate(Hdilde, c_op_list) ######## Are you sure its with only photons H_free?
+        
+            P_list.append(Ptr(H_free,Hdilde,rho))
 
-        n=(a.dag()*a)
-        Liste_von_n=[] # ExpectValue for Thermal Energy
-
-        Liste_von_n.append(np.trace(n*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1])))
-        Liste_von_n.append(-1*np.trace(n*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3])))
-        Liste_von_n.append(-1*np.trace(n*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5])))
-        #Liste_von_Q.append(g)  g in der liste anfügen
-
-        float_list= list(np.float_(Liste_von_n))
-        print(float_list)    
-        Liste_von_n=float_list
+        return(P_list)
 
         
-        return(Liste_von_n)
