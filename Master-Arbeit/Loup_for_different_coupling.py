@@ -25,7 +25,7 @@ from qutip import dag as dag
 from qutip import steadystate as steadystate
 from qutip import *
 from qutip import ptrace 
-
+#from qutip import eigenstates as eigenstates
 
 
 class Diverse_Loups():
@@ -37,7 +37,7 @@ class Diverse_Loups():
 
         H=H_free+H_int
         
-    
+        
         rho = steadystate(H, c_op_list) ######## Are you sure its with only photons H_free?
         rho_f=rho.ptrace(1)
 
@@ -280,7 +280,7 @@ class Diverse_Loups():
       
         def Ptr(H_free,Hdilde,rho):
                 Power=0
-                Power=(np.trace(H_free*Hdilde*rho-H_free*rho*Hdilde))
+                Power=-1j*np.trace(H_free*Hdilde*rho-H_free*rho*Hdilde)
                 return Power
                 #dt_rho=dt_rho+(c_op_list[i]*rho*c_op_list[i].dag()-1/2*(c_op_list[i].dag()*c_op_list[i]*rho-rho*c_op_list[i].dag()*c_op_list[i]))
         P_list=[]
@@ -299,4 +299,87 @@ class Diverse_Loups():
 
         return(P_list)
 
+    
+    def P2(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,f,omega_2,g):
+
+          
+            H_int=h*g*(Trans_12*a.dag()+a*Trans_12.dag())
+
+            H=H_free+H_int -omega_d*(a.dag()*a+proj_2) + f*(a+a.dag()) 
         
+            V=f*a.dag()+f*a
+            Hdilde=H_int+V +(30-(30+omega_d))*(a.dag()*a)+(omega_f-omega_d)*proj_2  
+            rho = steadystate(Hdilde, c_op_list) ######## Are you sure its with only photons H_free?
+            Power=-1j*np.trace((H_free*Hdilde-Hdilde*H_free)*rho)
+            
+
+            return(Power)
+    
+
+    def Fullcounting(c_op_list):
+        x=c_op_list.qutip.eigenstates()
+
+        return x
+
+    def current(H_free, Trans_12, a, h,c_op_list,omega_d,omega_f ,proj_2,g):
+      
+        def D(c_op_list,rho):
+            D=[]
+            for i in range(6):
+                D.append(c_op_list[i]*rho*c_op_list[i].dag()-1/2*(c_op_list[i].dag()*c_op_list[i]*rho-rho*c_op_list[i].dag()*c_op_list[i]))
+            return D
+        
+        f=0.001
+        float_list=[]
+        for i in range(200):
+            f=f+i/100
+            H_int=h*g*(Trans_12*a.dag()+a*Trans_12.dag())
+
+            H=H_free+H_int -omega_d*(a.dag()*a+proj_2) + f*(a+a.dag()) 
+        
+            V=f*a.dag()+f*a
+            Hdilde=H_int+V +(30-(30+omega_d))*(a.dag()*a)+(omega_f-omega_d)*proj_2  
+            rho = steadystate(Hdilde, c_op_list)
+            Liste_von_Q=[]
+            Liste_von_Q.append(np.trace(H_free*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1])))
+            Liste_von_Q.append(-1*np.trace(H_free*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3])))
+            Liste_von_Q.append(-1*np.trace(H_free*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5])))
+            float_list.append(list(np.float_(Liste_von_Q)))
+            print(Liste_von_Q)
+        
+        #Liste_von_Q.append(g)  g in der liste anfügen
+
+        
+           
+        Liste_von_Q=float_list
+
+        return(Liste_von_Q)
+    
+
+
+    def P3(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,omega_2,g):
+      
+        def Ptr(H_free,Hdilde,rho):
+                Power=0
+                Power=-1j*np.trace(H_free*Hdilde*rho-H_free*rho*Hdilde)
+                return Power
+                #dt_rho=dt_rho+(c_op_list[i]*rho*c_op_list[i].dag()-1/2*(c_op_list[i].dag()*c_op_list[i]*rho-rho*c_op_list[i].dag()*c_op_list[i]))
+        P_list=[]
+        f=0.001
+        for i in range(200):
+            f=f+i/100
+            H_int=h*g*(Trans_12*a.dag()+a*Trans_12.dag())
+
+            H=H_free+H_int -omega_d*(a.dag()*a+proj_2) + f*(a+a.dag()) 
+        
+            V=f*a.dag()+f*a
+            Hdilde=H_int+V +(30-(30+omega_d))*(a.dag()*a)+(omega_f-omega_d)*proj_2  
+            rho = steadystate(Hdilde, c_op_list) ######## Are you sure its with only photons H_free?
+        
+            P_list.append(Ptr(H_free,Hdilde,rho))
+
+        return(P_list)
+    
+    
+    
+    

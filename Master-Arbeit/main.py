@@ -56,7 +56,7 @@ print(ln(3))
 omega_d=30
 
 h=1
-nph=60    # Maximale Photonen im cavity 
+nph=5    # Maximale Photonen im cavity 
  
 Th=100.    # temperature of the hot bath
 Tc=20.     # temperature of the cold bath
@@ -64,19 +64,19 @@ Tenv=0.0000000000000000000000000001
 
 
 
-nh=5
+nh=4
 nc=0.02
 
 nf=0.02    #Beschreibt den cavity/Photonen. 
 
-f =0.03 
+f =0.03
 
 gamma_h=1
 gamma_c=1
 kappa=0.028
 kb=1
 g=14*kappa
-
+#g=0
 
 b_fock=qutip.states.fock(nph,0) #m)/fock(N,#m)
 b_atom=basis(3)
@@ -114,7 +114,7 @@ H=H_free+H_int
 
 #Hdilde=H_free+H_int -omega_d*(a.dag()*a+proj_2) + f*(a+a.dag()) 
 
-Hdilde=H_int+V +(omega_2-(omega_1+omega_d))*(a.dag()*a)+(omega_f-omega_d)*proj_2   
+Hdilde=H_int+V +(omega_2-(omega_1+omega_d))*(proj_2)+(omega_f-omega_d)*(a.dag()*a)   
 print("dfjk",omega_d)
 ########################################################################################################
 A1=Trans_13
@@ -253,12 +253,12 @@ g_list=[]
 
 Energie_VS_g=[]
 for i in range(200):
-    list_temp=[]
-    list_temp=Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2)
+    #list_temp=[]
+    #list_temp=Diverse_Loups.EnergieCalculator(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,omega_2,V,omega_1,omega_d,proj_2,omega_f,c_op_list)
     g_list.append(i/100)  #Erstellt eine Liste mit Wären von g 
-    Energie_VS_g.append(list_temp)
+    #Energie_VS_g.append(list_temp)
 
-
+"""
 fig, ax = plt.subplots()
 ax.set_xlabel(r' $\frac{g}{\gamma_h}$', fontsize=23)
 ax.set_ylabel(r' Heat current', fontsize=15)
@@ -269,7 +269,7 @@ plt.plot(np.asarray(g_list)[:200],np.asarray(Energie_VS_g)[:200,2],label=r' $\fr
 legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
 legend.get_frame().set_facecolor('C0')
 plt.show()
-
+"""
 
 P_list=Diverse_Loups.P(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,f,omega_2)
 print("liste von P",P_list)
@@ -279,4 +279,141 @@ ax.set_ylabel(r' Power', fontsize=15)
 plt.plot(np.asarray(g_list)[:200],np.asarray(P_list)[:200],label=r' Kurve')
 
 
+plt.show()
+
+g=0
+g_li=[]
+P_li=[]
+for i in range(200):
+    g=g+i/100
+    H_int=h*g*(Trans_12*a.dag()+a*Trans_12.dag())
+
+    H=H_free+H_int -omega_d*(a.dag()*a+proj_2) + f*(a+a.dag()) 
+        
+    V=f*a.dag()+f*a
+    Hdilde=H_int+V +(30-(30+omega_d))*(a.dag()*a)+(omega_f-omega_d)*proj_2  
+    rho = steadystate(Hdilde, c_op_list) ######## Are you sure its with only photons H_free?
+        
+    g_li.append(g)
+    P_li.append(Diverse_Loups.P2(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,f,omega_2,g))
+
+    print(P_li)
+
+
+
+
+
+PowerPlot2, ax = plt.subplots() 
+ax.set_xlabel(r' g', fontsize=23)
+ax.set_ylabel(r' Power', fontsize=15)
+plt.plot(np.asarray(g_li)[:200],np.asarray(P_li)[:200],label=r' Kurve')
+plt.show()
+
+
+
+
+
+
+
+
+#Entropy. production
+def T(omega,n):
+    T=h*omega/(kb*(np.log((1/n)+1)))
+    return T
+
+
+
+nh_list=[]
+Trace_list=[]
+nh=0.1 #set nh again to zero
+for j in range(100):
+    Trace_list_temp=Diverse_Loups.Funktion(nh,proj_1,proj_2,proj_3,H,nc,nf,gamma_h,gamma_c,kappa,A1,A2,A3,A4,A5,A6)
+    Trace_list.append(Trace_list_temp)
+
+    nh_list.append(nh)
+    nh=nh+0.3
+
+nh2=0.1
+nh_list2=[]
+Entropy=[]
+for i in range(100):
+    list_temp=[]
+    list_temp=Diverse_Loups.Entropy(nh2,Trans_12,a, kb,h,g,H,H_free,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_c,omega_h,omega_f)
+    #g_list.append(i/100)  #Erstellt eine Liste mit Wären von g 
+    Entropy.append(list_temp)
+    nh2=nh2+0.3
+    nh_list2.append(nh2)
+
+#Liste von Stings in floats konvertieren
+#float_list2=list(np.float_(Energie_VS_g))
+print(Entropy) 
+
+#result=mesolve(H, rho0, tlist)
+#print(D(c_op_list,rho)[3])
+
+
+print("Die Temperatur des warmen Bades ist: ",T(omega_h,nh))
+print("Die Temperatur des kalten Bades ist: ",T(omega_c,nc))
+print(Trace_list_temp)
+
+fig3, ax = plt.subplots()
+
+ax.set_xlabel(r' $n_h$', fontsize=19)
+ax.set_ylabel('Entropy production rate')
+plt.title(r' Entropy Production  rate vs $n_h$ ')
+plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,0],label=r' $\frac{J_h}{T_h}+\frac{J_{cav}}{T_{cav}}+\frac{J_c}{T_c}$',color='red')
+plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,1],label=r' $\frac{J_h}{T_h}$',color='green')
+plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,2],label=r' $\frac{J_c}{T_c}$',color='pink')
+plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,3],label=r' $\frac{J_{cav}}{T_{cav}}$',color='orange')
+legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
+legend.get_frame().set_facecolor('C0')
+#Linien in plt
+"""plt.axvline(x=2.6)
+plt.axvline(x=2.6)
+plt.axvline(x=5.5)
+plt.axvline(x=0.17)
+plt.axvline(x=20)
+plt.axvline(x=1.7)"""
+
+plt.show()
+
+################################################################
+
+
+f=0.001
+f_list=[]
+for i in range(200):
+    f=f+i/100
+    f_list.append(f)
+
+
+
+#f against the  power
+P_list=Diverse_Loups.P3(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,omega_2,g)
+print("liste von P",P_list)
+
+PowerPlot, ax = plt.subplots() 
+ax.set_xlabel(r' f', fontsize=23)
+ax.set_ylabel(r' Power', fontsize=15)
+plt.title('power vs driven field')
+plt.plot(np.asarray(f_list)[:200],np.asarray(P_list)[:200],label=r' Kurve')
+plt.show()
+
+
+#f against power
+
+
+Energie_VS_f=Diverse_Loups.current(H_free, Trans_12, a, h,c_op_list,omega_d,omega_f ,proj_2,g)
+
+
+
+fig, ax = plt.subplots()
+ax.set_xlabel(r' $\frac{f}{\gamma_h}$', fontsize=23)
+ax.set_ylabel(r' Heat current', fontsize=15)
+plt.title('current/energy flux vs driven field')
+plt.plot(np.asarray(f_list)[:200],np.asarray(Energie_VS_f)[:200,0],label=r' $\frac{J_h}{\gamma_h \omega_h}$')
+plt.plot(np.asarray(f_list)[:200],np.asarray(Energie_VS_f)[:200,1],label=r' $\frac{J_c}{\gamma_c \omega_c}$')
+plt.plot(np.asarray(f_list)[:200],np.asarray(Energie_VS_f)[:200,2],label=r' $\frac{J_{cav}}{\gamma_{cav} \omega_{cav}}$')
+legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
+legend.get_frame().set_facecolor('C0')
 plt.show()
