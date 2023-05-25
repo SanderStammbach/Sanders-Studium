@@ -164,17 +164,18 @@ class Diverse_Loups():
         def D(c_op_list,rho):
             D=[]
             for i in range(6):
-                D.append(c_op_list[i]*rho*c_op_list[i].dag()-1/2*(c_op_list[i].dag()*c_op_list[i]*rho-rho*c_op_list[i].dag()*c_op_list[i]))
+                D.append(c_op_list[i]*rho*c_op_list[i].dag()-1/2*(c_op_list[i].dag()*c_op_list[i]*rho+rho*c_op_list[i].dag()*c_op_list[i]))
             return D
 
         Liste_von_Q=[] # ExpectValue for Thermal Energy
         Liste_von_Q_f=[]
         Liste_von_Q_c=[]
         Liste_von_Q_h=[]
-        Liste_von_Q.append(np.trace(H_free*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1]))/(T(nh,omega_h))+np.trace(H_free*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3]))/T(nc,omega_c)+np.trace(H_free*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5]))/T(nf,omega_f))
-        Liste_von_Q.append(np.trace(H_free*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1]))/(T(nh,omega_h)))#liste_von_Q_h
-        Liste_von_Q.append(np.trace(H_free*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3]))/(T(nc,omega_c)))
-        Liste_von_Q.append(np.trace(H_free*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5]))/(T(nf,omega_f)))
+        #Liste_von_Q.append(np.trace(H_free*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1]))/(T(nh,omega_h))+np.trace(H_free*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3]))/T(nc,omega_c)+np.trace(H_free*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5]))/T(nf,omega_f))
+        Liste_von_Q.append(np.trace(H_free*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1]))+np.trace(H_free*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3]))+np.trace(H_free*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5])))
+        Liste_von_Q.append(np.trace(H_free*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1])))#/(T(nh,omega_h)))#liste_von_Q_h
+        Liste_von_Q.append(np.trace(H_free*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3])))#/(T(nc,omega_c)))
+        Liste_von_Q.append(np.trace(H_free*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5])))#/(T(nf,omega_f)))
             #Liste_von_Q.append(g)  g in der liste anfügen
 
         float_list= list(np.float_(Liste_von_Q))
@@ -255,14 +256,14 @@ class Diverse_Loups():
         def D(c_op_list,rho):
             D=[]
             for i in range(6):
-                D.append(c_op_list[i]*rho*c_op_list[i].dag()-1/2*(c_op_list[i].dag()*c_op_list[i]*rho-rho*c_op_list[i].dag()*c_op_list[i]))
+                D.append(c_op_list[i]*rho*c_op_list[i].dag()-1/2*(c_op_list[i].dag()*c_op_list[i]*rho+rho*c_op_list[i].dag()*c_op_list[i]))
             return D
 
         Liste_von_Q=[] # ExpectValue for Thermal Energy
 
         Liste_von_Q.append(np.trace(H_free1*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1])))
-        Liste_von_Q.append(-1.3*np.trace(H_free1*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3])))
-        Liste_von_Q.append(-1.3*np.trace(H_free1*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5])))
+        Liste_von_Q.append(np.trace(H_free1*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3])))
+        Liste_von_Q.append(np.trace(H_free1*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5])))
         #Liste_von_Q.append(g)  g in der liste anfügen
 
         float_list= list(np.float_(Liste_von_Q))
@@ -321,18 +322,18 @@ class Diverse_Loups():
 
         return x
 
-    def current(H_free, Trans_12, a, h,c_op_list,omega_d,omega_f ,proj_2,g):
+    def current(H_free, Trans_12, a, h,c_op_list,omega_d,omega_f ,proj_2,g,f,anzahl):
       
         def D(c_op_list,rho):
             D=[]
             for i in range(6):
-                D.append(c_op_list[i]*rho*c_op_list[i].dag()-1/2*(c_op_list[i].dag()*c_op_list[i]*rho-rho*c_op_list[i].dag()*c_op_list[i]))
+                D.append(c_op_list[i]*rho*c_op_list[i].dag()-1/2*(c_op_list[i].dag()*c_op_list[i]*rho+rho*c_op_list[i].dag()*c_op_list[i]))
             return D
         
-        f=0.001
+        
         float_list=[]
-        for i in range(200):
-            f=f+i/100
+        for i in range(anzahl):
+            f=f+1/80
             H_int=h*g*(Trans_12*a.dag()+a*Trans_12.dag())
 
             H=H_free+H_int -omega_d*(a.dag()*a+proj_2) + f*(a+a.dag()) 
@@ -342,8 +343,8 @@ class Diverse_Loups():
             rho = steadystate(Hdilde, c_op_list)
             Liste_von_Q=[]
             Liste_von_Q.append(np.trace(H_free*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1])))
-            Liste_von_Q.append(-1*np.trace(H_free*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3])))
-            Liste_von_Q.append(-1*np.trace(H_free*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5])))
+            Liste_von_Q.append(np.trace(H_free*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3])))
+            Liste_von_Q.append(np.trace(H_free*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5])))
             float_list.append(list(np.float_(Liste_von_Q)))
             print(Liste_von_Q)
         
@@ -357,7 +358,7 @@ class Diverse_Loups():
     
 
 
-    def P3(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,omega_2,g):
+    def P3(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,omega_2,g,f,anzahl):
       
         def Ptr(H_free,Hdilde,rho):
                 Power=0
@@ -365,21 +366,46 @@ class Diverse_Loups():
                 return Power
                 #dt_rho=dt_rho+(c_op_list[i]*rho*c_op_list[i].dag()-1/2*(c_op_list[i].dag()*c_op_list[i]*rho-rho*c_op_list[i].dag()*c_op_list[i]))
         P_list=[]
-        f=0.001
-        for i in range(200):
-            f=f+i/100
+        
+        for i in range(anzahl):
+            f=f+1/80
             H_int=h*g*(Trans_12*a.dag()+a*Trans_12.dag())
 
             H=H_free+H_int -omega_d*(a.dag()*a+proj_2) + f*(a+a.dag()) 
         
-            V=f*a.dag()+f*a
-            Hdilde=H_int+V +(30-(30+omega_d))*(a.dag()*a)+(omega_f-omega_d)*proj_2  
-            rho = steadystate(Hdilde, c_op_list) ######## Are you sure its with only photons H_free?
+            
+            Hdilde=H_int+f*(a+a.dag()) +30*(a.dag()*a)#+(omega_f-omega_d)*proj_2  
+            rho = steadystate(Hdilde, c_op_list) 
         
             P_list.append(Ptr(H_free,Hdilde,rho))
 
         return(P_list)
     
+
+
+    
+    def P4(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,omega_2,g,f,anzahl):
+      
+        def Ptr(H_free,Hdilde,rho):
+                Power=0
+                Power=-1j*np.trace(H_free*Hdilde*rho-H_free*rho*Hdilde)
+                return Power
+                #dt_rho=dt_rho+(c_op_list[i]*rho*c_op_list[i].dag()-1/2*(c_op_list[i].dag()*c_op_list[i]*rho-rho*c_op_list[i].dag()*c_op_list[i]))
+        P_list=[]
+        
+        for i in range(anzahl):
+            g=g+1/120
+            H_int=h*g*(Trans_12*a.dag()+a*Trans_12.dag())
+
+            H=H_free+H_int -omega_d*(a.dag()*a+proj_2) + f*(a+a.dag()) 
+        
+            
+            Hdilde=H_int+f*(a+a.dag()) +30*(a.dag()*a)#+(omega_f-omega_d)*proj_2  
+            rho = steadystate(Hdilde, c_op_list) 
+        
+            P_list.append(Ptr(H_free,Hdilde,rho))
+
+        return(P_list)
     
     
     

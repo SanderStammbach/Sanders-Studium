@@ -56,7 +56,7 @@ print(ln(3))
 omega_d=30
 
 h=1
-nph=5    # Maximale Photonen im cavity 
+nph=30    # Maximale Photonen im cavity 
  
 Th=100.    # temperature of the hot bath
 Tc=20.     # temperature of the cold bath
@@ -64,7 +64,7 @@ Tenv=0.0000000000000000000000000001
 
 
 
-nh=4
+nh=5
 nc=0.02
 
 nf=0.02    #Beschreibt den cavity/Photonen. 
@@ -110,7 +110,7 @@ V=f*a.dag()+f*a #das got glaub nid
 H=H_free+H_int
 
 
-
+print(a, a.dag(), a*a*a.dag()-a*a.dag()*a)
 
 #Hdilde=H_free+H_int -omega_d*(a.dag()*a+proj_2) + f*(a+a.dag()) 
 
@@ -183,7 +183,7 @@ rho = DichteMatrix(nh,nc,nf,Hdilde)
 #qutip.plot_wigner_fock_distribution(rho)
 #plt.show()
 
-
+print("D lösig isch:",np.trace((a*(c_op_list[4]*rho*c_op_list[4].dag()-1/2*(c_op_list[4].dag()*c_op_list[4]*rho-rho*c_op_list[4].dag()*c_op_list[4]))))-np.trace(a*a.dag()*a),"        und       ",a*(c_op_list[4]*rho*c_op_list[4].dag()-1/2*(c_op_list[4].dag()*c_op_list[4]*rho-rho*c_op_list[4].dag()*c_op_list[4])))
 
 rho_f=rho.ptrace(1)  ### State in the cavity
 print(rho)
@@ -192,9 +192,9 @@ plt.show()
 
 
 #Hamilton
-print(variance(a.dag()*a, rho))
+#print(variance(a.dag()*a, rho))
 
-print(type(rho))
+#print(type(rho))
 
 """Mk=qutip.superop_reps.to_kraus(Trans_12, tol=1e-09)
 Mkt=qutip.superop_reps.to_kraus(Trans_12.dag(), tol=1e-09)
@@ -276,16 +276,19 @@ print("liste von P",P_list)
 PowerPlot, ax = plt.subplots() 
 ax.set_xlabel(r' g', fontsize=23)
 ax.set_ylabel(r' Power', fontsize=15)
+plt.title("Power vs  coupling-constant")
 plt.plot(np.asarray(g_list)[:200],np.asarray(P_list)[:200],label=r' Kurve')
 
 
 plt.show()
 
+"""
+
 g=0
 g_li=[]
 P_li=[]
 for i in range(200):
-    g=g+i/100
+    g=g+1/80
     H_int=h*g*(Trans_12*a.dag()+a*Trans_12.dag())
 
     H=H_free+H_int -omega_d*(a.dag()*a+proj_2) + f*(a+a.dag()) 
@@ -295,7 +298,7 @@ for i in range(200):
     rho = steadystate(Hdilde, c_op_list) ######## Are you sure its with only photons H_free?
         
     g_li.append(g)
-    P_li.append(Diverse_Loups.P2(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,f,omega_2,g))
+    P_li.append(Diverse_Loups.P4(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,omega_2,g,f))
 
     print(P_li)
 
@@ -311,7 +314,7 @@ plt.show()
 
 
 
-
+"""
 
 
 
@@ -322,7 +325,7 @@ def T(omega,n):
     return T
 
 
-
+"""
 nh_list=[]
 Trace_list=[]
 nh=0.1 #set nh again to zero
@@ -332,7 +335,7 @@ for j in range(100):
 
     nh_list.append(nh)
     nh=nh+0.3
-
+"""
 nh2=0.1
 nh_list2=[]
 Entropy=[]
@@ -354,7 +357,7 @@ print(Entropy)
 
 print("Die Temperatur des warmen Bades ist: ",T(omega_h,nh))
 print("Die Temperatur des kalten Bades ist: ",T(omega_c,nc))
-print(Trace_list_temp)
+
 
 fig3, ax = plt.subplots()
 
@@ -379,41 +382,100 @@ plt.show()
 
 ################################################################
 
-
-f=0.001
+g=14*kappa
+f=0
+f1=f
 f_list=[]
 for i in range(200):
-    f=f+i/100
-    f_list.append(f)
+    f1=f1+1/80
+    f_list.append(f1)
 
 
+anzahl=200 #anzahl iterationen im loop
 
 #f against the  power
-P_list=Diverse_Loups.P3(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,omega_2,g)
+P_list=Diverse_Loups.P3(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,omega_2,g,f,anzahl)
 print("liste von P",P_list)
 
+
 PowerPlot, ax = plt.subplots() 
-ax.set_xlabel(r' f', fontsize=23)
+ax.set_xlabel(r'$f$', fontsize=23)
 ax.set_ylabel(r' Power', fontsize=15)
-plt.title('power vs driven field')
-plt.plot(np.asarray(f_list)[:200],np.asarray(P_list)[:200],label=r' Kurve')
+plt.title('power vs driven field-strenght')
+plt.plot(np.asarray(f_list)[:anzahl],np.asarray(P_list)[:anzahl],label=r' Kurve')
 plt.show()
 
 
 #f against power
 
 
-Energie_VS_f=Diverse_Loups.current(H_free, Trans_12, a, h,c_op_list,omega_d,omega_f ,proj_2,g)
+Energie_VS_f=Diverse_Loups.current(H_free, Trans_12, a, h,c_op_list,omega_d,omega_f ,proj_2,g,f,anzahl)
+
+PundJ=[]
+Energie_VS_f2=np.array(Energie_VS_f)
+P_list2=np.array(P_list)
+for i in range(anzahl):
+    PundJ.append(Energie_VS_f2[i,0]+Energie_VS_f2[i,1]+Energie_VS_f2[i,2]+P_list2[i])
 
 
 
 fig, ax = plt.subplots()
 ax.set_xlabel(r' $\frac{f}{\gamma_h}$', fontsize=23)
-ax.set_ylabel(r' Heat current', fontsize=15)
-plt.title('current/energy flux vs driven field')
-plt.plot(np.asarray(f_list)[:200],np.asarray(Energie_VS_f)[:200,0],label=r' $\frac{J_h}{\gamma_h \omega_h}$')
-plt.plot(np.asarray(f_list)[:200],np.asarray(Energie_VS_f)[:200,1],label=r' $\frac{J_c}{\gamma_c \omega_c}$')
-plt.plot(np.asarray(f_list)[:200],np.asarray(Energie_VS_f)[:200,2],label=r' $\frac{J_{cav}}{\gamma_{cav} \omega_{cav}}$')
+ax.set_ylabel(r' Heat current or power ', fontsize=15)
+plt.title('current/power vs driven field')
+plt.plot(np.asarray(f_list)[:anzahl],np.asarray(P_list)[:anzahl],'--',label=r'$ \frac{P}{\hbar \gamma_h \omega_{h}}$')
+plt.plot(np.asarray(f_list)[:anzahl],np.asarray(Energie_VS_f)[:anzahl,0],label=r' $\frac{J_h}{\hbar \gamma_h \omega_h}$')
+plt.plot(np.asarray(f_list)[:anzahl],np.asarray(Energie_VS_f)[:anzahl,1],label=r' $\frac{J_c}{\hbar\gamma_h \omega_h}$')
+plt.plot(np.asarray(f_list)[:anzahl],np.asarray(Energie_VS_f)[:anzahl,2],label=r' $\frac{J_{cav}}{\hbar\gamma_h \omega_{h}}$')
+plt.plot(np.asarray(f_list)[:anzahl],np.asarray(PundJ)[:anzahl],'*',label=r'$\hbar \frac{P+J_c+J_h+J_{cav}}{\hbar \gamma_h \omega_{h}}$')
 legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
-legend.get_frame().set_facecolor('C0')
+legend.get_frame().set_facecolor('white')
+plt.show()
+
+
+print(f_list)
+
+
+
+
+
+###############################################################################################
+
+
+f=0.3
+g_list=[]
+g=0
+Energie_VS_g=[]
+for i in range(200):
+    g=g+1/120
+    list_temp=[]
+    list_temp=Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2)
+    g_list.append(g)  #Erstellt eine Liste mit Wären von g 
+    Energie_VS_g.append(list_temp)
+
+g=0
+P_list=Diverse_Loups.P4(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,omega_2,g,f,anzahl)
+print("liste von P",P_list)
+PowerPlot, ax = plt.subplots() 
+ax.set_xlabel(r' g', fontsize=23)
+ax.set_ylabel(r' Power', fontsize=15)
+plt.title("Power vs  coupling-constant")
+plt.plot(np.asarray(g_list)[:200],np.asarray(P_list)[:200],label=r' Kurve')
+
+fig, ax = plt.subplots()
+ax.set_xlabel(r' $\frac{g}{\gamma_h}$', fontsize=23)
+ax.set_ylabel(r' Heat current', fontsize=15)
+plt.title('current/power vs g')
+plt.plot(np.asarray(f_list)[:anzahl],np.asarray(P_list)[:anzahl],'--',label=r'$ \frac{P}{\hbar \gamma_h \omega_{h}}$')
+plt.plot(np.asarray(f_list)[:anzahl],np.asarray(Energie_VS_f)[:anzahl,0],label=r' $\frac{J_h}{\hbar \gamma_h \omega_h}$')
+plt.plot(np.asarray(f_list)[:anzahl],np.asarray(Energie_VS_f)[:anzahl,1],label=r' $\frac{J_c}{\hbar\gamma_h \omega_h}$')
+plt.plot(np.asarray(f_list)[:anzahl],np.asarray(Energie_VS_f)[:anzahl,2],label=r' $\frac{J_{cav}}{\hbar\gamma_h \omega_{h}}$')
+plt.plot(np.asarray(f_list)[:anzahl],np.asarray(PundJ)[:anzahl],'*',label=r'$\hbar \frac{P+J_c+J_h+J_{cav}}{\hbar \gamma_h \omega_{h}}$')
+legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
+legend.get_frame().set_facecolor('white')
+plt.show()
+
+
+
+
 plt.show()
