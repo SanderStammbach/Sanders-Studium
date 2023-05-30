@@ -407,5 +407,61 @@ class Diverse_Loups():
 
         return(P_list)
     
+
+
+    def P5(g,H_free, Trans_12, Trans_13, Trans_23, a,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2, anzahl):
+
+
+        
+        def Ptr(H_free,Hdilde,rho):
+                Power=0
+                Power=-1j*np.trace(H_free*Hdilde*rho-H_free*rho*Hdilde)
+                return Power
+                #dt_rho=dt_rho+(c_op_list[i]*rho*c_op_list[i].dag()-1/2*(c_op_list[i].dag()*c_op_list[i]*rho-rho*c_op_list[i].dag()*c_op_list[i]))
+        P_list=[]
+
+
+        nh=0
+        nh_List=[]
+        for i in range(anzahl):
+
+            gamma_1=(nh+1)*gamma_h #### unsicher wegen vorfaktor 1/2 
+            gamma_2=(nh)*gamma_h
+            gamma_3=(nc+1)*gamma_c
+            gamma_4=(nc)*gamma_c
+            kappa_5=(nf+1)*kappa ####goes to zero
+            kappa_6=(nf)*kappa
+
+            A1=Trans_13
+            A2=Trans_13.dag()
+            A3=Trans_23
+            A4=Trans_23.dag()
+            A5=a
+            A6=a.dag()
+########################################################################################################
+            c_op_list=[]
+
+            c_op_list.append(np.sqrt(gamma_1)*A1)
+            c_op_list.append(np.sqrt(gamma_2)*A2)
+            c_op_list.append(np.sqrt(gamma_3)*A3)
+            c_op_list.append(np.sqrt(gamma_4)*A4)
+            c_op_list.append(np.sqrt(kappa_5)*A5)
+            c_op_list.append(np.sqrt(kappa_6)*A6)
+            nh=nh+1/20 
+            nh_List.append(nh)
+            H_int=h*g*(Trans_12*a.dag()+a*Trans_12.dag())
+
+            H=H_free+H_int -omega_d*(a.dag()*a+proj_2) + f*(a+a.dag()) 
+        
+            
+            Hdilde=H_int+f*(a+a.dag()) +30*(a.dag()*a)#+(omega_f-omega_d)*proj_2  
+            rho = steadystate(Hdilde, c_op_list) 
+        
+            P_list.append(Ptr(H_free,Hdilde,rho))
+
+        return P_list,nh_List
+
+        
+    
     
     

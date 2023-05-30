@@ -479,3 +479,36 @@ plt.show()
 
 
 plt.show()
+
+
+##############################
+#nh und power 
+f=0.3
+nh=0
+g=14*kappa
+Energie_VS_nh=[]
+for i in range(200):
+    nh=nh+1/20
+    list_temp=[]
+    list_temp=Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2)
+      #Erstellt eine Liste mit Wären von g 
+    Energie_VS_nh.append(list_temp)
+
+P_list3,nh_list3=Diverse_Loups.P5(g,H_free, Trans_12, Trans_13, Trans_23, a,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2, anzahl)
+
+print(P_list3,nh_list3)
+
+
+
+fig, ax = plt.subplots()
+ax.set_xlabel(r' $n_h$', fontsize=23)
+ax.set_ylabel(r' Heat current', fontsize=15)
+plt.title('current/power vs n_h')
+plt.plot(np.asarray(f_list)[:anzahl],np.asarray(P_list)[:anzahl],'--',label=r'$ \frac{P}{\hbar \gamma_h \omega_{h}}$')
+plt.plot(np.asarray(f_list)[:anzahl],np.asarray(Energie_VS_nh)[:anzahl,0],label=r' $\frac{J_h}{\hbar \gamma_h \omega_h}$')
+plt.plot(np.asarray(f_list)[:anzahl],np.asarray(Energie_VS_nh)[:anzahl,1],label=r' $\frac{J_c}{\hbar\gamma_h \omega_h}$')
+plt.plot(np.asarray(f_list)[:anzahl],np.asarray(Energie_VS_nh)[:anzahl,2],label=r' $\frac{J_{cav}}{\hbar\gamma_h \omega_{h}}$')
+plt.plot(np.asarray(f_list)[:anzahl],np.asarray(PundJ)[:anzahl],'*',label=r'$\hbar \frac{P+J_c+J_h+J_{cav}}{\hbar \gamma_h \omega_{h}}$')
+legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
+legend.get_frame().set_facecolor('white')
+plt.show()
