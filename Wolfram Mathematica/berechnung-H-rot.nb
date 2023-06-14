@@ -1,0 +1,178 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5447,        168]
+NotebookOptionsPosition[      4780,        149]
+NotebookOutlinePosition[      5177,        165]
+CellTagsIndexPosition[      5134,        162]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{"x", "=", 
+  RowBox[{"f", "*", "I", "*", "t", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Exp", "[", 
+         RowBox[{"I", "*", "wd", "*", "t"}], "]"}], "-", 
+        RowBox[{"Exp", "[", 
+         RowBox[{
+          RowBox[{"-", "I"}], "*", "wd", "*", "t"}], "]"}]}], ")"}], "*", 
+      "wc", "*", "\[Sigma]12"}], "+", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Exp", "[", 
+         RowBox[{
+          RowBox[{"-", "I"}], "*", "wd", "*", "t"}], "]"}], "-", 
+        RowBox[{"Exp", "[", 
+         RowBox[{"I", "*", "wd", "*", "t"}], "]"}]}], ")"}], "*", 
+      RowBox[{"(", 
+       RowBox[{"wc", "+", "wd"}], ")"}], "*", "\[Sigma]21"}]}], 
+    ")"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"V", "=", 
+  RowBox[{"f", "*", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Exp", "[", 
+       RowBox[{"I", "*", "wd", "*", "t"}], "]"}], "*", "\[Sigma]12"}], "+", 
+     RowBox[{
+      RowBox[{"Exp", "[", 
+       RowBox[{
+        RowBox[{"-", "I"}], "*", "wd", "*", "t"}], "]"}], "*", 
+      "\[Sigma]21"}]}], ")"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"V", "+", "x"}]}], "Input",
+ CellChangeTimes->{{3.8839349858252363`*^9, 3.883935452623946*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"a419ceab-8ee7-4693-aef5-55e529ee9b04"],
+
+Cell[BoxData[
+ RowBox[{"\[ImaginaryI]", " ", "f", " ", "t", " ", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"-", 
+        SuperscriptBox["\[ExponentialE]", 
+         RowBox[{
+          RowBox[{"-", "\[ImaginaryI]"}], " ", "t", " ", "wd"}]]}], "+", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"\[ImaginaryI]", " ", "t", " ", "wd"}]]}], ")"}], " ", "wc", 
+     " ", "\[Sigma]12"}], "+", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{
+         RowBox[{"-", "\[ImaginaryI]"}], " ", "t", " ", "wd"}]], "-", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"\[ImaginaryI]", " ", "t", " ", "wd"}]]}], ")"}], " ", 
+     RowBox[{"(", 
+      RowBox[{"wc", "+", "wd"}], ")"}], " ", "\[Sigma]21"}]}], 
+   ")"}]}]], "Output",
+ CellChangeTimes->{3.883935453744431*^9},
+ CellLabel->"Out[1]=",ExpressionUUID->"e75515b4-dba7-4fb5-aa2a-164dae854658"],
+
+Cell[BoxData[
+ RowBox[{"f", " ", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{"\[ImaginaryI]", " ", "t", " ", "wd"}]], " ", "\[Sigma]12"}], 
+    "+", 
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{
+       RowBox[{"-", "\[ImaginaryI]"}], " ", "t", " ", "wd"}]], " ", 
+     "\[Sigma]21"}]}], ")"}]}]], "Output",
+ CellChangeTimes->{3.883935453746028*^9},
+ CellLabel->"Out[2]=",ExpressionUUID->"aca7fbfb-5d85-4826-99fd-3a227a20dbea"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"f", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{"\[ImaginaryI]", " ", "t", " ", "wd"}]], " ", "\[Sigma]12"}], 
+     "+", 
+     RowBox[{
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{
+        RowBox[{"-", "\[ImaginaryI]"}], " ", "t", " ", "wd"}]], " ", 
+      "\[Sigma]21"}]}], ")"}]}], "+", 
+  RowBox[{"\[ImaginaryI]", " ", "f", " ", "t", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", 
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{
+           RowBox[{"-", "\[ImaginaryI]"}], " ", "t", " ", "wd"}]]}], "+", 
+        SuperscriptBox["\[ExponentialE]", 
+         RowBox[{"\[ImaginaryI]", " ", "t", " ", "wd"}]]}], ")"}], " ", "wc", 
+      " ", "\[Sigma]12"}], "+", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox["\[ExponentialE]", 
+         RowBox[{
+          RowBox[{"-", "\[ImaginaryI]"}], " ", "t", " ", "wd"}]], "-", 
+        SuperscriptBox["\[ExponentialE]", 
+         RowBox[{"\[ImaginaryI]", " ", "t", " ", "wd"}]]}], ")"}], " ", 
+      RowBox[{"(", 
+       RowBox[{"wc", "+", "wd"}], ")"}], " ", "\[Sigma]21"}]}], 
+    ")"}]}]}]], "Output",
+ CellChangeTimes->{3.883935453746851*^9},
+ CellLabel->"Out[3]=",ExpressionUUID->"e4cf0755-0483-43ae-9e8d-b39313e31d9d"]
+}, Open  ]]
+},
+WindowSize->{1920., 1028.25},
+WindowMargins->{{0, Automatic}, {0, Automatic}},
+FrontEndVersion->"13.0 for Linux x86 (64-bit) (February 4, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"978033b1-4f30-44d9-bb60-13a63de79d01"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 1333, 39, 105, "Input",ExpressionUUID->"a419ceab-8ee7-4693-aef5-55e529ee9b04"],
+Cell[1916, 63, 965, 26, 36, "Output",ExpressionUUID->"e75515b4-dba7-4fb5-aa2a-164dae854658"],
+Cell[2884, 91, 501, 14, 36, "Output",ExpressionUUID->"aca7fbfb-5d85-4826-99fd-3a227a20dbea"],
+Cell[3388, 107, 1376, 39, 59, "Output",ExpressionUUID->"e4cf0755-0483-43ae-9e8d-b39313e31d9d"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
