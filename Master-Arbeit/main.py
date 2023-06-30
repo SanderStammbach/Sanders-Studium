@@ -1,4 +1,5 @@
 # /bin/env/python
+from cProfile import label
 from calendar import c
 from ctypes import c_char_p
 from email import message_from_file
@@ -76,7 +77,7 @@ gamma_c=1
 kappa=0.028
 kb=1
 g=14*kappa
-#g=0
+#g=f=0
 
 b_fock=qutip.states.fock(nph,0) #m)/fock(N,#m)
 b_atom=basis(3)
@@ -188,7 +189,7 @@ print("D lösig isch:",np.trace((a*(c_op_list[4]*rho*c_op_list[4].dag()-1/2*(c_o
 rho_f=rho.ptrace(1)  ### State in the cavity
 print(rho)
 qutip.plot_wigner_fock_distribution(rho_f,colorbar='colorbar')
-plt.show()
+#plt.show()
 
 
 #Hamilton
@@ -280,7 +281,7 @@ plt.title("Power vs  coupling-constant")
 plt.plot(np.asarray(g_list)[:200],np.asarray(P_list)[:200],label=r' Kurve')
 
 
-plt.show()
+#plt.show()
 
 """
 
@@ -318,7 +319,6 @@ plt.show()
 
 
 
-
 #Entropy. production
 def T(omega,n):
     T=h*omega/(kb*(np.log((1/n)+1)))
@@ -336,16 +336,30 @@ for j in range(100):
     nh_list.append(nh)
     nh=nh+0.3
 """
+f=3
 nh2=0.1
 nh_list2=[]
 Entropy=[]
 for i in range(100):
     list_temp=[]
-    list_temp=Diverse_Loups.Entropy(nh2,Trans_12,a, kb,h,g,H,H_free,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_c,omega_h,omega_f)
+    list_temp=Diverse_Loups.Entropy(nh2,Trans_12,a, kb,h,g,H_free,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_f,omega_d,omega_1,omega_2,proj_2,f)
     #g_list.append(i/100)  #Erstellt eine Liste mit Wären von g 
     Entropy.append(list_temp)
-    nh2=nh2+0.3
+    nh2=nh2+0.5
     nh_list2.append(nh2)
+
+f=0
+nh2=0.1
+nh_list3=[]
+Entropy2=[]
+for i in range(100):
+    list_temp=[]
+    list_temp=Diverse_Loups.Entropy(nh2,Trans_12,a, kb,h,g,H_free,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_f,omega_d,omega_1,omega_2,proj_2,f)
+    #g_list.append(i/100)  #Erstellt eine Liste mit Wären von g 
+    Entropy2.append(list_temp)
+    nh2=nh2+0.5
+    nh_list3.append(nh2)
+
 
 #Liste von Stings in floats konvertieren
 #float_list2=list(np.float_(Energie_VS_g))
@@ -368,6 +382,10 @@ plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,0],label=r' $\frac{
 plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,1],label=r' $\frac{J_h}{T_h}$',color='green')
 plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,2],label=r' $\frac{J_c}{T_c}$',color='pink')
 plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,3],label=r' $\frac{J_{cav}}{T_{cav}}$',color='orange')
+plt.plot(np.asarray(nh_list3)[:100],np.asarray(Entropy2)[:100,0],'--',label=r' $\frac{J_h}{T_h}+\frac{J_{cav}}{T_{cav}}+\frac{J_c}{T_c}$',color='red')
+plt.plot(np.asarray(nh_list3)[:100],np.asarray(Entropy2)[:100,1],'--',label=r' $\frac{J_h}{T_h}$',color='black')
+plt.plot(np.asarray(nh_list3)[:100],np.asarray(Entropy2)[:100,2],'--',label=r' $\frac{J_c}{T_c}$',color='pink')
+plt.plot(np.asarray(nh_list3)[:100],np.asarray(Entropy2)[:100,3],'--',label=r' $\frac{J_{cav}}{T_{cav}}$',color='orange')
 legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
 legend.get_frame().set_facecolor('C0')
 #Linien in plt
@@ -378,7 +396,7 @@ plt.axvline(x=0.17)
 plt.axvline(x=20)
 plt.axvline(x=1.7)"""
 
-plt.show()
+#plt.show()
 
 ################################################################
 
@@ -403,7 +421,7 @@ ax.set_xlabel(r'$f$', fontsize=23)
 ax.set_ylabel(r' Power', fontsize=15)
 plt.title('power vs driven field-strenght')
 plt.plot(np.asarray(f_list)[:anzahl],np.asarray(P_list)[:anzahl],label=r' Kurve')
-plt.show()
+#plt.show()
 
 
 #f against power
@@ -430,7 +448,8 @@ plt.plot(np.asarray(f_list)[:anzahl],np.asarray(Energie_VS_f)[:anzahl,2],label=r
 plt.plot(np.asarray(f_list)[:anzahl],np.asarray(PundJ)[:anzahl],'*',label=r'$\hbar \frac{P+J_c+J_h+J_{cav}}{\hbar \gamma_h \omega_{h}}$')
 legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
 legend.get_frame().set_facecolor('white')
-plt.show()
+
+#plt.show()
 
 
 print(f_list)
@@ -442,12 +461,12 @@ print(f_list)
 ###############################################################################################
 
 
-f=0.3
+f=3
 g_list=[]
 g=0
 Energie_VS_g=[]
 for i in range(200):
-    g=g+1/120
+    g=g+1/12
     list_temp=[]
     list_temp=Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2)
     g_list.append(g)  #Erstellt eine Liste mit Wären von g 
@@ -455,6 +474,23 @@ for i in range(200):
 
 g=0
 P_list=Diverse_Loups.P4(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,omega_2,g,f,anzahl)
+
+f=0
+g_list=[]
+g=0
+Energie_VS_g2=[]
+for i in range(200):
+    g=g+1/12
+    list_temp=[]
+    list_temp=Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2)
+    g_list.append(g)  #Erstellt eine Liste mit Wären von g 
+    Energie_VS_g2.append(list_temp)
+
+g=0
+P_list2=Diverse_Loups.P4(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,omega_2,g,f,anzahl)
+
+
+
 print("liste von P",P_list)
 PowerPlot, ax = plt.subplots() 
 ax.set_xlabel(r' g', fontsize=23)
@@ -462,15 +498,26 @@ ax.set_ylabel(r' Power', fontsize=15)
 plt.title("Power vs  coupling-constant")
 plt.plot(np.asarray(g_list)[:200],np.asarray(P_list)[:200],label=r' Kurve')
 
+PundJ=[]
+Energie_VS_g2=np.array(Energie_VS_g2)
+P_list2=np.array(P_list)
+for i in range(anzahl):
+    PundJ.append(Energie_VS_g2[i,0]+Energie_VS_g2[i,1]+Energie_VS_g2[i,2]+P_list2[i])
 fig, ax = plt.subplots()
+
 ax.set_xlabel(r' $\frac{g}{\gamma_h}$', fontsize=23)
 ax.set_ylabel(r' Heat current', fontsize=15)
 plt.title('current/power vs g')
-plt.plot(np.asarray(f_list)[:anzahl],np.asarray(P_list)[:anzahl],'--',label=r'$ \frac{P}{\hbar \gamma_h \omega_{h}}$')
-plt.plot(np.asarray(f_list)[:anzahl],np.asarray(Energie_VS_f)[:anzahl,0],label=r' $\frac{J_h}{\hbar \gamma_h \omega_h}$')
-plt.plot(np.asarray(f_list)[:anzahl],np.asarray(Energie_VS_f)[:anzahl,1],label=r' $\frac{J_c}{\hbar\gamma_h \omega_h}$')
-plt.plot(np.asarray(f_list)[:anzahl],np.asarray(Energie_VS_f)[:anzahl,2],label=r' $\frac{J_{cav}}{\hbar\gamma_h \omega_{h}}$')
-plt.plot(np.asarray(f_list)[:anzahl],np.asarray(PundJ)[:anzahl],'*',label=r'$\hbar \frac{P+J_c+J_h+J_{cav}}{\hbar \gamma_h \omega_{h}}$')
+plt.plot(np.asarray(g_list)[:anzahl],np.asarray(P_list)[:anzahl],'.',label=r'$ \frac{P}{\hbar \gamma_h \omega_{h}}$')
+plt.plot(np.asarray(g_list)[:anzahl],np.asarray(Energie_VS_g)[:anzahl,0],label=r' $\frac{J_h}{\hbar \gamma_h \omega_h}$')
+plt.plot(np.asarray(g_list)[:anzahl],np.asarray(Energie_VS_g)[:anzahl,1],label=r' $\frac{J_c}{\hbar\gamma_h \omega_h}$')
+plt.plot(np.asarray(g_list)[:anzahl],np.asarray(Energie_VS_g)[:anzahl,2],label=r' $\frac{J_{cav}}{\hbar\gamma_h \omega_{h}}$')
+plt.plot(np.asarray(g_list)[:anzahl],np.asarray(P_list2)[:anzahl],'--',label=r'$ \frac{P}{\hbar \gamma_h \omega_{h}}$')
+plt.plot(np.asarray(g_list)[:anzahl],np.asarray(Energie_VS_g2)[:anzahl,0],'--',label=r' $\frac{J_h}{\hbar \gamma_h \omega_h}$')
+plt.plot(np.asarray(g_list)[:anzahl],np.asarray(Energie_VS_g2)[:anzahl,1],'--',label=r' $\frac{J_c}{\hbar\gamma_h \omega_h}$')
+plt.plot(np.asarray(g_list)[:anzahl],np.asarray(Energie_VS_g2)[:anzahl,2],'--',label=r' $\frac{J_{cav}}{\hbar\gamma_h \omega_{h}}$')
+
+plt.plot(np.asarray(g_list)[:anzahl],np.asarray(PundJ)[:anzahl],'*',label=r'$\hbar \frac{P+J_c+J_h+J_{cav}}{\hbar \gamma_h \omega_{h}}$')
 legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
 legend.get_frame().set_facecolor('white')
 plt.show()
@@ -478,25 +525,52 @@ plt.show()
 
 
 
-plt.show()
+
 
 
 ##############################
 #nh und power 
-f=0.3
+f=3
 nh=0
 g=14*kappa
+anzahl=150
+omega_f=30
+omega_h=100
 Energie_VS_nh=[]
-for i in range(200):
+for i in range(anzahl):
     nh=nh+1/20
     list_temp=[]
     list_temp=Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2)
-      #Erstellt eine Liste mit Wären von g 
-    Energie_VS_nh.append(list_temp)
 
+    Energie_VS_nh.append(list_temp)
+nh=0
 P_list3,nh_list3=Diverse_Loups.P5(g,H_free, Trans_12, Trans_13, Trans_23, a,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2, anzahl)
 
 print(P_list3,nh_list3)
+
+
+f=0
+nh=0
+g=14*kappa
+
+omega_f=30
+omega_h=100
+Energie_VS_nh4=[]
+for i in range(anzahl):
+    nh=nh+1/20
+    list_temp=[]
+    list_temp=Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2)
+     
+    Energie_VS_nh4.append(list_temp)
+nh=0
+P_list4,nh_list3=Diverse_Loups.P5(g,H_free, Trans_12, Trans_13, Trans_23, a,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2, anzahl)
+
+print(P_list4,nh_list3)
+PundJ=[]
+Energie_VS_nh4=np.array(Energie_VS_nh4)
+P_list2=np.array(P_list)
+for i in range(anzahl):
+    PundJ.append(Energie_VS_nh4[i,0]+Energie_VS_nh4[i,1]+Energie_VS_nh4[i,2]+P_list4[i])
 
 
 
@@ -504,11 +578,211 @@ fig, ax = plt.subplots()
 ax.set_xlabel(r' $n_h$', fontsize=23)
 ax.set_ylabel(r' Heat current', fontsize=15)
 plt.title('current/power vs n_h')
-plt.plot(np.asarray(f_list)[:anzahl],np.asarray(P_list)[:anzahl],'--',label=r'$ \frac{P}{\hbar \gamma_h \omega_{h}}$')
-plt.plot(np.asarray(f_list)[:anzahl],np.asarray(Energie_VS_nh)[:anzahl,0],label=r' $\frac{J_h}{\hbar \gamma_h \omega_h}$')
-plt.plot(np.asarray(f_list)[:anzahl],np.asarray(Energie_VS_nh)[:anzahl,1],label=r' $\frac{J_c}{\hbar\gamma_h \omega_h}$')
-plt.plot(np.asarray(f_list)[:anzahl],np.asarray(Energie_VS_nh)[:anzahl,2],label=r' $\frac{J_{cav}}{\hbar\gamma_h \omega_{h}}$')
-plt.plot(np.asarray(f_list)[:anzahl],np.asarray(PundJ)[:anzahl],'*',label=r'$\hbar \frac{P+J_c+J_h+J_{cav}}{\hbar \gamma_h \omega_{h}}$')
+plt.plot(np.asarray(nh_list3)[:anzahl],np.asarray(P_list3)[:anzahl],label=r'$ \frac{P}{\hbar \gamma_h \omega_{h}}$')
+plt.plot(np.asarray(nh_list3)[:anzahl],np.asarray(Energie_VS_nh)[:anzahl,0],label=r' $\frac{J_h}{\hbar \gamma_h \omega_h}$')
+plt.plot(np.asarray(nh_list3)[:anzahl],np.asarray(Energie_VS_nh)[:anzahl,1],label=r' $\frac{J_c}{\hbar\gamma_h \omega_h}$')
+plt.plot(np.asarray(nh_list3)[:anzahl],np.asarray(Energie_VS_nh)[:anzahl,2],label=r' $\frac{J_{cav}}{\hbar\gamma_h \omega_{h}}$')
+plt.plot(np.asarray(nh_list3)[:anzahl],np.asarray(PundJ)[:anzahl],'*',label=r'$\hbar \frac{P+J_c+J_h+J_{cav}}{\hbar \gamma_h \omega_{h}}$')
+plt.plot(np.asarray(nh_list3)[:anzahl],np.asarray(P_list4)[:anzahl],'--',label=r'$ \frac{P}{\hbar \gamma_h \omega_{h}}$')
+plt.plot(np.asarray(nh_list3)[:anzahl],np.asarray(Energie_VS_nh4)[:anzahl,0],'--',label=r' $\frac{J_h}{\hbar \gamma_h \omega_h}$')
+plt.plot(np.asarray(nh_list3)[:anzahl],np.asarray(Energie_VS_nh4)[:anzahl,1],'--',label=r' $\frac{J_c}{\hbar\gamma_h \omega_h}$')
+plt.plot(np.asarray(nh_list3)[:anzahl],np.asarray(Energie_VS_nh4)[:anzahl,2],'--',label=r' $\frac{J_{cav}}{\hbar\gamma_h \omega_{h}}$')
+
+
 legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
 legend.get_frame().set_facecolor('white')
+
+
+
+
+#legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
+#legend.get_frame().set_facecolor('C0')
+#Linien in plt
+'''plt.axvline(x=2.6)
+plt.axvline(x=2.6)
+plt.axvline(x=5.5)
+plt.axvline(x=0.17)
+plt.axvline(x=20)
+plt.axvline(x=1.7)
 plt.show()
+'''
+
+#Just J_cav
+
+
+
+step=1
+nh_list4=[]
+for i in range(200):
+    nh_list4.append(nh)
+    nh+=step
+    
+f=3
+nh=0
+g=14*kappa
+anzahl=200
+omega_f=30
+omega_h=100
+Energie_VS_nh=[]
+for i in range(anzahl):
+    nh=nh+step
+    list_temp=[]
+    list_temp=Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2)
+      #Erstellt eine Liste mit Wären von g 
+    Energie_VS_nh.append(list_temp)
+    Energie_VS_nh=Energie_VS_nh
+
+P_list3,nh_list3=Diverse_Loups.P5(g,H_free, Trans_12, Trans_13, Trans_23, a,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2, anzahl)
+
+print(P_list3,nh_list3)
+
+f=0
+nh=0
+Energie_VS_nh2=[]
+for i in range(anzahl):
+    nh=nh+step
+    list_temp2=[]
+    list_temp2=Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2)
+      #Erstellt eine Liste mit Wären von g 
+    Energie_VS_nh2.append(list_temp2)
+    Energie_VS_nh2=Energie_VS_nh2
+
+
+
+fig, ax = plt.subplots()
+ax.set_xlabel(r' $n_h$', fontsize=23)
+ax.set_ylabel(r' Heat current', fontsize=15)
+plt.title(r' current $J_{cav}$ VS $n_h$ Doble threshold behaviour')
+plt.plot(np.asarray(nh_list4)[:anzahl],np.asarray(Energie_VS_nh)[:anzahl,2],label=r' $\frac{J_{cav}}{\hbar\gamma_h \omega_{h}}$')
+plt.plot(np.asarray(nh_list4)[:anzahl],np.asarray(Energie_VS_nh2)[:anzahl,2],'--',label=r' $\frac{J_{cav}}{\hbar\gamma_h \omega_{h}}$')
+
+
+
+print('Dichtematrix von nh=0',DichteMatrix(0,0.02,0.02,Hdilde))
+plt.show()
+ 
+
+
+
+#photon number
+nh_list=[]
+Trace_list=[]
+nh=0.1 #set nh again to zero
+for j in range(100):
+    Trace_list_temp=Diverse_Loups.ProjectorP(nh,proj_1,proj_2,proj_3,Hdilde,nc,nf,gamma_h,gamma_c,kappa,A1,A2,A3,A4,A5,A6)
+    Trace_list.append(Trace_list_temp)
+
+    nh_list.append(nh)
+    nh=nh+0.3
+
+fig2, ax = plt.subplots()
+ax.set_xlabel(r' $n_h$', fontsize=21)
+ax.set_ylabel('probability')
+plt.title('stationary atomic population')
+plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,0],label='P1')
+plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,1],label='P2')
+plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,2],label='P3')
+legend = ax.legend(loc='center right', shadow=True, fontsize='x-large')
+legend.get_frame().set_facecolor('C0')
+
+plt.show()
+
+
+
+
+        
+ncav=0.0
+nc=0.0
+kappa=0.028
+g=14*kappa
+gamma=1
+gamma_h=gamma_c=1
+nh = np.linspace(0, 80, 100)
+f=0.1
+nh2=0
+nh_list2=[]
+Photonnumber_list2=[]
+for i in range(200):
+    list_temp=[]
+    list_temp=Diverse_Loups.Photonnumber(nh2,a,proj_1,proj_2,proj_3,Hdilde,nc,nf,gamma_h,gamma_c,kappa,A1,A2,A3,A4,A5,A6,omega_d,omega_f,omega_1,omega_2,H_int,f)
+    #g_list.append(i/100)  #Erstellt eine Liste mit Wären von g 
+    Photonnumber_list2.append(list_temp)
+    nh2=nh2+0.8
+    nh_list2.append(nh2)
+
+Photonnumber_list2[0]=0
+f=0
+nh2=0
+nh_list2=[]
+Photonnumber_list=[]
+for i in range(200):
+    list_temp=[]
+    list_temp=Diverse_Loups.Photonnumber(nh2,a,proj_1,proj_2,proj_3,Hdilde,nc,nf,gamma_h,gamma_c,kappa,A1,A2,A3,A4,A5,A6,omega_d,omega_f,omega_1,omega_2,H_int,f)
+    #g_list.append(i/100)  #Erstellt eine Liste mit Wären von g 
+    Photonnumber_list.append(list_temp)
+    nh2=nh2+0.8
+    nh_list2.append(nh2)
+
+
+fig4, ax = plt.subplots()
+ax.set_xlabel(r' $n_h$', fontsize=21)
+ax.set_ylabel(r' $\langle n \rangle$', fontsize=21)
+plt.title(r' Photonnumber vs $n_h$',fontsize=21)
+#plt.plot(np.asarray(nh_list2)[:100],np.asarray(Photonnumber_list)[:100],color='red',label='f=1')
+plt.plot(np.asarray(nh_list2)[:100],np.asarray(Photonnumber_list2)[:100],'--',color='orange',label='numerical')
+
+plt.plot(nh, Diverse_Loups.N_Analytic2(gamma,kappa,g,nh,ncav,nc),color='red',label='analytical')
+legend = ax.legend(loc='center right', shadow=True, fontsize='x-large')
+legend.get_frame().set_facecolor('C0')
+
+
+plt.show()
+
+
+Delta1=Delta2=0
+gamma_h = gamma_c = 1
+g = 0.5
+nc = ncav = 0.0
+kappa = 0.2
+
+
+Delta1=0
+Delta2=0
+anzahl=100
+nh=0.001
+nc=ncav=0
+n_list=[]
+nh_list=[]
+f=0
+Photonnumber_list=[]
+nh2 = np.linspace(0, 70, 100)
+for i in range(anzahl):
+    n_list.append(np.abs(Diverse_Loups.EquationOfMotion2(Delta1 , Delta2 , f , nh, ncav , nc, gamma_c, gamma_h, g , kappa)))
+    nh_list.append(nh)
+    
+    
+    ist_temp=[]
+    list_temp=Diverse_Loups.Photonnumber2(nh,a,proj_1,proj_2,proj_3,Trans_12,nc,ncav,gamma_h,gamma_c,kappa,A1,A2,A3,A4,A5,A6,omega_d,omega_f,omega_1,omega_2,f,g)
+    #g_list.append(i/100)  #Erstellt eine Liste mit Wären von g 
+    Photonnumber_list.append(list_temp)
+    print(n_list[i],Photonnumber_list[i])
+    nh=nh+0.7
+    
+    
+    
+
+fig4, ax = plt.subplots()
+ax.set_xlabel(r' $n_h$', fontsize=21)
+ax.set_ylabel(r' $\langle n \rangle$', fontsize=21)
+plt.title(r' Photonnumber vs $n_h$',fontsize=21)
+#plt.plot(np.asarray(nh_list2)[:100],np.asarray(Photonnumber_list)[:100],color='red',label='f=1')
+plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Photonnumber_list)[:anzahl],color='orange',label='numerical')
+plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(n_list)[:anzahl],'--',color='black',label=r'solving equuation of motion numericaly')
+plt.plot(nh2, Diverse_Loups.N_Analytic2(gamma_h,kappa,g,nh2,ncav,nc),color='red',label='analytical')
+plt.show()    
+print(n_list,nh)
+legend = ax.legend(loc='center right', shadow=True, fontsize='x-large')
+legend.get_frame().set_facecolor('C0')
+
+plt.show()    
+print(n_list,nh)

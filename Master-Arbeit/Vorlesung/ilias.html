@@ -1,0 +1,3298 @@
+<!DOCTYPE html>
+<html lang="de" dir="ltr">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	
+
+	<title>ADAM: Handwritten notes</title>
+
+	<style>
+		.il-logo .hidden-xs img { width: 160px;}
+.il-logo img.img-standard { width: 160px;}
+
+            @media (max-width: 767px) {
+                .il-logo, .il-logo img.img-standard {
+                    width: 45px !important;
+                }
+            }
+            
+
+            div.header-inner {
+                background-color: rgb(165, 215, 210);
+            }
+            div.breadcrumbs, nav.breadcrumb_wrapper {
+                background-color: rgb(165, 215, 210);
+                border-color: rgb(165, 215, 210);
+            }
+            div.breadcrumbs, nav.breadcrumb_wrapper a, span.crumb, span.crumb a {
+                color: black !important;
+            }
+            div.il-pagetitle {
+                color: black;
+            }
+            
+
+            footer, div.il-maincontrols-footer {
+                background-color: rgb(45, 55, 60) !important;
+                color: #F6F6F6;
+            }
+            
+            .il-maincontrols-footer .il-footer-links li a {
+                color: #F6F6F6 !important;
+            }
+           
+            
+
+                
+            nav.il-mainbar, div.il-mainbar-triggers, .il-mainbar-triggers .btn-bulky, .il-mainbar-triggers .btn-bulky, .il-mainbar-triggers .il-link.link-bulky {
+                background-color: rgb(45, 55, 60) !important;
+                color: white !important;
+            }
+            // Round Menu (disbaled, needs setting)
+            .il-mainbar-triggers .btn-bulky, .il-mainbar-triggers .btn-bulky, .il-mainbar-triggers .il-link.link-bulky {
+//                border-radius: 50%;
+//                border: 0px solid white !important;
+//                margin-bottom: 3px
+            }
+ 
+            .il-mainbar-triggers .btn-bulky:hover, .il-mainbar-triggers .il-link.link-bulky:hover,
+            .il-mainbar-triggers .btn-bulky.engaged, .il-mainbar-triggers .il-link.link-bulky.engaged {
+                background-color: white !important;
+                color: rgb(45, 55, 60) !important;
+            }
+
+            .il-maincontrols-slate .btn-bulky, .il-maincontrols-slate .link-bulky {
+                background-color: #f2f2f2 !important;
+            }
+            
+            .il-maincontrols-slate .btn-bulky:hover, .il-maincontrols-slate .link-bulky:hover,
+            .il-maincontrols-slate .btn-bulky.engaged, .il-maincontrols-slate .link-bulky.engaged {
+                background-color: rgba(76, 101, 134, 0.3) !important;
+            }
+           
+            .il-maincontrols-slate.engaged[data-depth-level="2"] .btn-bulky,
+            .il-maincontrols-slate.engaged[data-depth-level="2"] .link-bulky {
+                padding-left: 35px;
+            }
+         
+            .il-mainbar-tools-button .btn-bulky {
+                background-color: rgb(181, 79, 0) !important;
+            }
+            .il-mainbar-tools-button .btn-bulky.engaged {
+                background-color: white !important;
+            }
+            
+	</style>
+
+	
+	<link rel="stylesheet" type="text/css" href="./node_modules/qtip2/dist/jquery.qtip.min.css?version=7_22" />
+	
+	<link rel="stylesheet" type="text/css" href="./libs/bower/bower_components/yui2/build/container/assets/skins/sam/container.css?version=7_22" />
+	
+	<link rel="stylesheet" type="text/css" href="./Services/Calendar/css/panel_min.css?version=7_22" />
+	
+	<link rel="stylesheet" type="text/css" href="./node_modules/mediaelement/build/mediaelementplayer.min.css?version=7_22" />
+	
+	<link rel="stylesheet" type="text/css" href="Services/Notifications/templates/default/osd.css?version=7_22" />
+	
+	<link rel="stylesheet" type="text/css" href="./templates/default/delos.css?skin_version=$Id$&version=7_22" />
+	
+	<link rel="stylesheet" type="text/css" href="./templates/default/delos_cont.css?version=7_22" />
+	
+	<link rel="stylesheet" type="text/css" href="./node_modules/jstree/dist/themes/default/style.min.css?version=7_22" />
+	
+	<link rel="stylesheet" type="text/css" href="./Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/SrUI/templates/cards_77.css?version=7_22" />
+	
+
+	
+	<script src="./node_modules/jquery/dist/jquery.js?version=7_22"></script>
+	
+	<script src="./node_modules/jquery-migrate/dist/jquery-migrate.min.js?version=7_22"></script>
+	
+	<script src="./node_modules/jquery-ui-dist/jquery-ui.js?version=7_22"></script>
+	
+	<script src="./node_modules/bootstrap/dist/js/bootstrap.min.js?version=7_22"></script>
+	
+	<script src="./Services/JavaScript/js/Basic.js?version=7_22"></script>
+	
+	<script src="./src/UI/templates/js/Core/ui.js?version=7_22"></script>
+	
+	<script src="./src/GlobalScreen/Client/dist/GS.js?version=7_22"></script>
+	
+	<script src="./node_modules/maphilight/jquery.maphilight.min.js?version=7_22"></script>
+	
+	<script src="./src/UI/templates/js/Button/button.js?version=7_22"></script>
+	
+	<script src="./node_modules/moment/min/moment-with-locales.min.js?version=7_22"></script>
+	
+	<script src="./node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js?version=7_22"></script>
+	
+	<script src="./src/UI/templates/js/Page/stdpage.js?version=7_22"></script>
+	
+	<script src="./src/UI/templates/js/MainControls/dist/mainbar.js?version=7_22"></script>
+	
+	<script src="./src/UI/templates/js/MainControls/metabar.js?version=7_22"></script>
+	
+	<script src="./src/UI/templates/js/MainControls/footer.js?version=7_22"></script>
+	
+	<script src="./src/UI/templates/js/MainControls/system_info.js?version=7_22"></script>
+	
+	<script src="./src/UI/templates/js/Counter/counter.js?version=7_22"></script>
+	
+	<script src="./src/UI/templates/js/MainControls/slate.js?version=7_22"></script>
+	
+	<script src="./src/UI/templates/js/Item/notification.js?version=7_22"></script>
+	
+	<script src="./src/UI/templates/js/Dropdown/dropdown.js?version=7_22"></script>
+	
+	<script src="./Services/Container/js/Container.js?version=7_22"></script>
+	
+	<script src="./libs/bower/bower_components/yui2/build/yahoo-dom-event/yahoo-dom-event.js?version=7_22"></script>
+	
+	<script src="./libs/bower/bower_components/yui2/build/connection/connection-min.js?version=7_22"></script>
+	
+	<script src="./Services/UIComponent/AdvancedSelectionList/js/AdvancedSelectionList.js?version=7_22"></script>
+	
+	<script src="./node_modules/qtip2/dist/jquery.qtip.min.js?version=7_22"></script>
+	
+	<script src="./Services/UIComponent/Tooltip/js/ilTooltip.js?version=7_22"></script>
+	
+	<script src="./libs/bower/bower_components/jquery-mousewheel/jquery.mousewheel.js?version=7_22"></script>
+	
+	<script src="./Services/Preview/js/ilPreview.js?version=7_22"></script>
+	
+	<script src="./Services/UIComponent/Modal/js/Modal.js?version=7_22"></script>
+	
+	<script src="./libs/bower/bower_components/yui2/build/container/container-min.js?version=7_22"></script>
+	
+	<script src="./Services/Notes/js/ilNotes.js?version=7_22"></script>
+	
+	<script src="./Services/Tagging/js/ilTagging.js?version=7_22"></script>
+	
+	<script src="./libs/bower/bower_components/yui2/build/yahoo/yahoo-min.js?version=7_22"></script>
+	
+	<script src="./libs/bower/bower_components/yui2/build/cookie/cookie.js?version=7_22"></script>
+	
+	<script src="./Services/Authentication/js/session_reminder.js?version=7_22"></script>
+	
+	<script src="./node_modules/mediaelement/build/mediaelement-and-player.min.js?version=7_22"></script>
+	
+	<script src="./Services/MediaObjects/js/MediaElementHelper.js?version=7_22"></script>
+	
+	<script src="Services/Notifications/templates/default/notifications.js?version=7_22"></script>
+	
+	<script src="./Services/UIComponent/Explorer2/js/Explorer2.js?version=7_22"></script>
+	
+	<script src="./node_modules/jstree/dist/jstree.js?version=7_22"></script>
+	
+	<script src="./libs/bower/bower_components/yui2/build/container/container_core-min.js?version=7_22"></script>
+	
+	<script src="./Services/UIComponent/Overlay/js/ilOverlay.js?version=7_22"></script>
+	
+	<script src="./Services/Help/js/ilHelp.js?version=7_22"></script>
+	
+	<script src="./Services/Accordion/js/accordion.js?version=7_22"></script>
+	
+	<script src="./Services/COPage/js/ilCOPagePres.js?version=7_22"></script>
+	
+	<script src="./Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/UserTakeOver/node_modules/@varvet/tiny-autocomplete/src/tiny-autocomplete.js?version=7_22"></script>
+	
+	<script src="./Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/UserTakeOver/js/dist/main.js?version=7_22"></script>
+	
+
+    
+</head>
+
+<body>
+
+	<div class="il-layout-page">
+
+		<header>
+			<div class="header-inner">
+				<div class="il-logo">
+					<span class="hidden-xs">
+<a href="https://www.unibas.ch/">
+
+
+
+<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIEZpcmV3b3JrcyAxMCwgRXhwb3J0IFNWRyBFeHRlbnNpb24gYnkgQWFyb24gQmVhbGwgKGh0dHA6Ly9maXJld29ya3MuYWJlYWxsLmNvbSkgLiBWZXJzaW9uOiAwLjYuMSAgLS0+DQo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPg0KPHN2ZyBpZD0idW5pLWJhc2VsLWxvZ28tU2VpdGUlMjAxIiB2aWV3Qm94PSIwIDAgMjM2IDc1IiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmMDAiIHZlcnNpb249IjEuMSINCgl4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWw6c3BhY2U9InByZXNlcnZlIg0KCXg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjM2cHgiIGhlaWdodD0iNzVweCINCj4NCgk8ZyBpZD0iRWJlbmVfMV8xIj4NCgkJPGc+DQoJCQk8cGF0aCBkPSJNIDE1OS43NTIgNTEuOTk3MSBMIDE1Ni4yNjU2IDUxLjk5NzEgTCAxNTYuMjY1NiA3NC41ODk4IEwgMTU5Ljc1MiA3NC41ODk4IEwgMTU5Ljc1MiA1MS45OTcxIEwgMTU5Ljc1MiA1MS45OTcxIFpNIDE0My4wMDQ5IDY1LjIxMzkgQyAxNDMuMDY2NCA2NC43NzM0IDE0My4xMjQgNjQuMzMzIDE0My4yNjk1IDYzLjg5MjYgQyAxNDMuNDQ1MyA2My4zMzc5IDE0NC4zMjYyIDYxLjE2ODkgMTQ2LjU4MiA2MS4xNDA2IEMgMTQ2LjkwNDMgNjEuMTQwNiAxNDcuNTc5MSA2MS4xOTczIDE0OC4zMTA1IDYxLjY2NiBDIDE0OS42MzA5IDYyLjQ4NjMgMTQ5LjgzNCA2My43NDcxIDE0OS45MjM4IDY1LjE4MzYgTCAxNDMuMDA0OSA2NS4yMTM5IFpNIDE1My41MjczIDY3LjE0ODQgQyAxNTMuNDk4IDY2LjU2MDUgMTUzLjU4NSA2NC40NTAyIDE1Mi43MDQxIDYyLjYzNDggQyAxNTEuMTIzIDU5LjQzOTUgMTQ3LjcyMjcgNTkuMTQ4NCAxNDYuNjY5OSA1OS4xNDg0IEMgMTQ1LjcwMTIgNTkuMTQ4NCAxNDMuMDAzOSA1OS4zODE4IDE0MS4wOTk2IDYxLjY0MDYgQyAxMzkuMzQyOCA2My43MTg4IDEzOS4yMjQ2IDY2LjM4NDggMTM5LjIyNDYgNjcuMjM2MyBDIDEzOS4yMjQ2IDcwLjg3MDEgMTQxLjA5OTYgNzIuNzczNCAxNDIuMzAxOCA3My41OTM4IEMgMTQzLjEyMjEgNzQuMTc3NyAxNDQuNzYwNyA3NC45NzA3IDE0Ny4yNTI5IDc1IEMgMTQ5LjE4NzUgNzUgMTUwLjYyNCA3NC41MzEzIDE1MS4yOTY5IDc0LjI5NzkgQyAxNTIuMDU4NiA3NC4wMDM5IDE1Mi43MDIxIDczLjY1MjMgMTUyLjk2NjggNzMuNTA0OSBMIDE1Mi45NjY4IDcwLjU0NjkgQyAxNTIuMjkzOSA3MS4xODk1IDE1Mi4wNTg2IDcxLjQyNzcgMTUxLjY0ODQgNzEuNzE4OCBDIDE1MC4xNTIzIDcyLjgzMiAxNDguNzc1NCA3Mi45NDczIDE0OC4wMTM3IDcyLjk0NzMgQyAxNDYuNzgzMiA3Mi45NDczIDE0NS4zNzYgNzIuNTY4NCAxNDQuNDk4IDcxLjY4OTUgQyAxNDMuMzg0OCA3MC42MzQ4IDE0My4wNjI1IDY5LjAyMzQgMTQyLjk3NDYgNjguNjExMyBDIDE0Mi44ODQ4IDY4LjA4NSAxNDIuODg0OCA2Ny43MDUxIDE0Mi44NTU1IDY3LjE0ODQgTCAxNTMuNTI3MyA2Ny4xNDg0IFpNIDEyNy41NjQ1IDcwLjgxMDUgTCAxMjcuNTM2MSA3NC4xNTA0IEMgMTI4LjI5NzkgNzQuNDQzNCAxMjkuNTI3MyA3NC45NzA3IDEzMS40OTMyIDc1LjAwMSBDIDEzMy43NDkgNzUuMDAxIDEzNC45MjE5IDc0LjI5ODggMTM1LjcxMTkgNzMuNjI0IEMgMTM3LjIwNjEgNzIuMzA0NyAxMzcuMzI0MiA3MC43MjI3IDEzNy4zMjQyIDY5Ljk2MDkgQyAxMzcuMzI0MiA2OS40MzM2IDEzNy4yMDYxIDY3LjkxMTEgMTM1LjkxNiA2Ni44NTM1IEMgMTM1LjA2ODQgNjYuMTU0MyAxMzMuODM1OSA2NS43NzE1IDEzMi44MTA1IDY1LjM2MTMgQyAxMzEuOTAyMyA2NS4wMDg4IDEzMS40MzM2IDY0Ljc0NzEgMTMxLjA4MiA2NC40MjI5IEMgMTMwLjczMDUgNjQuMTI5OSAxMzAuNTIzNCA2My42NjIxIDEzMC41MjM0IDYzLjE2MzEgQyAxMzAuNTIzNCA2Mi45Mjc3IDEzMC41ODMgNjIuNDMxNiAxMzAuOTYyOSA2MS45NjA5IEMgMTMxLjYzODcgNjEuMTcwOSAxMzIuOTU2MSA2MS4xMTEzIDEzMy4xNjExIDYxLjExMTMgQyAxMzQuMTg3NSA2MS4xMTEzIDEzNS4wMzYxIDYxLjUyMzQgMTM1LjgyNzEgNjIuMTM2NyBDIDEzNi4wOTE4IDYyLjMxMjUgMTM2LjMyODEgNjIuNDg2MyAxMzYuNTYwNSA2Mi42OTM0IEwgMTM2LjU2MDUgNTkuNzM0NCBDIDEzNS4zOTA2IDU5LjM1MTYgMTM0LjUwOTggNTkuMTIwMSAxMzMuMjc5MyA1OS4xMjAxIEMgMTMyLjQ2IDU5LjEyMDEgMTMxLjY5NTMgNTkuMjM0NCAxMzEuNDA0MyA1OS4yOTQ5IEMgMTMwLjQ2NTggNTkuNDk5IDEyOS44NDk2IDU5LjgyMDMgMTI5LjUyNzMgNjAuMDI5MyBDIDEyOC4yNDEyIDYwLjg3NzkgMTI3LjQxOTkgNjIuNDAwNCAxMjcuNDE5OSA2My45MjU4IEMgMTI3LjQxOTkgNjQuMzYxMyAxMjcuNTA2OCA2NS42NTIzIDEyOC40MTYgNjYuNjIwMSBDIDEyOS4yOTQ5IDY3LjU1ODYgMTMwLjkwNjMgNjguMDU0NyAxMzEuMTM4NyA2OC4xNDQ1IEMgMTMyLjM3MTEgNjguNTU0NyAxMzQuMjE2OCA2OS4wODExIDEzNC4yMTY4IDcwLjcyMDcgQyAxMzQuMjE2OCA3MC45Mjc3IDEzNC4xODc1IDcxLjM2NTIgMTMzLjg2NjIgNzEuODA2NiBDIDEzMy41NDMgNzIuMjQ1MSAxMzIuOTI5NyA3Mi44NjEzIDEzMS42Mzg3IDcyLjg2MTMgQyAxMjkuNzYzNyA3Mi44NjEzIDEyOC40MTUgNzEuNzE4OCAxMjguMDAzOSA3MS4zMzc5IEwgMTI3LjU2NDUgNzAuODEwNSBaTSAxMjEuMDgwMSA3Mi4wNDEgQyAxMTkuNjExMyA3Mi41NCAxMTkuMDI5MyA3Mi42MjcgMTE4LjIwNyA3Mi42MjcgQyAxMTcuODU1IDcyLjY1NjMgMTE2LjkxNyA3Mi41OTU3IDExNi4wMDg4IDcyLjE4OTUgQyAxMTMuOTU4IDcxLjI1MSAxMTMuNjkzOCA2OS4wODAxIDExMy42MDY5IDY4LjQwNjMgQyAxMTMuNDkwMiA2Ny43MDUxIDExMy40OTAyIDY3LjExNTIgMTEzLjQ5MDIgNjYuODI0MiBDIDExMy40OTAyIDY2LjMyNjIgMTEzLjQ5MDIgNjMuMTAxNiAxMTUuNzQ3MSA2MS42Mzg3IEMgMTE2LjYyNSA2MS4wODAxIDExNy40NzYxIDYwLjk5MzIgMTE3Ljg1NSA2MC45OTMyIEMgMTE5Ljc4ODEgNjAuOTkzMiAxMjAuNjA5NCA2Mi4zMzk4IDEyMC44NDM4IDYyLjk4NjMgQyAxMjEuMDgwMSA2My41OTc3IDEyMS4wODAxIDY0LjMwNDcgMTIxLjA4MDEgNjQuNTA4OCBMIDEyMS4wODAxIDcyLjA0MSBaTSAxMjQuNTA4OCA1OS4zNTE2IEwgMTIyLjYzMjggNjAuNDYzOSBDIDEyMC4wNTI3IDU5LjQxMzEgMTE5LjIwNDEgNTkuMTQ2NSAxMTcuNjgwMiA1OS4xNDY1IEMgMTE0Ljc3ODggNTkuMTQ2NSAxMTIuMDIzOSA2MC42NDI2IDExMC43MzQ5IDYzLjI0OCBDIDEwOS45NDI5IDY0Ljg2MzMgMTA5Ljg4NjIgNjYuNTMxMyAxMDkuODg2MiA2Ny4xMTcyIEMgMTA5Ljg4NjIgNjkuMTExMyAxMTAuNTYwMSA3MC41NDY5IDExMC45MDkyIDcxLjIxODggQyAxMTEuNDEwMiA3Mi4wNzAzIDExMS45NjU4IDcyLjYyNyAxMTIuMjI5IDcyLjg5MDYgQyAxMTQuMTYyMSA3NC41NjI1IDExNi41NjY5IDc0LjUzMzIgMTE3LjM1NjkgNzQuNTYyNSBDIDExNy44ODQ4IDc0LjU4OTggMTE4LjM4MTggNzQuNTg5OCAxMTguODgwOSA3NC41ODk4IEwgMTI0LjUwNzggNzQuNTg5OCBMIDEyNC41MDc4IDU5LjM1MTYgTCAxMjQuNTA4OCA1OS4zNTE2IFpNIDk3LjEyNyA1Ni4zMzUgQyA5Ny41NjY5IDU2LjA5NzcgOTguMjk3OSA1NS43NDcxIDk5LjUgNTUuNzQ3MSBDIDEwMS4xMTI4IDU1Ljc0NzEgMTAyLjgxMSA1Ni40NTMxIDEwMy42MDExIDU3LjkxNiBDIDEwMy43MjEyIDU4LjEyMTEgMTAzLjk4MzkgNTguNjE5MSAxMDMuOTgzOSA1OS4yOTM5IEMgMTAzLjk4MzkgNjAuNDA4MiAxMDMuMTY1IDYxLjI4NjEgMTAyLjk4NzggNjEuNDkwMiBDIDEwMi4yMjYxIDYyLjMzOTggMTAxLjE3MDkgNjMuMTYxMSAxMDEuMTcwOSA2NC4zMDQ3IEMgMTAxLjE3MDkgNjQuNjU2MyAxMDEuMjU3OCA2NC45NzY2IDEwMS40MzQxIDY1LjMwMDggQyAxMDEuNTUwOCA2NS40NzY2IDEwMS43ODYxIDY1LjgwMDggMTAyLjE2NiA2Ni4xNzk3IEMgMTAzLjEwNCA2Ny4wNjA1IDEwNC4zMzQgNjcuNzg5MSAxMDQuMzM0IDY5LjIyODUgQyAxMDQuMzM0IDcwLjA3NjIgMTA0LjAxMzIgNzAuODY4MiAxMDMuNDI0OCA3MS40ODA1IEMgMTAyLjU0NzkgNzIuNDUwMiAxMDEuMjg3MSA3Mi43NDMyIDEwMC4wMjc4IDcyLjc0MzIgQyA5OC41ODk4IDcyLjc0MzIgOTcuNzQyMiA3Mi40MTg5IDk3LjE1MzggNzIuMjQ1MSBMIDk3LjEyNyA1Ni4zMzUgWk0gOTMuNTUxOCA3NC41ODk4IEwgMTAwLjAyODggNzQuNTg5OCBDIDEwMS40OTQxIDc0LjU2MjUgMTAyLjEwNzkgNzQuNDcyNyAxMDIuODQxOCA3NC4yOTc5IEMgMTA1LjUwNjggNzMuNjUyMyAxMDYuODI1MiA3MS44NjUyIDEwNy4yNjUxIDcwLjkyNzcgQyAxMDcuNzA1MSA2OS45ODgzIDEwNy43MzM5IDY5LjA4MTEgMTA3LjczMzkgNjguNzI4NSBDIDEwNy43MzM5IDY2LjgyNTIgMTA2LjkxNSA2NS44MjgxIDEwNi4zODQ4IDY1LjI3MTUgQyAxMDYuMTIzIDY1LjAzOTEgMTA1Ljg1NzkgNjQuODAyNyAxMDUuNTkyOCA2NC41MzkxIEwgMTA0LjQ1MjEgNjMuNDg0NCBDIDEwNS42NTM4IDYyLjE5MzQgMTA2LjkxNDEgNjAuODc3IDEwNi45MTQxIDU5LjAwMiBDIDEwNi45MTQxIDU4LjQ0MTQgMTA2Ljc2NzEgNTcuMzAwOCAxMDUuODI5MSA1Ni4xMjg5IEMgMTA0LjE4NyA1NC4wMTk1IDEwMS45NjA5IDUzLjkzMTYgMTAxLjAyMjkgNTMuOTAwNCBDIDEwMC42MTE4IDUzLjg3MjEgMTAwLjE2OTkgNTMuODcyMSA5OS43NjIyIDUzLjkwMDQgTCA5My41NDk4IDUzLjkwMDQgTCA5My41NDk4IDc0LjU4OTggTCA5My41NTE4IDc0LjU4OTggWiIgZmlsbD0iIzAwMDAwMCIvPg0KCQkJPHBhdGggZD0iTSAyMzUuMDkzOCAyOS43NzQ5IEwgMjMyLjQ1NyAyOS43NzQ5IEwgMjMyLjQ1NyAyNC42MjAxIEMgMjMyLjQ1NyAyNC4yNjcxIDIzMi40ODI0IDIzLjcxMDkgMjMxLjk4NjMgMjMuNzEwOSBDIDIzMS44NjkxIDIzLjcxMDkgMjMxLjY2NSAyMy43NjgxIDIzMS41NzcxIDIzLjgyODEgQyAyMzEuNDMxNiAyMy45NDQ4IDIzMS40MDA0IDI0LjE4MDIgMjMxLjM3MjEgMjQuNTYxIEMgMjMxLjE2OCAyNS45MDU4IDIzMC43ODYxIDI3LjIyOSAyMjkuOTA3MiAyOC4yNTIgQyAyMjguNzA1MSAyOS43MTkyIDIyNy40MTYgMjkuNzQ3MSAyMjYuNjUyMyAyOS44MDYyIEwgMjI2LjY1MjMgMzIuMTIwMSBMIDIyOC45Mzk1IDMyLjEyMDEgTCAyMjguOTM5NSA0NC44Mzc5IEwgMjMyLjQ1NyA0NC44Mzc5IEwgMjMyLjQ1NyAzMi4xMjExIEwgMjM1LjA5MzggMzIuMTIxMSBMIDIzNS4wOTM4IDI5Ljc3NDkgTCAyMzUuMDkzOCAyOS43NzQ5IFpNIDIyMS4yMTQ4IDQyLjI4NzEgQyAyMTkuNzUxIDQyLjc4OTEgMjE5LjE2NDEgNDIuODc1IDIxOC4zNDM4IDQyLjg3NSBDIDIxNy45OTMyIDQyLjkwNDMgMjE3LjA1NjYgNDIuODQzOCAyMTYuMTQ2NSA0Mi40MzM2IEMgMjE0LjA5NTcgNDEuNDk3MSAyMTMuODMzIDM5LjMyNzEgMjEzLjc0NDEgMzguNjU0MyBDIDIxMy42Mjc5IDM3Ljk1NDEgMjEzLjYyNzkgMzcuMzY0NyAyMTMuNjI3OSAzNy4wNzE4IEMgMjEzLjYyNzkgMzYuNTc1MiAyMTMuNjI3OSAzMy4zNTAxIDIxNS44ODM4IDMxLjg4NjIgQyAyMTYuNzYzNyAzMS4zMjkxIDIxNy42MTMzIDMxLjI0MDcgMjE3Ljk5NDEgMzEuMjQwNyBDIDIxOS45MjY4IDMxLjI0MDcgMjIwLjc0NzEgMzIuNTg3OSAyMjAuOTgyNCAzMy4yMzE5IEMgMjIxLjIxNDggMzMuODQ2MiAyMjEuMjE0OCAzNC41NTIyIDIyMS4yMTQ4IDM0Ljc1NTkgTCAyMjEuMjE0OCA0Mi4yODcxIFpNIDIyNC42NDQ1IDI5LjYwMTEgTCAyMjIuNzY5NSAzMC43MTM5IEMgMjIwLjE5MTQgMjkuNjU5MiAyMTkuMzM5OCAyOS4zOTYgMjE3LjgxODQgMjkuMzk2IEMgMjE0LjkxNiAyOS4zOTYgMjEyLjE2MjEgMzAuODg5MiAyMTAuODczIDMzLjQ5NzEgQyAyMTAuMDgyIDM1LjEwODkgMjEwLjAyMzQgMzYuNzc5OCAyMTAuMDIzNCAzNy4zNjYyIEMgMjEwLjAyMzQgMzkuMzYxMyAyMTAuNjk1MyA0MC43OTQ5IDIxMS4wNDg4IDQxLjQ3MDcgQyAyMTEuNTQ1OSA0Mi4zMjAzIDIxMi4xMDM1IDQyLjg3NSAyMTIuMzY4MiA0My4xNDA2IEMgMjE0LjMwMTggNDQuODEwNSAyMTYuNzAzMSA0NC43NzkzIDIxNy40OTQxIDQ0LjgxMDUgQyAyMTguMDIxNSA0NC44Mzg5IDIxOC41MTk1IDQ0LjgzODkgMjE5LjAxNzYgNDQuODM4OSBMIDIyNC42NDQ1IDQ0LjgzODkgTCAyMjQuNjQ0NSAyOS42MDExIFpNIDIxNi44NDk2IDI1LjMyMTggQyAyMTYuODQ5NiAyNC4xNzkyIDIxNS45NDM0IDIzLjIxMTkgMjE0Ljc2OTUgMjMuMjExOSBDIDIxNC4wMzcxIDIzLjIxMTkgMjEzLjM2MzMgMjMuNTkwOCAyMTMuMDExNyAyNC4yMDcgQyAyMTIuNzIwNyAyNC42NzYzIDIxMi42ODk1IDI1LjA4NzkgMjEyLjY4OTUgMjUuMjkyIEMgMjEyLjY4OTUgMjYuNDM1MSAyMTMuNjI3OSAyNy40MzEyIDIxNC43Njk1IDI3LjQzMTIgQyAyMTUuMTIyMSAyNy40MzEyIDIxNi4wMDEgMjcuMzEzIDIxNi41MjczIDI2LjQzNTEgQyAyMTYuODE4NCAyNS45NjY4IDIxNi44NDk2IDI1LjUyNTkgMjE2Ljg0OTYgMjUuMzIxOCBMIDIxNi44NDk2IDI1LjMyMTggWk0gMjIzLjM4MzggMjUuMzgxOCBDIDIyMy40MTMxIDI0LjIwOCAyMjIuNTA1OSAyMy4yMTI5IDIyMS4zNjEzIDIzLjIxMjkgQyAyMjAuOTU1MSAyMy4xODUxIDIxOS44NjkxIDIzLjM4ODIgMjE5LjQyOTcgMjQuNTYyIEMgMjE5LjM3MTEgMjQuNzEgMjE5LjI4MjIgMjQuOTQyOSAyMTkuMjgyMiAyNS4zMjI4IEMgMjE5LjI1NDkgMjYuNDY0OCAyMjAuMTkxNCAyNy40MzMxIDIyMS4zMzUgMjcuNDMzMSBDIDIyMi40NzQ2IDI3LjQzMjEgMjIzLjM1MzUgMjYuNDk1MSAyMjMuMzgzOCAyNS4zODE4IEwgMjIzLjM4MzggMjUuMzgxOCBaTSAyMDkuMTY4OSAyOS43NzQ5IEwgMjA2LjUzMjIgMjkuNzc0OSBMIDIwNi41MzIyIDI0LjYyMDEgQyAyMDYuNTMyMiAyNC4yNjcxIDIwNi41NjI1IDIzLjcxMDkgMjA2LjA2MjUgMjMuNzEwOSBDIDIwNS45NDM0IDIzLjcxMDkgMjA1Ljc0MTIgMjMuNzY4MSAyMDUuNjUyMyAyMy44MjgxIEMgMjA1LjUwNDkgMjMuOTQ0OCAyMDUuNDc2NiAyNC4xODAyIDIwNS40NDgyIDI0LjU2MSBDIDIwNS4yNDMyIDI1LjkwNTggMjA0Ljg2MTMgMjcuMjI5IDIwMy45ODQ0IDI4LjI1MiBDIDIwMi43ODIyIDI5LjcxOTIgMjAxLjQ5MjIgMjkuNzQ3MSAyMDAuNzMwNSAyOS44MDYyIEwgMjAwLjczMDUgMzIuMTIwMSBMIDIwMy4wMTU2IDMyLjEyMDEgTCAyMDMuMDE1NiA0NC44Mzc5IEwgMjA2LjUzMzIgNDQuODM3OSBMIDIwNi41MzMyIDMyLjEyMTEgTCAyMDkuMTY5OSAzMi4xMjExIEwgMjA5LjE2OTkgMjkuNzc0OSBMIDIwOS4xNjg5IDI5Ljc3NDkgWk0gMTk0LjMxMjUgMjYuMDI1OSBDIDE5NC4zMTI1IDI3LjE2OCAxOTUuMjUgMjguMDc2MiAxOTYuMzYzMyAyOC4wNzYyIEMgMTk3LjUwNTkgMjguMDc2MiAxOTguNDQzNCAyNy4xNjggMTk4LjQ0MzQgMjYuMDI1OSBDIDE5OC40NDM0IDI0Ljg4MTggMTk3LjUzNjEgMjMuOTQ0OCAxOTYuMzk0NSAyMy45NDQ4IEMgMTk1LjI1IDIzLjk0NDggMTk0LjMxMjUgMjQuODgxOCAxOTQuMzEyNSAyNi4wMjU5IEwgMTk0LjMxMjUgMjYuMDI1OSBaTSAxOTguMTIyMSAyOS43NzQ5IEwgMTk0LjYzNjcgMjkuNzc0OSBMIDE5NC42MzY3IDQ0LjgzNzkgTCAxOTguMTIyMSA0NC44Mzc5IEwgMTk4LjEyMjEgMjkuNzc0OSBaTSAxODIuMjMwNSA0MS4wNTY2IEwgMTgyLjIwMTIgNDQuMzk4NCBDIDE4Mi45NjI5IDQ0LjY5MTQgMTg0LjE5MzQgNDUuMjE4OCAxODYuMTU5MiA0NS4yNDYxIEMgMTg4LjQxNDEgNDUuMjQ2MSAxODkuNTg2OSA0NC41NDU5IDE5MC4zNzc5IDQzLjg3MyBDIDE5MS44NzAxIDQyLjU1MDggMTkxLjk4ODMgNDAuOTcwNyAxOTEuOTg4MyA0MC4yMDcgQyAxOTEuOTg4MyAzOS42Nzk3IDE5MS44NzAxIDM4LjE1NjMgMTkwLjU4MiAzNy4xMDAxIEMgMTg5LjczMDUgMzYuMzk4OSAxODguNTAyIDM2LjAxNzEgMTg3LjQ3NDYgMzUuNjA2OSBDIDE4Ni41NjY0IDM1LjI1MzkgMTg2LjA5OTYgMzQuOTkyMiAxODUuNzQ3MSAzNC42Njg5IEMgMTg1LjM5NjUgMzQuMzc3IDE4NS4xODk1IDMzLjkwNjcgMTg1LjE4OTUgMzMuNDA1OCBDIDE4NS4xODk1IDMzLjE3MjkgMTg1LjI1IDMyLjY3NzIgMTg1LjYyOTkgMzIuMjA5IEMgMTg2LjMwMjcgMzEuNDE3IDE4Ny42MjMgMzEuMzU1IDE4Ny44MjcxIDMxLjM1NSBDIDE4OC44NTM1IDMxLjM1NSAxODkuNzAxMiAzMS43NjgxIDE5MC40OTQxIDMyLjM4MTggQyAxOTAuNzU3OCAzMi41NTcxIDE5MC45OTIyIDMyLjczMjkgMTkxLjIyNjYgMzIuOTM3IEwgMTkxLjIyNjYgMjkuOTc3MSBDIDE5MC4wNTY2IDI5LjU5ODEgMTg5LjE3NDggMjkuMzYzOCAxODcuOTQ1MyAyOS4zNjM4IEMgMTg3LjEyNSAyOS4zNjM4IDE4Ni4zNjEzIDI5LjQ4MSAxODYuMDcwMyAyOS41NDEgQyAxODUuMTMyOCAyOS43NDUxIDE4NC41MTU2IDMwLjA2NDkgMTg0LjE5MzQgMzAuMjcyIEMgMTgyLjkwNjMgMzEuMTIzIDE4Mi4wODQgMzIuNjQ2IDE4Mi4wODQgMzQuMTY4OSBDIDE4Mi4wODQgMzQuNjA2OSAxODIuMTcxOSAzNS44OTYgMTgzLjA4MDEgMzYuODY2MiBDIDE4My45NTcgMzcuODA0MiAxODUuNTcwMyAzOC4yOTk4IDE4NS44MDQ3IDM4LjM4ODcgQyAxODcuMDM2MSAzOC43OTg4IDE4OC44ODI4IDM5LjMyNDIgMTg4Ljg4MjggNDAuOTY2OCBDIDE4OC44ODI4IDQxLjE2OTkgMTg4Ljg1MzUgNDEuNjExMyAxODguNTMxMyA0Mi4wNTA4IEMgMTg4LjIwOSA0Mi40OTIyIDE4Ny41OTM4IDQzLjEwNTUgMTg2LjMwMjcgNDMuMTA1NSBDIDE4NC40Mjc3IDQzLjEwNTUgMTgzLjA4MDEgNDEuOTYxOSAxODIuNjY5OSA0MS41ODQgTCAxODIuMjMwNSA0MS4wNTY2IFpNIDE3MC42NTA0IDI5Ljc3NDkgTCAxNzAuNjUwNCA0NC44Mzc5IEwgMTc0LjEzODcgNDQuODM3OSBMIDE3NC4xMzg3IDMyLjAzNDIgQyAxNzQuNjkzNCAzMS43NyAxNzUuMzM4OSAzMS41MDQ5IDE3Ni42NTgyIDMxLjU5MzMgQyAxNzYuNTQgMzEuNzcgMTc2LjMzNTkgMzIuMDAyIDE3Ni4zMzU5IDMyLjUwMjkgQyAxNzYuMzM1OSAzMi45Mzk5IDE3Ni40NTMxIDMzLjIzMzkgMTc2LjUxMTcgMzMuMzc5OSBDIDE3Ni44MzMgMzQuMTEyOCAxNzcuNTM5MSAzNC41MjU5IDE3OC4zNTc0IDM0LjUyNTkgQyAxNzkuNjc1OCAzNC41MjU5IDE4MC40NjY4IDMzLjU1NjIgMTgwLjQ2NjggMzIuMjk0OSBDIDE4MC40NjY4IDMxLjU5NDIgMTgwLjE3NDggMzEuMTI2IDE4MC4wNTg2IDMwLjkxOTkgQyAxNzkuMzUzNSAyOS44NjYyIDE3OC4wMDY4IDI5LjgzNSAxNzYuODYxMyAyOS43NzU5IEwgMTcwLjY1MDQgMjkuNzc1OSBMIDE3MC42NTA0IDI5Ljc3NDkgWk0gMTU3LjM3NSAzNS40NjI5IEMgMTU3LjQzNTUgMzUuMDIyIDE1Ny40OTUxIDM0LjU4MiAxNTcuNjQwNiAzNC4xNDExIEMgMTU3LjgxNjQgMzMuNTg1IDE1OC42OTUzIDMxLjQxODkgMTYwLjk1MTIgMzEuMzg4MiBDIDE2MS4yNzM0IDMxLjM4ODIgMTYxLjk1MDIgMzEuNDQ2OCAxNjIuNjc5NyAzMS45MTUgQyAxNjQgMzIuNzM0OSAxNjQuMjA0MSAzMy45OTcxIDE2NC4yOTMgMzUuNDMwMiBMIDE1Ny4zNzUgMzUuNDYyOSBaTSAxNjcuODk2NSAzNy4zOTYgQyAxNjcuODY4MiAzNi44MDgxIDE2Ny45NTUxIDM0LjY5ODcgMTY3LjA3NzEgMzIuODgyOCBDIDE2NS40OTEyIDI5LjY4OCAxNjIuMDkzOCAyOS4zOTUgMTYxLjAzODEgMjkuMzk1IEMgMTYwLjA3MjMgMjkuMzk1IDE1Ny4zNzMgMjkuNjI5OSAxNTUuNDcwNyAzMS44ODcyIEMgMTUzLjcxMjkgMzMuOTY4MyAxNTMuNTk1NyAzNi42MzI4IDE1My41OTU3IDM3LjQ4NDkgQyAxNTMuNTk1NyA0MS4xMTcyIDE1NS40NzA3IDQzLjAyMTUgMTU2LjY3MTkgNDMuODM5OCBDIDE1Ny40OTMyIDQ0LjQyNzcgMTU5LjEzMzggNDUuMjE4OCAxNjEuNjI1IDQ1LjI0NTEgQyAxNjMuNTU4NiA0NS4yNDUxIDE2NC45OTQxIDQ0Ljc3NzMgMTY1LjY2ODkgNDQuNTQ0OSBDIDE2Ni40Mjk3IDQ0LjI1MjkgMTY3LjA3NzEgNDMuOTAwNCAxNjcuMzM2OSA0My43NTI5IEwgMTY3LjMzNjkgNDAuNzkzOSBDIDE2Ni42NjQxIDQxLjQzNzUgMTY2LjQyOTcgNDEuNjcxOSAxNjYuMDE5NSA0MS45NjQ4IEMgMTY0LjUyNTQgNDMuMDc5MSAxNjMuMTQ2NSA0My4xOTUzIDE2Mi4zODU3IDQzLjE5NTMgQyAxNjEuMTU2MyA0My4xOTUzIDE1OS43NDkgNDIuODE2NCAxNTguODY4MiA0MS45MzU1IEMgMTU3Ljc1NTkgNDAuODc4OSAxNTcuNDMzNiAzOS4yNjk1IDE1Ny4zNDM4IDM4Ljg1NzQgQyAxNTcuMjU4OCAzOC4zMzIgMTU3LjI1ODggMzcuOTUzMSAxNTcuMjI2NiAzNy4zOTUgTCAxNjcuODk2NSAzNy4zOTUgTCAxNjcuODk2NSAzNy4zOTYgWk0gMTUzLjA0MiAyOS43NzQ5IEwgMTQ5LjkwNzIgMjkuNzc0OSBMIDE0NS41OTc3IDQxLjc5MSBDIDE0NS4zOTI2IDQyLjQzMzYgMTQ1LjM2NTIgNDIuNTgzIDE0NC44OTY1IDQyLjU4MyBMIDE0MC4zNTM1IDI5Ljc3NTkgTCAxMzYuNTczMiAyOS43NzU5IEwgMTQyLjE0MDYgNDQuODM4OSBMIDE0My45Mjc3IDQ0LjgzODkgQyAxNDUuMDEwNyA0NC44MTA1IDE0NS44NjMzIDQ0Ljc3OTMgMTQ2LjgwMDggNDQuMTkzNCBDIDE0OC4wMzIyIDQzLjQwMjMgMTQ4LjYxODIgNDEuOTA4MiAxNDkuMDg3OSA0MC42MTkxIEwgMTUzLjA0MiAyOS43NzQ5IFpNIDEzMC44Mzk4IDI2LjAyNTkgQyAxMzAuODM5OCAyNy4xNjggMTMxLjc3NzMgMjguMDc2MiAxMzIuODkwNiAyOC4wNzYyIEMgMTM0LjAzMzIgMjguMDc2MiAxMzQuOTcwNyAyNy4xNjggMTM0Ljk3MDcgMjYuMDI1OSBDIDEzNC45NzA3IDI0Ljg4MTggMTM0LjA2MjUgMjMuOTQ0OCAxMzIuOTE5OSAyMy45NDQ4IEMgMTMxLjc3NzMgMjMuOTQ0OCAxMzAuODM5OCAyNC44ODE4IDEzMC44Mzk4IDI2LjAyNTkgTCAxMzAuODM5OCAyNi4wMjU5IFpNIDEzNC42NDg0IDI5Ljc3NDkgTCAxMzEuMTYzMSAyOS43NzQ5IEwgMTMxLjE2MzEgNDQuODM3OSBMIDEzNC42NDg0IDQ0LjgzNzkgTCAxMzQuNjQ4NCAyOS43NzQ5IEwgMTM0LjY0ODQgMjkuNzc0OSBaTSAxMTQuNDczMSAyOS43NzQ5IEwgMTE0LjQ3MzEgNDQuODM3OSBMIDExNy45NjA5IDQ0LjgzNzkgTCAxMTcuOTYwOSAzMi4zODM4IEMgMTE4LjU0NTkgMzIuMDkwOCAxMTkuMTg5NSAzMS43Mzc4IDEyMC41Njg0IDMxLjczNzggQyAxMjIuODI2MiAzMS43Mzc4IDEyMy43MDQxIDMyLjc2NTEgMTI0LjAyNTQgMzMuNzYxMiBDIDEyNC4xNzE5IDM0LjIyOCAxMjQuMjMyNCAzNC42OTc4IDEyNC4yNjE3IDM1LjcyMjIgTCAxMjQuMjYxNyA0NC44Mzc5IEwgMTI3LjcxNzggNDQuODM3OSBMIDEyNy43MTc4IDM1LjcyMjIgQyAxMjcuNjAxNiAzNC4wMjI5IDEyNy40ODQ0IDMyLjUyOTggMTI2LjEwNzQgMzEuMzU2IEMgMTI0LjQzNTUgMjkuOTIxOSAxMjIuMjM4MyAyOS43NzM5IDExNy45NiAyOS43NzM5IEwgMTE0LjQ3MzEgMjkuNzczOSBMIDExNC40NzMxIDI5Ljc3NDkgWk0gMTEwLjg3MDEgMjQuMTQ4OSBMIDEwNy4yOTM5IDI0LjE0ODkgTCAxMDcuMjkzOSAzNS45MzEyIEMgMTA3LjMyNDIgMzcuNzQ1MSAxMDcuMjkzOSAzOC42ODE2IDEwNy4wNjIgMzkuNTYyNSBDIDEwNi43OTU5IDQwLjQ3MjcgMTA2LjMyNzEgNDEuMDU2NiAxMDYuMDkxOCA0MS4zNDk2IEMgMTA1LjYyNCA0MS44Nzg5IDEwNC45MjA5IDQyLjUyMzQgMTAzLjM2NzIgNDIuNzg5MSBDIDEwMi43NTIgNDIuOTA0MyAxMDIuMjUzOSA0Mi45MDQzIDEwMi4wMTgxIDQyLjkwNDMgQyA5OC45NDE5IDQyLjkwNDMgOTcuNjgzMSA0MS4yNjM3IDk3LjIxMTkgNDAuMDYyNSBDIDk2Ljg2MTggMzkuMTI0IDk2Ljc3NDkgMzguMDExNyA5Ni44MDQyIDM1LjkzMjEgTCA5Ni44MDQyIDI0LjE0ODkgTCA5My4yMjggMjQuMTQ4OSBMIDkzLjIyOCAzNS4xNjcgQyA5My4xOTkyIDM3LjYwMDEgOTMuMjg3MSAzOC45MTg5IDkzLjYzNzIgNDAuMDAzOSBDIDk0LjAxOSA0MS4yOTMgOTQuODM4OSA0Mi40OTUxIDk1LjkyNDggNDMuMzEyNSBDIDk2Ljg2MTggNDQuMDc2MiA5OC45NDE5IDQ1LjIxODggMTAyLjAxODEgNDUuMjE4OCBDIDEwNC44MDMyIDQ1LjIxODggMTA2Ljc5NDkgNDQuMjUyOSAxMDcuNzA1MSA0My42OTUzIEMgMTA5Ljg0MTggNDIuMjg2MSAxMTAuNDU4IDQwLjIzNjMgMTEwLjY2NDEgMzkuMjk4OCBDIDExMC44NjgyIDM4LjMwMjcgMTEwLjg5NyAzNy4yNzY5IDExMC44NjgyIDM1LjE2NyBMIDExMC44NjgyIDI0LjE0ODkgTCAxMTAuODcwMSAyNC4xNDg5IFoiIGZpbGw9IiMwMDAwMDAiLz4NCgkJCTxwYXRoIGQ9Ik0gNDAuMTQ1IDYzLjEyMTEgQyAzOS40NzAyIDYyLjQ2MzkgMzguNDU3IDYzLjQ1NyAzOS4xMzA5IDY0LjExMTMgTCA0My45OTEyIDY4Ljg2MzMgTCA0NS4wMDM5IDY3Ljg3MjEgQyA0NS4wMDM5IDY3Ljg3MjEgNDAuNzI1MSA2My42ODc1IDQwLjE0NSA2My4xMjExIEwgNDAuMTQ1IDYzLjEyMTEgWk0gMzIuMjkzOSA2OC44NjUyIEwgMzEuMjc5OCA2Ny44NzQgTCAzNi4xMzkyIDYzLjEyMjEgQyAzNi44MTQgNjIuNDY2OCAzNy44MjcxIDYzLjQ1OSAzNy4xNTI4IDY0LjExNjIgQyAzNi41NzcxIDY0LjY3OTcgMzIuMjkzOSA2OC44NjUyIDMyLjI5MzkgNjguODY1MiBMIDMyLjI5MzkgNjguODY1MiBaTSAxMS43MjggMzUuMzQ0MiBDIDEyLjM5NyAzNi4wMDIgMTEuMzg0OCAzNi45OTMyIDEwLjcxMTkgMzYuMzM1OSBMIDUuODUzIDMxLjU4MiBMIDYuODY5MSAzMC41OTE4IEMgNi44NjkxIDMwLjU5MTggMTEuMTQ3IDM0Ljc3NjkgMTEuNzI4IDM1LjM0NDIgTCAxMS43MjggMzUuMzQ0MiBaTSA1Ljg1NjkgNDMuMDIzNCBMIDYuODcxMSA0NC4wMTU2IEwgMTEuNzMgMzkuMjYzNyBDIDEyLjQwMjggMzguNjA1NSAxMS4zODcyIDM3LjYxMjggMTAuNzE1OCAzOC4yNjk1IEMgMTAuMTM2MiAzOC44MzY5IDUuODU2OSA0My4wMjM0IDUuODU2OSA0My4wMjM0IEwgNS44NTY5IDQzLjAyMzQgWk0gMzYuMTQ1IDExLjQ2MjkgQyAzNi44MTg4IDEyLjExOTEgMzcuODMyIDExLjEyNzkgMzcuMTYxMSAxMC40NjkyIEwgMzIuMjk5OCA1LjcyMDIgTCAzMS4yODQyIDYuNzExOSBDIDMxLjI4NTIgNi43MTA5IDM1LjU2NjkgMTAuODk3OSAzNi4xNDUgMTEuNDYyOSBMIDM2LjE0NSAxMS40NjI5IFpNIDQzLjk4MzkgNS43MjAyIEwgNDUgNi43MTA5IEwgNDAuMTQxMSAxMS40NjI5IEMgMzkuNDY2OCAxMi4xMTkxIDM4LjQ1NDEgMTEuMTI3OSAzOS4xMjUgMTAuNDY5MiBDIDM5LjcwNTEgOS45MDU4IDQzLjk4MzkgNS43MjAyIDQzLjk4MzkgNS43MjAyIEwgNDMuOTgzOSA1LjcyMDIgWk0gNjQuNTU0MiAzNS4zMzUgQyA2My44ODE4IDM1Ljk5MjIgNjQuODk1IDM2Ljk4MzkgNjUuNTY4OCAzNi4zMjM3IEwgNzAuNDI5MiAzMS41NzM3IEwgNjkuNDE0MSAzMC41ODMgQyA2OS40MTMxIDMwLjU4MyA2NS4xMzE4IDM0Ljc2OSA2NC41NTQyIDM1LjMzNSBMIDY0LjU1NDIgMzUuMzM1IFpNIDcwLjQzMjEgNDMuMDA5OCBMIDY5LjQxODkgNDMuOTk5IEwgNjQuNTU5MSAzOS4yNDkgQyA2My44ODcyIDM4LjU5MDggNjQuODk5OSAzNy42MDAxIDY1LjU3MzIgMzguMjU2OCBDIDY2LjE1MTkgMzguODIwMyA3MC40MzIxIDQzLjAwOTggNzAuNDMyMSA0My4wMDk4IEwgNzAuNDMyMSA0My4wMDk4IFpNIDIzLjk5MTIgMjIuNDc2MSBDIDI0LjY2NDEgMjMuMTMzOCAyMy42NTA5IDI0LjEyNSAyMi45NzggMjMuNDY2OCBMIDUuODU2IDYuNzI1MSBMIDYuODY5MSA1LjczMzkgQyA2Ljg2OTEgNS43MzI5IDIzLjQxMzEgMjEuOTEwMiAyMy45OTEyIDIyLjQ3NjEgTCAyMy45OTEyIDIyLjQ3NjEgWk0gNjkuNDE4OSA1LjcyNzEgTCA3MC40MzIxIDYuNzIxMiBMIDUzLjMxMDEgMjMuNDYzOSBDIDUyLjYzNzIgMjQuMTIxMSA1MS42MjQgMjMuMTI3OSA1Mi4yOTM5IDIyLjQ3MDIgQyA1Mi44NzQgMjEuOTA1OCA2OS40MTg5IDUuNzI3MSA2OS40MTg5IDUuNzI3MSBMIDY5LjQxODkgNS43MjcxIFpNIDIyLjk3OCA1MS4xMjg5IEMgMjMuNjQ3OSA1MC40NzI3IDI0LjY2NDEgNTEuNDYyOSAyMy45OTEyIDUyLjEyMTEgTCA2Ljg2OTEgNjguODYzMyBMIDUuODUzIDY3Ljg3MjEgQyA1Ljg1MyA2Ny44NzIxIDIyLjM5NyA1MS42OTM0IDIyLjk3OCA1MS4xMjg5IEwgMjIuOTc4IDUxLjEyODkgWk0gNzAuNDMyMSA2Ny44NjUyIEwgNjkuNDE4OSA2OC44NTk0IEwgNTIuMjkzOSA1Mi4xMTcyIEMgNTEuNjI0IDUxLjQ1OSA1Mi42MzYyIDUwLjQ2NTggNTMuMzEwMSA1MS4xMjQgQyA1My44ODgyIDUxLjY4NzUgNzAuNDMyMSA2Ny44NjUyIDcwLjQzMjEgNjcuODY1MiBMIDcwLjQzMjEgNjcuODY1MiBaTSAyMy45MDQ4IDQ3LjI0MTIgQyAyNC41NzUyIDQ3LjkwMDQgMjMuNTYyIDQ4Ljg4ODcgMjIuODg5MiA0OC4yMzI0IEMgMjIuODg5MiA0OC4yMzI0IDE0LjI4OTEgMzkuODI0MiAxMy42MTcyIDM5LjE2NiBDIDEyLjk0MzggMzguNTA4OCAxMy45NTkgMzcuNTE3MSAxNC42Mjk5IDM4LjE3NDggQyAxNC42Mjk5IDM4LjE3NDggMjMuMzI0MiA0Ni42Nzc3IDIzLjkwNDggNDcuMjQxMiBMIDIzLjkwNDggNDcuMjQxMiBaTSA0MC4xNDMxIDEzLjM5NiBDIDM5LjQ2OTIgMTIuNzQxMiAzOC40NTYxIDEzLjczIDM5LjEyNyAxNC4zOTAxIEMgMzkuNzk5OCAxNS4wNDU5IDQ4LjM5ODkgMjMuNDUzMSA0OC4zOTg5IDIzLjQ1MzEgQyA0OS4wNzE4IDI0LjExMjggNTAuMDg1OSAyMy4xMjAxIDQ5LjQxNSAyMi40NjI5IEMgNDguODM0IDIxLjg5NiA0MC4xNDMxIDEzLjM5NiA0MC4xNDMxIDEzLjM5NiBMIDQwLjE0MzEgMTMuMzk2IFpNIDQ5LjQxNSA0Ny4zMjYyIEMgNTAuMDg1OSA0Ny45ODI0IDQ5LjA3MzIgNDguOTc0NiA0OC4zOTg5IDQ4LjMxODQgQyA0OC4zOTg5IDQ4LjMxODQgMzkuNzk4OCAzOS45MDkyIDM5LjEyNyAzOS4yNTEgQyAzOC40NTYxIDM4LjU5MzggMzkuNDY5MiAzNy42MDMgNDAuMTQzMSAzOC4yNTk4IEMgNDAuMTQzMSAzOC4yNTk4IDQ4LjgzNCA0Ni43NjE3IDQ5LjQxNSA0Ny4zMjYyIEwgNDkuNDE1IDQ3LjMyNjIgWk0gNjIuNTg1OSAzOS4yNTEgQyA2My4yNTc4IDM4LjU5MzggNjIuMjQzMiAzNy42MDMgNjEuNTY5OCAzOC4yNTY4IEMgNjAuODk4OSAzOC45MTUgNTIuMjk2OSA0Ny4zMjYyIDUyLjI5NjkgNDcuMzI2MiBDIDUxLjYyNzkgNDcuOTgyNCA1Mi42NDAxIDQ4Ljk3NDYgNTMuMzEzIDQ4LjMxODQgQyA1My44OTMxIDQ3Ljc1MSA2Mi41ODU5IDM5LjI1MSA2Mi41ODU5IDM5LjI1MSBMIDYyLjU4NTkgMzkuMjUxIFpNIDI3Ljg4MTggMjMuNDUzMSBDIDI3LjIwNyAyNC4xMTI4IDI2LjE5MzggMjMuMTIwMSAyNi44NjYyIDIyLjQ2MjkgQyAyNi44NjYyIDIyLjQ2MjkgMzUuNDY2OCAxNC4wNTMyIDM2LjEzOTIgMTMuMzk2IEMgMzYuODExIDEyLjczNzggMzcuODI3MSAxMy43MjggMzcuMTUyOCAxNC4zODcyIEMgMzcuMTUzOCAxNC4zODcyIDI4LjQ1OCAyMi44ODcyIDI3Ljg4MTggMjMuNDUzMSBMIDI3Ljg4MTggMjMuNDUzMSBaTSAzNy4xNTM4IDM5LjI1MSBDIDM3LjgyNzEgMzguNTkzOCAzNi44MTIgMzcuNjAzIDM2LjE0MDEgMzguMjU2OCBDIDM1LjQ2NzggMzguOTE1IDI2Ljg2NzIgNDcuMzI2MiAyNi44NjcyIDQ3LjMyNjIgQyAyNi4xOTQ4IDQ3Ljk4MjQgMjcuMjA4IDQ4Ljk3NDYgMjcuODgyOCA0OC4zMTg0IEMgMjguNDU4IDQ3Ljc1MSAzNy4xNTM4IDM5LjI1MSAzNy4xNTM4IDM5LjI1MSBMIDM3LjE1MzggMzkuMjUxIFpNIDIzLjk5OCAyNy4yNjcxIEMgMjQuNjY4IDI2LjYwOTkgMjMuNjU0OCAyNS42MTcyIDIyLjk4NDkgMjYuMjcyOSBDIDIyLjk4NDkgMjYuMjcyOSAxNC4zODE4IDM0LjY4MzEgMTMuNzEgMzUuMzM5OCBDIDEzLjAzODEgMzUuOTk5IDE0LjA1MzIgMzYuOTg4OCAxNC43MjUxIDM2LjMzMiBDIDE0LjcyNTEgMzYuMzMzIDIzLjQxNyAyNy44MzIgMjMuOTk4IDI3LjI2NzEgTCAyMy45OTggMjcuMjY3MSBaTSA0MC4xNDMxIDYxLjE5NTMgQyAzOS40NjkyIDYxLjg1MTYgMzguNDU2MSA2MC44NTk0IDM5LjEyOTkgNjAuMjAxMiBDIDM5Ljc5OTggNTkuNTQ1OSA0OC40MDE5IDUxLjEzNDggNDguNDAxOSA1MS4xMzQ4IEMgNDkuMDczMiA1MC40Nzg1IDUwLjA4NzkgNTEuNDcwNyA0OS40MTYgNTIuMTI2IEMgNDguODM2OSA1Mi42OTUzIDQwLjE0MzEgNjEuMTk1MyA0MC4xNDMxIDYxLjE5NTMgTCA0MC4xNDMxIDYxLjE5NTMgWk0gNDkuNDE1IDI3LjI2NzEgQyA1MC4wODY5IDI2LjYwOTkgNDkuMDczMiAyNS42MTcyIDQ4LjQwMDkgMjYuMjcyOSBDIDQ4LjQwMDkgMjYuMjcyOSAzOS43OTg4IDM0LjY4MzEgMzkuMTI4OSAzNS4zMzk4IEMgMzguNDU2MSAzNS45OTkgMzkuNDY3OCAzNi45ODg4IDQwLjE0MjEgMzYuMzMyIEMgNDAuMTQzMSAzNi4zMzMgNDguODM2OSAyNy44MzIgNDkuNDE1IDI3LjI2NzEgTCA0OS40MTUgMjcuMjY3MSBaTSA2Mi41ODU5IDM1LjM0NDIgQyA2My4yNTc4IDM2LjAwMiA2Mi4yNDMyIDM2Ljk5MzIgNjEuNTY5OCAzNi4zMzU5IEMgNjAuODk4OSAzNS42NzYzIDUyLjI5NjkgMjcuMjY3MSA1Mi4yOTY5IDI3LjI2NzEgQyA1MS42Mjc5IDI2LjYwOTkgNTIuNjQwMSAyNS42MTkxIDUzLjMxMyAyNi4yNzU5IEMgNTMuODkzMSAyNi44NDMzIDYyLjU4NTkgMzUuMzQ0MiA2Mi41ODU5IDM1LjM0NDIgTCA2Mi41ODU5IDM1LjM0NDIgWk0gMjcuODgxOCA1MS4xMzg3IEMgMjcuMjA3IDUwLjQ4MDUgMjYuMTkzOCA1MS40NzI3IDI2Ljg2NjIgNTIuMTI5OSBDIDI2Ljg2NjIgNTIuMTI5OSAzNS40NjY4IDYwLjUzODEgMzYuMTM5MiA2MS4xOTUzIEMgMzYuODExIDYxLjg1MTYgMzcuODI3MSA2MC44NjMzIDM3LjE1MjggNjAuMjA0MSBDIDM3LjE1MzggNjAuMjA0MSAyOC40NTggNTEuNzA0MSAyNy44ODE4IDUxLjEzODcgTCAyNy44ODE4IDUxLjEzODcgWk0gMzcuMTUzOCAzNS4zNDQyIEMgMzcuODI3MSAzNi4wMDIgMzYuODEyIDM2Ljk5MzIgMzYuMTQwMSAzNi4zMzU5IEMgMzUuNDY3OCAzNS42NzYzIDI2Ljg2NzIgMjcuMjY3MSAyNi44NjcyIDI3LjI2NzEgQyAyNi4xOTQ4IDI2LjYwOTkgMjcuMjA4IDI1LjYxOTEgMjcuODgyOCAyNi4yNzU5IEMgMjguNDU4IDI2Ljg0MzMgMzcuMTUzOCAzNS4zNDQyIDM3LjE1MzggMzUuMzQ0MiBMIDM3LjE1MzggMzUuMzQ0MiBaTSAwIDQ5LjAyNTQgTCAwIDUwLjQyNzcgTCAyMi42ODAyIDUwLjQyNzcgQyAyMy42MzA5IDUwLjQyNzcgMjMuNjMwOSA0OS4wMjU0IDIyLjY4MDIgNDkuMDI1NCBMIDAgNDkuMDI1NCBaTSA3Ni4yODUyIDQ5LjAyNTQgTCA3Ni4yODUyIDUwLjQyNzcgTCA1My42MDQgNTAuNDI3NyBDIDUyLjY1MjggNTAuNDI3NyA1Mi42NTI4IDQ5LjAyNTQgNTMuNjA0IDQ5LjAyNTQgTCA3Ni4yODUyIDQ5LjAyNTQgWk0gMCAyNC4xNjIxIEwgMCAyNS41NjQgTCAyMi42ODAyIDI1LjU2NCBDIDIzLjYzMDkgMjUuNTY0IDIzLjYzMDkgMjQuMTYyMSAyMi42ODAyIDI0LjE2MjEgTCAwIDI0LjE2MjEgWk0gNzYuMjg1MiAyNC4xNjIxIEwgNzYuMjg1MiAyNS41NjQgTCA1My42MDQgMjUuNTY0IEMgNTIuNjUyOCAyNS41NjQgNTIuNjUyOCAyNC4xNjIxIDUzLjYwNCAyNC4xNjIxIEwgNzYuMjg1MiAyNC4xNjIxIFpNIDI4LjE3MzggNDkuMDI1NCBDIDI3LjIyNDEgNDkuMDI1NCAyNy4yMjQxIDUwLjQyNzcgMjguMTczOCA1MC40Mjc3IEwgNDguMTA3OSA1MC40Mjc3IEMgNDkuMDU5MSA1MC40Mjc3IDQ5LjA1OTEgNDkuMDI1NCA0OC4xMDc5IDQ5LjAyNTQgTCAyOC4xNzM4IDQ5LjAyNTQgWk0gNDguMTA3OSAyNC4xNjIxIEMgNDkuMDU5MSAyNC4xNjIxIDQ5LjA1OTEgMjUuNTY0IDQ4LjEwNzkgMjUuNTY0IEwgMjguMTczOCAyNS41NjQgQyAyNy4yMjQxIDI1LjU2NCAyNy4yMjQxIDI0LjE2MjEgMjguMTczOCAyNC4xNjIxIEwgNDguMTA3OSAyNC4xNjIxIFpNIDUwLjEzOTIgNzQuNTkwOCBMIDUxLjU3MTggNzQuNTkwOCBMIDUxLjU3MTggNTIuNDE1IEMgNTEuNTcxOCA1MS40ODI0IDUwLjEzOTIgNTEuNDgyNCA1MC4xMzkyIDUyLjQxNSBMIDUwLjEzOTIgNzQuNTkwOCBaTSA1MC4xMzkyIDAgTCA1MS41NzE4IDAgTCA1MS41NzE4IDIyLjE3OTIgQyA1MS41NzE4IDIzLjEwNjkgNTAuMTM5MiAyMy4xMDY5IDUwLjEzOTIgMjIuMTc5MiBMIDUwLjEzOTIgMCBaTSA1MC4xMzkyIDQ3LjAzOTEgQyA1MC4xMzkyIDQ3Ljk3MDcgNTEuNTcxOCA0Ny45NzA3IDUxLjU3MTggNDcuMDM5MSBMIDUxLjU3MTggMjcuNTUxMyBDIDUxLjU3MTggMjYuNjIwMSA1MC4xMzkyIDI2LjYyMDEgNTAuMTM5MiAyNy41NTEzIEwgNTAuMTM5MiA0Ny4wMzkxIFpNIDI0LjcxMDkgNTIuNDE1IEMgMjQuNzEwOSA1MS40ODI0IDI2LjE0NCA1MS40ODI0IDI2LjE0NCA1Mi40MTUgTCAyNi4xNDQgNzQuNTkwOCBMIDI0LjcxMDkgNzQuNTkwOCBMIDI0LjcxMDkgNTIuNDE1IFpNIDI0LjcxMDkgMjIuMTc5MiBDIDI0LjcxMDkgMjMuMTA2OSAyNi4xNDQgMjMuMTA2OSAyNi4xNDQgMjIuMTc5MiBMIDI2LjE0NCAwIEwgMjQuNzEwOSAwIEwgMjQuNzEwOSAyMi4xNzkyIFpNIDI0LjcxMDkgMjcuNTUxMyBDIDI0LjcxMDkgMjYuNjIzIDI2LjE0NCAyNi42MjMgMjYuMTQ0IDI3LjU1MTMgTCAyNi4xNDQgNDcuMDQxIEMgMjYuMTQ0IDQ3Ljk3MDcgMjQuNzEwOSA0Ny45NzA3IDI0LjcxMDkgNDcuMDQxIEwgMjQuNzEwOSAyNy41NTEzIFoiIGZpbGw9IiMwMDAwMDAiLz4NCgkJPC9nPg0KCTwvZz4NCjwvc3ZnPg==" class="img-standard" alt="Einstiegsseite" />
+
+
+
+
+
+</a>
+</span>
+					<span class="visible-xs">
+<a href="ilias.php?baseClass=ilDashboardGUI&cmd=jumpToSelectedItems">
+
+
+
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3Ni4yOSA3NC41OSI+PGcgaWQ9IkViZW5lXzIiIGRhdGEtbmFtZT0iRWJlbmUgMiI+PGcgaWQ9InVuaS1iYXNlbC1sb2dvLVNlaXRlXzIwMSIgZGF0YS1uYW1lPSJ1bmktYmFzZWwtbG9nby1TZWl0ZSUyMDEiPjxwYXRoIGQ9Ik00MC4xNSw2My4xMmMtLjY4LS42Ni0xLjY5LjM0LTEsMUw0NCw2OC44NmwxLTEtNC44NS00Ljc1Wm0tNy44Niw1Ljc1LTEtMSw0Ljg2LTQuNzVjLjY3LS42NSwxLjY5LjM0LDEsMWwtNC44Niw0Ljc1Wk0xMS43MywzNS4zNGMuNjcuNjYtLjM1LDEuNjUtMSwxTDUuODUsMzEuNThsMS0xLDQuODYsNC43NVpNNS44Niw0M2wxLDEsNC44Ni00Ljc2Yy42Ny0uNjUtLjM0LTEuNjUtMS0xTDUuODYsNDNaTTM2LjE1LDExLjQ2YS43MS43MSwwLDAsMCwxLTFMMzIuMyw1LjcybC0xLDEsNC44Nyw0Ljc1Wk00NCw1LjcybDEsMS00Ljg2LDQuNzVjLS42Ny42Ni0xLjY5LS4zMy0xLTFTNDQsNS43Miw0NCw1LjcyWk02NC41NSwzNS4zM2MtLjY3LjY2LjM0LDEuNjUsMSwxbDQuODYtNC43NS0xLTEtNC44Niw0Ljc1Wk03MC40Myw0M2wtMSwxLTQuODYtNC43NWEuNzEuNzEsMCwwLDEsMS0xTDcwLjQzLDQzWk0yNCwyMi40OGMuNjcuNjUtLjM0LDEuNjQtMSwxTDUuODYsNi43M2wxLTFMMjQsMjIuNDhaTTY5LjQyLDUuNzNsMSwxTDUzLjMxLDIzLjQ2Yy0uNjcuNjYtMS42OS0uMzMtMS0xTDY5LjQyLDUuNzNaTTIzLDUxLjEzYS43MS43MSwwLDAsMSwxLDFMNi44Nyw2OC44NmwtMS0xTDIzLDUxLjEzWk03MC40Myw2Ny44N2wtMSwxTDUyLjI5LDUyLjEyYy0uNjctLjY2LjM1LTEuNjUsMS0xTDcwLjQzLDY3Ljg3Wk0yMy45LDQ3LjI0Yy42OC42Ni0uMzQsMS42NS0xLDFsLTkuMjctOS4wNmMtLjY4LS42Ni4zNC0xLjY1LDEtMWw5LjI3LDkuMDdaTTQwLjE0LDEzLjRhLjcxLjcxLDAsMCwwLTEsMWw5LjI3LDkuMDZjLjY3LjY2LDEuNjktLjMzLDEtMXMtOS4yOC05LjA2LTkuMjgtOS4wNlptOS4yOCwzMy45M2MuNjcuNjUtLjM1LDEuNjQtMSwxbC05LjI3LTkuMDdhLjcxLjcxLDAsMCwxLDEtMWw5LjI4LDkuMDdabTEzLjE3LTguMDhjLjY3LS42Ni0uMzUtMS42NS0xLTFMNTIuMyw0Ny4zM2MtLjY3LjY1LjM0LDEuNjQsMSwxbDkuMjgtOS4wN1pNMjcuODgsMjMuNDVjLS42Ny42Ni0xLjY5LS4zMy0xLTFsOS4yNy05LjA2Yy42Ny0uNjYsMS42OS4zMywxLDFsLTkuMjcsOS4wNlptOS4yNywxNS44Yy42OC0uNjYtLjM0LTEuNjUtMS0xbC05LjI3LDkuMDdjLS42OC42NS4zNCwxLjY0LDEsMWw5LjI3LTkuMDdaTTI0LDI3LjI3Yy42Ny0uNjYtLjM1LTEuNjUtMS0xbC05LjI3LDkuMDdjLS42Ny42Ni4zNCwxLjY1LDEsMUwyNCwyNy4yN1pNNDAuMTQsNjEuMmMtLjY3LjY1LTEuNjgtLjM0LTEtMWw5LjI3LTkuMDdjLjY3LS42NSwxLjY5LjM0LDEsMUw0MC4xNCw2MS4yWm05LjI4LTMzLjkzYy42Ny0uNjYtLjM1LTEuNjUtMS0xbC05LjI3LDkuMDdhLjcxLjcxLDAsMCwwLDEsMWw5LjI4LTkuMDZabTEzLjE3LDguMDdjLjY3LjY2LS4zNSwxLjY1LTEsMUw1Mi4zLDI3LjI3YS43MS43MSwwLDAsMSwxLTFsOS4yOCw5LjA2Wk0yNy44OCw1MS4xNGMtLjY3LS42Ni0xLjY5LjMzLTEsMWw5LjI3LDkuMDdjLjY3LjY1LDEuNjktLjM0LDEtMWwtOS4yNy05LjA2Wm05LjI3LTE1LjhjLjY4LjY2LS4zNCwxLjY1LTEsMWwtOS4yNy05LjA3Yy0uNjgtLjY2LjM0LTEuNjUsMS0xbDkuMjcsOS4wNlpNMCw0OXYxLjRIMjIuNjhhLjcuNywwLDEsMCwwLTEuNFptNzYuMjksMHYxLjRINTMuNmEuNy43LDAsMSwxLDAtMS40Wk0wLDI0LjE2djEuNEgyMi42OGEuNy43LDAsMSwwLDAtMS40Wm03Ni4yOSwwdjEuNEg1My42YS43LjcsMCwxLDEsMC0xLjRaTTI4LjE3LDQ5YS43LjcsMCwxLDAsMCwxLjRINDguMTFhLjcuNywwLDEsMCwwLTEuNFpNNDguMTEsMjQuMTZhLjcuNywwLDEsMSwwLDEuNEgyOC4xN2EuNy43LDAsMSwxLDAtMS40Wm0yLDUwLjQzaDEuNDNWNTIuNDJhLjcyLjcyLDAsMCwwLTEuNDMsMFpNNTAuMTQsMGgxLjQzVjIyLjE4YS43Mi43MiwwLDAsMS0xLjQzLDBabTAsNDdhLjcyLjcyLDAsMCwwLDEuNDMsMFYyNy41NWEuNzIuNzIsMCwwLDAtMS40MywwWk0yNC43MSw1Mi40MmEuNzIuNzIsMCwwLDEsMS40MywwVjc0LjU5SDI0LjcxWm0wLTMwLjI0YS43Mi43MiwwLDAsMCwxLjQzLDBWMEgyNC43MVptMCw1LjM3YS43Mi43MiwwLDAsMSwxLjQzLDBWNDdhLjcyLjcyLDAsMCwxLTEuNDMsMFoiLz48L2c+PC9nPjwvc3ZnPg==" class="img-standard" alt="Einstiegsseite" />
+
+
+
+
+
+</a>
+</span>
+					<div class="il-pagetitle">
+						ADAM
+					</div>
+				</div>
+
+				
+				<nav class="il-header-locator">
+					<div class="dropdown"><button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false" >Handwritten notes <span class="caret"></span></button>
+<ul class="dropdown-menu">
+	<li><button class="btn btn-link" data-action="ilias.php?ref_id=1538755&cmd=frameset&cmdClass=ilrepositorygui&cmdNode=10q&baseClass=ilRepositoryGUI" id="il_ui_fw_64903b28a58703_47196102">Lecture notes</button>
+</li>
+	<li><button class="btn btn-link" data-action="ilias.php?ref_id=1458746&cmd=frameset&cmdClass=ilrepositorygui&cmdNode=10q&baseClass=ilRepositoryGUI" id="il_ui_fw_64903b28a58ba2_77785716">63873-01 – Quantum Thermodynamics</button>
+</li>
+	<li><button class="btn btn-link" data-action="ilias.php?ref_id=1443150&cmd=frameset&cmdClass=ilrepositorygui&cmdNode=10q&baseClass=ilRepositoryGUI" id="il_ui_fw_64903b28a59050_39687899">Frühjahrsemester 2023</button>
+</li>
+	<li><button class="btn btn-link" data-action="ilias.php?ref_id=179384&cmd=frameset&cmdClass=ilrepositorygui&cmdNode=10q&baseClass=ilRepositoryGUI" id="il_ui_fw_64903b28a594d9_04576958">Departement Physik</button>
+</li>
+	<li><button class="btn btn-link" data-action="ilias.php?ref_id=179380&cmd=frameset&cmdClass=ilrepositorygui&cmdNode=10q&baseClass=ilRepositoryGUI" id="il_ui_fw_64903b28a59871_40192987">Philosophisch-Naturwissensch. Fakultät</button>
+</li>
+	<li><button class="btn btn-link" data-action="ilias.php?ref_id=179329&cmd=frameset&cmdClass=ilrepositorygui&cmdNode=10q&baseClass=ilRepositoryGUI" id="il_ui_fw_64903b28a59bf2_47768163">Kurse mit synchronisierter Mitgliederverwaltung</button>
+</li>
+	<li><button class="btn btn-link" data-action="ilias.php?ref_id=1&cmd=frameset&cmdClass=ilrepositorygui&cmdNode=10q&baseClass=ilRepositoryGUI" id="il_ui_fw_64903b28a59f61_95495149">ADAM</button>
+</li>
+</ul>
+</div>
+
+				</nav>
+				
+				<ul class="il-maincontrols-metabar" role="menubar" style="visibility: hidden" aria-label="Metaleiste" id="il_ui_fw_64903b28a3ff66_13837975" ><!--if done via class/css-files, visibility is being applied too late -->
+	
+	<li role="none">
+		<a class="il-link link-bulky" href="https://adam.unibas.ch"  id="il_ui_fw_64903b28a333d2_60568616"  ><span class="glyph" aria-label="Hilfe" role="img">
+<span class="glyphicon
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ glyphicon-question-sign
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+" aria-hidden="true"></span>
+
+
+
+
+
+
+
+</span>
+<span class="bulky-label">Hilfe</span></a>
+		
+	</li>
+	
+	<li role="none">
+		<button class="btn btn-bulky" id="il_ui_fw_64903b28a33e22_92301608"  role="menuitem"  aria-haspopup="true"    ><span class="glyph" aria-label="Benachrichtigungen" role="img">
+<span class="glyphicon
+
+
+
+
+
+
+
+
+
+
+
+
+
+ glyphicon-bell
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+" aria-hidden="true"></span>
+
+
+
+
+<span class="il-counter">
+	
+	
+	<span class="badge badge-notify il-counter-novelty">1</span>
+	
+</span>
+
+
+
+<span class="il-counter-spacer">1</span>
+
+
+</span>
+<span class="bulky-label">Nachrichtenzentrale</span></button>
+
+		
+		<div class="il-metabar-slates">
+			<div class="il-maincontrols-slate disengaged" id="il_ui_fw_64903b28a39a84_68602180">
+	<div class="il-maincontrols-slate-content" data-replace-marker="content">
+		<div class="il-maincontrols-slate il-maincontrols-slate-notification">
+	<div class="il-maincontrols-slate-notification-title">
+		Mail
+	</div>
+	<div class="il-maincontrols-slate-content">
+		<div class="il-item-notification-replacement-container">
+	<div class="il-item il-notification-item" id="il_ui_fw_64903b28a38b00_55490184">
+		<div class="media">
+			<div class="media-left">
+				
+<img
+ class="icon mail small outlined"
+ src="./templates/default/images/outlined/icon_mail.svg" alt="mail"
+
+
+/>
+
+			</div>
+			<div class="media-body">
+				<h4 class="il-item-notification-title"><a href="ilias.php?baseClass=ilMailGUI" >Posteingang</a></h4>
+				<button type="button" class="close" aria-label="Schließen" id="il_ui_fw_64903b28a39485_11847472">
+	<span aria-hidden="true">&times;</span>
+</button>
+
+
+				
+				<div class="il-item-description">Sie haben <a href="ilias.php?baseClass=ilMailGUI" >21 ungelesene Mails</a> im Posteingang.</div>
+				
+				
+				
+
+				
+				<hr class="il-item-divider">
+				
+				<div class="row il-item-properties">
+					<div class="col-sm-12 il-multi-line-cap-3">
+						<span class="il-item-property-name">Zeit</span><span class="il-item-property-value">15. Okt 2019, 14:46</span>
+					</div>
+					<div class="col-sm-12 il-multi-line-cap-3">
+						<span class="il-item-property-name"></span><span class="il-item-property-value"></span>
+					</div>
+				</div>
+				
+				
+				
+				<div class="il-aggregate-notifications" data-aggregatedby="il_ui_fw_64903b28a38b00_55490184">
+					<div class="il-maincontrols-slate il-maincontrols-slate-notification">
+	<div class="il-maincontrols-slate-notification-title">
+		<button class="btn btn-bulky" data-action=""      ><span class="glyph" aria-label="Zurück" role="img">
+<span class="glyphicon
+
+
+
+
+
+
+
+ glyphicon-chevron-left
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+" aria-hidden="true"></span>
+
+
+
+
+
+
+
+</span>
+<span class="bulky-label">Zurück</span></button>
+
+	</div>
+	<div class="il-maincontrols-slate-content">
+		
+	</div>
+</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
+	</div>
+</div>
+	</div>
+</div>
+
+		</div>
+		
+	</li>
+	
+	<li role="none">
+		<button class="btn btn-bulky" id="il_ui_fw_64903b28a3a073_61820594"  role="menuitem"  aria-haspopup="true"    ><span class="glyph" aria-label="Suche" role="img">
+<span class="glyphicon
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ glyphicon-search
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+" aria-hidden="true"></span>
+
+
+
+
+
+
+
+</span>
+<span class="bulky-label">Suche</span></button>
+
+		
+		<div class="il-metabar-slates">
+			<div class="il-maincontrols-slate disengaged" id="il_ui_fw_64903b28a3b191_13637851">
+	<div class="il-maincontrols-slate-content" data-replace-marker="content">
+		<form class="" role="search" id="mm_search_form" action="ilias.php?baseClass=ilSearchController&cmd=post&rtoken=7daeeb2623fc78580f195d19f9f10fd9&fallbackCmd=remoteSearch" method="post" target="_top">
+	<div class="input-group">
+		<input aria-label="Sucheingabefeld" id="main_menu_search" class="form-control" type="text" name="queryString"> <span class="input-group-btn">
+				<input type="submit" class="btn btn-default" value="Suche"/>
+			</span>
+	</div>
+	
+	<div id="ilMMSearchMenu">
+		<p><a id="search_link" target="_top" href="ilias.php?baseClass=ilSearchController">» Letztes Suchergebnis</a></p>
+		<div id="mm_search_menu_options" aria-label="Suchbereich">
+			<fieldset>
+				<legend>Suchbereich</legend>
+				<input type="radio" name="root_id" value="1" checked="checked" id="ilmmsg"/> <label for="ilmmsg"> Im gesamten Magazin</label><br/>
+				
+				<input type="radio" name="root_id" value="1614111" id="ilmmsc"/> <label for="ilmmsc"> An der aktuellen Position</label><br />
+				
+				
+				
+			</fieldset>
+		</div>
+	</div>
+	
+	<div id="mm_search_menu_ac"></div>
+	<script>
+        il.Util.addOnLoad(
+            function () {
+                if (typeof $ != "undefined") {
+                    // we must bind the blur event before the autocomplete
+                    // item is added
+                    $("#main_menu_search").on("blur", function (e) {
+                        // prevent that the autocomplete list disappears when blur occurs
+                        e.stopImmediatePropagation();
+                    });
+
+                    $("#main_menu_search").autocomplete({
+                        source: "ilias.php?baseClass=ilSearchController&cmd=autoComplete" + "&search_type=4",
+                        appendTo: "#mm_search_menu_ac",
+                        open: function (event, ui) {
+                            $(".ui-autocomplete").position({
+                                my: "left top",
+                                at: "left top",
+                                of: $("#mm_search_menu_ac")
+                            })
+                        },
+                        /*close: function(event, ui) {
+						 alert("close");
+						 console.log(event);
+						 console.log(ui);
+						 return false;
+						 },*/
+                        minLength: 3
+                    });
+
+
+                    $("#ilMMSearchMenu input[type='radio']").change(function () {
+                        $("#main_menu_search").focus();
+						$("#main_menu_search").autocomplete("enable");
+
+                        /* close current search */
+                        $("#main_menu_search").autocomplete("close");
+
+                        /* append search type */
+
+                        var orig_datasource = "ilias.php?baseClass=ilSearchController&cmd=autoComplete";
+                        var type_val = $('input[name=root_id]:checked', '#mm_search_form').val();
+
+						if (type_val !== "1" && type_val !== "-1") {
+							$("#main_menu_search").autocomplete("disable");
+							return;
+						}
+
+                        $("#main_menu_search").autocomplete("option",
+                            {
+                                source: orig_datasource + "&search_type=" + type_val
+                            });
+
+                        /* start new search */
+                        $("#main_menu_search").autocomplete("search");
+                    });
+                }
+            }
+        );
+	</script>
+</form>
+
+	</div>
+</div>
+
+		</div>
+		
+	</li>
+	
+	<li role="none">
+		<button class="btn btn-bulky" id="il_ui_fw_64903b28a3b7a7_20723831"  role="menuitem"  aria-haspopup="true"    ><span class="il-avatar il-avatar-letter il-avatar-size-large il-avatar-letter-color-25" aria-label="Ihr Profilbild" role="img">
+	<span class="abbreviation">sa</span>
+</span>
+<span class="bulky-label">Benutzer</span></button>
+
+		
+		<div class="il-metabar-slates">
+			<div class="il-maincontrols-slate disengaged" id="il_ui_fw_64903b28a3e051_36422628">
+	<div class="il-maincontrols-slate-content" data-replace-marker="content">
+		<a class="il-link link-bulky" href="https://adam.unibas.ch/ilias.php?baseClass=ilDashboardGUI&cmd=jumpToProfile"   >
+<img
+ class="icon custom small"
+ src="./templates/default/images/icon_profile.svg" alt="Profil und Datenschutz"
+
+
+/>
+<span class="bulky-label">Profil und Datenschutz</span></a><a class="il-link link-bulky" href="https://adam.unibas.ch/ilias.php?baseClass=ilDashboardGUI&cmd=jumpToSettings"   >
+<img
+ class="icon custom small"
+ src="./templates/default/images/icon_personal_settings.svg" alt="Einstellungen"
+
+
+/>
+<span class="bulky-label">Einstellungen</span></a><a class="il-link link-bulky" href="https://adam.unibas.ch/logout.php?lang=de"   ><span class="glyph" aria-label="Abmelden" role="img">
+<span class="glyphicon
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ glyphicon-logout
+
+
+
+
+
+
+" aria-hidden="true"></span>
+
+
+
+
+
+
+
+</span>
+<span class="bulky-label">Abmelden</span></a>
+	</div>
+</div>
+
+		</div>
+		
+	</li>
+	
+	<li role="none">
+		<button class="btn btn-bulky" id="il_ui_fw_64903b28a3e628_60445313"  role="menuitem"  aria-haspopup="true"    ><span class="glyph" aria-label="Aufdecken" role="img">
+<span class="glyphicon
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ glyphicon-option-vertical
+
+
+
+
+
+
+
+
+
+" aria-hidden="true"></span>
+
+
+<span class="il-counter">
+	
+	<span class="badge badge-notify il-counter-status" style="display:none">0</span>
+	
+	
+</span>
+
+
+
+<span class="il-counter">
+	
+	
+	<span class="badge badge-notify il-counter-novelty" style="display:none">0</span>
+	
+</span>
+
+
+
+
+</span>
+<span class="bulky-label">more</span></button>
+
+		
+		<div class="il-metabar-slates">
+			<div class="il-maincontrols-slate disengaged" id="il_ui_fw_64903b28a3fca8_52451634" role="menu">
+	<div class="il-maincontrols-slate-content" data-replace-marker="content">
+		
+	</div>
+</div>
+
+		</div>
+		
+	</li>
+	
+</ul>
+
+			</div>
+		</header>
+
+		<div class="breadcrumbs">
+			<nav aria-label="Brotkrumen" class="breadcrumb_wrapper">
+	<div class="breadcrumb">
+		
+		<span class="crumb">
+			<a href="ilias.php?ref_id=1&cmd=frameset&cmdClass=ilrepositorygui&cmdNode=10q&baseClass=ilRepositoryGUI" >ADAM</a>
+		</span>
+		
+		<span class="crumb">
+			<a href="ilias.php?ref_id=179329&cmd=frameset&cmdClass=ilrepositorygui&cmdNode=10q&baseClass=ilRepositoryGUI" >Kurse mit synchronisierter Mitgliederverwaltung</a>
+		</span>
+		
+		<span class="crumb">
+			<a href="ilias.php?ref_id=179380&cmd=frameset&cmdClass=ilrepositorygui&cmdNode=10q&baseClass=ilRepositoryGUI" >Philosophisch-Naturwissensch. Fakultät</a>
+		</span>
+		
+		<span class="crumb">
+			<a href="ilias.php?ref_id=179384&cmd=frameset&cmdClass=ilrepositorygui&cmdNode=10q&baseClass=ilRepositoryGUI" >Departement Physik</a>
+		</span>
+		
+		<span class="crumb">
+			<a href="ilias.php?ref_id=1443150&cmd=frameset&cmdClass=ilrepositorygui&cmdNode=10q&baseClass=ilRepositoryGUI" >Frühjahrsemester 2023</a>
+		</span>
+		
+		<span class="crumb">
+			<a href="ilias.php?ref_id=1458746&cmd=frameset&cmdClass=ilrepositorygui&cmdNode=10q&baseClass=ilRepositoryGUI" >63873-01 – Quantum Thermodynamics</a>
+		</span>
+		
+		<span class="crumb">
+			<a href="ilias.php?ref_id=1538755&cmd=frameset&cmdClass=ilrepositorygui&cmdNode=10q&baseClass=ilRepositoryGUI" >Lecture notes</a>
+		</span>
+		
+		<span class="crumb">
+			<a href="ilias.php?ref_id=1614111&cmd=frameset&cmdClass=ilrepositorygui&cmdNode=10q&baseClass=ilRepositoryGUI" >Handwritten notes</a>
+		</span>
+		
+	</div>
+</nav>
+		</div>
+
+		<div class="il-system-infos">
+			<div id="il_ui_fw_64903b28a54ff6_85930428" class="container-fluid il-system-info il-system-info-neutral" data-close-uri="https://adam.unibas.ch/src/GlobalScreen/Client/notify.php?mode=closed&item_id=494c4941535c41646d696e6973747261746976654e6f74696669636174696f6e5c476c6f62616c53637265656e5c41444e50726f76696465727c3138"  aria-live="polite" aria-labelledby="il-system-info-headline" aria-describedby="il-system-info-headline">
+    <div class="il-system-info-content-wrapper">
+        <div class="il-system-info-content">
+            <span class="il-system-info-headline">Ankündigung: Zusätzliche Funktionalitäten in ADAM ab 18.07.2023</span>
+            <span class="il-system-info-body">Informieren Sie sich hier über die neuen Funktionalitäten: Hilfe & Support > Unibas-Hilfe > ADAM-Blog</span>
+        </div>
+    </div>
+    <div class="il-system-info-actions">
+        <span class="il-system-info-more"><a class="glyph" href="#" aria-label="Mehr zeigen">
+<span class="glyphicon
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ glyphicon-option-horizontal
+
+
+
+
+
+
+
+
+
+
+" aria-hidden="true"></span>
+
+
+
+
+
+
+
+</a>
+</span>
+        <span class="il-system-info-close"><a class="glyph" href="#" aria-label="Schließen" id="il_ui_fw_64903b28a53ad1_45166721">
+<span class="glyphicon
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ glyphicon-remove
+
+
+
+
+
+
+
+
+
+
+
+" aria-hidden="true"></span>
+
+
+
+
+
+
+
+</a>
+</span>
+    </div>
+</div>
+
+		</div>
+
+		<div class="nav il-maincontrols">
+			<div class="il-maincontrols-mainbar" id="il_ui_fw_64903b28a52a44_88649735">
+	<nav class="il-mainbar" aria-label="Hauptleiste">
+		
+		<div class="il-mainbar-tools-button">
+			<button class="btn btn-bulky engaged" id="il_ui_fw_64903b28a50f70_70786871"     aria-pressed="true"  >
+<img
+ class="icon custom small"
+ src="./templates/default/images/outlined/icon_tool.svg" alt="-more-"
+
+
+/>
+<span class="bulky-label">Tools</span></button>
+
+		</div>
+		
+
+		<div class="il-mainbar-triggers">
+			<ul class="il-mainbar-entries" role="menubar" style="visibility: hidden"><!--if done via class/css-files, visibility is being applied too late -->
+				
+				<li role="none"><a class="il-link link-bulky" href="https://adam.unibas.ch/ilias.php?baseClass=ilDashboardGUI&cmd=jumpToMemberships"  id="il_ui_fw_64903b28a41681_91776638"  role="menuitem" >
+<img id="il_ui_fw_64903b28a41206_64256017"
+ class="icon dshs small outlined"
+ src="./templates/default/images/outlined/icon_dshs.svg" alt="Dashboard"
+
+
+/>
+<span class="bulky-label">Dashboard</span></a></li>
+				
+				<li role="none"><button class="btn btn-bulky" id="il_ui_fw_64903b28a41cb3_44593502"  role="menuitem"     >
+<img
+ class="icon rep small outlined"
+ src="./templates/default/images/outlined/icon_rep.svg" alt="Magazin"
+
+
+/>
+<span class="bulky-label">Magazin</span></button>
+</li>
+				
+				<li role="none"><button class="btn btn-bulky" id="il_ui_fw_64903b28a45fc0_64136852"  role="menuitem"     >
+<img
+ class="icon custom small"
+ src="./templates/default/images/outlined/icon_wksp.svg" alt="Persönlicher Arbeitsraum"
+
+
+/>
+<span class="bulky-label">Persönlicher Arbeitsraum</span></button>
+</li>
+				
+				<li role="none"><button class="btn btn-bulky" id="il_ui_fw_64903b28a4aa95_52476703"  role="menuitem"     >
+<img
+ class="icon custom small"
+ src="./templates/default/images/outlined/icon_comu.svg" alt="Kommunikation"
+
+
+/>
+<span class="bulky-label">Kommunikation</span></button>
+</li>
+				
+				<li role="none"><a class="il-link link-bulky" href="https://adam.unibas.ch/ilias.php?ref_id=1424024&baseClass=ilrepositorygui"  id="il_ui_fw_64903b28a4dc55_38020747"  role="menuitem" >
+<img
+ class="icon custom small"
+ src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PGRlZnM+PHN0eWxlPi5he2ZpbGw6bm9uZTtzdHJva2U6IzAwMDtzdHJva2UtbGluZWNhcDpyb3VuZDtzdHJva2UtbGluZWpvaW46cm91bmQ7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5tZXNzYWdlcy1wZW9wbGUtcGVyc29uLWJ1YmJsZS1vdmFsPC90aXRsZT48cGF0aCBjbGFzcz0iYSIgZD0iTTEzLjUsOS41aDF2MmwyLjUtMmgyYTQuNSw0LjUsMCwwLDAsMC05SDEzQTQuNSw0LjUsMCwwLDAsOC41LDUiLz48cGF0aCBjbGFzcz0iYSIgZD0iTS41LDIzLjVhOC43MTksOC43MTksMCwwLDEsLjctMy4zMjJjLjQ5LS45ODEsMi41MzktMS42NjEsNS4xMTEtMi42MTMuNjk1LS4yNTguNTgxLTIuMDc0LjI3My0yLjQxM2E1LjEyNyw1LjEyNywwLDAsMS0xLjMzNi0zLjk3OEEzLjM1NCwzLjM1NCwwLDAsMSw4LjUsNy41YTMuMzU0LDMuMzU0LDAsMCwxLDMuMjU2LDMuNjc0LDUuMTI3LDUuMTI3LDAsMCwxLTEuMzM2LDMuOTc4Yy0uMzA4LjMzOS0uNDIyLDIuMTU1LjI3MywyLjQxMywyLjU3Mi45NTIsNC42MjEsMS42MzIsNS4xMTEsMi42MTNhOC43MTksOC43MTksMCwwLDEsLjcsMy4zMjJaIi8+PHBhdGggZD0iTTE5LDQuMjVhLjc1Ljc1LDAsMSwwLC43NS43NUEuNzUuNzUsMCwwLDAsMTksNC4yNVoiLz48cGF0aCBkPSJNMTYsNC4yNWEuNzUuNzUsMCwxLDAsLjc1Ljc1QS43NS43NSwwLDAsMCwxNiw0LjI1WiIvPjxwYXRoIGQ9Ik0xMyw0LjI1YS43NS43NSwwLDEsMCwuNzUuNzVBLjc1Ljc1LDAsMCwwLDEzLDQuMjVaIi8+PC9zdmc+" alt="Hilfe & Support"
+
+
+/>
+<span class="bulky-label">Hilfe & Support</span></a></li>
+				
+				<li role="none"><button class="btn btn-bulky" id="il_ui_fw_64903b28a4e507_92698041"  role="menuitem"     ><span class="glyph" aria-label="Mehr zeigen" role="img">
+<span class="glyphicon
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ glyphicon-option-horizontal
+
+
+
+
+
+
+
+
+
+
+" aria-hidden="true"></span>
+
+
+
+
+
+
+
+</span>
+<span class="bulky-label">Mehr</span></button>
+</li>
+				
+			</ul>
+		</div>
+	</nav>
+
+	<div class="il-mainbar-slates">
+		<div class="il-mainbar-tools-entries">
+			<ul class="il-mainbar-tools-entries-bg" role="menubar">
+				
+				<li class="il-mainbar-tool-trigger-item" role="none"><button class="btn btn-bulky" id="il_ui_fw_64903b28a4fda7_12043488"  role="menuitem"     >
+<img
+ class="icon hlps small outlined"
+ src="./templates/default/images/outlined/icon_hlps.svg" alt="Hilfe"
+
+
+/>
+<span class="bulky-label">Hilfe</span></button>
+</li>
+				
+			</ul>
+			
+		</div>
+		
+		<div class="il-maincontrols-slate disengaged" id="il_ui_fw_64903b28a459d3_28207674" data-depth-level="1" role="menu">
+	<div class="il-maincontrols-slate-content" data-replace-marker="content">
+		<a class="il-link link-bulky" href="https://adam.unibas.ch/goto_adam_root_1.html"   >
+<img
+ class="icon root small outlined"
+ src="./templates/default/images/outlined/icon_root.svg" alt="ADAM - Einstiegsseite"
+
+
+/>
+<span class="bulky-label">ADAM - Einstiegsseite</span></a><button class="btn btn-bulky" id="il_ui_fw_64903b28a43561_00301229"      >
+<img
+ class="icon custom small"
+ src="./templates/default/images/outlined/icon_reptr.svg" alt="Baumansicht"
+
+
+/>
+<span class="bulky-label">Baumansicht</span></button>
+<div class="il-maincontrols-slate disengaged" id="il_ui_fw_64903b28a440c8_05082398" data-depth-level="2">
+	<div class="il-maincontrols-slate-content" data-replace-marker="content">
+		...
+	</div>
+</div>
+<button class="btn btn-bulky" id="il_ui_fw_64903b28a445b8_62606528"      >
+<img
+ class="icon custom small"
+ src="./templates/default/images/outlined/icon_lstv.svg" alt="Baumansicht"
+
+
+/>
+<span class="bulky-label">Zuletzt besucht</span></button>
+<div class="il-maincontrols-slate disengaged" id="il_ui_fw_64903b28a44fc7_73612473" data-depth-level="2">
+	<div class="il-maincontrols-slate-content" data-replace-marker="content">
+		...
+	</div>
+</div>
+<a class="il-link link-bulky" href="https://adam.unibas.ch/ilias.php?cmdClass=ilmembershipoverviewgui&cmdNode=lt&baseClass=ilmembershipoverviewgui"   >
+<img
+ class="icon custom small"
+ src="./templates/default/images/outlined/icon_crgr.svg" alt="Meine Kurse und Gruppen"
+
+
+/>
+<span class="bulky-label">Meine Kurse und Gruppen</span></a>
+	</div>
+</div>
+
+		
+		<div class="il-maincontrols-slate disengaged" id="il_ui_fw_64903b28a4a2d1_77726460" data-depth-level="1" role="menu">
+	<div class="il-maincontrols-slate-content" data-replace-marker="content">
+		<button class="btn btn-bulky" id="il_ui_fw_64903b28a46d25_29500454"      >
+<img id="il_ui_fw_64903b28a47118_61142446"
+ class="icon custom small"
+ src="./templates/default/images/outlined/icon_fav.svg" alt="Favoriten"
+
+
+/>
+<span class="bulky-label">Favoriten</span></button>
+<div class="il-maincontrols-slate disengaged" id="il_ui_fw_64903b28a47ad1_76916569" data-depth-level="2">
+	<div class="il-maincontrols-slate-content" data-replace-marker="content">
+		...
+	</div>
+</div>
+<a class="il-link link-bulky" href="https://adam.unibas.ch/ilias.php?baseClass=ilDashboardGUI&cmd=jumpToCalendar"   >
+<img id="il_ui_fw_64903b28a482c8_29579009"
+ class="icon cals small outlined"
+ src="./templates/default/images/outlined/icon_cals.svg" alt="Kalender"
+
+
+/>
+<span class="bulky-label">Kalender</span></a><a class="il-link link-bulky" href="https://adam.unibas.ch/ilias.php?cmdClass=ilderivedtasksgui&cmdNode=cy&baseClass=ilderivedtasksgui"   >
+<img
+ class="icon task small outlined"
+ src="./templates/default/images/outlined/icon_task.svg" alt="To-Dos"
+
+
+/>
+<span class="bulky-label">To-Dos</span></a><a class="il-link link-bulky" href="https://adam.unibas.ch/ilias.php?baseClass=ilDashboardGUI&cmd=jumpToPortfolio"   >
+<img id="il_ui_fw_64903b28a49559_24172889"
+ class="icon prfa small outlined"
+ src="./templates/default/images/outlined/icon_prfa.svg" alt="Portfolio"
+
+
+/>
+<span class="bulky-label">Portfolio</span></a><a class="il-link link-bulky" href="https://adam.unibas.ch/ilias.php?cmd=showPrivateNotes&cmdClass=ilpdnotesgui&cmdNode=c0:y6&baseClass=ildashboardgui"   >
+<img id="il_ui_fw_64903b28a49d98_92458503"
+ class="icon nots small outlined"
+ src="./templates/default/images/outlined/icon_nots.svg" alt="Notizen"
+
+
+/>
+<span class="bulky-label">Notizen</span></a>
+	</div>
+</div>
+
+		
+		<div class="il-maincontrols-slate disengaged" id="il_ui_fw_64903b28a4d160_52753558" data-depth-level="1" role="menu">
+	<div class="il-maincontrols-slate-content" data-replace-marker="content">
+		<a class="il-link link-bulky" href="https://adam.unibas.ch/ilias.php?baseClass=ilMailGUI"   >
+<img id="il_ui_fw_64903b28a4b963_72618735"
+ class="icon mail small outlined"
+ src="./templates/default/images/outlined/icon_mail.svg" alt="Mail"
+
+
+/>
+<span class="bulky-label">Mail</span></a><a class="il-link link-bulky" href="https://adam.unibas.ch/ilias.php?baseClass=ilDashboardGUI&cmd=jumpToNews"   >
+<img id="il_ui_fw_64903b28a4c290_93978251"
+ class="icon nwss small outlined"
+ src="./templates/default/images/outlined/icon_nwss.svg" alt="Neuigkeiten"
+
+
+/>
+<span class="bulky-label">Neuigkeiten</span></a><a class="il-link link-bulky" href="https://adam.unibas.ch/ilias.php?cmd=showPublicComments&cmdClass=ilpdnotesgui&cmdNode=c0:y6&baseClass=ildashboardgui"   >
+<img
+ class="icon coms small outlined"
+ src="./templates/default/images/outlined/icon_coms.svg" alt="Kommentare"
+
+
+/>
+<span class="bulky-label">Kommentare</span></a>
+	</div>
+</div>
+
+		
+		<div class="il-maincontrols-slate disengaged" id="il_ui_fw_64903b28a4f749_40609887" data-depth-level="1" role="menu">
+	<div class="il-maincontrols-slate-content" data-replace-marker="content">
+		
+	</div>
+</div>
+
+		
+		<div class="il-maincontrols-slate disengaged" id="il_ui_fw_64903b28a509d5_68939289" data-depth-level="1" role="menu">
+	<div class="il-maincontrols-slate-content" data-replace-marker="content">
+		<div id='ilHelpPanel'>&nbsp;</div>
+	</div>
+</div>
+
+		
+
+		<div class="il-mainbar-close-slates">
+			<button class="btn btn-bulky" id="il_ui_fw_64903b28a51978_35547633"      ><span class="glyph" aria-label="Zurück" role="img">
+<span class="glyphicon
+
+
+
+
+
+
+
+ glyphicon-chevron-left
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+" aria-hidden="true"></span>
+
+
+
+
+
+
+
+</span>
+<span class="bulky-label">close</span></button>
+
+		</div>
+
+	</div>
+
+</div>
+
+		</div>
+
+		<!-- html5 main-tag is not supported in IE / div is needed -->
+		<main class="il-layout-page-content">
+			<div>
+				
+				
+
+
+
+<div id="mainspacekeeper" class="container-fluid ">
+	<div class="row" style="position: relative;">
+		
+		<div id="fixed_content" class=" ilContentFixed" >
+			<div id="mainscrolldiv" >
+				
+
+				
+
+				<div class="media il_HeaderInner">
+					
+					<div class="ilHeadAction hidden-print" id="il_head_action">
+						<div id="tttt" style="white-space:nowrap;"> 
+<div class="btn-group">
+<!-- Important: The next a-tag had a this.blur(); in the onclick event before. Please do not add it again, see bug #8723 -->
+<button  type="button"  class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-container="body" id="ilAdvSelListAnchorText_act_1614111_pref_1614111" aria-label="Aktionen für Handwritten notes">
+<span><span class='hidden-xs'>Aktionen</span></span> <span class="caret"></span>
+</button>
+
+
+<ul class="dropdown-menu pull-right" role="menu" id="ilAdvSelListTable_act_1614111_pref_1614111">
+	
+	
+	
+	<li >
+	<a role='menuitem'  href="ilias.php?ref_id=1614111&item_ref_id=1614111&type=fold&cmd=addToDesk&cmdClass=ilobjfoldergui&cmdNode=10q:ql&baseClass=ilRepositoryGUI" ><span class="xsmall">Zu Favoriten hinzufügen</span></a>
+	</li>
+	
+	<li >
+	<a role='menuitem'  href="ilias.php?ref_id=1614111&cmd=enableMultiDownload&cmdClass=ilobjfoldergui&cmdNode=10q:ql&baseClass=ilRepositoryGUI" ><span class="xsmall">Mehrere Objekte herunterladen</span></a>
+	</li>
+	
+	<li onclick="return ilNotes.listNotes(event, '1;1614111;fold;1850459;;0;0', 'il.Object.redrawActionHeader();');;">
+	<a role='menuitem'  href="#" ><span class="xsmall">Notizen</span></a>
+	</li>
+	
+	
+	
+</ul>
+
+</div>
+<script>
+il.AdvancedSelectionList.init['act_1614111_pref_1614111'] = function ()
+{
+	il.AdvancedSelectionList.add('act_1614111_pref_1614111', {"trigger_event":"click","auto_hide":false,"anchor_id":"ilAdvSelListAnchorElement_act_1614111_pref_1614111","asynch":false,"asynch_url":"","toggle_el":"lg_div_1614111_pref_1614111","toggle_class_on":"ilContainerListItemOuterHighlight"});
+	
+	il.AdvancedSelectionList.addItem('act_1614111_pref_1614111', '', '', 'Zu Favoriten hinzufügen');
+	
+	il.AdvancedSelectionList.addItem('act_1614111_pref_1614111', '', '', 'Mehrere Objekte herunterladen');
+	
+	il.AdvancedSelectionList.addItem('act_1614111_pref_1614111', '', '', 'Notizen');
+	
+	
+};
+il.AdvancedSelectionList.init['act_1614111_pref_1614111']();
+
+
+</script>
+</div>
+
+					</div>
+					
+
+					
+					
+					<img id="headerimage" class="media-object" src="./templates/default/images/icon_fold.svg" alt="Symbol Ordner" title="Symbol Ordner" />
+					
+					<h1 class="media-heading ilHeader "><a tabindex="0" class="ilAccAnchor" id="il_mhead_t_focus" name="il_mhead_t_focus" >Handwritten notes</a></h1>
+					
+					<div class="media-body">
+						
+						
+					</div>
+				</div>
+
+				
+
+				
+
+				<div class="ilClearFloat"></div>
+
+				<h2 class="ilAccHeadingHidden">Reiter</h2>
+<ul id="ilTab" class="nav nav-tabs ilCollapsable hidden-print">
+	
+	
+	
+	<li id="tab_view_content" class="active"><a href="ilias.php?ref_id=1614111&cmdClass=ilobjfoldergui&cmdNode=10q:ql&baseClass=ilRepositoryGUI" >Inhalt</a> <span class="ilAccHidden">(Ausgewählt)</span></li>
+	
+	<li id="tab_info_short" class=""><a href="ilias.php?ref_id=1614111&cmd=showSummary&cmdClass=ilinfoscreengui&cmdNode=10q:ql:h8&baseClass=ilRepositoryGUI" >Info</a></li>
+	
+	<li id="ilLastTab">
+		<a class="btn dropdown-toggle ilNoDisplay" data-toggle="dropdown" href="#">
+			... <span class="caret"></span>
+		</a>
+		<ul class="dropdown-menu" id="ilTabDropDown">
+		</ul>
+	</li>
+</ul>
+<span class="ilAccHidden"><a id="after_tabs"></a></span>
+
+				<div class="ilTabsContentOuter"><div class="clearfix"></div>
+				
+				<span class="ilAccHidden"><a id="after_sub_tabs" name="after_sub_tabs"></a></span>
+				
+				
+				
+				
+				
+
+					<div>
+						
+					</div>
+
+
+					<div class="container-fluid" id="ilContentContainer">
+						<div class="row">
+
+							<div id="il_center_col" class="col-sm-12">
+								
+								
+								
+
+<div  id="bl_cntr_1" class="ilContainerBlock container-fluid form-inline" >
+	
+	
+	<div class="row ilContainerBlockHeader">
+		
+		<h2 class="ilHeader ilContainerBlockHeader">Inhalt</h2>
+		<div class="pull-right"></div>
+	</div>
+	
+	<div class="ilContainerItemsContainer ">
+		
+		
+		
+		
+		<div  class="ilCLI ilObjListRow row">
+		
+		
+			<div class="ilContainerListItemOuter" data-list-item-id="lg_div_1614114_pref_1614111" id = "lg_div_1614114_pref_1614111">
+
+
+
+<div class="ilContainerListItemIcon "><img alt="Datei" title="Datei" src="./templates/default/images/icon_file.svg" class="ilListItemIcon" /></div>
+<div class="ilContainerListItemContent ">
+<div class="il_ContainerListItem">
+	<div class="il_ContainerItemTitle form-inline">
+		
+		
+		
+		
+		<h3 class="il_ContainerItemTitle"><a href="https://adam.unibas.ch/goto_adam_file_1614114_download.html" class="il_ContainerItemTitle"  >Lecture_1</a> <span class="il_ContainerItemPreview "><a href="javascript:void(0);" onclick="il.Preview.toggle(event, { id: '1614114', htmlId: 'lg_div_1614114_pref_1614111', url: 'ilias.php?baseClass=ilPreviewGUI&node_id=1614114&context=1&obj_id=1850461&cmdMode=asynch', status: 'created', loadingText: 'Lade Vorschau...' });" title="Vorschau anzeigen"><img src="./templates/default/images/preview.png" alt="Vorschau anzeigen" height="16" width="16" /></a></span></h3>
+		
+		
+	</div>
+	<div style="float:right">
+		
+	</div>
+	
+	<div class="ilFloatRight">
+	
+<div class="btn-group">
+<!-- Important: The next a-tag had a this.blur(); in the onclick event before. Please do not add it again, see bug #8723 -->
+<button  type="button"  class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-container="body" id="ilAdvSelListAnchorText_act_1614114_pref_1614111" aria-label="Aktionen für Lecture_1">
+<span></span> <span class="caret"></span>
+</button>
+
+
+<ul class="dropdown-menu pull-right" role="menu" id="ilAdvSelListTable_act_1614114_pref_1614111">
+	
+	<li><img src="./templates/default/images/loader.svg" alt="loading" /></li>
+	
+	
+	
+</ul>
+
+</div>
+<script>
+il.AdvancedSelectionList.init['act_1614114_pref_1614111'] = function ()
+{
+	il.AdvancedSelectionList.add('act_1614114_pref_1614111', {"trigger_event":"click","auto_hide":false,"anchor_id":"ilAdvSelListAnchorElement_act_1614114_pref_1614111","asynch":true,"asynch_url":"ilias.php?ref_id=1614111&cmdrefid=1614114&cmd=getAsynchItemList&cmdClass=ilobjfoldergui&cmdNode=10q:ql&baseClass=ilRepositoryGUI&cmdMode=asynch","toggle_el":"lg_div_1614114_pref_1614111","toggle_class_on":"ilContainerListItemOuterHighlight"});
+	
+	
+};
+il.AdvancedSelectionList.init['act_1614114_pref_1614111']();
+
+
+$("#ilAdvSelListAnchorText_act_1614114_pref_1614111").click(function() {
+	il.Util.ajaxReplaceInner('ilias.php?ref_id=1614111&cmdrefid=1614114&cmd=getAsynchItemList&cmdClass=ilobjfoldergui&cmdNode=10q:ql&baseClass=ilRepositoryGUI&cmdMode=asynch', 'ilAdvSelListTable_act_1614114_pref_1614111');
+	$(this).unbind("click");
+});	
+
+</script>
+
+	</div>
+	
+	
+	<div class="ilListItemSection il_Description"></div>
+	
+	
+	
+	<div class="ilListItemSection il_ItemProperties">
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		pdf&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		280,9 KB&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		26. Mai 2023, 17:33&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		Anzahl Seiten: 6&nbsp;&nbsp;</span>
+	
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div style="clear:both;"></div>
+</div>
+
+<div style="clear:both;"></div>
+</div>
+</div>
+
+		</div>
+		
+
+		
+		
+		
+		
+		
+		<div  class="ilCLI ilObjListRow row">
+		
+			<div class="ilContainerListItemOuter" data-list-item-id="lg_div_1608402_pref_1614111" id = "lg_div_1608402_pref_1614111">
+
+
+
+<div class="ilContainerListItemIcon "><img alt="Datei" title="Datei" src="./templates/default/images/icon_file.svg" class="ilListItemIcon" /></div>
+<div class="ilContainerListItemContent ">
+<div class="il_ContainerListItem">
+	<div class="il_ContainerItemTitle form-inline">
+		
+		
+		
+		
+		<h3 class="il_ContainerItemTitle"><a href="https://adam.unibas.ch/goto_adam_file_1608402_download.html" class="il_ContainerItemTitle"  >Lecture_10</a> <span class="il_ContainerItemPreview "><a href="javascript:void(0);" onclick="il.Preview.toggle(event, { id: '1608402', htmlId: 'lg_div_1608402_pref_1614111', url: 'ilias.php?baseClass=ilPreviewGUI&node_id=1608402&context=1&obj_id=1844510&cmdMode=asynch', status: 'created', loadingText: 'Lade Vorschau...' });" title="Vorschau anzeigen"><img src="./templates/default/images/preview.png" alt="Vorschau anzeigen" height="16" width="16" /></a></span></h3>
+		
+		
+	</div>
+	<div style="float:right">
+		
+	</div>
+	
+	<div class="ilFloatRight">
+	
+<div class="btn-group">
+<!-- Important: The next a-tag had a this.blur(); in the onclick event before. Please do not add it again, see bug #8723 -->
+<button  type="button"  class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-container="body" id="ilAdvSelListAnchorText_act_1608402_pref_1614111" aria-label="Aktionen für Lecture_10">
+<span></span> <span class="caret"></span>
+</button>
+
+
+<ul class="dropdown-menu pull-right" role="menu" id="ilAdvSelListTable_act_1608402_pref_1614111">
+	
+	<li><img src="./templates/default/images/loader.svg" alt="loading" /></li>
+	
+	
+	
+</ul>
+
+</div>
+<script>
+il.AdvancedSelectionList.init['act_1608402_pref_1614111'] = function ()
+{
+	il.AdvancedSelectionList.add('act_1608402_pref_1614111', {"trigger_event":"click","auto_hide":false,"anchor_id":"ilAdvSelListAnchorElement_act_1608402_pref_1614111","asynch":true,"asynch_url":"ilias.php?ref_id=1614111&cmdrefid=1608402&cmd=getAsynchItemList&cmdClass=ilobjfoldergui&cmdNode=10q:ql&baseClass=ilRepositoryGUI&cmdMode=asynch","toggle_el":"lg_div_1608402_pref_1614111","toggle_class_on":"ilContainerListItemOuterHighlight"});
+	
+	
+};
+il.AdvancedSelectionList.init['act_1608402_pref_1614111']();
+
+
+$("#ilAdvSelListAnchorText_act_1608402_pref_1614111").click(function() {
+	il.Util.ajaxReplaceInner('ilias.php?ref_id=1614111&cmdrefid=1608402&cmd=getAsynchItemList&cmdClass=ilobjfoldergui&cmdNode=10q:ql&baseClass=ilRepositoryGUI&cmdMode=asynch', 'ilAdvSelListTable_act_1608402_pref_1614111');
+	$(this).unbind("click");
+});	
+
+</script>
+
+	</div>
+	
+	
+	<div class="ilListItemSection il_Description"></div>
+	
+	
+	
+	<div class="ilListItemSection il_ItemProperties">
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		pdf&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		333,2 KB&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		15. Mai 2023, 09:36&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		Anzahl Seiten: 7&nbsp;&nbsp;</span>
+	
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div style="clear:both;"></div>
+</div>
+
+<div style="clear:both;"></div>
+</div>
+</div>
+
+		</div>
+		
+
+		
+		
+		
+		
+		<div  class="ilCLI ilObjListRow row">
+		
+		
+			<div class="ilContainerListItemOuter" data-list-item-id="lg_div_1614120_pref_1614111" id = "lg_div_1614120_pref_1614111">
+
+
+
+<div class="ilContainerListItemIcon "><img alt="Datei" title="Datei" src="./templates/default/images/icon_file.svg" class="ilListItemIcon" /></div>
+<div class="ilContainerListItemContent ">
+<div class="il_ContainerListItem">
+	<div class="il_ContainerItemTitle form-inline">
+		
+		
+		
+		
+		<h3 class="il_ContainerItemTitle"><a href="https://adam.unibas.ch/goto_adam_file_1614120_download.html" class="il_ContainerItemTitle"  >Lecture_11</a> <span class="il_ContainerItemPreview "><a href="javascript:void(0);" onclick="il.Preview.toggle(event, { id: '1614120', htmlId: 'lg_div_1614120_pref_1614111', url: 'ilias.php?baseClass=ilPreviewGUI&node_id=1614120&context=1&obj_id=1850468&cmdMode=asynch', status: 'created', loadingText: 'Lade Vorschau...' });" title="Vorschau anzeigen"><img src="./templates/default/images/preview.png" alt="Vorschau anzeigen" height="16" width="16" /></a></span></h3>
+		
+		
+	</div>
+	<div style="float:right">
+		
+	</div>
+	
+	<div class="ilFloatRight">
+	
+<div class="btn-group">
+<!-- Important: The next a-tag had a this.blur(); in the onclick event before. Please do not add it again, see bug #8723 -->
+<button  type="button"  class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-container="body" id="ilAdvSelListAnchorText_act_1614120_pref_1614111" aria-label="Aktionen für Lecture_11">
+<span></span> <span class="caret"></span>
+</button>
+
+
+<ul class="dropdown-menu pull-right" role="menu" id="ilAdvSelListTable_act_1614120_pref_1614111">
+	
+	<li><img src="./templates/default/images/loader.svg" alt="loading" /></li>
+	
+	
+	
+</ul>
+
+</div>
+<script>
+il.AdvancedSelectionList.init['act_1614120_pref_1614111'] = function ()
+{
+	il.AdvancedSelectionList.add('act_1614120_pref_1614111', {"trigger_event":"click","auto_hide":false,"anchor_id":"ilAdvSelListAnchorElement_act_1614120_pref_1614111","asynch":true,"asynch_url":"ilias.php?ref_id=1614111&cmdrefid=1614120&cmd=getAsynchItemList&cmdClass=ilobjfoldergui&cmdNode=10q:ql&baseClass=ilRepositoryGUI&cmdMode=asynch","toggle_el":"lg_div_1614120_pref_1614111","toggle_class_on":"ilContainerListItemOuterHighlight"});
+	
+	
+};
+il.AdvancedSelectionList.init['act_1614120_pref_1614111']();
+
+
+$("#ilAdvSelListAnchorText_act_1614120_pref_1614111").click(function() {
+	il.Util.ajaxReplaceInner('ilias.php?ref_id=1614111&cmdrefid=1614120&cmd=getAsynchItemList&cmdClass=ilobjfoldergui&cmdNode=10q:ql&baseClass=ilRepositoryGUI&cmdMode=asynch', 'ilAdvSelListTable_act_1614120_pref_1614111');
+	$(this).unbind("click");
+});	
+
+</script>
+
+	</div>
+	
+	
+	<div class="ilListItemSection il_Description"></div>
+	
+	
+	
+	<div class="ilListItemSection il_ItemProperties">
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		pdf&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		250,8 KB&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		26. Mai 2023, 17:35&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		Anzahl Seiten: 6&nbsp;&nbsp;</span>
+	
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div style="clear:both;"></div>
+</div>
+
+<div style="clear:both;"></div>
+</div>
+</div>
+
+		</div>
+		
+
+		
+		
+		
+		
+		
+		<div  class="ilCLI ilObjListRow row">
+		
+			<div class="ilContainerListItemOuter" data-list-item-id="lg_div_1614119_pref_1614111" id = "lg_div_1614119_pref_1614111">
+
+
+
+<div class="ilContainerListItemIcon "><img alt="Datei" title="Datei" src="./templates/default/images/icon_file.svg" class="ilListItemIcon" /></div>
+<div class="ilContainerListItemContent ">
+<div class="il_ContainerListItem">
+	<div class="il_ContainerItemTitle form-inline">
+		
+		
+		
+		
+		<h3 class="il_ContainerItemTitle"><a href="https://adam.unibas.ch/goto_adam_file_1614119_download.html" class="il_ContainerItemTitle"  >Lecture_12</a> <span class="il_ContainerItemPreview "><a href="javascript:void(0);" onclick="il.Preview.toggle(event, { id: '1614119', htmlId: 'lg_div_1614119_pref_1614111', url: 'ilias.php?baseClass=ilPreviewGUI&node_id=1614119&context=1&obj_id=1850469&cmdMode=asynch', status: 'created', loadingText: 'Lade Vorschau...' });" title="Vorschau anzeigen"><img src="./templates/default/images/preview.png" alt="Vorschau anzeigen" height="16" width="16" /></a></span></h3>
+		
+		
+	</div>
+	<div style="float:right">
+		
+	</div>
+	
+	<div class="ilFloatRight">
+	
+<div class="btn-group">
+<!-- Important: The next a-tag had a this.blur(); in the onclick event before. Please do not add it again, see bug #8723 -->
+<button  type="button"  class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-container="body" id="ilAdvSelListAnchorText_act_1614119_pref_1614111" aria-label="Aktionen für Lecture_12">
+<span></span> <span class="caret"></span>
+</button>
+
+
+<ul class="dropdown-menu pull-right" role="menu" id="ilAdvSelListTable_act_1614119_pref_1614111">
+	
+	<li><img src="./templates/default/images/loader.svg" alt="loading" /></li>
+	
+	
+	
+</ul>
+
+</div>
+<script>
+il.AdvancedSelectionList.init['act_1614119_pref_1614111'] = function ()
+{
+	il.AdvancedSelectionList.add('act_1614119_pref_1614111', {"trigger_event":"click","auto_hide":false,"anchor_id":"ilAdvSelListAnchorElement_act_1614119_pref_1614111","asynch":true,"asynch_url":"ilias.php?ref_id=1614111&cmdrefid=1614119&cmd=getAsynchItemList&cmdClass=ilobjfoldergui&cmdNode=10q:ql&baseClass=ilRepositoryGUI&cmdMode=asynch","toggle_el":"lg_div_1614119_pref_1614111","toggle_class_on":"ilContainerListItemOuterHighlight"});
+	
+	
+};
+il.AdvancedSelectionList.init['act_1614119_pref_1614111']();
+
+
+$("#ilAdvSelListAnchorText_act_1614119_pref_1614111").click(function() {
+	il.Util.ajaxReplaceInner('ilias.php?ref_id=1614111&cmdrefid=1614119&cmd=getAsynchItemList&cmdClass=ilobjfoldergui&cmdNode=10q:ql&baseClass=ilRepositoryGUI&cmdMode=asynch', 'ilAdvSelListTable_act_1614119_pref_1614111');
+	$(this).unbind("click");
+});	
+
+</script>
+
+	</div>
+	
+	
+	<div class="ilListItemSection il_Description"></div>
+	
+	
+	
+	<div class="ilListItemSection il_ItemProperties">
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		pdf&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		137,5 KB&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		26. Mai 2023, 17:35&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		Anzahl Seiten: 3&nbsp;&nbsp;</span>
+	
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div style="clear:both;"></div>
+</div>
+
+<div style="clear:both;"></div>
+</div>
+</div>
+
+		</div>
+		
+
+		
+		
+		
+		
+		<div  class="ilCLI ilObjListRow row">
+		
+		
+			<div class="ilContainerListItemOuter" data-list-item-id="lg_div_1614112_pref_1614111" id = "lg_div_1614112_pref_1614111">
+
+
+
+<div class="ilContainerListItemIcon "><img alt="Datei" title="Datei" src="./templates/default/images/icon_file.svg" class="ilListItemIcon" /></div>
+<div class="ilContainerListItemContent ">
+<div class="il_ContainerListItem">
+	<div class="il_ContainerItemTitle form-inline">
+		
+		
+		
+		
+		<h3 class="il_ContainerItemTitle"><a href="https://adam.unibas.ch/goto_adam_file_1614112_download.html" class="il_ContainerItemTitle"  >Lecture_2</a> <span class="il_ContainerItemPreview "><a href="javascript:void(0);" onclick="il.Preview.toggle(event, { id: '1614112', htmlId: 'lg_div_1614112_pref_1614111', url: 'ilias.php?baseClass=ilPreviewGUI&node_id=1614112&context=1&obj_id=1850460&cmdMode=asynch', status: 'created', loadingText: 'Lade Vorschau...' });" title="Vorschau anzeigen"><img src="./templates/default/images/preview.png" alt="Vorschau anzeigen" height="16" width="16" /></a></span></h3>
+		
+		
+	</div>
+	<div style="float:right">
+		
+	</div>
+	
+	<div class="ilFloatRight">
+	
+<div class="btn-group">
+<!-- Important: The next a-tag had a this.blur(); in the onclick event before. Please do not add it again, see bug #8723 -->
+<button  type="button"  class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-container="body" id="ilAdvSelListAnchorText_act_1614112_pref_1614111" aria-label="Aktionen für Lecture_2">
+<span></span> <span class="caret"></span>
+</button>
+
+
+<ul class="dropdown-menu pull-right" role="menu" id="ilAdvSelListTable_act_1614112_pref_1614111">
+	
+	<li><img src="./templates/default/images/loader.svg" alt="loading" /></li>
+	
+	
+	
+</ul>
+
+</div>
+<script>
+il.AdvancedSelectionList.init['act_1614112_pref_1614111'] = function ()
+{
+	il.AdvancedSelectionList.add('act_1614112_pref_1614111', {"trigger_event":"click","auto_hide":false,"anchor_id":"ilAdvSelListAnchorElement_act_1614112_pref_1614111","asynch":true,"asynch_url":"ilias.php?ref_id=1614111&cmdrefid=1614112&cmd=getAsynchItemList&cmdClass=ilobjfoldergui&cmdNode=10q:ql&baseClass=ilRepositoryGUI&cmdMode=asynch","toggle_el":"lg_div_1614112_pref_1614111","toggle_class_on":"ilContainerListItemOuterHighlight"});
+	
+	
+};
+il.AdvancedSelectionList.init['act_1614112_pref_1614111']();
+
+
+$("#ilAdvSelListAnchorText_act_1614112_pref_1614111").click(function() {
+	il.Util.ajaxReplaceInner('ilias.php?ref_id=1614111&cmdrefid=1614112&cmd=getAsynchItemList&cmdClass=ilobjfoldergui&cmdNode=10q:ql&baseClass=ilRepositoryGUI&cmdMode=asynch', 'ilAdvSelListTable_act_1614112_pref_1614111');
+	$(this).unbind("click");
+});	
+
+</script>
+
+	</div>
+	
+	
+	<div class="ilListItemSection il_Description"></div>
+	
+	
+	
+	<div class="ilListItemSection il_ItemProperties">
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		pdf&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		331,4 KB&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		26. Mai 2023, 17:33&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		Anzahl Seiten: 6&nbsp;&nbsp;</span>
+	
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div style="clear:both;"></div>
+</div>
+
+<div style="clear:both;"></div>
+</div>
+</div>
+
+		</div>
+		
+
+		
+		
+		
+		
+		
+		<div  class="ilCLI ilObjListRow row">
+		
+			<div class="ilContainerListItemOuter" data-list-item-id="lg_div_1614113_pref_1614111" id = "lg_div_1614113_pref_1614111">
+
+
+
+<div class="ilContainerListItemIcon "><img alt="Datei" title="Datei" src="./templates/default/images/icon_file.svg" class="ilListItemIcon" /></div>
+<div class="ilContainerListItemContent ">
+<div class="il_ContainerListItem">
+	<div class="il_ContainerItemTitle form-inline">
+		
+		
+		
+		
+		<h3 class="il_ContainerItemTitle"><a href="https://adam.unibas.ch/goto_adam_file_1614113_download.html" class="il_ContainerItemTitle"  >Lecture_3</a> <span class="il_ContainerItemPreview "><a href="javascript:void(0);" onclick="il.Preview.toggle(event, { id: '1614113', htmlId: 'lg_div_1614113_pref_1614111', url: 'ilias.php?baseClass=ilPreviewGUI&node_id=1614113&context=1&obj_id=1850462&cmdMode=asynch', status: 'created', loadingText: 'Lade Vorschau...' });" title="Vorschau anzeigen"><img src="./templates/default/images/preview.png" alt="Vorschau anzeigen" height="16" width="16" /></a></span></h3>
+		
+		
+	</div>
+	<div style="float:right">
+		
+	</div>
+	
+	<div class="ilFloatRight">
+	
+<div class="btn-group">
+<!-- Important: The next a-tag had a this.blur(); in the onclick event before. Please do not add it again, see bug #8723 -->
+<button  type="button"  class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-container="body" id="ilAdvSelListAnchorText_act_1614113_pref_1614111" aria-label="Aktionen für Lecture_3">
+<span></span> <span class="caret"></span>
+</button>
+
+
+<ul class="dropdown-menu pull-right" role="menu" id="ilAdvSelListTable_act_1614113_pref_1614111">
+	
+	<li><img src="./templates/default/images/loader.svg" alt="loading" /></li>
+	
+	
+	
+</ul>
+
+</div>
+<script>
+il.AdvancedSelectionList.init['act_1614113_pref_1614111'] = function ()
+{
+	il.AdvancedSelectionList.add('act_1614113_pref_1614111', {"trigger_event":"click","auto_hide":false,"anchor_id":"ilAdvSelListAnchorElement_act_1614113_pref_1614111","asynch":true,"asynch_url":"ilias.php?ref_id=1614111&cmdrefid=1614113&cmd=getAsynchItemList&cmdClass=ilobjfoldergui&cmdNode=10q:ql&baseClass=ilRepositoryGUI&cmdMode=asynch","toggle_el":"lg_div_1614113_pref_1614111","toggle_class_on":"ilContainerListItemOuterHighlight"});
+	
+	
+};
+il.AdvancedSelectionList.init['act_1614113_pref_1614111']();
+
+
+$("#ilAdvSelListAnchorText_act_1614113_pref_1614111").click(function() {
+	il.Util.ajaxReplaceInner('ilias.php?ref_id=1614111&cmdrefid=1614113&cmd=getAsynchItemList&cmdClass=ilobjfoldergui&cmdNode=10q:ql&baseClass=ilRepositoryGUI&cmdMode=asynch', 'ilAdvSelListTable_act_1614113_pref_1614111');
+	$(this).unbind("click");
+});	
+
+</script>
+
+	</div>
+	
+	
+	<div class="ilListItemSection il_Description"></div>
+	
+	
+	
+	<div class="ilListItemSection il_ItemProperties">
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		pdf&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		275,5 KB&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		26. Mai 2023, 17:33&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		Anzahl Seiten: 5&nbsp;&nbsp;</span>
+	
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div style="clear:both;"></div>
+</div>
+
+<div style="clear:both;"></div>
+</div>
+</div>
+
+		</div>
+		
+
+		
+		
+		
+		
+		<div  class="ilCLI ilObjListRow row">
+		
+		
+			<div class="ilContainerListItemOuter" data-list-item-id="lg_div_1614115_pref_1614111" id = "lg_div_1614115_pref_1614111">
+
+
+
+<div class="ilContainerListItemIcon "><img alt="Datei" title="Datei" src="./templates/default/images/icon_file.svg" class="ilListItemIcon" /></div>
+<div class="ilContainerListItemContent ">
+<div class="il_ContainerListItem">
+	<div class="il_ContainerItemTitle form-inline">
+		
+		
+		
+		
+		<h3 class="il_ContainerItemTitle"><a href="https://adam.unibas.ch/goto_adam_file_1614115_download.html" class="il_ContainerItemTitle"  >Lecture_4-5</a> <span class="il_ContainerItemPreview "><a href="javascript:void(0);" onclick="il.Preview.toggle(event, { id: '1614115', htmlId: 'lg_div_1614115_pref_1614111', url: 'ilias.php?baseClass=ilPreviewGUI&node_id=1614115&context=1&obj_id=1850463&cmdMode=asynch', status: 'created', loadingText: 'Lade Vorschau...' });" title="Vorschau anzeigen"><img src="./templates/default/images/preview.png" alt="Vorschau anzeigen" height="16" width="16" /></a></span></h3>
+		
+		
+	</div>
+	<div style="float:right">
+		
+	</div>
+	
+	<div class="ilFloatRight">
+	
+<div class="btn-group">
+<!-- Important: The next a-tag had a this.blur(); in the onclick event before. Please do not add it again, see bug #8723 -->
+<button  type="button"  class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-container="body" id="ilAdvSelListAnchorText_act_1614115_pref_1614111" aria-label="Aktionen für Lecture_4-5">
+<span></span> <span class="caret"></span>
+</button>
+
+
+<ul class="dropdown-menu pull-right" role="menu" id="ilAdvSelListTable_act_1614115_pref_1614111">
+	
+	<li><img src="./templates/default/images/loader.svg" alt="loading" /></li>
+	
+	
+	
+</ul>
+
+</div>
+<script>
+il.AdvancedSelectionList.init['act_1614115_pref_1614111'] = function ()
+{
+	il.AdvancedSelectionList.add('act_1614115_pref_1614111', {"trigger_event":"click","auto_hide":false,"anchor_id":"ilAdvSelListAnchorElement_act_1614115_pref_1614111","asynch":true,"asynch_url":"ilias.php?ref_id=1614111&cmdrefid=1614115&cmd=getAsynchItemList&cmdClass=ilobjfoldergui&cmdNode=10q:ql&baseClass=ilRepositoryGUI&cmdMode=asynch","toggle_el":"lg_div_1614115_pref_1614111","toggle_class_on":"ilContainerListItemOuterHighlight"});
+	
+	
+};
+il.AdvancedSelectionList.init['act_1614115_pref_1614111']();
+
+
+$("#ilAdvSelListAnchorText_act_1614115_pref_1614111").click(function() {
+	il.Util.ajaxReplaceInner('ilias.php?ref_id=1614111&cmdrefid=1614115&cmd=getAsynchItemList&cmdClass=ilobjfoldergui&cmdNode=10q:ql&baseClass=ilRepositoryGUI&cmdMode=asynch', 'ilAdvSelListTable_act_1614115_pref_1614111');
+	$(this).unbind("click");
+});	
+
+</script>
+
+	</div>
+	
+	
+	<div class="ilListItemSection il_Description"></div>
+	
+	
+	
+	<div class="ilListItemSection il_ItemProperties">
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		pdf&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		416,1 KB&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		26. Mai 2023, 17:34&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		Anzahl Seiten: 9&nbsp;&nbsp;</span>
+	
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div style="clear:both;"></div>
+</div>
+
+<div style="clear:both;"></div>
+</div>
+</div>
+
+		</div>
+		
+
+		
+		
+		
+		
+		
+		<div  class="ilCLI ilObjListRow row">
+		
+			<div class="ilContainerListItemOuter" data-list-item-id="lg_div_1614117_pref_1614111" id = "lg_div_1614117_pref_1614111">
+
+
+
+<div class="ilContainerListItemIcon "><img alt="Datei" title="Datei" src="./templates/default/images/icon_file.svg" class="ilListItemIcon" /></div>
+<div class="ilContainerListItemContent ">
+<div class="il_ContainerListItem">
+	<div class="il_ContainerItemTitle form-inline">
+		
+		
+		
+		
+		<h3 class="il_ContainerItemTitle"><a href="https://adam.unibas.ch/goto_adam_file_1614117_download.html" class="il_ContainerItemTitle"  >Lecture_6</a> <span class="il_ContainerItemPreview "><a href="javascript:void(0);" onclick="il.Preview.toggle(event, { id: '1614117', htmlId: 'lg_div_1614117_pref_1614111', url: 'ilias.php?baseClass=ilPreviewGUI&node_id=1614117&context=1&obj_id=1850465&cmdMode=asynch', status: 'created', loadingText: 'Lade Vorschau...' });" title="Vorschau anzeigen"><img src="./templates/default/images/preview.png" alt="Vorschau anzeigen" height="16" width="16" /></a></span></h3>
+		
+		
+	</div>
+	<div style="float:right">
+		
+	</div>
+	
+	<div class="ilFloatRight">
+	
+<div class="btn-group">
+<!-- Important: The next a-tag had a this.blur(); in the onclick event before. Please do not add it again, see bug #8723 -->
+<button  type="button"  class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-container="body" id="ilAdvSelListAnchorText_act_1614117_pref_1614111" aria-label="Aktionen für Lecture_6">
+<span></span> <span class="caret"></span>
+</button>
+
+
+<ul class="dropdown-menu pull-right" role="menu" id="ilAdvSelListTable_act_1614117_pref_1614111">
+	
+	<li><img src="./templates/default/images/loader.svg" alt="loading" /></li>
+	
+	
+	
+</ul>
+
+</div>
+<script>
+il.AdvancedSelectionList.init['act_1614117_pref_1614111'] = function ()
+{
+	il.AdvancedSelectionList.add('act_1614117_pref_1614111', {"trigger_event":"click","auto_hide":false,"anchor_id":"ilAdvSelListAnchorElement_act_1614117_pref_1614111","asynch":true,"asynch_url":"ilias.php?ref_id=1614111&cmdrefid=1614117&cmd=getAsynchItemList&cmdClass=ilobjfoldergui&cmdNode=10q:ql&baseClass=ilRepositoryGUI&cmdMode=asynch","toggle_el":"lg_div_1614117_pref_1614111","toggle_class_on":"ilContainerListItemOuterHighlight"});
+	
+	
+};
+il.AdvancedSelectionList.init['act_1614117_pref_1614111']();
+
+
+$("#ilAdvSelListAnchorText_act_1614117_pref_1614111").click(function() {
+	il.Util.ajaxReplaceInner('ilias.php?ref_id=1614111&cmdrefid=1614117&cmd=getAsynchItemList&cmdClass=ilobjfoldergui&cmdNode=10q:ql&baseClass=ilRepositoryGUI&cmdMode=asynch', 'ilAdvSelListTable_act_1614117_pref_1614111');
+	$(this).unbind("click");
+});	
+
+</script>
+
+	</div>
+	
+	
+	<div class="ilListItemSection il_Description"></div>
+	
+	
+	
+	<div class="ilListItemSection il_ItemProperties">
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		pdf&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		397,3 KB&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		26. Mai 2023, 17:34&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		Anzahl Seiten: 6&nbsp;&nbsp;</span>
+	
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div style="clear:both;"></div>
+</div>
+
+<div style="clear:both;"></div>
+</div>
+</div>
+
+		</div>
+		
+
+		
+		
+		
+		
+		<div  class="ilCLI ilObjListRow row">
+		
+		
+			<div class="ilContainerListItemOuter" data-list-item-id="lg_div_1614116_pref_1614111" id = "lg_div_1614116_pref_1614111">
+
+
+
+<div class="ilContainerListItemIcon "><img alt="Datei" title="Datei" src="./templates/default/images/icon_file.svg" class="ilListItemIcon" /></div>
+<div class="ilContainerListItemContent ">
+<div class="il_ContainerListItem">
+	<div class="il_ContainerItemTitle form-inline">
+		
+		
+		
+		
+		<h3 class="il_ContainerItemTitle"><a href="https://adam.unibas.ch/goto_adam_file_1614116_download.html" class="il_ContainerItemTitle"  >Lecture_7</a> <span class="il_ContainerItemPreview "><a href="javascript:void(0);" onclick="il.Preview.toggle(event, { id: '1614116', htmlId: 'lg_div_1614116_pref_1614111', url: 'ilias.php?baseClass=ilPreviewGUI&node_id=1614116&context=1&obj_id=1850464&cmdMode=asynch', status: 'created', loadingText: 'Lade Vorschau...' });" title="Vorschau anzeigen"><img src="./templates/default/images/preview.png" alt="Vorschau anzeigen" height="16" width="16" /></a></span></h3>
+		
+		
+	</div>
+	<div style="float:right">
+		
+	</div>
+	
+	<div class="ilFloatRight">
+	
+<div class="btn-group">
+<!-- Important: The next a-tag had a this.blur(); in the onclick event before. Please do not add it again, see bug #8723 -->
+<button  type="button"  class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-container="body" id="ilAdvSelListAnchorText_act_1614116_pref_1614111" aria-label="Aktionen für Lecture_7">
+<span></span> <span class="caret"></span>
+</button>
+
+
+<ul class="dropdown-menu pull-right" role="menu" id="ilAdvSelListTable_act_1614116_pref_1614111">
+	
+	<li><img src="./templates/default/images/loader.svg" alt="loading" /></li>
+	
+	
+	
+</ul>
+
+</div>
+<script>
+il.AdvancedSelectionList.init['act_1614116_pref_1614111'] = function ()
+{
+	il.AdvancedSelectionList.add('act_1614116_pref_1614111', {"trigger_event":"click","auto_hide":false,"anchor_id":"ilAdvSelListAnchorElement_act_1614116_pref_1614111","asynch":true,"asynch_url":"ilias.php?ref_id=1614111&cmdrefid=1614116&cmd=getAsynchItemList&cmdClass=ilobjfoldergui&cmdNode=10q:ql&baseClass=ilRepositoryGUI&cmdMode=asynch","toggle_el":"lg_div_1614116_pref_1614111","toggle_class_on":"ilContainerListItemOuterHighlight"});
+	
+	
+};
+il.AdvancedSelectionList.init['act_1614116_pref_1614111']();
+
+
+$("#ilAdvSelListAnchorText_act_1614116_pref_1614111").click(function() {
+	il.Util.ajaxReplaceInner('ilias.php?ref_id=1614111&cmdrefid=1614116&cmd=getAsynchItemList&cmdClass=ilobjfoldergui&cmdNode=10q:ql&baseClass=ilRepositoryGUI&cmdMode=asynch', 'ilAdvSelListTable_act_1614116_pref_1614111');
+	$(this).unbind("click");
+});	
+
+</script>
+
+	</div>
+	
+	
+	<div class="ilListItemSection il_Description"></div>
+	
+	
+	
+	<div class="ilListItemSection il_ItemProperties">
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		pdf&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		304,0 KB&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		26. Mai 2023, 17:34&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		Anzahl Seiten: 5&nbsp;&nbsp;</span>
+	
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div style="clear:both;"></div>
+</div>
+
+<div style="clear:both;"></div>
+</div>
+</div>
+
+		</div>
+		
+
+		
+		
+		
+		
+		
+		<div  class="ilCLI ilObjListRow row">
+		
+			<div class="ilContainerListItemOuter" data-list-item-id="lg_div_1614118_pref_1614111" id = "lg_div_1614118_pref_1614111">
+
+
+
+<div class="ilContainerListItemIcon "><img alt="Datei" title="Datei" src="./templates/default/images/icon_file.svg" class="ilListItemIcon" /></div>
+<div class="ilContainerListItemContent ">
+<div class="il_ContainerListItem">
+	<div class="il_ContainerItemTitle form-inline">
+		
+		
+		
+		
+		<h3 class="il_ContainerItemTitle"><a href="https://adam.unibas.ch/goto_adam_file_1614118_download.html" class="il_ContainerItemTitle"  >Lecture_8</a> <span class="il_ContainerItemPreview "><a href="javascript:void(0);" onclick="il.Preview.toggle(event, { id: '1614118', htmlId: 'lg_div_1614118_pref_1614111', url: 'ilias.php?baseClass=ilPreviewGUI&node_id=1614118&context=1&obj_id=1850466&cmdMode=asynch', status: 'created', loadingText: 'Lade Vorschau...' });" title="Vorschau anzeigen"><img src="./templates/default/images/preview.png" alt="Vorschau anzeigen" height="16" width="16" /></a></span></h3>
+		
+		
+	</div>
+	<div style="float:right">
+		
+	</div>
+	
+	<div class="ilFloatRight">
+	
+<div class="btn-group">
+<!-- Important: The next a-tag had a this.blur(); in the onclick event before. Please do not add it again, see bug #8723 -->
+<button  type="button"  class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-container="body" id="ilAdvSelListAnchorText_act_1614118_pref_1614111" aria-label="Aktionen für Lecture_8">
+<span></span> <span class="caret"></span>
+</button>
+
+
+<ul class="dropdown-menu pull-right" role="menu" id="ilAdvSelListTable_act_1614118_pref_1614111">
+	
+	<li><img src="./templates/default/images/loader.svg" alt="loading" /></li>
+	
+	
+	
+</ul>
+
+</div>
+<script>
+il.AdvancedSelectionList.init['act_1614118_pref_1614111'] = function ()
+{
+	il.AdvancedSelectionList.add('act_1614118_pref_1614111', {"trigger_event":"click","auto_hide":false,"anchor_id":"ilAdvSelListAnchorElement_act_1614118_pref_1614111","asynch":true,"asynch_url":"ilias.php?ref_id=1614111&cmdrefid=1614118&cmd=getAsynchItemList&cmdClass=ilobjfoldergui&cmdNode=10q:ql&baseClass=ilRepositoryGUI&cmdMode=asynch","toggle_el":"lg_div_1614118_pref_1614111","toggle_class_on":"ilContainerListItemOuterHighlight"});
+	
+	
+};
+il.AdvancedSelectionList.init['act_1614118_pref_1614111']();
+
+
+$("#ilAdvSelListAnchorText_act_1614118_pref_1614111").click(function() {
+	il.Util.ajaxReplaceInner('ilias.php?ref_id=1614111&cmdrefid=1614118&cmd=getAsynchItemList&cmdClass=ilobjfoldergui&cmdNode=10q:ql&baseClass=ilRepositoryGUI&cmdMode=asynch', 'ilAdvSelListTable_act_1614118_pref_1614111');
+	$(this).unbind("click");
+});	
+
+</script>
+
+	</div>
+	
+	
+	<div class="ilListItemSection il_Description"></div>
+	
+	
+	
+	<div class="ilListItemSection il_ItemProperties">
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		pdf&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		216,1 KB&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		26. Mai 2023, 17:34&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		Anzahl Seiten: 4&nbsp;&nbsp;</span>
+	
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div style="clear:both;"></div>
+</div>
+
+<div style="clear:both;"></div>
+</div>
+</div>
+
+		</div>
+		
+
+		
+		
+		
+		
+		<div  class="ilCLI ilObjListRow row">
+		
+		
+			<div class="ilContainerListItemOuter" data-list-item-id="lg_div_1603253_pref_1614111" id = "lg_div_1603253_pref_1614111">
+
+
+
+<div class="ilContainerListItemIcon "><img alt="Datei" title="Datei" src="./templates/default/images/icon_file.svg" class="ilListItemIcon" /></div>
+<div class="ilContainerListItemContent ">
+<div class="il_ContainerListItem">
+	<div class="il_ContainerItemTitle form-inline">
+		
+		
+		
+		
+		<h3 class="il_ContainerItemTitle"><a href="https://adam.unibas.ch/goto_adam_file_1603253_download.html" class="il_ContainerItemTitle"  >Lecture_9</a> <span class="il_ContainerItemPreview "><a href="javascript:void(0);" onclick="il.Preview.toggle(event, { id: '1603253', htmlId: 'lg_div_1603253_pref_1614111', url: 'ilias.php?baseClass=ilPreviewGUI&node_id=1603253&context=1&obj_id=1839013&cmdMode=asynch', status: 'created', loadingText: 'Lade Vorschau...' });" title="Vorschau anzeigen"><img src="./templates/default/images/preview.png" alt="Vorschau anzeigen" height="16" width="16" /></a></span></h3>
+		
+		
+	</div>
+	<div style="float:right">
+		
+	</div>
+	
+	<div class="ilFloatRight">
+	
+<div class="btn-group">
+<!-- Important: The next a-tag had a this.blur(); in the onclick event before. Please do not add it again, see bug #8723 -->
+<button  type="button"  class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-container="body" id="ilAdvSelListAnchorText_act_1603253_pref_1614111" aria-label="Aktionen für Lecture_9">
+<span></span> <span class="caret"></span>
+</button>
+
+
+<ul class="dropdown-menu pull-right" role="menu" id="ilAdvSelListTable_act_1603253_pref_1614111">
+	
+	<li><img src="./templates/default/images/loader.svg" alt="loading" /></li>
+	
+	
+	
+</ul>
+
+</div>
+<script>
+il.AdvancedSelectionList.init['act_1603253_pref_1614111'] = function ()
+{
+	il.AdvancedSelectionList.add('act_1603253_pref_1614111', {"trigger_event":"click","auto_hide":false,"anchor_id":"ilAdvSelListAnchorElement_act_1603253_pref_1614111","asynch":true,"asynch_url":"ilias.php?ref_id=1614111&cmdrefid=1603253&cmd=getAsynchItemList&cmdClass=ilobjfoldergui&cmdNode=10q:ql&baseClass=ilRepositoryGUI&cmdMode=asynch","toggle_el":"lg_div_1603253_pref_1614111","toggle_class_on":"ilContainerListItemOuterHighlight"});
+	
+	
+};
+il.AdvancedSelectionList.init['act_1603253_pref_1614111']();
+
+
+$("#ilAdvSelListAnchorText_act_1603253_pref_1614111").click(function() {
+	il.Util.ajaxReplaceInner('ilias.php?ref_id=1614111&cmdrefid=1603253&cmd=getAsynchItemList&cmdClass=ilobjfoldergui&cmdNode=10q:ql&baseClass=ilRepositoryGUI&cmdMode=asynch', 'ilAdvSelListTable_act_1603253_pref_1614111');
+	$(this).unbind("click");
+});	
+
+</script>
+
+	</div>
+	
+	
+	<div class="ilListItemSection il_Description"></div>
+	
+	
+	
+	<div class="ilListItemSection il_ItemProperties">
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		pdf&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		258,8 KB&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		05. Mai 2023, 22:04&nbsp;&nbsp;</span>
+	
+		
+		
+		<span class="il_ItemProperty">
+		
+		Anzahl Seiten: 6&nbsp;&nbsp;</span>
+	
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div style="clear:both;"></div>
+</div>
+
+<div style="clear:both;"></div>
+</div>
+</div>
+
+		</div>
+		
+
+		
+		
+		
+
+		
+		
+		
+	</div>
+	
+</div>
+
+
+								
+								
+								
+								
+							</div>
+
+							
+
+							
+						</div>
+					</div>
+
+					
+					
+				
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+<!--<div id="minheight"></div>-->
+<!--<footer id="ilFooter" class="ilFooter hidden-print"><div class="container-fluid ilContainerWidth">-->
+<!--<div class="row"><div class="ilFooterContainer form-inline"> </div></div></div></footer>-->
+
+
+
+
+			</div>
+
+
+			
+			<footer role="contentinfo">
+				<div class="il-maincontrols-footer">
+	<div class="il-footer-content">
+
+		
+		<div class="il-footer-permanent-url">
+			<label for="current_perma_link">Link zu dieser Seite</label>
+			<input id="current_perma_link" type="text" value="https://adam.unibas.ch/goto_adam_fold_1614111.html" readonly="readOnly">
+		</div>
+		
+
+		<div class="il-footer-text">
+			Rendered by its-ilias-web-prod-05 - 7.22 - 7.4.33
+		</div>
+		
+		<div class="il-footer-links">
+			<ul>
+	
+	<li><a href="https://adam.unibas.ch/goto_adam_impr_0.html" >Impressum, Datenschutz, Nutzungsvereinbarung</a></li>
+	
+	<li><a href="ilias.php?cmdClass=ilaccessibilitycontrolconceptgui&cmdNode=32&baseClass=ilaccessibilitycontrolconceptgui" >Info Barrierefreiheit</a></li>
+	
+</ul>
+		</div>
+		
+	</div>
+	
+</div>
+
+			</footer>
+			
+		</main>
+
+
+	</div>
+
+
+
+<script>
+	
+		il.Util.addOnLoad(function() {
+			try { il.Object.setRedrawListItemUrl('ilias.php?ref_id=1614111&cmd=redrawListItem&cmdClass=ilobjfoldergui&cmdNode=10q:ql&baseClass=ilRepositoryGUI&cmdMode=asynch'); } catch (e) { console.log(e); }
+try { il.Object.setRatingUrl('ilias.php?ref_id=1614111&cmd=saveRating&cmdClass=ilratinggui&cmdNode=10q:ql:9v:zt&baseClass=ilRepositoryGUI&cmdMode=asynch'); } catch (e) { console.log(e); }
+try { setTimeout(function() {il.Tooltip.init();}, 500); } catch (e) { console.log(e); }
+try { il.Preview.texts.preview = "Vorschau"; } catch (e) { console.log(e); }
+try { il.Preview.texts.showPreview = "Vorschau anzeigen"; } catch (e) { console.log(e); }
+try { il.Preview.texts.close = "Schließen"; } catch (e) { console.log(e); }
+try { il.Preview.previewSize = 280; } catch (e) { console.log(e); }
+try { il.Preview.initialHtml = "<ul class=\"ilPreviewList\" id=\"\"><li class=\"ilPreviewItem\"><div class=\"ilPreviewText\"><span>%%0%%<\/span><i class=\"ilPreviewTextLoading\"><\/i><\/div><\/li><\/ul>"; } catch (e) { console.log(e); }
+try { il.Preview.highlightClass = "ilContainerListItemOuterHighlight"; } catch (e) { console.log(e); }
+try { il.Preview.init(); } catch (e) { console.log(e); }
+try { il.Language.setLangVar('private_notes', "Private Notizen"); } catch (e) { console.log(e); }
+try { il.Language.setLangVar('notes_public_comments', "\u00d6ffentliche Kommentare"); } catch (e) { console.log(e); }
+try { ilNotes.setAjaxUrl('ilias.php?ref_id=1614111&cmdClass=ilnotegui&cmdNode=10q:ql:9v:nj&baseClass=ilRepositoryGUI&cmdMode=asynch'); } catch (e) { console.log(e); }
+try { il.Language.setLangVar('tagging_tags', "Tags"); } catch (e) { console.log(e); }
+try { ilTagging.setAjaxUrl('ilias.php?ref_id=1614111&cmdClass=iltagginggui&cmdNode=10q:ql:9v:17b&baseClass=ilRepositoryGUI&cmdMode=asynch'); } catch (e) { console.log(e); }
+try { il.Object.setRedrawAHUrl('ilias.php?ref_id=1614111&cmd=redrawHeaderAction&cmdClass=ilobjfoldergui&cmdNode=10q:ql&baseClass=ilRepositoryGUI&cmdMode=asynch'); } catch (e) { console.log(e); }
+try { (function($) {
+    $("body").ilSessionReminder({
+        url: "./sessioncheck.php?client_id=adam&lang=de",
+        client_id: "adam",
+        hash: "8e4d9d9bd87870f79c1d5ca578ac4ea8",
+        frequency: 60,
+        debug: 0
+    });
+})(jQuery); } catch (e) { console.log(e); }
+try { OSDNotifier = OSDNotifications({
+	closeHtml:            "<a class=\"glyph\" aria-label=\"Schlie\u00dfen\">\n<span class=\"glyphicon\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n glyphicon-remove\n\n\n\n\n\n\n\n\n\n\n\n\" aria-hidden=\"true\"><\/span>\n\n\n\n\n\n\n\n<\/a>\n",
+	initialNotifications: [],
+	pollingIntervall:     60,
+	playSound:            false
+}); } catch (e) { console.log(e); }
+try { il.Tooltip.add("tab_view_content", { context:"tab_view_content", my:"bottom center", at:"top center", text:"Lerninhalte und -aktivitäten im Ordner" } ); } catch (e) { console.log(e); }
+try { il.Tooltip.add("tab_info_short", { context:"tab_info_short", my:"bottom center", at:"top center", text:"Erstellungsdatum und den Link zum Objekt einsehen, als Bookmark speichern und Tags vergeben" } ); } catch (e) { console.log(e); }
+try { il.GS.Client.init('{"hashing":true,"logging":false}'); } catch (e) { console.log(e); }
+try { il.Overlay.add("mm_search_menu", {"yuicfg":{"visible":false,"fixedcenter":false},"trigger":null,"trigger_event":null,"anchor_id":null,"auto_hide":false,"close_el":null});  } catch (e) { console.log(e); }
+try {  } catch (e) { console.log(e); }
+try { il.Help.setAjaxUrl('ilias.php?help_screen_id=fold/view_content/.1614111&cmdClass=ilhelpgui&cmdNode=gg&baseClass=ilhelpgui&cmdMode=asynch'); } catch (e) { console.log(e); }
+try { il.Help.listHelp(null); } catch (e) { console.log(e); }
+try { $('#il_ui_fw_64903b28a28c09_97839717').on('click', function(event) {
+							window.location = 'logout.php?withdraw_consent';
+							return false;
+					}); } catch (e) { console.log(e); }
+try {  } catch (e) { console.log(e); }
+try {  } catch (e) { console.log(e); }
+try { $('#il_ui_fw_64903b28a333d2_60568616').on('click', function() {
+                                    $('body').trigger('il-help-toggle-slate');
+                                    return false;
+                                }) } catch (e) { console.log(e); }
+try { $('#il_ui_fw_64903b28a33e22_92301608').on('click', function(event) {
+						$(this).trigger('il_signal_64903b289dd081_60063279',
+							{
+								'id' : 'il_signal_64903b289dd081_60063279', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('[]')
+							}
+						);
+						return false;
+					});$('#il_ui_fw_64903b28a33e22_92301608').on('click', function(event) {
+						$(this).trigger('il_signal_64903b289de253_99864833',
+							{
+								'id' : 'il_signal_64903b289de253_99864833', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('[]')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try { il.UI.item.notification.getNotificationItemObject($(il_ui_fw_64903b28a38b00_55490184)).registerAggregates(1); } catch (e) { console.log(e); }
+try { il.UI.item.notification.getNotificationItemObject($(il_ui_fw_64903b28a39485_11847472)).registerCloseAction('src/GlobalScreen/Client/notify.php?mode=closed&item_id=494c4941535c4d61696c5c50726f76696465725c4d61696c4e6f74696669636174696f6e50726f76696465727c6d61696c5f6275636b6574',1); } catch (e) { console.log(e); }
+try { 
+                $(document).on('il_signal_64903b289de253_99864833', function(event, signalData) {
+                    $.ajax({url: 'src/GlobalScreen/Client/notify.php?mode=opened&notification_identifiers%5B0%5D=494c4941535c4d61696c5c50726f76696465725c4d61696c4e6f74696669636174696f6e50726f76696465727c6d61696c5f6275636b6574&notification_identifiers%5B1%5D=494c4941535c4d61696c5c50726f76696465725c4d61696c4e6f74696669636174696f6e50726f76696465727c6d61696c5f6275636b65745f67726f7570'});
+                });
+document.addEventListener('rerenderNotificationCenter', () => {
+                    let xhr = new XMLHttpRequest();
+                    xhr.open('GET', 'src/GlobalScreen/Client/notify.php?mode=rerender');
+                    xhr.onload = () => {
+                        if (xhr.status === 200) {
+                            let response = JSON.parse(xhr.responseText);
+                            il_ui_fw_64903b28a39a84_68602180.querySelector('.il-maincontrols-slate-content').innerHTML = response.html;
+                            il_ui_fw_64903b28a39a84_68602180.querySelectorAll('.il-maincontrols-slate-content script').forEach( element => {
+                                eval(element.innerHTML);
+                            })
+                            il_ui_fw_64903b28a39a84_68602180.parentNode.previousElementSibling.querySelector('.glyph').outerHTML = response.symbol;
+                        } else {
+                            console.error(xhr.status + ': ' + xhr.responseText);
+                        }
+                    };
+                    xhr.send();
+                });
+fn = il.UI.maincontrols.slate.onSignal;$(document).on('il_signal_64903b289de253_99864833', function(event, signalData) { fn('toggle', event, signalData, 'il_ui_fw_64903b28a39a84_68602180'); return false;});$(document).on('il_signal_64903b289de271_82623918', function(event, signalData) { fn('engage', event, signalData, 'il_ui_fw_64903b28a39a84_68602180'); return false;});$(document).on('il_signal_64903b289de284_16037996', function(event, signalData) { fn('replace', event, signalData, 'il_ui_fw_64903b28a39a84_68602180'); return false;}); } catch (e) { console.log(e); }
+try { $('#il_ui_fw_64903b28a3a073_61820594').on('click', function(event) {
+						$(this).trigger('il_signal_64903b289dd081_60063279',
+							{
+								'id' : 'il_signal_64903b289dd081_60063279', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('[]')
+							}
+						);
+						return false;
+					});$('#il_ui_fw_64903b28a3a073_61820594').on('click', function(event) {
+						$(this).trigger('il_signal_64903b289df483_55786086',
+							{
+								'id' : 'il_signal_64903b289df483_55786086', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('[]')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try {  } catch (e) { console.log(e); }
+try { fn = il.UI.maincontrols.slate.onSignal;$(document).on('il_signal_64903b289df483_55786086', function(event, signalData) { fn('toggle', event, signalData, 'il_ui_fw_64903b28a3b191_13637851'); return false;});$(document).on('il_signal_64903b289df494_91412237', function(event, signalData) { fn('engage', event, signalData, 'il_ui_fw_64903b28a3b191_13637851'); return false;});$(document).on('il_signal_64903b289df4a3_27667995', function(event, signalData) { fn('replace', event, signalData, 'il_ui_fw_64903b28a3b191_13637851'); return false;}); } catch (e) { console.log(e); }
+try { $('#il_ui_fw_64903b28a3b7a7_20723831').on('click', function(event) {
+						$(this).trigger('il_signal_64903b289dd081_60063279',
+							{
+								'id' : 'il_signal_64903b289dd081_60063279', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('[]')
+							}
+						);
+						return false;
+					});$('#il_ui_fw_64903b28a3b7a7_20723831').on('click', function(event) {
+						$(this).trigger('il_signal_64903b289df540_49631504',
+							{
+								'id' : 'il_signal_64903b289df540_49631504', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('[]')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try { fn = il.UI.maincontrols.slate.onSignal;$(document).on('il_signal_64903b289df540_49631504', function(event, signalData) { fn('toggle', event, signalData, 'il_ui_fw_64903b28a3e051_36422628'); return false;});$(document).on('il_signal_64903b289df551_13986896', function(event, signalData) { fn('engage', event, signalData, 'il_ui_fw_64903b28a3e051_36422628'); return false;});$(document).on('il_signal_64903b289df565_91434437', function(event, signalData) { fn('replace', event, signalData, 'il_ui_fw_64903b28a3e051_36422628'); return false;}); } catch (e) { console.log(e); }
+try { $('#il_ui_fw_64903b28a3e628_60445313').on('click', function(event) {
+						$(this).trigger('il_signal_64903b289dd081_60063279',
+							{
+								'id' : 'il_signal_64903b289dd081_60063279', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('[]')
+							}
+						);
+						return false;
+					});$('#il_ui_fw_64903b28a3e628_60445313').on('click', function(event) {
+						$(this).trigger('il_signal_64903b28a31ed6_12502860',
+							{
+								'id' : 'il_signal_64903b28a31ed6_12502860', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('[]')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try { fn = il.UI.maincontrols.slate.onSignal;$(document).on('il_signal_64903b28a31ed6_12502860', function(event, signalData) { fn('toggle', event, signalData, 'il_ui_fw_64903b28a3fca8_52451634'); return false;});$(document).on('il_signal_64903b28a31f05_65286438', function(event, signalData) { fn('engage', event, signalData, 'il_ui_fw_64903b28a3fca8_52451634'); return false;});$(document).on('il_signal_64903b28a31f17_11690265', function(event, signalData) { fn('replace', event, signalData, 'il_ui_fw_64903b28a3fca8_52451634'); return false;}); } catch (e) { console.log(e); }
+try { 
+					il.UI.maincontrols.metabar.registerSignals(
+						'il_ui_fw_64903b28a3ff66_13837975',
+						'il_signal_64903b289dd081_60063279',
+						'il_signal_64903b289dd273_83410933',
+					);
+					il.UI.maincontrols.metabar.init();
+					$(window).resize(il.UI.maincontrols.metabar.init);
+				 } catch (e) { console.log(e); }
+try { il.Tooltip.addToNearest('il_ui_fw_64903b28a41206_64256017', 'button,a', { context:'', my:'bottom center', at:'top center', text:'Zeigt den aktuellen Stand der Gruppen- und Kursmitgliedschaften, Kalendereinträge, Nachrichten, Chat oder Bookmarks auf einen Blick und listet alle Mitgliedschaften auf.' }); } catch (e) { console.log(e); }
+try { $('#il_ui_fw_64903b28a41681_91776638').click(function() { 
+                        il.UI.maincontrols.mainbar.disengageAll();
+                        il.UI.maincontrols.mainbar.clearStates();
+                    })
+
+                        il.UI.maincontrols.mainbar.addPartIdAndEntry('0:0', 'triggerer', 'il_ui_fw_64903b28a41681_91776638', false);
+                        il.UI.maincontrols.mainbar.addMapping('494c4941535c4d61696e4d656e755c50726f76696465725c5374616e64617264546f704974656d7350726f76696465727c6d6d5f70645f6372735f677270','0:0');
+                     } catch (e) { console.log(e); }
+try { 
+                        il.UI.maincontrols.mainbar.addPartIdAndEntry('0:1', 'triggerer', 'il_ui_fw_64903b28a41cb3_44593502', false);
+                        il.UI.maincontrols.mainbar.addMapping('494c4941535c4d61696e4d656e755c50726f76696465725c5374616e64617264546f704974656d7350726f76696465727c7265706f7369746f7279','0:1');
+                    
+$('#il_ui_fw_64903b28a41cb3_44593502').on('click', function(event) {
+						$(this).trigger('il_signal_64903b28a418f2_86643765',
+							{
+								'id' : 'il_signal_64903b28a418f2_86643765', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('{"entry_id":"0:1","action":"trigger"}')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try { 
+                                    il.UI.maincontrols.mainbar.addTriggerSignal('il_signal_64903b28a42758_08078814');
+                                    il.UI.maincontrols.mainbar.addPartIdAndEntry('0:1:1', 'triggerer', 'il_ui_fw_64903b28a43561_00301229');
+                                
+$('#il_ui_fw_64903b28a43561_00301229').on('click', function(event) {
+						$(this).trigger('il_signal_64903b28a42758_08078814',
+							{
+								'id' : 'il_signal_64903b28a42758_08078814', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('{"entry_id":"0:1:1","action":"trigger"}')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try {  } catch (e) { console.log(e); }
+try { fn = il.UI.maincontrols.slate.onSignal;$(document).on('il_signal_64903b289f8754_95235281', function(event, signalData) { fn('toggle', event, signalData, 'il_ui_fw_64903b28a440c8_05082398'); return false;});$(document).on('il_signal_64903b289f8760_83162093', function(event, signalData) { fn('engage', event, signalData, 'il_ui_fw_64903b28a440c8_05082398'); return false;});$(document).on('il_signal_64903b289f8774_35440810', function(event, signalData) { fn('replace', event, signalData, 'il_ui_fw_64903b28a440c8_05082398'); return false;});il.UI.maincontrols.mainbar.addPartIdAndEntry('0:1:1', 'slate', 'il_ui_fw_64903b28a440c8_05082398');
+$('#il_ui_fw_64903b28a440c8_05082398').on('in_view', function(event) {
+						$(this).trigger('il_signal_64903b289f8774_35440810',
+							{
+								'id' : 'il_signal_64903b289f8774_35440810', 'event' : 'in_view',
+								'triggerer' : $(this),
+								'options' : JSON.parse('{"url":".\/gs_content.php?item=494c4941535c5265706f7369746f72795c50726f76696465725c5265706f7369746f72794d61696e42617250726f76696465727c7265705f747265655f76696577"}')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try { 
+                                    il.UI.maincontrols.mainbar.addTriggerSignal('il_signal_64903b28a427e2_26901298');
+                                    il.UI.maincontrols.mainbar.addPartIdAndEntry('0:1:2', 'triggerer', 'il_ui_fw_64903b28a445b8_62606528');
+                                
+$('#il_ui_fw_64903b28a445b8_62606528').on('click', function(event) {
+						$(this).trigger('il_signal_64903b28a427e2_26901298',
+							{
+								'id' : 'il_signal_64903b28a427e2_26901298', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('{"entry_id":"0:1:2","action":"trigger"}')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try {  } catch (e) { console.log(e); }
+try { fn = il.UI.maincontrols.slate.onSignal;$(document).on('il_signal_64903b289f89b9_05013333', function(event, signalData) { fn('toggle', event, signalData, 'il_ui_fw_64903b28a44fc7_73612473'); return false;});$(document).on('il_signal_64903b289f89c9_45805445', function(event, signalData) { fn('engage', event, signalData, 'il_ui_fw_64903b28a44fc7_73612473'); return false;});$(document).on('il_signal_64903b289f89d3_54981557', function(event, signalData) { fn('replace', event, signalData, 'il_ui_fw_64903b28a44fc7_73612473'); return false;});il.UI.maincontrols.mainbar.addPartIdAndEntry('0:1:2', 'slate', 'il_ui_fw_64903b28a44fc7_73612473');
+$('#il_ui_fw_64903b28a44fc7_73612473').on('in_view', function(event) {
+						$(this).trigger('il_signal_64903b289f89d3_54981557',
+							{
+								'id' : 'il_signal_64903b289f89d3_54981557', 'event' : 'in_view',
+								'triggerer' : $(this),
+								'options' : JSON.parse('{"url":".\/gs_content.php?item=494c4941535c5265706f7369746f72795c50726f76696465725c5265706f7369746f72794d61696e42617250726f76696465727c6c6173745f76697369746564"}')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try { fn = il.UI.maincontrols.slate.onSignal;$(document).on('il_signal_64903b289f84d8_92363375', function(event, signalData) { fn('toggle', event, signalData, 'il_ui_fw_64903b28a459d3_28207674'); return false;});$(document).on('il_signal_64903b289f84e1_11333471', function(event, signalData) { fn('engage', event, signalData, 'il_ui_fw_64903b28a459d3_28207674'); return false;});$(document).on('il_signal_64903b289f84f7_12299106', function(event, signalData) { fn('replace', event, signalData, 'il_ui_fw_64903b28a459d3_28207674'); return false;});il.UI.maincontrols.mainbar.addPartIdAndEntry('0:1', 'slate', 'il_ui_fw_64903b28a459d3_28207674'); } catch (e) { console.log(e); }
+try { 
+                        il.UI.maincontrols.mainbar.addPartIdAndEntry('0:2', 'triggerer', 'il_ui_fw_64903b28a45fc0_64136852', false);
+                        il.UI.maincontrols.mainbar.addMapping('494c4941535c4d61696e4d656e755c50726f76696465725c5374616e64617264546f704974656d7350726f76696465727c706572736f6e616c5f776f726b7370616365','0:2');
+                    
+$('#il_ui_fw_64903b28a45fc0_64136852').on('click', function(event) {
+						$(this).trigger('il_signal_64903b28a45c25_45984210',
+							{
+								'id' : 'il_signal_64903b28a45c25_45984210', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('{"entry_id":"0:2","action":"trigger"}')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try { 
+                                    il.UI.maincontrols.mainbar.addTriggerSignal('il_signal_64903b28a46753_75930132');
+                                    il.UI.maincontrols.mainbar.addPartIdAndEntry('0:2:0', 'triggerer', 'il_ui_fw_64903b28a46d25_29500454');
+                                
+$('#il_ui_fw_64903b28a46d25_29500454').on('click', function(event) {
+						$(this).trigger('il_signal_64903b28a46753_75930132',
+							{
+								'id' : 'il_signal_64903b28a46753_75930132', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('{"entry_id":"0:2:0","action":"trigger"}')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try { il.Tooltip.addToNearest('il_ui_fw_64903b28a47118_61142446', 'button,a', { context:'', my:'bottom center', at:'top center', text:'Schnellzugriff auf ausgewählte Angebote' }); } catch (e) { console.log(e); }
+try {  } catch (e) { console.log(e); }
+try { fn = il.UI.maincontrols.slate.onSignal;$(document).on('il_signal_64903b289f8c00_00706047', function(event, signalData) { fn('toggle', event, signalData, 'il_ui_fw_64903b28a47ad1_76916569'); return false;});$(document).on('il_signal_64903b289f8c15_69520523', function(event, signalData) { fn('engage', event, signalData, 'il_ui_fw_64903b28a47ad1_76916569'); return false;});$(document).on('il_signal_64903b289f8c23_27974610', function(event, signalData) { fn('replace', event, signalData, 'il_ui_fw_64903b28a47ad1_76916569'); return false;});il.UI.maincontrols.mainbar.addPartIdAndEntry('0:2:0', 'slate', 'il_ui_fw_64903b28a47ad1_76916569');
+$('#il_ui_fw_64903b28a47ad1_76916569').on('in_view', function(event) {
+						$(this).trigger('il_signal_64903b289f8c23_27974610',
+							{
+								'id' : 'il_signal_64903b289f8c23_27974610', 'event' : 'in_view',
+								'triggerer' : $(this),
+								'options' : JSON.parse('{"url":".\/gs_content.php?item=494c4941535c5265706f7369746f72795c50726f76696465725c5265706f7369746f72794d61696e42617250726f76696465727c6d6d5f70645f73656c5f6974656d73"}')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try { il.Tooltip.addToNearest('il_ui_fw_64903b28a482c8_29579009', 'button,a', { context:'', my:'bottom center', at:'top center', text:'ILIAS-Terminkalender erstellen und einsehen, Sprechstundenangebote anlegen und verwalten' }); } catch (e) { console.log(e); }
+try { il.Tooltip.addToNearest('il_ui_fw_64903b28a49559_24172889', 'button,a', { context:'', my:'bottom center', at:'top center', text:'Portfolios erstellen und für andere Benutzer freigeben, Portfolios anderer Benutzer ansehen' }); } catch (e) { console.log(e); }
+try { il.Tooltip.addToNearest('il_ui_fw_64903b28a49d98_92458503', 'button,a', { context:'', my:'bottom center', at:'top center', text:'Private Notizen und öffentliche Kommentare lesen und verfassen' }); } catch (e) { console.log(e); }
+try { fn = il.UI.maincontrols.slate.onSignal;$(document).on('il_signal_64903b289f8b62_95768654', function(event, signalData) { fn('toggle', event, signalData, 'il_ui_fw_64903b28a4a2d1_77726460'); return false;});$(document).on('il_signal_64903b289f8b72_82492755', function(event, signalData) { fn('engage', event, signalData, 'il_ui_fw_64903b28a4a2d1_77726460'); return false;});$(document).on('il_signal_64903b289f8b83_44122660', function(event, signalData) { fn('replace', event, signalData, 'il_ui_fw_64903b28a4a2d1_77726460'); return false;});il.UI.maincontrols.mainbar.addPartIdAndEntry('0:2', 'slate', 'il_ui_fw_64903b28a4a2d1_77726460'); } catch (e) { console.log(e); }
+try { 
+                        il.UI.maincontrols.mainbar.addPartIdAndEntry('0:3', 'triggerer', 'il_ui_fw_64903b28a4aa95_52476703', false);
+                        il.UI.maincontrols.mainbar.addMapping('494c4941535c4d61696e4d656e755c50726f76696465725c5374616e64617264546f704974656d7350726f76696465727c636f6d6d756e69636174696f6e','0:3');
+                    
+$('#il_ui_fw_64903b28a4aa95_52476703').on('click', function(event) {
+						$(this).trigger('il_signal_64903b28a4a5c2_11934849',
+							{
+								'id' : 'il_signal_64903b28a4a5c2_11934849', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('{"entry_id":"0:3","action":"trigger"}')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try { il.Tooltip.addToNearest('il_ui_fw_64903b28a4b963_72618735', 'button,a', { context:'', my:'bottom center', at:'top center', text:'ILIAS-interne Mails empfangen und versenden, Verteilerlisten einrichten' }); } catch (e) { console.log(e); }
+try { il.Tooltip.addToNearest('il_ui_fw_64903b28a4c290_93978251', 'button,a', { context:'', my:'bottom center', at:'top center', text:'Nachrichten aus Kursen und Gruppen im Überblick, mit Hilfe eines Links zum jeweiligen ILIAS-Bereich der Nachricht wechseln' }); } catch (e) { console.log(e); }
+try { fn = il.UI.maincontrols.slate.onSignal;$(document).on('il_signal_64903b289f8fb4_82140603', function(event, signalData) { fn('toggle', event, signalData, 'il_ui_fw_64903b28a4d160_52753558'); return false;});$(document).on('il_signal_64903b289f8fc9_72634732', function(event, signalData) { fn('engage', event, signalData, 'il_ui_fw_64903b28a4d160_52753558'); return false;});$(document).on('il_signal_64903b289f8fd1_74965800', function(event, signalData) { fn('replace', event, signalData, 'il_ui_fw_64903b28a4d160_52753558'); return false;});il.UI.maincontrols.mainbar.addPartIdAndEntry('0:3', 'slate', 'il_ui_fw_64903b28a4d160_52753558'); } catch (e) { console.log(e); }
+try { $('#il_ui_fw_64903b28a4dc55_38020747').click(function() { 
+                        il.UI.maincontrols.mainbar.disengageAll();
+                        il.UI.maincontrols.mainbar.clearStates();
+                    })
+
+                        il.UI.maincontrols.mainbar.addPartIdAndEntry('0:4', 'triggerer', 'il_ui_fw_64903b28a4dc55_38020747', false);
+                        il.UI.maincontrols.mainbar.addMapping('494c4941535c4d61696e4d656e755c50726f76696465725c437573746f6d4d61696e42617250726f76696465727c36326362656535636133656634','0:4');
+                     } catch (e) { console.log(e); }
+try { 
+                        il.UI.maincontrols.mainbar.addPartIdAndEntry('0:5', 'triggerer', 'il_ui_fw_64903b28a4e507_92698041', false);
+                        il.UI.maincontrols.mainbar.addMapping('_mb_more_entry','0:5');
+                    
+$('#il_ui_fw_64903b28a4e507_92698041').on('click', function(event) {
+						$(this).trigger('il_signal_64903b28a4df80_33095604',
+							{
+								'id' : 'il_signal_64903b28a4df80_33095604', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('{"entry_id":"0:5","action":"trigger"}')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try { fn = il.UI.maincontrols.slate.onSignal;$(document).on('il_signal_64903b28a409e5_48195562', function(event, signalData) { fn('toggle', event, signalData, 'il_ui_fw_64903b28a4f749_40609887'); return false;});$(document).on('il_signal_64903b28a40a13_34803145', function(event, signalData) { fn('engage', event, signalData, 'il_ui_fw_64903b28a4f749_40609887'); return false;});$(document).on('il_signal_64903b28a40a23_89068971', function(event, signalData) { fn('replace', event, signalData, 'il_ui_fw_64903b28a4f749_40609887'); return false;});il.UI.maincontrols.mainbar.addPartIdAndEntry('0:5', 'slate', 'il_ui_fw_64903b28a4f749_40609887'); } catch (e) { console.log(e); }
+try { il.UI.maincontrols.mainbar.addToolEntry('T:0', false, true, '696c48656c704d65746142617250726f76696465727c68656c70');
+                        il.UI.maincontrols.mainbar.addPartIdAndEntry('T:0', 'triggerer', 'il_ui_fw_64903b28a4fda7_12043488', true);
+                        il.UI.maincontrols.mainbar.addMapping('696c48656c704d65746142617250726f76696465727c68656c70','T:0');
+                    
+$('#il_ui_fw_64903b28a4fda7_12043488').on('click', function(event) {
+						$(this).trigger('il_signal_64903b28a4f9e3_92636773',
+							{
+								'id' : 'il_signal_64903b28a4f9e3_92636773', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('{"entry_id":"T:0","action":"trigger"}')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try {  } catch (e) { console.log(e); }
+try { 
+                                                 $('body').on('il-help-toggle-slate', function(){
+                                                    if (!$('#il_ui_fw_64903b28a509d5_68939289').hasClass('disengaged')) {
+                                                        il.Help.resetCurrentPage();
+                                                        il.UI.maincontrols.mainbar.removeTool('696c48656c704d65746142617250726f76696465727c68656c70');
+                                                    } else {
+                                                        il.UI.maincontrols.mainbar.engageTool('696c48656c704d65746142617250726f76696465727c68656c70');
+                                                        const panel = document.getElementById('ilHelpPanel');
+                                                        const firstFocusElement = panel.querySelector('a,input,[role=\'button\'],button');
+                                                        if (firstFocusElement) {
+                                                            firstFocusElement.focus();
+                                                        }
+                                                    }
+                                                 });
+fn = il.UI.maincontrols.slate.onSignal;$(document).on('il_signal_64903b289fa551_19172549', function(event, signalData) { fn('toggle', event, signalData, 'il_ui_fw_64903b28a509d5_68939289'); return false;});$(document).on('il_signal_64903b289fa583_60447900', function(event, signalData) { fn('engage', event, signalData, 'il_ui_fw_64903b28a509d5_68939289'); return false;});$(document).on('il_signal_64903b289fa594_05152486', function(event, signalData) { fn('replace', event, signalData, 'il_ui_fw_64903b28a509d5_68939289'); return false;});il.UI.maincontrols.mainbar.addPartIdAndEntry('T:0', 'slate', 'il_ui_fw_64903b28a509d5_68939289'); } catch (e) { console.log(e); }
+try { $('#il_ui_fw_64903b28a50f70_70786871').on('click', function(event) {
+						$(this).trigger('il_signal_64903b289f7fa9_43650194',
+							{
+								'id' : 'il_signal_64903b289f7fa9_43650194', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('{"action":"toggle_tools"}')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try { $('#il_ui_fw_64903b28a51978_35547633').on('click', function(event) {
+						$(this).trigger('il_signal_64903b289f7f88_55693446',
+							{
+								'id' : 'il_signal_64903b289f7f88_55693446', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('{"action":"disengage_all"}')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try { il.UI.maincontrols.mainbar.addTriggerSignal('il_signal_64903b289f7f88_55693446');il.UI.maincontrols.mainbar.addTriggerSignal('il_signal_64903b289f7fa9_43650194');il.UI.maincontrols.mainbar.addTriggerSignal('il_signal_64903b28a418f2_86643765');il.UI.maincontrols.mainbar.addTriggerSignal('il_signal_64903b28a45c25_45984210');il.UI.maincontrols.mainbar.addTriggerSignal('il_signal_64903b28a4a5c2_11934849');il.UI.maincontrols.mainbar.addTriggerSignal('il_signal_64903b28a4df80_33095604');il.UI.maincontrols.mainbar.addTriggerSignal('il_signal_64903b28a4f9e3_92636773');il.UI.maincontrols.mainbar.addTriggerSignal('il_signal_64903b289fa693_81100285');
+                    window.addEventListener('resize', il.UI.maincontrols.mainbar.adjustToScreenSize);
+                    il.UI.maincontrols.mainbar.init('');
+                 } catch (e) { console.log(e); }
+try { $('#il_ui_fw_64903b28a53ad1_45166721').on('click', function(event) {
+						$(this).trigger('il_signal_64903b28a304d3_01648535',
+							{
+								'id' : 'il_signal_64903b28a304d3_01648535', 'event' : 'click',
+								'triggerer' : $(this),
+								'options' : JSON.parse('[]')
+							}
+						);
+						return false;
+					}); } catch (e) { console.log(e); }
+try { $(document).on('il_signal_64903b28a304d3_01648535', function() { il.UI.maincontrols.system_info.close('il_ui_fw_64903b28a54ff6_85930428'); });
+il.UI.maincontrols.system_info.init('il_ui_fw_64903b28a54ff6_85930428') } catch (e) { console.log(e); }
+try { $('#il_ui_fw_64903b28a58703_47196102').on('click', function(event) {
+							window.location = 'ilias.php?ref_id=1538755&cmd=frameset&cmdClass=ilrepositorygui&cmdNode=10q&baseClass=ilRepositoryGUI';
+							return false;
+					}); } catch (e) { console.log(e); }
+try { $('#il_ui_fw_64903b28a58ba2_77785716').on('click', function(event) {
+							window.location = 'ilias.php?ref_id=1458746&cmd=frameset&cmdClass=ilrepositorygui&cmdNode=10q&baseClass=ilRepositoryGUI';
+							return false;
+					}); } catch (e) { console.log(e); }
+try { $('#il_ui_fw_64903b28a59050_39687899').on('click', function(event) {
+							window.location = 'ilias.php?ref_id=1443150&cmd=frameset&cmdClass=ilrepositorygui&cmdNode=10q&baseClass=ilRepositoryGUI';
+							return false;
+					}); } catch (e) { console.log(e); }
+try { $('#il_ui_fw_64903b28a594d9_04576958').on('click', function(event) {
+							window.location = 'ilias.php?ref_id=179384&cmd=frameset&cmdClass=ilrepositorygui&cmdNode=10q&baseClass=ilRepositoryGUI';
+							return false;
+					}); } catch (e) { console.log(e); }
+try { $('#il_ui_fw_64903b28a59871_40192987').on('click', function(event) {
+							window.location = 'ilias.php?ref_id=179380&cmd=frameset&cmdClass=ilrepositorygui&cmdNode=10q&baseClass=ilRepositoryGUI';
+							return false;
+					}); } catch (e) { console.log(e); }
+try { $('#il_ui_fw_64903b28a59bf2_47768163').on('click', function(event) {
+							window.location = 'ilias.php?ref_id=179329&cmd=frameset&cmdClass=ilrepositorygui&cmdNode=10q&baseClass=ilRepositoryGUI';
+							return false;
+					}); } catch (e) { console.log(e); }
+try { $('#il_ui_fw_64903b28a59f61_95495149').on('click', function(event) {
+							window.location = 'ilias.php?ref_id=1&cmd=frameset&cmdClass=ilrepositorygui&cmdNode=10q&baseClass=ilRepositoryGUI';
+							return false;
+					}); } catch (e) { console.log(e); }
+try {  } catch (e) { console.log(e); }
+		});
+	
+</script>
+
+
+</body>
+</html>

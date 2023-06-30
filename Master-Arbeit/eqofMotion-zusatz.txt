@@ -1,0 +1,12 @@
+\begin{equation}
+    \begin{aligned}
+    &\partial_t\langle P_2  aa^{\dag} \rangle = -i(g(\langle \sigma_21 a +\sigma_21 aa^{\dag}a\rangle-\langle \sigma_{12} a^{\dag}aa\rangle )+f(\langle P_2 a^{\dag}\rangle-\langle P_2 a \rangle))\\
+    & \frac{\gamma_c}{2}((n_c+1) \langle  P_3 aa^{\dag} \rangle -n_c \langle P_2 aa^{\dag}\rangle) -2 \kappa (n_{cav}+1) \langle P_2 a^{\dag}a \rangle + 2 \kappa n_{cav}\langle P_2 aa^{\dag}\rangle
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+    &\partial_t\langle P_1 a^{\dag}a \rangle= -i(g(\langle -\sigma_{12}a^{\dag}\rangle-\sigma_{21}aa^{\dag} a \rangle)+ f\langle P_1 a \rangle -f\langle P_1 a^{\dag} \rangle)\\
+    & \gamma_h((n_h+1)\langle P_3 a^{\dag}a \rangle -n_h \langle P_1 a^{\dag} a \rangle ) +2\kappa(-(n_{cav}+1)\langle P_1 a^{\dag}a\rangle + n_{cav}\langle aa^{\dag} \rangle
+    \end{aligned}
+\end{equation}
