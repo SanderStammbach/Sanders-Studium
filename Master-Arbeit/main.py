@@ -664,29 +664,75 @@ plt.show()
 
 
 
-#photon number
+#Projector occupation probability
+
+Delta1=Delta2=0
+gamma_h = gamma_c = 1
+g = 1
+nc = ncav = 0.0
+kappa = 0.2
+
+Delta1=0
+Delta2=0
+anzahl=100
+nh=0.001
+nc=ncav=0
+n_list=[]
+nh_list=[]
+f=0
+Photonnumber_list=[]
+nh2 = np.linspace(0, 70, 100)
+
 nh_list=[]
 Trace_list=[]
 nh=0.1 #set nh again to zero
-for j in range(100):
-    Trace_list_temp=Diverse_Loups.ProjectorP(nh,proj_1,proj_2,proj_3,Hdilde,nc,nf,gamma_h,gamma_c,kappa,A1,A2,A3,A4,A5,A6)
-    Trace_list.append(Trace_list_temp)
 
+def Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g):
+    H_free=omega_1*proj_1+h*omega_2*proj_2+h*omega_3*proj_3+h*omega_f*a.dag()*a
+
+    H_int=h*g*(Trans_12*a.dag()+a*Trans_12.dag())
+
+    V=f*a.dag()+f*a #das got glaub nid
+
+    H=H_free+H_int 
+
+    Hdilde=H_int+V +(omega_2-(omega_1+omega_d))*(proj_2)+(omega_f-omega_d)*(a.dag()*a)
+
+    return Hdilde
+Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g)
+
+for i in range(anzahl):
+    n_list.append(np.abs(Diverse_Loups.EquationOfMotion2(Delta1 , Delta2 , f , nh, ncav , nc, gamma_c, gamma_h, g , kappa)))
+    #if (isinstance(n_list[i], complex) or n_list[i]<n_list[i-1]-10):
+    #    n_list[i]=n_list[i-1]
     nh_list.append(nh)
-    nh=nh+0.3
+    
+    Trace_list_temp=Diverse_Loups.ProjectorP(nh,proj_1,proj_2,proj_3,Hdilde,nc,ncav,gamma_h,gamma_c,kappa,A1,A2,A3,A4,A5,A6)
+    Trace_list.append(Trace_list_temp)
+    ist_temp=[]
+    list_temp=Diverse_Loups.Photonnumber(nh,a,proj_1,proj_2,proj_3,Hdilde,nc,ncav,gamma_h,gamma_c,kappa,A1,A2,A3,A4,A5,A6,omega_d,omega_f,omega_1,omega_2,H_int,f)
+    #g_list.append(i/100)  #Erstellt eine Liste mit Wären von g 
+    Photonnumber_list.append(list_temp)
+    print(n_list[i],Photonnumber_list[i])
+    nh=nh+0.7
+
+
 
 fig2, ax = plt.subplots()
 ax.set_xlabel(r' $n_h$', fontsize=21)
 ax.set_ylabel('probability')
 plt.title('stationary atomic population')
-plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,0],label='P1')
-plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,1],label='P2')
-plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,2],label='P3')
+    
+plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(n_list)[:anzahl,3],'--',color='blue',label=r'$P_3 $ from EqoM ')
+plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(n_list)[:anzahl,1],'--',color='green',label=r'$P_1 $from EqoM')
+plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(n_list)[:anzahl,2],'--',color='orange',label=r'$P_2 $from EqoM')
+plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,0],color='green',label=r'$P_1$')
+plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,1],color='orange',label=r'$P_2$')
+plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,2],color='blue',label=r'$P_3$')
 legend = ax.legend(loc='center right', shadow=True, fontsize='x-large')
-legend.get_frame().set_facecolor('C0')
+legend.get_frame().set_facecolor('white')
 
 plt.show()
-
 
 
 
@@ -738,13 +784,11 @@ legend.get_frame().set_facecolor('C0')
 
 plt.show()
 
-
 Delta1=Delta2=0
 gamma_h = gamma_c = 1
 g = 0.5
 nc = ncav = 0.0
 kappa = 0.2
-
 
 Delta1=0
 Delta2=0
@@ -755,9 +799,12 @@ n_list=[]
 nh_list=[]
 f=0
 Photonnumber_list=[]
+Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g)
 nh2 = np.linspace(0, 70, 100)
 for i in range(anzahl):
     n_list.append(np.abs(Diverse_Loups.EquationOfMotion2(Delta1 , Delta2 , f , nh, ncav , nc, gamma_c, gamma_h, g , kappa)))
+    if (isinstance(n_list[i][0], complex) or n_list[i][0]<n_list[i-1][0]-10):
+        n_list[i]=n_list[i-1]
     nh_list.append(nh)
     
     
@@ -777,12 +824,13 @@ ax.set_ylabel(r' $\langle n \rangle$', fontsize=21)
 plt.title(r' Photonnumber vs $n_h$',fontsize=21)
 #plt.plot(np.asarray(nh_list2)[:100],np.asarray(Photonnumber_list)[:100],color='red',label='f=1')
 plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Photonnumber_list)[:anzahl],color='orange',label='numerical')
-plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(n_list)[:anzahl],'--',color='black',label=r'solving equuation of motion numericaly')
+plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(n_list)[:anzahl,0],'--',color='black',label=r'numerical solved EqoM')
 plt.plot(nh2, Diverse_Loups.N_Analytic2(gamma_h,kappa,g,nh2,ncav,nc),color='red',label='analytical')
-plt.show()    
-print(n_list,nh)
 legend = ax.legend(loc='center right', shadow=True, fontsize='x-large')
 legend.get_frame().set_facecolor('C0')
 
 plt.show()    
 print(n_list,nh)
+
+
+

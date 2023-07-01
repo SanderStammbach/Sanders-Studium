@@ -581,7 +581,7 @@ class Diverse_Loups():
 
             return[eq1,eq2,eq3,eq4,eq5,eq6,eq6,eq8,eq9]
         
-        ai,ar, Trans12R,Trans12I,ATrans12I,ATrans12R,p1,p2,n=fsolve(equations,(1,1,1,1,1,1,1,1,1))
+        ai,ar, Trans12R,Trans12I,ATrans12I,ATrans12R,p1,p2,n=fsolve(equations,(0,0,0,0,0,0,1,1,1))
 
         
-        return n
+        return [n,p1,p2,(1-p1-p2)]
