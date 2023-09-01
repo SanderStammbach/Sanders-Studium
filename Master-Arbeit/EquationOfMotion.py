@@ -141,47 +141,52 @@ c_op_list.append(np.sqrt(gamma_4)*A4)
 c_op_list.append(np.sqrt(kappa_5)*A5)
 c_op_list.append(np.sqrt(kappa_6)*A6)
 
-Delta1=Delta2=0
+plt.show()
+
+Delta1 = Delta2 = 0
 gamma_h = gamma_c = 1
 g = 0.5
 nc = ncav = 0.0
 kappa = 0.2
 
-
-Delta1=0
-Delta2=0
-anzahl=100
-nh=0.5
-nc=ncav=0
-n_list=[]
-nh_list=[]
-f=0
-Photonnumber_list=[]
+Delta1 = 0
+Delta2 = 0
+anzahl = 100
+nh = 0.001
+nc = ncav = 0
+n_list = []
+nh_list = []
+f = 0.5
+Photonnumber_list = []
+#Hdilde = Hamilton(omega_1, proj_1, omega_2, proj_2, omega_3, proj_3, h, omega_f, a, f, g)
 nh2 = np.linspace(0, 70, 100)
 for i in range(anzahl):
-    n_list.append(np.abs(Diverse_Loups.EquationOfMotion2(Delta1 , Delta2 , f , nh, ncav , nc, gamma_c, gamma_h, g , kappa)))
+    n_list.append(np.abs(Diverse_Loups.EquationOfMotion2(Delta1, Delta2, f, nh, ncav, nc, gamma_c, gamma_h, g, kappa)))
+    if (isinstance(n_list[i][0], complex) or n_list[i][0] < n_list[i - 1][0] - 10):
+        n_list[i] = n_list[i - 1]
     nh_list.append(nh)
-    
-    
-    ist_temp=[]
-    list_temp=Diverse_Loups.Photonnumber2(nh,a,proj_1,proj_2,proj_3,Trans_12,nc,ncav,gamma_h,gamma_c,kappa,A1,A2,A3,A4,A5,A6,omega_d,omega_f,omega_1,omega_2,f,g)
-    #g_list.append(i/100)  #Erstellt eine Liste mit Wären von g 
+
+    ist_temp = []
+    list_temp = Diverse_Loups.Photonnumber2(nh, a, proj_1, proj_2, proj_3, Trans_12, nc, ncav, gamma_h, gamma_c, kappa,
+                                            A1, A2, A3, A4, A5, A6, omega_d, omega_f, omega_1, omega_2, f, g)
+    # g_list.append(i/100)  #Erstellt eine Liste mit Wären von g
     Photonnumber_list.append(list_temp)
-    print(n_list[i],Photonnumber_list[i])
-    nh=nh+0.7
-    
-    
-    
+    print(n_list[i], Photonnumber_list[i])
+    nh = nh + 0.7
 
 fig4, ax = plt.subplots()
 ax.set_xlabel(r' $n_h$', fontsize=21)
 ax.set_ylabel(r' $\langle n \rangle$', fontsize=21)
-plt.title(r' Photonnumber vs $n_h$',fontsize=21)
-#plt.plot(np.asarray(nh_list2)[:100],np.asarray(Photonnumber_list)[:100],color='red',label='f=1')
-plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Photonnumber_list)[:anzahl],color='orange',label='numerical')
-plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(n_list)[:anzahl],'--',color='black',label=r'numerical solved EqoM')
-plt.plot(nh2, Diverse_Loups.N_Analytic2(gamma_h,kappa,g,nh2,ncav,nc),color='red',label='analytical')
+plt.title(r' Photonnumber vs $n_h$', fontsize=21)
+# plt.plot(np.asarray(nh_list2)[:100],np.asarray(Photonnumber_list)[:100],color='red',label='f=1')
+plt.plot(np.asarray(nh_list)[:anzahl], np.asarray(Photonnumber_list)[:anzahl], color='orange', label='numerical')
+plt.plot(np.asarray(nh_list)[:anzahl], np.asarray(n_list)[:anzahl, 0], '--', color='black',
+         label=r'numerical solved EqoM')
+plt.plot(nh2, Diverse_Loups.N_Analytic2(gamma_h, kappa, g, nh2, ncav, nc), color='red', label='analytical')
 legend = ax.legend(loc='center right', shadow=True, fontsize='x-large')
 legend.get_frame().set_facecolor('C0')
-plt.show()    
-print(n_list,nh)
+
+plt.show()
+print(n_list, nh)
+
+
