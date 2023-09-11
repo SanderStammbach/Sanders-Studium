@@ -333,9 +333,9 @@ class Diverse_Loups():
         
         Liste_von_Q=[] # ExpectValue for Thermal Energy
 
-        Liste_von_Q.append(np.trace(H_free1*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1]))/(T(nh,omega_h)))
-        Liste_von_Q.append(np.trace(H_free1*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3]))/(T(nc,omega_c)))
-        Liste_von_Q.append(np.trace(H_free1*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5]))/(T(nf,omega_f)))
+        Liste_von_Q.append((np.trace(H_free1*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1])))/(T(nh,omega_h)))
+        Liste_von_Q.append((np.trace(H_free1*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3])))/(T(nc,omega_c)))
+        Liste_von_Q.append((np.trace(H_free1*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5])))/(T(nf,omega_f)))
         #Liste_von_Q.append(g)  g in der liste anfügen
 
         float_list= list(np.float_(Liste_von_Q))
@@ -709,10 +709,17 @@ class Diverse_Loups():
         if variable=="nh":
             g=14*kappa
             nh=0
+            f=f
+
+        elif variable=="f":
+            f=0
+            g=14*kappa
+            nh=nh
 
         else:
             g=0
             nh=5
+            f=f
 
         n_list=[]
         p1_list=[]
@@ -722,7 +729,7 @@ class Diverse_Loups():
         ar_list=[]
         
         nS=0.1
-        p1S=0.5
+        p1S=0.8
         p2S=0.07
         aiS=-1
         arS=0
@@ -757,6 +764,7 @@ class Diverse_Loups():
             p1_list.append(p1)
             p2_list.append(p2)
             ai_list.append(ai)
+            ar_list.append(ar)
             p3=1-(p1+p2)
             p3_list.append(p3)
             nS=n
@@ -773,6 +781,9 @@ class Diverse_Loups():
                 g+=step
             elif variable=="nh":
                 nh+=step
+
+            elif variable=="f":
+                f+=step
             else:
                 print('error')
         return n_list,p1_list,p2_list, p3_list,ai_list,ar_list
