@@ -707,18 +707,18 @@ class Diverse_Loups():
 
     def EquationOfMotion3(Delta1 , Delta2 , f , nh, ncav , nc, gammac, gammah, g , kappa, anzahl,step,variable):
         if variable=="nh":
-            g=14*kappa
+            g=g
             nh=0
             f=f
 
         elif variable=="f":
             f=0
-            g=14*kappa
+            g=g
             nh=nh
 
         else:
             g=0
-            nh=5
+            nh=nh
             f=f
 
         n_list=[]
