@@ -33,6 +33,8 @@ import multiprocessing as mp
 import csv
 #Konstante Grössen
 ########################################################################################################
+qutip.settings.has_mkl = False
+
 omega_1=0
 omega_2=30
 omega_3=150
@@ -44,7 +46,7 @@ omega_c=omega_3-omega_2
 omega_d=30
 
 h=1
-nph=60    # Maximale Photonen im cavity 
+nph=30    # Maximale Photonen im cavity 
  
 Th=100.    # temperature of the hot bath
 Tc=20.     # temperature of the cold bath
@@ -759,7 +761,7 @@ legend.get_frame().set_facecolor('white')
 f=0
 
 anzahl =100
-step=0.01
+step=0.05
 nc=ncav=nf=0
 nh=5
 
@@ -1269,7 +1271,7 @@ for i in range(anzahl):
    
     
     list_temp2=[]
-    list_temp2=Diverse_Loups.LadderOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,0.5)
+    list_temp2=Diverse_Loups.LadderOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,0.2)
     Power_mit_f.append(Diverse_Loups.P2(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,1,omega_2,g))
     ladder_list_f.append(list_temp2)
     nh_list.append(nh)
@@ -1285,8 +1287,47 @@ plt.title('a')
     
 
 plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(ladder_list)[:anzahl],'-',color='black',label=r'$ a$')
-plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(ladder_list_f)[:anzahl],'-',color='black',alpha=0.4,label=r' $a$')
-plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Power_mit_f)[:anzahl],'-',color='black',alpha=0.4,label=r' $Power$')
+plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(ladder_list_f)[:anzahl],'-',color='red',alpha=0.4,label=r' $a$')
+#plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Power_mit_f)[:anzahl],'-',color='black',alpha=0.4,label=r' $Power$')
+legend = ax.legend(loc='lower right', shadow=True, fontsize='x-large')
+legend.get_frame().set_facecolor('white')
+plt.show()
+
+
+
+nh=0
+f=0
+step=0.01
+anzahl=50
+ladder_list=[]
+ladder_list_nh=[]
+for i in range(anzahl):
+   
+    
+    list_temp=[]
+    list_temp=Diverse_Loups.LadderOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, 0,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,f)
+    ladder_list.append(list_temp)
+   
+    
+    list_temp2=[]
+    list_temp2=Diverse_Loups.LadderOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, 5,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,f)
+    Power_mit_f.append(Diverse_Loups.P2(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,1,omega_2,g))
+    ladder_list_nh.append(list_temp2)
+    f_list.append(f)
+    f+=step
+    
+    
+
+
+fig2, ax = plt.subplots()
+ax.set_xlabel(r' $nh$', fontsize=21)
+ax.set_ylabel(r'$<a>$',fontsize=21)
+plt.title('a')
+    
+
+plt.plot(np.asarray(f_list)[:anzahl],np.asarray(ladder_list)[:anzahl],'-',color='black',label=r'$ a$')
+plt.plot(np.asarray(f_list)[:anzahl],np.asarray(ladder_list_nh)[:anzahl],'-',color='red',alpha=0.4,label=r' $a$')
+#plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Power_mit_f)[:anzahl],'-',color='black',alpha=0.4,label=r' $Power$')
 legend = ax.legend(loc='lower right', shadow=True, fontsize='x-large')
 legend.get_frame().set_facecolor('white')
 plt.show()
