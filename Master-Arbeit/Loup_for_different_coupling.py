@@ -727,7 +727,7 @@ class Diverse_Loups():
         ai_list=[]
         p3_list=[]
         ar_list=[]
-        
+        sigma_12_list=[]
         nS=0.1
         p1S=0.8
         p2S=0.07
@@ -765,6 +765,7 @@ class Diverse_Loups():
             p2_list.append(p2)
             ai_list.append(ai)
             ar_list.append(ar)
+            sigma_12_list.append(Trans12R)
             p3=1-(p1+p2)
             p3_list.append(p3)
             nS=n
@@ -786,7 +787,7 @@ class Diverse_Loups():
                 f+=step
             else:
                 print('error')
-        return n_list,p1_list,p2_list, p3_list,ai_list,ar_list
+        return n_list,p1_list,p2_list, p3_list,ai_list,ar_list,sigma_12_list
     
 
 
@@ -794,6 +795,7 @@ class Diverse_Loups():
         
         Trace_list=[]
         
+
         
 
         gamma_1=(nh+1)*gamma_h #### unsicher wegen vorfaktor 1/2 
@@ -820,19 +822,63 @@ class Diverse_Loups():
 
         H_int=g*(Trans_12*a.dag()+a*Trans_12.dag())
         V=f*(a+a.dag())  
-        Hdilde=H_int+V +(0)*(proj_2)+(0)*(a.dag()*a)
+        Hdilde=H_int+f*(a+a.dag()) #+(omega_2-(omega_1+omega_d))*(proj_2)+(omega_f-omega_d)*(a.dag()*a) 
         rho = steadystate(Hdilde, c_op_list)
-        Trace_list.append
+        
         rho_f=rho.ptrace(1)  ### State in the cavity
 
         
 
-        n=np.imag(np.trace(a*rho))
+        A=np.imag(np.trace(a*rho))
         
 
 
 
-        return n 
+        return A 
         
 
         
+
+    def SigmaOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,f):
+        
+            Trace_list=[]
+        
+        
+
+            gamma_1=(nh+1)*gamma_h #### unsicher wegen vorfaktor 1/2 
+            gamma_2=(nh)*gamma_h
+            gamma_3=(nc+1)*gamma_c
+            gamma_4=(nc)*gamma_c
+            kappa_5=(ncav+1)*2*kappa ####goes to zero
+            kappa_6=(ncav)*2*kappa
+
+            A1=Trans_13
+            A2=Trans_13.dag()
+            A3=Trans_23
+            A4=Trans_23.dag()
+            A5=a
+            A6=a.dag()
+
+            c_op_list=[]    
+            c_op_list.append(np.sqrt(gamma_1)*A1)
+            c_op_list.append(np.sqrt(gamma_2)*A2)
+            c_op_list.append(np.sqrt(gamma_3)*A3)
+            c_op_list.append(np.sqrt(gamma_4)*A4)
+            c_op_list.append(np.sqrt(kappa_5)*A5)
+            c_op_list.append(np.sqrt(kappa_6)*A6)
+
+            H_int=g*(Trans_12*a.dag()+a*Trans_12.dag())
+            
+            Hdilde=H_int+f*(a+a.dag())   +(0)*(proj_2)+(0)*(a.dag()*a)
+            rho = steadystate(Hdilde, c_op_list)
+            Trace_list.append
+            rho_f=rho.ptrace(1)  ### State in the cavity
+
+        
+
+            sigma=np.real(np.trace(Trans_12*rho))
+        
+
+
+
+            return sigma 

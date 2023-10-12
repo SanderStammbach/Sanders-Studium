@@ -34,7 +34,7 @@ import csv
 #Konstante Grössen
 ########################################################################################################
 qutip.settings.has_mkl = False
-
+global omega_1, omega_2,  omega_d,omega_f
 omega_1=0
 omega_2=30
 omega_3=150
@@ -46,7 +46,7 @@ omega_c=omega_3-omega_2
 omega_d=30
 
 h=1
-nph=30    # Maximale Photonen im cavity 
+nph=30   # Maximale Photonen im cavity 
  
 Th=100.    # temperature of the hot bath
 Tc=20.     # temperature of the cold bath
@@ -59,7 +59,7 @@ nc=0.02
 
 nf=0.02    #Beschreibt den cavity/Photonen. 
 
-f =0.8
+f =0.2
 global kappa
 
 gamma_h=1
@@ -193,8 +193,8 @@ rho = DichteMatrix(nh,nc,nf,Hdilde)
 
 
 #print(rho)
-#qutip.plot_wigner_fock_distribution(rho)
 
+plt.show()
 
 print("D lösig isch:",np.trace((a*(c_op_list[4]*rho*c_op_list[4].dag()-1/2*(c_op_list[4].dag()*c_op_list[4]*rho-rho*c_op_list[4].dag()*c_op_list[4]))))-np.trace(a*a.dag()*a),"        und       ",a*(c_op_list[4]*rho*c_op_list[4].dag()-1/2*(c_op_list[4].dag()*c_op_list[4]*rho-rho*c_op_list[4].dag()*c_op_list[4])))
 
@@ -202,7 +202,7 @@ rho_f=rho.ptrace(1)  ### State in the cavity
 print(rho)
 qutip.plot_wigner_fock_distribution(rho_f,colorbar='colorbar')
 
-
+plt.show()
 
 #Hamilton
 #print(variance(a.dag()*a, rho))
@@ -761,7 +761,7 @@ legend.get_frame().set_facecolor('white')
 f=0
 
 anzahl =100
-step=0.05
+step=0.02
 nc=ncav=nf=0
 nh=5
 
@@ -927,14 +927,14 @@ nc = nf=ncav = 0.0
 
 
 g=14*kappa
-step=2
+step=0.05
 Delta1=0
 Delta2=0
 anzahl=100
 nh=0
 nc=ncav=nf=0
 
-anzahl=100
+#g=0
 n_list=[]
 nh_list=[]
 f=0.2
@@ -953,7 +953,7 @@ J_tot_list=[]
 
 J_h_f_list=[]
 J_c_f_list=[]
-J_cav_f_list=[]
+J_cav_f_list=[]  
 J_tot_f_list=[]
 
 
@@ -1043,7 +1043,25 @@ plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(P_ana_f)[:anzahl],'--',color='
 legend = ax.legend(loc='lower right', shadow=True, fontsize='x-large')
 
 legend.get_frame().set_facecolor('white')
+
 plt.show()
+
+fig2, ax = plt.subplots()
+ax.set_xlabel(r' $n_h$', fontsize=21)
+ax.set_ylabel('heat  current')
+plt.title('')
+plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Energie_vs_nh_f)[:anzahl,0],'-',color='red',alpha=0.5,)
+plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Energie_vs_nh_f)[:anzahl,2],'-',color='orange',alpha=0.5)
+plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Energie_vs_nh_f)[:anzahl,1],'-',color='green',alpha=0.5)
+plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Power_mit_f)[:anzahl],'-',color='blue',alpha=0.5)
+plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Energie_vs_nh)[:anzahl,1],'-',color='green',label=r' $\frac{J_{c}}{\hbar\gamma_h \omega_{h}}$')
+plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Energie_vs_nh)[:anzahl,0],'-',color='red',label=r' $\frac{J_{h}}{\hbar\gamma_h \omega_{h}}$')
+plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Energie_vs_nh)[:anzahl,2],'-',color='orange',label=r' $\frac{J_{cav}}{\hbar\gamma_h \omega_{h}}$')
+plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Power_ohne_f)[:anzahl],'-',color='blue',label=r' $\frac{P_{cav}}{\hbar\gamma_h \omega_{h}}$')
+legend = ax.legend(loc='lower right', shadow=True, fontsize='x-large')
+
+legend.get_frame().set_facecolor('white')
+
 
 #################################################################################################################
 
@@ -1127,7 +1145,7 @@ plt.plot(np.asarray(g_list)[:anzahl],np.asarray(J_cav_list)[:anzahl],'--',color=
 legend = ax.legend(loc='lower right', shadow=True, fontsize='x-large')
 legend.get_frame().set_facecolor('white')
 
-plt.show()
+#plt.show()
 
 
 ############################################################################################
@@ -1190,63 +1208,115 @@ plt.axvline(x=0.17)
 plt.axvline(x=20)
 plt.axvline(x=1.7)"""
 
-plt.show()
+
+
+
+
+
+
+
+
 
 
 
 Delta1=Delta2=0
 gamma_h = gamma_c = 1
-g = 14*kappa
+g = 7*kappa
 nc = ncav = 0.0
 
-step=0.1
 Delta1=0
 Delta2=0
-anzahl=100
-nh=0.001
-nc=ncav=0
-n_list=[]
-nh_list=[]
-f=0.5
-Photonnumber_list=[]
-#Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g)
+anzahl=80
+nh=0
+nc=nf=0
 
+f=0
+ladder_list=[]
+ladder_list_f=[]
+f_list=[]
+sigma_list=[]
+sigma_list_f=[]
+a_Ana=[]
+a_Ana2=[]
+n_list=(Diverse_Loups.EquationOfMotion3(Delta1 , Delta2 , f , 0, ncav , nc, gamma_c, gamma_h, g ,kappa,anzahl,step,"f"))
+n_f_list=(Diverse_Loups.EquationOfMotion3(Delta1 , Delta2 , f , 5, ncav , nc, gamma_c, gamma_h, g ,kappa,anzahl,step,"f"))
+step=0.01
 for i in range(anzahl):
-    n_list.append(np.abs(Diverse_Loups.N_Analytic(gamma_c,gamma_h,kappa,g,nh,f,nc)))
+   
     
     
+    ladder_list.append(Diverse_Loups.LadderOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, 0,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,f))
+    sigma_list.append((-Diverse_Loups.SigmaOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, 0,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,f)*g-f)/kappa)
+     
+    
+    sigma_list_f.append((-Diverse_Loups.SigmaOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, 5,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,f)*g-f)/kappa)
+    ladder_list_f.append(Diverse_Loups.LadderOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, 5,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,f))
+    a_Ana.append((-(n_f_list[6][i])*g-f)/kappa)
+    a_Ana2.append(n_f_list[4][i])
+    f_list.append(f)
+    f+=step
     
     
-    Photonnumber_list.append(Diverse_Loups.Photonnumber2(nh,a,proj_1,proj_2,proj_3,Trans_12,nc,ncav,gamma_h,gamma_c,kappa,A1,A2,A3,A4,A5,A6,omega_d,omega_f,omega_1,omega_2,f,g))
-    
-    
-    print(n_list[i],Photonnumber_list[i])
 
-    nh_list.append(nh)
-    nh=nh+step
-    
 
-    
+fig2, ax = plt.subplots()
+ax.set_xlabel(r' $\frac{f}{\gamma}$', fontsize=21)
+ax.set_ylabel(r'$<a>$',fontsize=21)
+plt.title('a')
     
 
-fig4, ax = plt.subplots()
-ax.set_xlabel(r' $n_h$', fontsize=21)
-ax.set_ylabel(r' $\langle n \rangle$', fontsize=21)
-plt.title(r' Photonnumber vs $n_h$',fontsize=21)
+#plt.plot(np.asarray(f_list)[:anzahl],np.asarray(a_Ana2)[:anzahl],'*',color='green',label=r'$\langle a\rangle, (eqm), nh=5$')
+plt.plot(np.asarray(f_list)[:anzahl],np.asarray(ladder_list)[:anzahl],'-',color='black',label=r'$ \langle a\rangle , nh=0$')
+plt.plot(np.asarray(f_list)[:anzahl],np.asarray(ladder_list_f)[:anzahl],'-',color='red',label=r' $\langle a\rangle, n_h=5 $')
+plt.plot(np.asarray(f_list)[:anzahl],np.asarray(sigma_list)[:anzahl],'*',color='black',label=r' $(\langle \sigma_{12}\rangle g-f)\kappa, n_h=0$')
+plt.plot(np.asarray(f_list)[:anzahl],np.asarray(sigma_list_f)[:anzahl],'-',color='red',alpha=0.4,label=r' $(\langle \sigma_{12}\rangle g-f)/\kappa , n_h=5$')
+plt.plot(np.asarray(f_list)[:anzahl],np.asarray(a_Ana)[:anzahl],'-',color='green',label=r' $(\langle \sigma_{12}\rangle g-f)/\kappa, eqm,  n_h=5$')
+#plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Power_mit_f)[:anzahl],'-',color='black',alpha=0.4,label=r' $Power$')
+legend = ax.legend(loc='lower right', shadow=True, fontsize='x-large')
+legend.get_frame().set_facecolor('white')
+ 
 
-plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Photonnumber_list)[:anzahl],color='orange',label='numerical')
-plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(n_list)[:anzahl],'--',color='black',label=r'numerical solved EqoM')
-plt.plot(nh2, Diverse_Loups.N_Analytic2(gamma_h,kappa,g,nh2,ncav,nc),color='red',label='analytical')
-legend = ax.legend(loc='center right', shadow=True, fontsize='x-large')
-legend.get_frame().set_facecolor('C0')
+# /bin/env/python
+from cProfile import label
+from calendar import c
+from ctypes import c_char_p
+from email import message_from_file
+import imp
+from tkinter import messagebox
+from turtle import color, title
+from typing import List
+from IPython.display import display
+from re import A, U
+from sys import displayhook
+import matplotlib.pyplot as plt
+import numpy as np
+from qiskit import QuantumCircuit, Aer, transpile, assemble
+from qiskit.visualization import plot_histogram
+from math import gcd
+from numpy.random import randint
+import pandas as pd
+from fractions import Fraction
+import qutip
+print("conda activate")
+from qutip import mesolve as mesolve
+from qutip import basis as basis
+print("import succesful")
+from qutip import tensor as tensor
+from qutip import dag as dag
+from qutip import steadystate as steadystate
+from qutip import *
+from qutip import ptrace 
+from Loup_for_different_coupling import Diverse_Loups as Diverse_Loups
+import multiprocessing as mp
+import csv
+#Konstante Grössen
+########################################################################################################
+qutip.settings.has_mkl = False            
 
-
-
-
-
+step=1
 Delta1=Delta2=0
 gamma_h = gamma_c = 1
-g = 14*kappa
+g = 6*kappa
 nc = ncav = 0.0
 
 Delta1=0
@@ -1259,21 +1329,25 @@ f=0.5
 ladder_list=[]
 ladder_list_f=[]
 nh_list=[]
-
-
+sigma_list=[]
+sigma_list_f=[]
+a_Ana=[]
+a_Ana2=[]
+n_list=(Diverse_Loups.EquationOfMotion3(Delta1 , Delta2 , 0 , nh, ncav , nc, gamma_c, gamma_h, g ,kappa,anzahl,step,"nh"))
+n_f_list=(Diverse_Loups.EquationOfMotion3(Delta1 , Delta2 , f , nh, ncav , nc, gamma_c, gamma_h, g ,kappa,anzahl,step,"nh"))
 
 for i in range(anzahl):
    
     
-    list_temp=[]
-    list_temp=Diverse_Loups.LadderOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,0)
-    ladder_list.append(list_temp)
-   
     
-    list_temp2=[]
-    list_temp2=Diverse_Loups.LadderOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,0.2)
-    Power_mit_f.append(Diverse_Loups.P2(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,1,omega_2,g))
-    ladder_list_f.append(list_temp2)
+    ladder_list.append(Diverse_Loups.LadderOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,0))
+    sigma_list.append((-Diverse_Loups.SigmaOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,0)*g-0)/kappa)
+     
+    
+    sigma_list_f.append((-Diverse_Loups.SigmaOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,f)*g-f)/kappa)
+    ladder_list_f.append(Diverse_Loups.LadderOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,f))
+    a_Ana.append(((-n_f_list[6][i])*g-0.55)/kappa)
+    a_Ana2.append(n_f_list[4][i])
     nh_list.append(nh)
     nh+=step
     
@@ -1286,48 +1360,16 @@ ax.set_ylabel(r'$<a>$',fontsize=21)
 plt.title('a')
     
 
-plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(ladder_list)[:anzahl],'-',color='black',label=r'$ a$')
-plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(ladder_list_f)[:anzahl],'-',color='red',alpha=0.4,label=r' $a$')
+#plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(a_Ana2)[:anzahl],'*',color='green',label=r'$ \langle a\rangle, (eqm), f=0.5$')
+plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(ladder_list)[:anzahl],'-',color='black',label=r'$ a , f=0$')
+plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(ladder_list_f)[:anzahl],'+',color='red',label=r' $a, f=0.5 $')
+plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(sigma_list)[:anzahl],'--',color='black',label=r' $(\langle \sigma_{12}\rangle g-f)/\kappa, f=0$')
+plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(sigma_list_f)[:anzahl],'-',color='red',alpha=0.4,label=r' $(\langle \sigma_{12}\rangle g-f)/\kappa, f=0.5$')
+plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(a_Ana)[:anzahl],'-',color='green',label=r' $(\langle \sigma_{12}\rangle g-f)/\kappa, (eqm), f=0.5$')
 #plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Power_mit_f)[:anzahl],'-',color='black',alpha=0.4,label=r' $Power$')
 legend = ax.legend(loc='lower right', shadow=True, fontsize='x-large')
 legend.get_frame().set_facecolor('white')
-plt.show()
 
 
 
-nh=0
-f=0
-step=0.01
-anzahl=50
-ladder_list=[]
-ladder_list_nh=[]
-for i in range(anzahl):
-   
-    
-    list_temp=[]
-    list_temp=Diverse_Loups.LadderOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, 0,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,f)
-    ladder_list.append(list_temp)
-   
-    
-    list_temp2=[]
-    list_temp2=Diverse_Loups.LadderOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, 5,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,f)
-    Power_mit_f.append(Diverse_Loups.P2(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,1,omega_2,g))
-    ladder_list_nh.append(list_temp2)
-    f_list.append(f)
-    f+=step
-    
-    
-
-
-fig2, ax = plt.subplots()
-ax.set_xlabel(r' $nh$', fontsize=21)
-ax.set_ylabel(r'$<a>$',fontsize=21)
-plt.title('a')
-    
-
-plt.plot(np.asarray(f_list)[:anzahl],np.asarray(ladder_list)[:anzahl],'-',color='black',label=r'$ a$')
-plt.plot(np.asarray(f_list)[:anzahl],np.asarray(ladder_list_nh)[:anzahl],'-',color='red',alpha=0.4,label=r' $a$')
-#plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Power_mit_f)[:anzahl],'-',color='black',alpha=0.4,label=r' $Power$')
-legend = ax.legend(loc='lower right', shadow=True, fontsize='x-large')
-legend.get_frame().set_facecolor('white')
 plt.show()
