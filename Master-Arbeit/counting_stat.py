@@ -36,6 +36,7 @@ from Loup_for_different_coupling import Diverse_Loups as Diverse_Loups
 import multiprocessing as mp
 import csv
 from numpy.linalg import matrix_rank
+from Loup_for_different_coupling import Diverse_Loups
 #Konstante Grössen
 ##############################
 # ##########################################################################
@@ -51,7 +52,7 @@ omega_c=omega_3-omega_2
 omega_d=30
 
 h=1
-nph=9  # Maximale Photonen im cavity 
+nph=10 # Maximale Photonen im cavity for fsc it works fine with 19
  
 Th=100.    # temperature of the hot bath
 Tc=20.     # temperature of the cold bath
@@ -59,10 +60,10 @@ Tenv=0.0000000000000000000000000001
 
 
 
-nh=10
-nc=0.02
+nh=10 
+nc=0.002
 
-nf=0.02    #Beschreibt den cavity/Photonen. 
+nf=0.002    #Beschreibt den cavity/Photonen. 
 
 
 f =0.1
@@ -100,7 +101,7 @@ proj_2=tensor(vb*vb.dag(),qutip.identity(nph))
 proj_3=tensor(va*va.dag(),qutip.identity(nph))
 
 a=qutip.tensor(qutip.identity(3),qutip.destroy(nph))
-
+H_free=omega_1*proj_1+h*omega_2*proj_2+h*omega_3*proj_3+h*omega_f*a.dag()*a
 
 
 
@@ -191,20 +192,19 @@ def J_sup(nh, nc, nf,vk_list):
     J=vk_list[0]*(qutip.to_super(c_op_list[0]))+vk_list[1]*(qutip.to_super(c_op_list[1]))
     #J = [qutip.spre(c_op_list[0]) + qutip.spost(c_op_list[0].dag())]
     #J=np.array(J)
-    return J
+    return omega_h*J
 
 #print("J===",J_sup(nh, nc, nf,vk_list))
 def K_trace(nh, nc, nf,vk_list):
     K=[]
     rhoV=qutip.operator_to_vector(DichteMatrix(nh, nc, nf, Hdilde))
     c_op_list=colaps(nh, nc, nf)
-    K=(vk_list[0]**2)*(np.trace(qutip.to_super(c_op_list[0])*rhoV)+vk_list[1]**2)*(np.trace(qutip.to_super(c_op_list[1])*rhoV)) 
+    K=np.trace((vk_list[0]**2)*(qutip.to_super(c_op_list[0])*rhoV)+(vk_list[1]**2)*(qutip.to_super(c_op_list[1])*rhoV))
     
-    return K
+    return -omega_h*np.real(K)
 
+#print("K===========",K_trace(nh, nc, nf,vk_list))
 
-
-print (J_sup(nh, nc, nf,vk_list),"ktrace==",K_trace(nh, nc, nf,vk_list))
 
 
 
@@ -254,9 +254,9 @@ print("mis z isch =========== lieg do ",solveZ2( nh,nc,nf, vk_list,Hdilde))
 
 """""
 def solveZ( nh,nc,nf, vk_list,Hdilde): #Z = the Drazin inverse times  alpha
-    
+    c_op_list=colaps(nh, nc, nf)
     rho=DichteMatrix(nh, nc, nf, Hdilde)
-    L=qutip.liouvillian(Hdilde,rho)
+    L=qutip.liouvillian(Hdilde,c_op_list)
     rhoV=qutip.operator_to_vector(rho)
     global IdV
     IdV=(qutip.operator_to_vector(tensor(qutip.identity(3),qutip.identity(nph))))#bereits transponiert
@@ -266,7 +266,8 @@ def solveZ( nh,nc,nf, vk_list,Hdilde): #Z = the Drazin inverse times  alpha
         
     #print(((alpha-rhoV*IdV.trans()*alpha)))
     Rechts=alpha-rhoV*IdV.trans()*alpha
-    Rechts=np.real(Rechts)
+    #Rechts=np.real(Rechts)
+    
     #RechtsForcea=np.array(Rechts.full())
     RechtsForce=np.vstack((Rechts,[[0]]))
     #LN=np.matrix(L.full())
@@ -299,19 +300,19 @@ def averrageJ(nh,nc,nf, vk_list,Hdilde):
     rhoV=qutip.operator_to_vector(rho)
     
     IdV=(qutip.operator_to_vector(tensor(qutip.identity(3),qutip.identity(nph))))#bereits transponiert
-    alpha=J_sup(nh, nc, nf,vk_list)*rhoV
-    alpha=np.real(alpha)
-    averrageJ=IdV.trans()*alpha
+    beta=J_sup(nh, nc, nf,vk_list)*rhoV
+    beta=np.real(beta)
+    averrageJ=IdV.trans()*beta
     return averrageJ
 
 def Dcalc(nh,nc,nf, vk_list,Hdilde):
     IdV=(qutip.operator_to_vector(tensor(qutip.identity(3),qutip.identity(nph))))
 
-    D= K_trace(nh, nc, nf,vk_list)-2*(IdV.dag()*J_sup(nh,nc,nf, vk_list)*solveZ(nh,nc,nf, vk_list,Hdilde))
-    return(np.real(D))
-
+    D= K_trace(nh, nc, nf,vk_list)+2*np.real(IdV.dag()*J_sup(nh,nc,nf, vk_list)*solveZ(nh,nc,nf, vk_list,Hdilde))
+    return(D)
+"""
 #print(np.imag( D(nh,nc,nf, vk_list,Hdilde))+np.imag(D(nh,nc,nf,vk_list,Hdilde)))
-print(( np.real(Dcalc(nh,nc,nf, vk_list,Hdilde))))
+#print(( np.real(Dcalc(nh,nc,nf, vk_list,Hdilde))))
 
 #Ja = np.array([np.real((IdV.trans() * L1i * rhovec)[0,0]) for L1i in L1])
 import scipy as scipy
@@ -339,20 +340,29 @@ def compute_drazin_inverse(matrix):
         drazin_inverse += block * drazin_block * block_exp
 
     return drazin_inverse
-
+"""
 
 
 
 D_list=[]
 nh_list=[]
 anzahl=30
-nh=0
-step=0.5
+step=1
+nh=0.0001
+Jh_list1=[]
+Entropy_list1=[]
+Q_list1=[]
 for i in range(anzahl):
+    Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g)
+    rho=DichteMatrix(nh, nc, nf, Hdilde)
     D=Dcalc(nh,nc,nf, vk_list,Hdilde)
-    D_list.append((np.trace(D)))
+    D_list.append(D[0])
     print("bla==rho",np.trace(D))
-
+    Lstrich=J_sup(nh, nc, nf,vk_list)
+    Jh_list1.append(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])#noesomega h  dezue
+    print(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])
+    Entropy_list1.append(Diverse_Loups.Entropy(nh,Trans_12,a, kb,h,g,H_free,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_f,omega_d,omega_1,omega_2,proj_2,f)[0])
+    Q_list1.append(Entropy_list1[i]*(D_list[i]/(Jh_list1[i]**2)))
 
     nh_list.append(nh)
     nh+=step
@@ -363,13 +373,14 @@ fig3, ax = plt.subplots()
 ax.set_xlabel(r' $n_h$', fontsize=19)
 ax.set_ylabel('D')
 plt.title(r' D vs $n_h$ ')
-plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(D_list)[:anzahl],label=r' $\langle{J_h}\rangle$',color='red')
-
+plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(D_list)[:anzahl],label=r' $Var \langle J \rangle $',color='black')
+plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Jh_list1)[:anzahl],label=r' $\langle \langle 1|\mathcal{J}|\rho \rangle \rangle $',color='red')
+plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Q_list1)[:anzahl],'-',label=r' $\mathcal{Q}$',color='blue')
 #plt.plot(np.asarray(nh_list3)[:100],np.asarray(Entropy2)[:100,3],'--',label=r' $\frac{J_{cav}}{T_{cav}}$',color='orange')
 legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
 legend.get_frame().set_facecolor('white')
 plt.show()#
-print(K_trace(100, nc, nf, Hdilde))
+
 
 
 
@@ -400,10 +411,8 @@ def Drazin(matrix):
         
         k+=1
         Ak=Ak*A
+        print(k,Ak)
         
-    
-
-    
     if matrix_rank(Ak) == matrix_rank(Ak*A):
         
         Ad=np.linalg.lstsq(Ak*A,Ak,rcond=None)
@@ -421,7 +430,7 @@ def Drazin(matrix):
 
 
 
-
+""""
 
 #matrix = qutip.Qobj([[1, 2, 3], [0, 0, 4], [4, 0, 1]])
 
@@ -446,23 +455,55 @@ d=IdV.trans()*Lstrich*D*Lstrich*qutip.to_super(rho)*qutip.operator_to_vector(rho
 print(d)
 #L=qutip.liouvillian(Hdilde,rho)
 #print(steadystate(L))
+"""
+IdV=(qutip.operator_to_vector(tensor(qutip.identity(3),qutip.identity(nph))))
+
+anzahl=30
+step=1
+nh=0.0001
+nh_list=[]
+d_list=[]
+Jh_list=[]
+Entropy_list=[]
+Q_list=[]
+for i in range(anzahl):
+    Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g)
+    rho=DichteMatrix(nh, nc, nf, Hdilde)
+    c_op_list=colaps(nh, nc, nf)
+    rho=DichteMatrix(nh, nc, nf, Hdilde)
+    L=qutip.liouvillian(Hdilde,c_op_list)
+    print(L)
+    Lstrich=J_sup(nh,nc,nf,vk_list)
+    d_list.append(K_trace(nh, nc, nf,vk_list)+2*np.real((IdV.trans()*Lstrich*Drazin(L)*Lstrich*qutip.operator_to_vector(rho)))[0])
+    Jh_list.append(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])#noesomega h  dezue
+    print(np.imag((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])
+    Entropy_list.append(Diverse_Loups.Entropy(nh,Trans_12,a, kb,h,g,H_free,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_f,omega_d,omega_1,omega_2,proj_2,f)[2])
+    Q_list.append(Entropy_list[i]*(d_list[i]/(Jh_list[i]**2)))
+    nh_list.append(nh)
+    nh=nh+step
+    
 
 
 
 
 
+fig3, ax = plt.subplots()
+
+ax.set_xlabel(r' $n_h$', fontsize=19)
+ax.set_ylabel('D')
+plt.title(r' D vs $n_h$ ')
+plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(d_list)[:anzahl],label=r' $Var \langle J \rangle $',color='black')
+plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Jh_list)[:anzahl],label=r' $\langle \langle 1|\mathcal{J}|\rho \rangle \rangle $',color='red')
+plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Q_list)[:anzahl],'-',label=r' $\mathcal{Q}$',color='blue')
+#plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Entropy_list)[:anzahl],'-',label=r' $H_{free} \mathcal{L}_h $',color='purple')
+#plt.plot(np.asarray(nh_list3)[:100],np.asarray(Entropy2)[:100,3],'--',label=r' $\frac{J_{cav}}{T_{cav}}$',color='orange')
+legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
+legend.get_frame().set_facecolor('white')
+plt.show()#
 
 
 
-
-
-
-
-
-
-
-
-
+""""
 
 def tilted_liouvillian(H, L, chi, v):
     
@@ -491,3 +532,4 @@ rhochi = [[vector_to_operator((liou * ti).expm()*rhovec) for liou in liouvs] for
 pchis = np.array([[rho.tr() for rho in rhoix] for rhoix in rhochi])
 
 
+"""

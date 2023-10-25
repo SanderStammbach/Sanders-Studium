@@ -46,7 +46,7 @@ omega_c=omega_3-omega_2
 omega_d=30
 
 h=1
-nph=30   # Maximale Photonen im cavity 
+nph=16   # Maximale Photonen im cavity 
  
 Th=100.    # temperature of the hot bath
 Tc=20.     # temperature of the cold bath
@@ -59,7 +59,7 @@ nc=0.02
 
 nf=0.02    #Beschreibt den cavity/Photonen. 
 
-f =0.2
+f =0.6
 global kappa
 
 gamma_h=1
@@ -924,10 +924,10 @@ Delta1=Delta2=0
 gamma_h = gamma_c = 1
 
 nc = nf=ncav = 0.0
-
-
 g=14*kappa
-step=0.05
+kappa=0.2
+
+step=1.2
 Delta1=0
 Delta2=0
 anzahl=100
@@ -937,7 +937,7 @@ nc=ncav=nf=0
 #g=0
 n_list=[]
 nh_list=[]
-f=0.2
+f=0.1
 Photonnumber_list=[]
 nh2 = np.linspace(0, 70, 100)
 
