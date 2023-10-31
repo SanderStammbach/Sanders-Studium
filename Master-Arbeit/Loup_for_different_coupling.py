@@ -332,10 +332,11 @@ class Diverse_Loups():
 
         
         Liste_von_Q=[] # ExpectValue for Thermal Energy
-
-        Liste_von_Q.append((np.trace(H_free1*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1])))/(T(nh,omega_h)))
-        Liste_von_Q.append((np.trace(H_free1*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3])))/(T(nc,omega_c)))
-        Liste_von_Q.append((np.trace(H_free1*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5])))/(T(nf,omega_f)))
+     
+        Liste_von_Q.append((np.trace(-H_free1*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1])))/(T(nh,omega_h)*omega_h))
+        Liste_von_Q.append((np.trace(-H_free1*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3])))/(T(nc,omega_c)*omega_h))
+        Liste_von_Q.append((np.trace(-H_free1*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5])))/(T(nf,omega_f)*omega_h))
+        Liste_von_Q.append((np.trace(-H_free1*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1])))/(T(nh,omega_h)*omega_h)+(np.trace(-H_free1*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3])))/(T(nc,omega_c)*omega_h)+(np.trace(-H_free1*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5])))/(T(nf,omega_f)*omega_h))
         #Liste_von_Q.append(g)  g in der liste anfügen
 
         float_list= list(np.float_(Liste_von_Q))
@@ -635,11 +636,12 @@ class Diverse_Loups():
         return (-((2*gamma + gamma*nc + 2*gamma*nh)*(gamma**2*kappa*(2*kappa + gamma*nc + gamma*nh)*(nc + nh + 3*nc*nh) + 4*g**2*(-2*gamma*kappa*(-1 + 2*ncav) + gamma*nc*(gamma + kappa - 3*kappa*ncav) - gamma*(gamma - 2*kappa + 3*kappa*ncav)*nh))) + np.sqrt((2*gamma + gamma*nc + 2*gamma*nh)**2*(gamma**4*kappa**2*(2*kappa + gamma*nc + gamma*nh)**2*(nc + nh + 3*nc*nh)**2 + 8*g**2*gamma**2*kappa*(2*kappa + gamma*nc + gamma*nh)*(nc + nh + 3*nc*nh)*(2*gamma*kappa*(1 + 2*ncav) + gamma*nc*(gamma + kappa + 3*kappa*ncav) + gamma*(-gamma + 2*kappa + 3*kappa*ncav)*nh) + 16*g**4*(gamma**4*(nc - nh)**2 + kappa**2*(gamma + gamma*(1 + nc + 2*ncav + 3*nc*ncav) + 2*gamma*nh + gamma*ncav*(2 + 3*nh))**2 +  2*gamma**2*kappa*(gamma*nc**2*(1 - 3*ncav + 6*nh) + nh*(2*gamma*(3 + 2*ncav) + gamma*(4 + 3*ncav)*nh) + nc*(2*gamma - 2*gamma*ncav + 3*gamma*(3 + ncav)*nh + 6*gamma*nh*(1 + nh) - gamma*ncav*(2 + 3*nh)))))))/(8.*g**2*kappa*(2*gamma + gamma*nc + 2*gamma*nh)*(gamma*(2 + 3*nc) + gamma*(2 + 3*nh)))
     
 
-    def OccP1_Analytic(gammac,gammah,kappa,g,nh,f):
+    def OccP1_Analytic(gammac,gammah,kappa,nc,nh, ncav,f):
 
-        return((8*g**2*(f**2 + kappa**2)*(gammac + gammah + gammah*nh))/ (4*f**2*g**2*(2*gammac + gammah*(2 + 3*nh)) + kappa*(gammac*gammah*kappa*nh*(2*kappa + gammah*nh) + 2*g**2*(-(gammac*gammah*nh) + 2*kappa*(gammac + gammah + 2*gammah*nh))) + np.sqrt(64*g**2*kappa**2*(2*gammac + gammah*(2 + 3*nh))*(2*g**2*gammac*gammah*kappa*nh + f**2*(gammac*gammah*nh*(2*kappa + gammah*nh) + 4*g**2*(gammac + gammah + 2*gammah*nh))) + 4*(-4*f**2*g**2*(2*gammac + gammah*(2 + 3*nh)) + kappa*(gammac*gammah*kappa*nh*(2*kappa + gammah*nh) + g**2*(-2*gammac*gammah*nh + 4*kappa*(gammac + gammah + 2*gammah*nh))))**2)/2.))
+        return(-4*f**2*(gammac + gammah + 2*gammac*nc + gammah*nh) + kappa*(gammac*gammah*nc*(1 + nh) - 2*kappa*ncav*(gammac + gammah + 2*gammac*nc + gammah*nh)))/(gammac*gammah*kappa*(nc + nh + 3*nc*nh))
 
-
+    def OccP2_Analytic(gammac,gammah,kappa,nc,nh,ncav ,f):
+        return((4*f**2*(gammac + gammah + gammac*nc + 2*gammah*nh) + kappa*(gammac*gammah*(1 + nc)*nh + 2*kappa*ncav*(gammac + gammah + gammac*nc + 2*gammah*nh)))/(gammac*gammah*kappa*(nc + nh + 3*nc*nh)))
 
     def EquationOfMotion(Delta1 , Delta2 , f , nh, ncav , nc, gammac, gammah, g , kappa):
          

@@ -52,7 +52,7 @@ omega_c=omega_3-omega_2
 omega_d=30
 
 h=1
-nph=10 # Maximale Photonen im cavity for fsc it works fine with 19
+nph=12 # Maximale Photonen im cavity for fsc it works fine with 19
  
 Th=100.    # temperature of the hot bath
 Tc=20.     # temperature of the cold bath
@@ -60,13 +60,13 @@ Tenv=0.0000000000000000000000000001
 
 
 
-nh=10 
+nh=5
 nc=0.002
 
 nf=0.002    #Beschreibt den cavity/Photonen. 
 
 
-f =0.1
+f =0.3
 global kappa
 
 gamma_h=1
@@ -192,7 +192,7 @@ def J_sup(nh, nc, nf,vk_list):
     J=vk_list[0]*(qutip.to_super(c_op_list[0]))+vk_list[1]*(qutip.to_super(c_op_list[1]))
     #J = [qutip.spre(c_op_list[0]) + qutip.spost(c_op_list[0].dag())]
     #J=np.array(J)
-    return omega_h*J
+    return J
 
 #print("J===",J_sup(nh, nc, nf,vk_list))
 def K_trace(nh, nc, nf,vk_list):
@@ -201,7 +201,7 @@ def K_trace(nh, nc, nf,vk_list):
     c_op_list=colaps(nh, nc, nf)
     K=np.trace((vk_list[0]**2)*(qutip.to_super(c_op_list[0])*rhoV)+(vk_list[1]**2)*(qutip.to_super(c_op_list[1])*rhoV))
     
-    return -omega_h*np.real(K)
+    return np.real(K)
 
 #print("K===========",K_trace(nh, nc, nf,vk_list))
 
@@ -347,8 +347,9 @@ def compute_drazin_inverse(matrix):
 D_list=[]
 nh_list=[]
 anzahl=30
-step=1
+step=3
 nh=0.0001
+
 Jh_list1=[]
 Entropy_list1=[]
 Q_list1=[]
@@ -361,11 +362,12 @@ for i in range(anzahl):
     Lstrich=J_sup(nh, nc, nf,vk_list)
     Jh_list1.append(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])#noesomega h  dezue
     print(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])
-    Entropy_list1.append(Diverse_Loups.Entropy(nh,Trans_12,a, kb,h,g,H_free,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_f,omega_d,omega_1,omega_2,proj_2,f)[0])
-    Q_list1.append(Entropy_list1[i]*(D_list[i]/(Jh_list1[i]**2)))
+    Entropy_list1.append(Diverse_Loups.Entropy(nh,Trans_12,a, kb,h,g,H_free,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_f,omega_d,omega_1,omega_2,proj_2,f)[3])
+    Q_list1.append((Entropy_list1[i])*(D_list[i]/(Jh_list1[i]**2)))
 
     nh_list.append(nh)
     nh+=step
+    print(i-anzahl)
 
 
 fig3, ax = plt.subplots()
@@ -376,7 +378,7 @@ plt.title(r' D vs $n_h$ ')
 plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(D_list)[:anzahl],label=r' $Var \langle J \rangle $',color='black')
 plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Jh_list1)[:anzahl],label=r' $\langle \langle 1|\mathcal{J}|\rho \rangle \rangle $',color='red')
 plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Q_list1)[:anzahl],'-',label=r' $\mathcal{Q}$',color='blue')
-#plt.plot(np.asarray(nh_list3)[:100],np.asarray(Entropy2)[:100,3],'--',label=r' $\frac{J_{cav}}{T_{cav}}$',color='orange')
+plt.plot(np.asarray(nh_list)[:100],np.asarray(Entropy_list1)[:100],'--',label=r' $\frac{J_{tot}}{T_{tot}}$',color='orange')
 legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
 legend.get_frame().set_facecolor('white')
 plt.show()#
@@ -459,7 +461,7 @@ print(d)
 IdV=(qutip.operator_to_vector(tensor(qutip.identity(3),qutip.identity(nph))))
 
 anzahl=30
-step=1
+
 nh=0.0001
 nh_list=[]
 d_list=[]
@@ -477,8 +479,9 @@ for i in range(anzahl):
     d_list.append(K_trace(nh, nc, nf,vk_list)+2*np.real((IdV.trans()*Lstrich*Drazin(L)*Lstrich*qutip.operator_to_vector(rho)))[0])
     Jh_list.append(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])#noesomega h  dezue
     print(np.imag((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])
-    Entropy_list.append(Diverse_Loups.Entropy(nh,Trans_12,a, kb,h,g,H_free,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_f,omega_d,omega_1,omega_2,proj_2,f)[2])
-    Q_list.append(Entropy_list[i]*(d_list[i]/(Jh_list[i]**2)))
+    Entropy_list.append(Diverse_Loups.Entropy(nh,Trans_12,a, kb,h,g,H_free,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_f,omega_d,omega_1,omega_2,proj_2,f)[3])
+    Q_list.append((Entropy_list[i])*(d_list[i]/(Jh_list1[i]**2)))
+    
     nh_list.append(nh)
     nh=nh+step
     

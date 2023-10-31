@@ -46,7 +46,7 @@ omega_c=omega_3-omega_2
 omega_d=30
 
 h=1
-nph=16   # Maximale Photonen im cavity 
+nph=25   # Maximale Photonen im cavity 
  
 Th=100.    # temperature of the hot bath
 Tc=20.     # temperature of the cold bath
@@ -59,7 +59,7 @@ nc=0.02
 
 nf=0.02    #Beschreibt den cavity/Photonen. 
 
-f =0.6
+f =0.7
 global kappa
 
 gamma_h=1
@@ -194,15 +194,16 @@ rho = DichteMatrix(nh,nc,nf,Hdilde)
 
 #print(rho)
 
-plt.show()
+
 
 print("D lösig isch:",np.trace((a*(c_op_list[4]*rho*c_op_list[4].dag()-1/2*(c_op_list[4].dag()*c_op_list[4]*rho-rho*c_op_list[4].dag()*c_op_list[4]))))-np.trace(a*a.dag()*a),"        und       ",a*(c_op_list[4]*rho*c_op_list[4].dag()-1/2*(c_op_list[4].dag()*c_op_list[4]*rho-rho*c_op_list[4].dag()*c_op_list[4])))
 
 rho_f=rho.ptrace(1)  ### State in the cavity
 print(rho)
+
 qutip.plot_wigner_fock_distribution(rho_f,colorbar='colorbar')
 
-plt.show()
+
 
 #Hamilton
 #print(variance(a.dag()*a, rho))
@@ -351,7 +352,7 @@ for i in range(anzahl):
     nh_list2.append(nh2)
     Entropy_tot.append(list_temp[0]+list_temp[2]+list_temp[1])
 f=0.5
-nh2=0.1
+nh2=0.001
 nh_list3=[]
 Entropy2=[]
 Entropy_tot2=[]
@@ -379,20 +380,24 @@ print("Die Temperatur des kalten Bades ist: ",T(omega_c,nc))
 
 fig3, ax = plt.subplots()
 
-ax.set_xlabel(r' $n_h$', fontsize=19)
+ax.set_xlabel(r' $n_h$', fontsize=25)
 ax.set_ylabel('Entropy production rate')
+
 plt.title(r' Entropy Production  rate vs $n_h$ ')
 plt.plot(np.asarray(nh_list2)[:anzahl],np.asarray(Entropy)[:anzahl,0],label=r' $\frac{J_h}{T_h}$',color='red')
 plt.plot(np.asarray(nh_list2)[:anzahl],np.asarray(Entropy)[:anzahl,1],label=r' $\frac{J_c}{T_c}$',color='green')
 plt.plot(np.asarray(nh_list2)[:anzahl],np.asarray(Entropy)[:anzahl,2],label=r' $\frac{J_{cav}}{T_{cav}}$',color='orange')
-#
+
 plt.plot(np.asarray(nh_list2)[:anzahl],np.asarray(Entropy_tot)[:anzahl],label=r' $\frac{J_{tot}}{T_{cav}}$',color='black')
 plt.plot(np.asarray(nh_list3)[:anzahl],np.asarray(Entropy2)[:anzahl,0],'-',alpha=0.4,color='red')
 plt.plot(np.asarray(nh_list3)[:anzahl],np.asarray(Entropy2)[:anzahl,1],'-',alpha=0.4,color='green')
 plt.plot(np.asarray(nh_list3)[:anzahl],np.asarray(Entropy2)[:anzahl,2],'-',alpha=0.4,color='orange')
 #plt.plot(np.asarray(nh_list3)[:100],np.asarray(Entropy2)[:100,3],'--',label=r' $\frac{J_{cav}}{T_{cav}}$',color='orange')
-legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
+
+legend = ax.legend(loc='upper right', shadow=True, fontsize='xx-large')
 legend.get_frame().set_facecolor('white')
+fig3.set_figheight(9)
+fig3.set_figwidth(13)
 #Linien in plt
 """plt.axvline(x=2.6)
 plt.axvline(x=2.6)
@@ -401,7 +406,7 @@ plt.axvline(x=0.17)
 plt.axvline(x=20)
 plt.axvline(x=1.7)"""
 
-#plt.show()
+plt.show()
 
 ################################################################
 """""
@@ -745,9 +750,11 @@ plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(n_list[2])[:anzahl],'--',color=
 plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,0],color='green',label=r'$P_1$')
 plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,1],color='orange',label=r'$P_2$')
 plt.plot(np.asarray(nh_list)[:100],np.asarray(Trace_list)[:100,2],color='blue',label=r'$P_3$')
-legend = ax.legend(loc='center right', shadow=True, fontsize='x-large')
-legend.get_frame().set_facecolor('white')
 
+legend = ax.legend(loc='upper right', shadow=True, fontsize='xx-large')
+legend.get_frame().set_facecolor('white')
+fig2.set_figheight(9)
+fig2.set_figwidth(13)
 
 
 
@@ -812,8 +819,11 @@ plt.plot(np.asarray(f_list)[:anzahl],np.asarray(Energy_VS_f)[:anzahl,1],'-',colo
 plt.plot(np.asarray(f_list)[:anzahl],np.asarray(Energy_VS_f)[:anzahl,0],'-',color='red',label=r' $\frac{J_{h}}{\hbar\gamma_h \omega_{h}}$')
 plt.plot(np.asarray(f_list)[:anzahl],np.asarray(Energy_VS_f)[:anzahl,2],'-',color='orange',label=r' $\frac{J_{cav}}{\hbar\gamma_h \omega_{h}}$')
 
-legend = ax.legend(loc='lower right', shadow=True, fontsize='x-large')
+
+legend = ax.legend(loc='upper right', shadow=True, fontsize='xx-large')
 legend.get_frame().set_facecolor('white')
+fig1.set_figheight(9)
+fig1.set_figwidth(13)
 
 
 
@@ -1040,12 +1050,14 @@ plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Power_mit_f)[:anzahl],'-',colo
 plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(P_ana)[:anzahl],'--',color='blue')
 plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(P_ana_f)[:anzahl],'--',color='blue',alpha=0.5)
 
-legend = ax.legend(loc='lower right', shadow=True, fontsize='x-large')
 
+legend = ax.legend(loc='upper right', shadow=True, fontsize='xx-large')
 legend.get_frame().set_facecolor('white')
+fig2.set_figheight(9)
+fig2.set_figwidth(13)
 
 plt.show()
-
+"""""
 fig2, ax = plt.subplots()
 ax.set_xlabel(r' $n_h$', fontsize=21)
 ax.set_ylabel('heat  current')
@@ -1058,11 +1070,13 @@ plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Energie_vs_nh)[:anzahl,1],'-',
 plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Energie_vs_nh)[:anzahl,0],'-',color='red',label=r' $\frac{J_{h}}{\hbar\gamma_h \omega_{h}}$')
 plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Energie_vs_nh)[:anzahl,2],'-',color='orange',label=r' $\frac{J_{cav}}{\hbar\gamma_h \omega_{h}}$')
 plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Power_ohne_f)[:anzahl],'-',color='blue',label=r' $\frac{P_{cav}}{\hbar\gamma_h \omega_{h}}$')
-legend = ax.legend(loc='lower right', shadow=True, fontsize='x-large')
 
+legend = ax.legend(loc='upper right', shadow=True, fontsize='xx-large')
 legend.get_frame().set_facecolor('white')
+fig3.set_figheight(9)
+fig3.set_figwidth(13)
 
-
+"""
 #################################################################################################################
 
 Delta1=Delta2=0
@@ -1142,8 +1156,11 @@ plt.plot(np.asarray(g_list)[:anzahl],np.asarray(J_h_list)[:anzahl],'--',color='r
 plt.plot(np.asarray(g_list)[:anzahl],np.asarray(J_cav_list)[:anzahl],'--',color='orange')
 
 #plt.plot(np.asarray(g_list)[:anzahl],np.asarray(Tot)[:anzahl],'-',color='black',alpha=0.2,label=r' $\frac{J_{tot}}{\hbar\gamma_h \omega_{h}}$')
-legend = ax.legend(loc='lower right', shadow=True, fontsize='x-large')
+
+legend = ax.legend(loc='upper right', shadow=True, fontsize='xx-large')
 legend.get_frame().set_facecolor('white')
+fig2.set_figheight(9)
+fig2.set_figwidth(13)
 
 #plt.show()
 
@@ -1198,8 +1215,11 @@ plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,0],label=r' $\frac{
 plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,1],label=r' $\frac{J_c}{T_h}$',color='green')
 plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,2],label=r' $\frac{J_{cav}}{T_c}$',color='pink')
 #plt.plot(np.asarray(nh_list2)[:100],np.asarray(Entropy)[:100,3],label=r' $\frac{J_{cav}}{T_{cav}}$',color='orange')
-legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
+
+legend = ax.legend(loc='upper right', shadow=True, fontsize='xx-large')
 legend.get_frame().set_facecolor('white')
+fig3.set_figheight(9)
+fig3.set_figwidth(13)
 #Linien in plt
 """plt.axvline(x=2.6)
 plt.axvline(x=2.6)
@@ -1272,8 +1292,11 @@ plt.plot(np.asarray(f_list)[:anzahl],np.asarray(sigma_list)[:anzahl],'*',color='
 plt.plot(np.asarray(f_list)[:anzahl],np.asarray(sigma_list_f)[:anzahl],'-',color='red',alpha=0.4,label=r' $(\langle \sigma_{12}\rangle g-f)/\kappa , n_h=5$')
 plt.plot(np.asarray(f_list)[:anzahl],np.asarray(a_Ana)[:anzahl],'-',color='green',label=r' $(\langle \sigma_{12}\rangle g-f)/\kappa, eqm,  n_h=5$')
 #plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Power_mit_f)[:anzahl],'-',color='black',alpha=0.4,label=r' $Power$')
-legend = ax.legend(loc='lower right', shadow=True, fontsize='x-large')
+
+legend = ax.legend(loc='upper right', shadow=True, fontsize='xx-large')
 legend.get_frame().set_facecolor('white')
+fig3.set_figheight(9)
+fig3.set_figwidth(13)
  
 
 # /bin/env/python
@@ -1367,9 +1390,187 @@ plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(sigma_list)[:anzahl],'--',color
 plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(sigma_list_f)[:anzahl],'-',color='red',alpha=0.4,label=r' $(\langle \sigma_{12}\rangle g-f)/\kappa, f=0.5$')
 plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(a_Ana)[:anzahl],'-',color='green',label=r' $(\langle \sigma_{12}\rangle g-f)/\kappa, (eqm), f=0.5$')
 #plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Power_mit_f)[:anzahl],'-',color='black',alpha=0.4,label=r' $Power$')
-legend = ax.legend(loc='lower right', shadow=True, fontsize='x-large')
+
+legend = ax.legend(loc='upper right', shadow=True, fontsize='xx-large')
 legend.get_frame().set_facecolor('white')
+fig3.set_figheight(9)
+fig3.set_figwidth(13)
 
 
+plt.show()
+
+
+""""
+#High  f approximation
+f=3
+
+nh_Lischt = np.arange(0., 100., 0.5)
+
+# red dashes, blue squares and green triangles
+plt.plot(nh_Lischt, nh_Lischt*Diverse_Loups.OccP1_Analytic(gamma_c,gamma_h,kappa,nc,nh_Lischt, ncav,f)-(nh_Lischt+1)*(1-Diverse_Loups.OccP2_Analytic(gamma_c,gamma_h,kappa,nc,nh_Lischt, ncav,f)-Diverse_Loups.OccP1_Analytic(gamma_c,gamma_h,kappa,nc,nh_Lischt, ncav,f)), 'r--')
+plt.show()
+
+
+"""
+
+
+
+
+Delta1=Delta2=0
+gamma_h = gamma_c = 1
+kappa=0.2
+g = 3*kappa
+nc = ncav = 0.0
+
+Delta1=0
+Delta2=0
+anzahl=20
+nh=0
+nc=nf=0
+step=0.06
+
+f=0.000
+ladder_list=[]
+ladder_list_f=[]
+f_list=[]
+sigma_list=[]
+sigma_list_f=[]
+a_Ana=[]
+a_Ana2=[]
+f_list3=[]
+warm=0
+n_list=(Diverse_Loups.EquationOfMotion3(Delta1 , Delta2 , f , 0, ncav , nc, gamma_c, gamma_h, g ,kappa,anzahl,step,"f"))
+n_f_list=(Diverse_Loups.EquationOfMotion3(Delta1 , Delta2 , f , warm, ncav , nc, gamma_c, gamma_h, g ,kappa,anzahl,step,"f"))
+
+for i in range(anzahl):
+   
+    
+    
+    ladder_list.append(-Diverse_Loups.LadderOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, 0,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,f))
+    #sigma_list.append((Diverse_Loups.SigmaOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, 0,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,f)*g-f)/kappa)
+     
+    
+    #sigma_list_f.append((-Diverse_Loups.SigmaOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, warm,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,f)*g-f)/kappa)
+    ladder_list_f.append(-Diverse_Loups.LadderOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, warm,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,f))
+    print(ladder_list_f[i])
+    #a_Ana.append(((-n_f_list[6][i])*g-f)/kappa)
+    #a_Ana2.append(n_f_list[4][i])
+    f_list.append(f)
+    f_list3.append(f**3)
+    f+=step
+    
+    
+import pylab
+import matplotlib.pyplot as plt
+
+fig2, ax = plt.subplots()
+plt.yscale('log',base=3) 
+plt.xscale('log',base=3)
+ax.set_xlabel(r' $\frac{f}{\gamma}$', fontsize=21)
+ax.set_ylabel(r'$<a>$',fontsize=21)
+plt.title('a')
+    
+
+#plt.plot(np.asarray(f_list)[:anzahl],np.asarray(a_Ana2)[:anzahl],'*',color='green',label=r'$\langle a\rangle, (eqm), nh=5$')
+#plt.plot(np.asarray(f_list)[:anzahl],np.asarray(ladder_list)[:anzahl],'+',color='black',label=r'$ \langle a\rangle , nh=0$')
+plt.plot(np.asarray(f_list)[:anzahl],np.asarray(ladder_list_f)[:anzahl],'-',color='red',label=r' $\langle a\rangle, n_h=5 $')
+plt.plot(np.asarray(f_list)[:anzahl],np.asarray(f_list3)[:anzahl],'-',color='black',label=r' $f^3 $')
+#plt.plot(np.asarray(f_list)[:anzahl],np.asarray(sigma_list)[:anzahl],'*',color='black',label=r' $(\langle \sigma_{12}\rangle g-f)\kappa, n_h=0$')
+#plt.plot(np.asarray(f_list)[:anzahl],np.asarray(sigma_list_f)[:anzahl],'-',color='red',alpha=0.4,label=r' $(\langle \sigma_{12}\rangle g-f)/\kappa , n_h=5$')
+#plt.plot(np.asarray(f_list)[:anzahl],np.asarray(a_Ana)[:anzahl],'-',color='green',label=r' $(\langle \sigma_{12}\rangle g-f)/\kappa, eqm  n_h=5$')
+#plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Power_mit_f)[:anzahl],'-',color='black',alpha=0.4,label=r' $Power$')
+
+legend = ax.legend(loc='upper right', shadow=True, fontsize='xx-large')
+legend.get_frame().set_facecolor('white')
+fig3.set_figheight(9)
+fig3.set_figwidth(13)
+
+
+
+
+Delta1=Delta2=0
+gamma_h = gamma_c = 1
+
+nc = ncav = 0.0
+kappa = 0.2
+g = 14*kappa
+step=1
+f=1
+anzahl=100
+nh=0
+
+n_list=[]
+nh_list=[]
+
+Photonnumber_list=[]
+nh2 = np.linspace(0, 70, 100)
+
+nh3_list=[]
+nh_list=[]
+Trace_list=[]
+nh=0 #set nh again to zero
+Anal=[]
+J_h_list=[]
+J_h2_list=[]
+J_c_list=[]
+J_cav_list=[]
+J_tot_list=[]
+Energie_vs_nh=[]
+P_ana=[]
+
+n_list=Diverse_Loups.EquationOfMotion3(Delta1 , Delta2 , f , nh, ncav , nc, gamma_c, gamma_h, g , kappa, anzahl,step,'nh')
+
+#n2_list=[]
+
+for i in range(anzahl):
+   
+    
+    #list_temp=[]
+    #list_temp=Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,1/3*kappa,omega_d,proj_2,f,omega_f,omega_2)
+    nh_list.append(nh)
+    #Energie_vs_nh.append(list_temp)
+    #Trace_list_temp=Diverse_Loups.ProjectorP(nh,proj_1,proj_2,proj_3,Hdilde,nc,ncav,gamma_h,gamma_c,kappa,A1,A2,A3,A4,A5,A6)
+    #Trace_list.append(Trace_list_temp)
+    ist_temp=[]
+    #list_temp=Diverse_Loups.Photonnumber(nh,a,proj_1,proj_2,proj_3,Hdilde,nc,ncav,gamma_h,gamma_c,kappa,A1,A2,A3,A4,A5,A6,omega_d,omega_f,omega_1,omega_2,H_int,f)
+    #g_list.append(i/100)  #Erstellt eine Liste mit Wären von g 
+    #Photonnumber_list.append(list_temp)
+    
+    
+    J_cav_list.append(2*omega_f*kappa*(nf-n_list[0][i]))
+    J_h_list.append(2*omega_h*((nh*n_list[1][i]-(nh+1)*n_list[3][i])))
+    J_c_list.append(2*omega_c*(nc*n_list[2][i]-(nc+1)*n_list[3][i]))
+  
+    P_ana.append(-2*30*f*(n_list[4][i]))
+    J_tot_list.append(J_c_list[i]+J_h_list[i]+J_cav_list[i]+P_ana[i])
+    
+   
+    nh3_list.append(nh)
+    nh=nh+step
+        
+fig2, ax = plt.subplots()
+
+plt.figure(figsize=(9, 3))
+ax.set_xlabel(r' $n_h$', fontsize=21)
+
+ax.set_ylabel('probability')
+plt.title('stationary atomic population')
+plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(P_ana)[:anzahl],'--',alpha=1,color='blue')
+plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(J_h_list)[:anzahl],'--',color='red',label=r'$\frac{J_{h}}{\hbar\gamma_h \omega_{h}}$analytisch')
+plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(J_tot_list)[:anzahl],'--',color='black',label=r'$\frac{J_{tot}}{\hbar\gamma_h \omega_{h}}$analytisch')
+plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(J_c_list)[:anzahl],'--',color='green',label=r' $\frac{J_{c}}{\hbar\gamma_h \omega_{h}}$ analytisch')
+plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(J_cav_list)[:anzahl],'--',color='orange',label=r' $\frac{J_{cav}}{\hbar\gamma_h \omega_{h}}$ analytisch')
+#plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Energie_vs_nh)[:anzahl,1],'-',color='green',label=r' $\frac{J_{c}}{\hbar\gamma_h \omega_{h}}$')
+##plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Energie_vs_nh)[:anzahl,0],'-',color='red',label=r' $\frac{J_{h}}{\hbar\gamma_h \omega_{h}}$')
+#plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Energie_vs_nh)[:anzahl,2],'-',color='orange',label=r' $\frac{J_{cav}}{\hbar\gamma_h \omega_{h}}$')
+
+
+
+
+
+legend = ax.legend(loc='upper right', shadow=True, fontsize='xx-large')
+legend.get_frame().set_facecolor('white')
+fig3.set_figheight(9)
+fig3.set_figwidth(13)
 
 plt.show()
