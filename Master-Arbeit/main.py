@@ -46,7 +46,7 @@ omega_c=omega_3-omega_2
 omega_d=30
 
 h=1
-nph=25   # Maximale Photonen im cavity 
+nph=30   # Maximale Photonen im cavity 
  
 Th=100.    # temperature of the hot bath
 Tc=20.     # temperature of the cold bath
@@ -59,7 +59,7 @@ nc=0.02
 
 nf=0.02    #Beschreibt den cavity/Photonen. 
 
-f =0.7
+f =0
 global kappa
 
 gamma_h=1
@@ -155,7 +155,7 @@ def Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g):
     Hdilde=H_int+V +(omega_2-(omega_1+omega_d))*(proj_2)+(omega_f-omega_d)*(a.dag()*a)
 
     return Hdilde
-Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g)
+
 
 def DichteMatrix(nh, nc, nf, Hami):
     gamma_1=(nh+1)*gamma_h #### unsicher wegen vorfaktor 1/2 
@@ -183,6 +183,12 @@ def DichteMatrix(nh, nc, nf, Hami):
     rho = steadystate(Hami, c_op_list)
     return rho
 
+
+
+
+
+Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g)
+
 rho = DichteMatrix(nh,nc,nf,Hdilde)
 
 
@@ -203,7 +209,7 @@ print(rho)
 
 qutip.plot_wigner_fock_distribution(rho_f,colorbar='colorbar')
 
-
+plt.show()
 
 #Hamilton
 #print(variance(a.dag()*a, rho))
@@ -406,7 +412,7 @@ plt.axvline(x=0.17)
 plt.axvline(x=20)
 plt.axvline(x=1.7)"""
 
-plt.show()
+
 
 ################################################################
 """""
@@ -785,15 +791,15 @@ n_f_list=(Diverse_Loups.EquationOfMotion3(Delta1 , Delta2 , 0 , nh, ncav , nc, g
 for  i in range(anzahl):
 
 
-    P_ana.append(-30*2*f*(n_f_list[4][i]))
-    J_cav_f_list.append(30*2*kappa*(nf-n_f_list[0][i]))
-    J_h_f_list.append(150*(nh*n_f_list[1][i]-(nh+1)*n_f_list[3][i]))
-    J_c_f_list.append(120*(nc*n_f_list[2][i]-(nc+1)*n_f_list[3][i]))
+    P_ana.append(-30/omega_h*2*f*(n_f_list[4][i]))
+    J_cav_f_list.append(30/omega_h*2*kappa*(nf-n_f_list[0][i]))
+    J_h_f_list.append(150/omega_h*(nh*n_f_list[1][i]-(nh+1)*n_f_list[3][i]))
+    J_c_f_list.append(120/omega_h*(nc*n_f_list[2][i]-(nc+1)*n_f_list[3][i]))
     J_tot_f_list.append(J_c_f_list[i]+J_h_f_list[i]+J_cav_f_list[i]+P_ana[i])
     list_temp=[]
-    list_temp=Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2)
+    list_temp=Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2,omega_h)
     Energy_VS_f.append(list_temp)
-    Power.append(Diverse_Loups.P2(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,f,omega_2,g))
+    Power.append(Diverse_Loups.P2(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,f,omega_2,g)/omega_h)
     Tot.append(list_temp[0]+list_temp[1]+list_temp[2]+Power[i])
 
     f_list.append(f)
@@ -947,7 +953,7 @@ nc=ncav=nf=0
 #g=0
 n_list=[]
 nh_list=[]
-f=0.1
+f=0.3
 Photonnumber_list=[]
 nh2 = np.linspace(0, 70, 100)
 
@@ -968,7 +974,8 @@ J_tot_f_list=[]
 
 
 Energie_vs_nh=[]
-
+Cav_Power_mit_f=[]
+Cav_Power_ohne_f=[]
 Total=[]
 Energie_vs_nh_f=[]
 n2_list=[]
@@ -984,10 +991,10 @@ for i in range(anzahl):
    
     
     list_temp=[]
-    list_temp=Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,0,omega_f,omega_2)
+    list_temp=Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,0,omega_f,omega_2,omega_h)
     
     Energie_vs_nh.append(list_temp)
-    Power_ohne_f.append(Diverse_Loups.P2(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,0,omega_2,g))
+    Power_ohne_f.append(Diverse_Loups.P2(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,0,omega_2,g)/omega_h)
     
     
     
@@ -996,26 +1003,27 @@ for i in range(anzahl):
    
     
     list_temp2=[]
-    list_temp2=Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2)
+    list_temp2=Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2,omega_h)
     
     Energie_vs_nh_f.append(list_temp2)
-    Power_mit_f.append(Diverse_Loups.P2(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,f,omega_2,g))
-    
+    Power_mit_f.append(Diverse_Loups.P2(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,f,omega_2,g)/omega_h)
+    Cav_Power_mit_f.append(Power_mit_f[i]+ list_temp2[2])
+    Cav_Power_ohne_f.append(Power_ohne_f[i]+ list_temp[2])
     #Total.append(list_temp[0]+list_temp[1]+list_temp[2]+Power_ohne_f[i])
     Total.append(list_temp2[0]+list_temp2[1]+list_temp2[2]+Power_mit_f[i])
     nh_list.append(nh)
     nh3_list.append(nh)
     
-    J_cav_list.append(30*2*kappa*(nf-n_list[0][i]))
-    J_h_list.append(150*(nh*n_list[1][i]-(nh+1)*n_list[3][i]))
-    J_c_list.append(120*(nc*n_list[2][i]-(nc+1)*n_list[3][i]))
+    J_cav_list.append(30/omega_h*2*kappa*(nf-n_list[0][i]))
+    J_h_list.append(150/omega_h*(nh*n_list[1][i]-(nh+1)*n_list[3][i]))
+    J_c_list.append(120/omega_h*(nc*n_list[2][i]-(nc+1)*n_list[3][i]))
     J_tot_list.append(J_c_list[i]+J_h_list[i]+J_cav_list[i])
-    P_ana.append(-2*30*f*(n_list[4][i]))
-    J_cav_f_list.append(30*2*kappa*(nf-n_f_list[0][i]))
-    J_h_f_list.append(150*(nh*n_f_list[1][i]-(nh+1)*n_f_list[3][i]))
-    J_c_f_list.append(120*(nc*n_f_list[2][i]-(nc+1)*n_f_list[3][i]))
+    P_ana.append(-2*30/omega_h*f*(n_list[4][i]))
+    J_cav_f_list.append(30/omega_h*2*kappa*(nf-n_f_list[0][i]))
+    J_h_f_list.append(150/omega_h*(nh*n_f_list[1][i]-(nh+1)*n_f_list[3][i]))
+    J_c_f_list.append(120/omega_h*(nc*n_f_list[2][i]-(nc+1)*n_f_list[3][i]))
     J_tot_f_list.append(J_c_list[i]+J_h_list[i]+J_cav_list[i])
-    P_ana_f.append(-2*30*f*(n_f_list[4][i]))
+    P_ana_f.append(-2*30/omega_h*f*(n_f_list[4][i]))
     
     
 
@@ -1037,7 +1045,6 @@ plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(J_h_f_list)[:anzahl],'--',colo
 plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(J_tot_f_list)[:anzahl],'--',color='black',alpha=0.5)
 plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(J_c_f_list)[:anzahl],'--',color='green',alpha=0.5)
 plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(J_cav_f_list)[:anzahl],'--',color='orange',alpha=0.5)
-
 plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Energie_vs_nh)[:anzahl,1],'-',color='green',label=r' $\frac{J_{c}}{\hbar\gamma_h \omega_{h}}$')
 plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Energie_vs_nh)[:anzahl,0],'-',color='red',label=r' $\frac{J_{h}}{\hbar\gamma_h \omega_{h}}$')
 plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Energie_vs_nh)[:anzahl,2],'-',color='orange',label=r' $\frac{J_{cav}}{\hbar\gamma_h \omega_{h}}$')
@@ -1056,7 +1063,23 @@ legend.get_frame().set_facecolor('white')
 fig2.set_figheight(9)
 fig2.set_figwidth(13)
 
+
+
+FigJP, ax = plt.subplots()
+ax.set_xlabel(r' $n_h$', fontsize=21)
+ax.set_ylabel('heat  current')
+plt.title('')
+plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Power_ohne_f)[:anzahl],'-',color='blue',label=r' $\frac{P_{cav}}{\hbar\gamma_h \omega_{h}}$')
+plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Energie_vs_nh_f)[:anzahl,2],'--',color='orange',alpha=0.5)
+plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Cav_Power_mit_f)[:anzahl],'-',color='purple',alpha=0.5)
+plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Cav_Power_ohne_f)[:anzahl],'-',color='purple',alpha=0.5,label=r'$J_{cav}+Power $')
+plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Power_mit_f)[:anzahl],'-',color='blue',alpha=0.5)
+plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Energie_vs_nh)[:anzahl,2],'-',color='orange',label=r' $\frac{J_{cav}}{\hbar\gamma_h \omega_{h}}$')
+legend = ax.legend(loc='upper right', shadow=True, fontsize='xx-large')
+legend.get_frame().set_facecolor('white')
+
 plt.show()
+
 """""
 fig2, ax = plt.subplots()
 ax.set_xlabel(r' $n_h$', fontsize=21)
@@ -1109,29 +1132,29 @@ Energie_vs_nh=[]
 Tot=[]
 P_list_f=[]
 P_ana=[]
-P_list=Diverse_Loups.P(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,0,anzahl,step)
-P_list_f=Diverse_Loups.P(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,f,anzahl,step)
+P_list=Diverse_Loups.P(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,0,anzahl,step,omega_h)
+P_list_f=Diverse_Loups.P(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,f,anzahl,step,omega_h)
 n_list=(Diverse_Loups.EquationOfMotion3(Delta1 , Delta2 , 0 , nh, ncav , nc, gamma_c, gamma_h, g ,kappa,anzahl,step,"g"))
 n_f_list=(Diverse_Loups.EquationOfMotion3(Delta1 , Delta2 , f , nh, ncav , nc, gamma_c, gamma_h, g ,kappa,anzahl,step,"g"))
 for i in range(anzahl):
    
     
     list_temp=[]
-    list_temp=Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,0,omega_f,omega_2)
+    list_temp=Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,0,omega_f,omega_2,omega_h)
     Energie_vs_g.append(list_temp)
    
     
     list_temp2=[]
-    list_temp2=Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2)
+    list_temp2=Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2,omega_h)
     
     Energie_vs_g_f.append(list_temp2)
     
     Tot.append(list_temp[0]+list_temp[1]+list_temp[2])
-    J_cav_list.append(30*2*kappa*(nf-n_list[0][i]))
-    J_h_list.append(150*(nh*n_list[1][i]-(nh+1)*n_list[3][i]))
-    J_c_list.append(120*(nc*n_list[2][i]-(nc+1)*n_list[3][i]))
+    J_cav_list.append(30/omega_h*2*kappa*(nf-n_list[0][i]))
+    J_h_list.append(150/omega_h*(nh*n_list[1][i]-(nh+1)*n_list[3][i]))
+    J_c_list.append(120/omega_h*(nc*n_list[2][i]-(nc+1)*n_list[3][i]))
     J_tot_list.append(J_c_list[i]+J_h_list[i]+J_cav_list[i])
-    P_ana.append(-2*30*f*(n_f_list[4][i]))
+    P_ana.append(-2*30/omega_h*f*(n_f_list[4][i]))
     g=g+step
     g_list.append(g)
 
@@ -1164,7 +1187,7 @@ fig2.set_figwidth(13)
 
 #plt.show()
 
-
+"""
 ############################################################################################
 #Entropy. production
 def T(omega,n):
@@ -1221,6 +1244,7 @@ legend.get_frame().set_facecolor('white')
 fig3.set_figheight(9)
 fig3.set_figwidth(13)
 #Linien in plt
+"""
 """plt.axvline(x=2.6)
 plt.axvline(x=2.6)
 plt.axvline(x=5.5)
@@ -1397,7 +1421,7 @@ fig3.set_figheight(9)
 fig3.set_figwidth(13)
 
 
-plt.show()
+
 
 
 """"
@@ -1495,8 +1519,8 @@ nc = ncav = 0.0
 kappa = 0.2
 g = 14*kappa
 step=1
-f=1
-anzahl=100
+f=20
+anzahl=10000
 nh=0
 
 n_list=[]
@@ -1537,40 +1561,49 @@ for i in range(anzahl):
     #Photonnumber_list.append(list_temp)
     
     
-    J_cav_list.append(2*omega_f*kappa*(nf-n_list[0][i]))
-    J_h_list.append(2*omega_h*((nh*n_list[1][i]-(nh+1)*n_list[3][i])))
-    J_c_list.append(2*omega_c*(nc*n_list[2][i]-(nc+1)*n_list[3][i]))
+    J_cav_list.append(2*omega_f*kappa*(nf-n_list[0][i])/omega_h)
+    J_h_list.append(2*omega_h*((nh*n_list[1][i]-(nh+1)*n_list[3][i]))/omega_h)
+    J_c_list.append(2*omega_c*(nc*n_list[2][i]-(nc+1)*n_list[3][i])/omega_h)
   
-    P_ana.append(-2*30*f*(n_list[4][i]))
-    J_tot_list.append(J_c_list[i]+J_h_list[i]+J_cav_list[i]+P_ana[i])
+    P_ana.append(-2*30*f*(n_list[4][i])/omega_h)
+    J_tot_list.append(J_c_list[i]+J_h_list[i]+J_cav_list[i]+P_ana[i]/omega_h)
     
    
     nh3_list.append(nh)
     nh=nh+step
         
-fig2, ax = plt.subplots()
+fig2, (ax1,ax2) = plt.subplots(1,2)
 
-plt.figure(figsize=(9, 3))
-ax.set_xlabel(r' $n_h$', fontsize=21)
 
-ax.set_ylabel('probability')
-plt.title('stationary atomic population')
-plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(P_ana)[:anzahl],'--',alpha=1,color='blue')
-plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(J_h_list)[:anzahl],'--',color='red',label=r'$\frac{J_{h}}{\hbar\gamma_h \omega_{h}}$analytisch')
-plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(J_tot_list)[:anzahl],'--',color='black',label=r'$\frac{J_{tot}}{\hbar\gamma_h \omega_{h}}$analytisch')
-plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(J_c_list)[:anzahl],'--',color='green',label=r' $\frac{J_{c}}{\hbar\gamma_h \omega_{h}}$ analytisch')
-plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(J_cav_list)[:anzahl],'--',color='orange',label=r' $\frac{J_{cav}}{\hbar\gamma_h \omega_{h}}$ analytisch')
+ax1.set_xlabel(r' $n_h$', fontsize=21)
+
+ax1.set_ylabel('current')
+plt.title(r'$n_h$ VS Power and $J_{cav}$ ')
+ax1.plot(np.asarray(nh3_list)[:anzahl],np.asarray(P_ana)[:anzahl],'--',alpha=1,color='blue')
+ax1.plot(np.asarray(nh3_list)[:anzahl],np.asarray(J_h_list)[:anzahl],'--',color='red',label=r'$\frac{J_{h}}{\hbar\gamma_h \omega_{h}}$analytisch')
+ax1.plot(np.asarray(nh3_list)[:anzahl],np.asarray(J_tot_list)[:anzahl],'--',color='black',label=r'$\frac{J_{tot}}{\hbar\gamma_h \omega_{h}}$analytisch')
+ax1.plot(np.asarray(nh3_list)[:anzahl],np.asarray(J_c_list)[:anzahl],'--',color='green',label=r' $\frac{J_{c}}{\hbar\gamma_h \omega_{h}}$ analytisch')
+ax1.plot(np.asarray(nh3_list)[:anzahl],np.asarray(J_cav_list)[:anzahl],'--',color='orange',label=r' $\frac{J_{cav}}{\hbar\gamma_h \omega_{h}}$ analytisch')
 #plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Energie_vs_nh)[:anzahl,1],'-',color='green',label=r' $\frac{J_{c}}{\hbar\gamma_h \omega_{h}}$')
 ##plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Energie_vs_nh)[:anzahl,0],'-',color='red',label=r' $\frac{J_{h}}{\hbar\gamma_h \omega_{h}}$')
 #plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Energie_vs_nh)[:anzahl,2],'-',color='orange',label=r' $\frac{J_{cav}}{\hbar\gamma_h \omega_{h}}$')
 
 
 
+ax2.set_xlabel(r' $n_h$', fontsize=21)
+
+ax2.set_ylabel('current')
+#plt.title(r'$n_h$ VS $J_c$ and $J_{h}$ ')
+#ax2.plot(np.asarray(nh3_list)[:anzahl],np.asarray(P_ana)[:anzahl],'--',alpha=1,color='blue')
+ax2.plot(np.asarray(nh3_list)[:anzahl],np.asarray(J_h_list)[:anzahl],'--',color='red',label=r'$\frac{J_{h}}{\hbar\gamma_h \omega_{h}}$analytisch')
+#ax2.plot(np.asarray(nh3_list)[:anzahl],np.asarray(J_tot_list)[:anzahl],'--',color='black',label=r'$\frac{J_{tot}}{\hbar\gamma_h \omega_{h}}$analytisch')
+ax2.plot(np.asarray(nh3_list)[:anzahl],np.asarray(J_c_list)[:anzahl],'--',color='green',label=r' $\frac{J_{c}}{\hbar\gamma_h \omega_{h}}$ analytisch')
+#ax2.plot(np.asarray(nh3_list)[:anzahl],np.asarray(J_cav_list)[:anzahl],'--',color='orange',label=r' $\frac{J_{cav}}{\hbar\gamma_h \omega_{h}}$ analytisch')
 
 
 legend = ax.legend(loc='upper right', shadow=True, fontsize='xx-large')
 legend.get_frame().set_facecolor('white')
-fig3.set_figheight(9)
-fig3.set_figwidth(13)
+fig2.set_figheight(9)
+fig2.set_figwidth(13)
 
 plt.show()

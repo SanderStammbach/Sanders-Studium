@@ -71,7 +71,7 @@ class Diverse_Loups():
 
 
 
-    def EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2):
+    def EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2,omega_h):
         
         gamma_1=(nh+1)*gamma_h #### unsicher wegen vorfaktor 1/2 
         gamma_2=(nh)*gamma_h
@@ -116,9 +116,9 @@ class Diverse_Loups():
 
         Liste_von_Q=[] # ExpectValue for Thermal Energy
 
-        Liste_von_Q.append(np.trace(H_free1*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1])))
-        Liste_von_Q.append(np.trace(H_free1*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3])))
-        Liste_von_Q.append(np.trace(H_free1*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5])))
+        Liste_von_Q.append(np.trace(H_free1*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1]))/omega_h)
+        Liste_von_Q.append(np.trace(H_free1*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3]))/omega_h)
+        Liste_von_Q.append(np.trace(H_free1*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5]))/omega_h)
         #Liste_von_Q.append(g)  g in der liste anfügen
 
         float_list= list(np.float_(Liste_von_Q))
@@ -349,7 +349,7 @@ class Diverse_Loups():
 
 
 
-    def P(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,f,anzahl,step):
+    def P(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,f,anzahl,step,omega_h):
         
         gamma_1=(nh+1)*gamma_h #### unsicher wegen vorfaktor 1/2 
         gamma_2=(nh)*gamma_h
@@ -396,7 +396,7 @@ class Diverse_Loups():
             Hdilde=H_int+V +(omega_2-(omega_1+omega_d))*(proj_2)+(omega_f-omega_d)*(a.dag()*a)    
             rho = steadystate(Hdilde, c_op_list) ######## Are you sure its with only photons H_free?
         
-            P_list.append(Ptr(H_free,Hdilde,rho))
+            P_list.append(Ptr(H_free,Hdilde,rho)/omega_h)
 
         return(P_list)
 

@@ -52,7 +52,7 @@ omega_c=omega_3-omega_2
 omega_d=30
 
 h=1
-nph=12 # Maximale Photonen im cavity for fsc it works fine with 19
+nph=10 # Maximale Photonen im cavity for fsc it works fine with 19
  
 Th=100.    # temperature of the hot bath
 Tc=20.     # temperature of the cold bath
@@ -61,12 +61,12 @@ Tenv=0.0000000000000000000000000001
 
 
 nh=5
-nc=0.002
+nc=0.0002
 
-nf=0.002    #Beschreibt den cavity/Photonen. 
+nf=0.0002    #Beschreibt den cavity/Photonen. 
 
 
-f =0.3
+f =0.2
 global kappa
 
 gamma_h=1
@@ -342,14 +342,12 @@ def compute_drazin_inverse(matrix):
     return drazin_inverse
 """
 
-
-
+anzahl=30
+step =8/anzahl
+nh=0.00001
+f=0.3
 D_list=[]
 nh_list=[]
-anzahl=30
-step=3
-nh=0.0001
-
 Jh_list1=[]
 Entropy_list1=[]
 Q_list1=[]
@@ -370,17 +368,108 @@ for i in range(anzahl):
     print(i-anzahl)
 
 
-fig3, ax = plt.subplots()
 
-ax.set_xlabel(r' $n_h$', fontsize=19)
-ax.set_ylabel('D')
-plt.title(r' D vs $n_h$ ')
-plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(D_list)[:anzahl],label=r' $Var \langle J \rangle $',color='black')
-plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Jh_list1)[:anzahl],label=r' $\langle \langle 1|\mathcal{J}|\rho \rangle \rangle $',color='red')
-plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Q_list1)[:anzahl],'-',label=r' $\mathcal{Q}$',color='blue')
-plt.plot(np.asarray(nh_list)[:100],np.asarray(Entropy_list1)[:100],'--',label=r' $\frac{J_{tot}}{T_{tot}}$',color='orange')
-legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
+
+nh=0.2
+f_list=[]
+D_list_f=[]
+Jh_list_f=[]
+Entropy_list_f=[]
+Q_list_f=[]
+f=0
+step=1/anzahl
+for i in range(anzahl):
+    Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g)
+    rho=DichteMatrix(nh, nc, nf, Hdilde)
+    D=Dcalc(nh,nc,nf, vk_list,Hdilde)
+    D_list_f.append(D[0])
+    print("bla==rho",np.trace(D))
+    Lstrich=J_sup(nh, nc, nf,vk_list)
+    Jh_list_f.append(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])#noesomega h  dezue
+    print(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])
+    Entropy_list_f.append(Diverse_Loups.Entropy(nh,Trans_12,a, kb,h,g,H_free,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_f,omega_d,omega_1,omega_2,proj_2,f)[3])
+    Q_list_f.append((Entropy_list_f[i])*(D_list_f[i]/(Jh_list_f[i]**2)))
+
+    f_list.append(f)
+    f+=step
+    print(i-anzahl)
+
+
+f=0.3
+nh=0.2
+g_list=[]
+D_list_g=[]
+Jh_list_g=[]
+Entropy_list_g=[]
+Q_list_g=[]
+g=0
+step=2.8/anzahl
+for i in range(anzahl):
+    Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g)
+    rho=DichteMatrix(nh, nc, nf, Hdilde)
+    D=Dcalc(nh,nc,nf, vk_list,Hdilde)
+    D_list_g.append(D[0])
+    print("bla==rho",np.trace(D))
+    Lstrich=J_sup(nh, nc, nf,vk_list)
+    Jh_list_g.append(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])#noesomega h  dezue
+    print(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])
+    Entropy_list_g.append(Diverse_Loups.Entropy(nh,Trans_12,a, kb,h,g,H_free,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_f,omega_d,omega_1,omega_2,proj_2,f)[3])
+    Q_list_g.append((Entropy_list_g[i])*(D_list_g[i]/(Jh_list_g[i]**2)))
+
+    g_list.append(g)
+    g+=step
+    print(i-anzahl)
+
+
+
+fig, (ax1,ax2,ax3) = plt.subplots(3)
+
+ax1.set_xlabel(r' $n_h$', fontsize=19)
+ax1.set_ylabel('D')
+#plt.title(r' D vs $n_h$ ')
+ax1.plot(np.asarray(nh_list)[:anzahl],np.asarray(D_list)[:anzahl],label=r' $Var \langle J \rangle $',color='black')
+ax1.plot(np.asarray(nh_list)[:anzahl],np.asarray(Jh_list1)[:anzahl],label=r' $\langle \langle 1|\mathcal{J}|\rho \rangle \rangle $',color='red')
+ax1.plot(np.asarray(nh_list)[:anzahl],np.asarray(Q_list1)[:anzahl],'-',label=r' $\mathcal{Q}$',color='blue')
+ax1.plot(np.asarray(nh_list)[:anzahl],np.asarray(Entropy_list1)[:anzahl],'-',label=r' $\dot{\sigma}$',color='orange')
+legend = ax1.legend(loc='upper right', shadow=True, fontsize='x-large')
 legend.get_frame().set_facecolor('white')
+ax1.axhline(y=2)
+ax1.grid()
+
+
+
+ax2.set_xlabel(r' $f/\gamma_h$', fontsize=19)
+ax2.set_ylabel(r' $\mathcal{Q}$')
+#plt.title(r' $\mathcal{Q} vs f$ ')
+ax2.plot(np.asarray(f_list)[:anzahl],np.asarray(D_list_f)[:anzahl],label=r' $Var \langle J \rangle $',color='black')
+ax2.plot(np.asarray(f_list)[:anzahl],np.asarray(Jh_list_f)[:anzahl],label=r' $\langle \langle 1|\mathcal{J}|\rho \rangle \rangle $',color='red')
+ax2.plot(np.asarray(f_list)[:anzahl],np.asarray(Q_list_f)[:anzahl],'-',label=r' $\mathcal{Q}$',color='blue')
+ax2.plot(np.asarray(f_list)[:anzahl],np.asarray(Entropy_list_f)[:anzahl],'-',label=r' $\dot{\sigma}$',color='orange')
+legend = ax2.legend(loc='upper right', shadow=True, fontsize='x-large')
+legend.get_frame().set_facecolor('white')
+
+ax2.axhline(y=2)
+ax2.grid()
+
+ax3.set_xlabel(r' $g$', fontsize=19)
+ax3.set_ylabel(r' $\mathcal{Q}$')
+#plt.title(r' $\mathcal{Q} vs f$ ')
+ax3.plot(np.asarray(g_list)[:anzahl],np.asarray(D_list_g)[:anzahl],label=r' $Var \langle J \rangle $',color='black')
+ax3.plot(np.asarray(g_list)[:anzahl],np.asarray(Jh_list_g)[:anzahl],label=r' $\langle \langle 1|\mathcal{J}|\rho \rangle \rangle $',color='red')
+ax3.plot(np.asarray(g_list)[:anzahl],np.asarray(Q_list_g)[:anzahl],'-',label=r' $\mathcal{Q}$',color='blue')
+ax3.plot(np.asarray(g_list)[:anzahl],np.asarray(Entropy_list_g)[:anzahl],'-',label=r' $\dot{\sigma}$',color='orange')
+
+ax3.axhline(y=2)
+ax3.grid()
+legend = plt.legend(loc='upper right', shadow=True, fontsize='x-large')
+legend.get_frame().set_facecolor('white')
+
+
+
+
+
+
+
 plt.show()#
 
 
@@ -461,11 +550,11 @@ print(d)
 IdV=(qutip.operator_to_vector(tensor(qutip.identity(3),qutip.identity(nph))))
 
 anzahl=30
-
+step =0.1
 nh=0.0001
 nh_list=[]
 d_list=[]
-Jh_list=[]
+Jh_list2=[]
 Entropy_list=[]
 Q_list=[]
 for i in range(anzahl):
@@ -477,7 +566,7 @@ for i in range(anzahl):
     print(L)
     Lstrich=J_sup(nh,nc,nf,vk_list)
     d_list.append(K_trace(nh, nc, nf,vk_list)+2*np.real((IdV.trans()*Lstrich*Drazin(L)*Lstrich*qutip.operator_to_vector(rho)))[0])
-    Jh_list.append(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])#noesomega h  dezue
+    Jh_list2.append(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])#noesomega h  dezue
     print(np.imag((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])
     Entropy_list.append(Diverse_Loups.Entropy(nh,Trans_12,a, kb,h,g,H_free,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_f,omega_d,omega_1,omega_2,proj_2,f)[3])
     Q_list.append((Entropy_list[i])*(d_list[i]/(Jh_list1[i]**2)))
@@ -496,12 +585,18 @@ ax.set_xlabel(r' $n_h$', fontsize=19)
 ax.set_ylabel('D')
 plt.title(r' D vs $n_h$ ')
 plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(d_list)[:anzahl],label=r' $Var \langle J \rangle $',color='black')
-plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Jh_list)[:anzahl],label=r' $\langle \langle 1|\mathcal{J}|\rho \rangle \rangle $',color='red')
+plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Jh_list2)[:anzahl],label=r' $\langle \langle 1|\mathcal{J}|\rho \rangle \rangle $',color='red')
 plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Q_list)[:anzahl],'-',label=r' $\mathcal{Q}$',color='blue')
 #plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Entropy_list)[:anzahl],'-',label=r' $H_{free} \mathcal{L}_h $',color='purple')
 #plt.plot(np.asarray(nh_list3)[:100],np.asarray(Entropy2)[:100,3],'--',label=r' $\frac{J_{cav}}{T_{cav}}$',color='orange')
 legend = ax.legend(loc='upper right', shadow=True, fontsize='x-large')
 legend.get_frame().set_facecolor('white')
+
+plt.axhline(y=2)
+plt.grid()
+
+fig3.set_figheight(9)
+fig3.set_figwidth(13)
 plt.show()#
 
 
