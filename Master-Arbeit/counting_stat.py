@@ -61,16 +61,16 @@ Tenv=0.0000000000000000000000000001
 
 
 nh=5
-nc=0.0002
+nc=0.002
 
-nf=0.0002    #Beschreibt den cavity/Photonen. 
+nf=0.3   #Beschreibt den cavity/Photonen. 
 
 
 f =0.2
 global kappa
 
-gamma_h=1
-gamma_c=1
+gamma_h=0.1
+gamma_c=2
 kappa=0.2
 #kappa=0.028
 kb=1
@@ -344,8 +344,8 @@ def compute_drazin_inverse(matrix):
 
 anzahl=30
 step =8/anzahl
-nh=0.00001
-f=0.3
+nh=0.000000001
+f=0.00
 D_list=[]
 nh_list=[]
 Jh_list1=[]
@@ -360,7 +360,7 @@ for i in range(anzahl):
     Lstrich=J_sup(nh, nc, nf,vk_list)
     Jh_list1.append(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])#noesomega h  dezue
     print(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])
-    Entropy_list1.append(Diverse_Loups.Entropy(nh,Trans_12,a, kb,h,g,H_free,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_f,omega_d,omega_1,omega_2,proj_2,f)[3])
+    Entropy_list1.append(Diverse_Loups.Entropy_ohne_omega(nh,Trans_12,a, kb,h,g,proj_3,proj_1,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_f,omega_d,omega_1,omega_2,proj_2,f,omega_3)[3])
     Q_list1.append((Entropy_list1[i])*(D_list[i]/(Jh_list1[i]**2)))
 
     nh_list.append(nh)
@@ -387,7 +387,7 @@ for i in range(anzahl):
     Lstrich=J_sup(nh, nc, nf,vk_list)
     Jh_list_f.append(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])#noesomega h  dezue
     print(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])
-    Entropy_list_f.append(Diverse_Loups.Entropy(nh,Trans_12,a, kb,h,g,H_free,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_f,omega_d,omega_1,omega_2,proj_2,f)[3])
+    Entropy_list_f.append(Diverse_Loups.Entropy_ohne_omega(nh,Trans_12,a, kb,h,g,proj_3,proj_1,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_f,omega_d,omega_1,omega_2,proj_2,f,omega_3)[3])
     Q_list_f.append((Entropy_list_f[i])*(D_list_f[i]/(Jh_list_f[i]**2)))
 
     f_list.append(f)
@@ -413,7 +413,7 @@ for i in range(anzahl):
     Lstrich=J_sup(nh, nc, nf,vk_list)
     Jh_list_g.append(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])#noesomega h  dezue
     print(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])
-    Entropy_list_g.append(Diverse_Loups.Entropy(nh,Trans_12,a, kb,h,g,H_free,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_f,omega_d,omega_1,omega_2,proj_2,f)[3])
+    Entropy_list_g.append(Diverse_Loups.Entropy_ohne_omega(nh,Trans_12,a, kb,h,g,proj_3,proj_1,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_f,omega_d,omega_1,omega_2,proj_2,f,omega_3)[3])
     Q_list_g.append((Entropy_list_g[i])*(D_list_g[i]/(Jh_list_g[i]**2)))
 
     g_list.append(g)
@@ -568,7 +568,7 @@ for i in range(anzahl):
     d_list.append(K_trace(nh, nc, nf,vk_list)+2*np.real((IdV.trans()*Lstrich*Drazin(L)*Lstrich*qutip.operator_to_vector(rho)))[0])
     Jh_list2.append(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])#noesomega h  dezue
     print(np.imag((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])
-    Entropy_list.append(Diverse_Loups.Entropy(nh,Trans_12,a, kb,h,g,H_free,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_f,omega_d,omega_1,omega_2,proj_2,f)[3])
+    Entropy_list.append(Diverse_Loups.Entropy_ohne_omega(nh,Trans_12,a, kb,h,g,proj_3,proj_1,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_f,omega_d,omega_1,omega_2,proj_2,f,omega_3)[3])
     Q_list.append((Entropy_list[i])*(d_list[i]/(Jh_list1[i]**2)))
     
     nh_list.append(nh)

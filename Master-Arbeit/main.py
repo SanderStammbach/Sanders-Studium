@@ -63,7 +63,7 @@ f =0
 global kappa
 
 gamma_h=1
-gamma_c=1
+gamma_c=2
 kappa=0.2
 #kappa=0.028
 kb=1
@@ -354,10 +354,11 @@ for i in range(anzahl):
     list_temp=Diverse_Loups.Entropy(nh2,Trans_12,a, kb,h,g,H_free,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_f,omega_d,omega_1,omega_2,proj_2,f)
     #g_list.append(i/100)  #Erstellt eine Liste mit Wären von g 
     Entropy.append(list_temp)
-    nh2=nh2+0.5
+    
     nh_list2.append(nh2)
+    nh2=nh2+0.5
     Entropy_tot.append(list_temp[0]+list_temp[2]+list_temp[1])
-f=0.5
+f=0.3
 nh2=0.001
 nh_list3=[]
 Entropy2=[]
@@ -367,8 +368,9 @@ for i in range(anzahl):
     list_temp=Diverse_Loups.Entropy(nh2,Trans_12,a, kb,h,g,H_free,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_f,omega_d,omega_1,omega_2,proj_2,f)
     #g_list.append(i/100)  #Erstellt eine Liste mit Wären von g 
     Entropy2.append(list_temp)
-    nh2=nh2+0.5
     nh_list3.append(nh2)
+    nh2=nh2+0.5
+    
     Entropy_tot2.append(list_temp[0]+list_temp[2]+list_temp[1])
 
 
@@ -393,8 +395,8 @@ plt.title(r' Entropy Production  rate vs $n_h$ ')
 plt.plot(np.asarray(nh_list2)[:anzahl],np.asarray(Entropy)[:anzahl,0],label=r' $\frac{J_h}{T_h}$',color='red')
 plt.plot(np.asarray(nh_list2)[:anzahl],np.asarray(Entropy)[:anzahl,1],label=r' $\frac{J_c}{T_c}$',color='green')
 plt.plot(np.asarray(nh_list2)[:anzahl],np.asarray(Entropy)[:anzahl,2],label=r' $\frac{J_{cav}}{T_{cav}}$',color='orange')
-
 plt.plot(np.asarray(nh_list2)[:anzahl],np.asarray(Entropy_tot)[:anzahl],label=r' $\frac{J_{tot}}{T_{cav}}$',color='black')
+plt.plot(np.asarray(nh_list2)[:anzahl],np.asarray(Entropy_tot2)[:anzahl],label=r' $\frac{J_{tot}}{T_{cav}}$',color='black',alpha=0.4)
 plt.plot(np.asarray(nh_list3)[:anzahl],np.asarray(Entropy2)[:anzahl,0],'-',alpha=0.4,color='red')
 plt.plot(np.asarray(nh_list3)[:anzahl],np.asarray(Entropy2)[:anzahl,1],'-',alpha=0.4,color='green')
 plt.plot(np.asarray(nh_list3)[:anzahl],np.asarray(Entropy2)[:anzahl,2],'-',alpha=0.4,color='orange')
