@@ -63,21 +63,21 @@ Tenv=0.0000000000000000000000000001
 nh=5
 nc=0.002
 
-nf=0.3   #Beschreibt den cavity/Photonen. 
+nf=1   #Beschreibt den cavity/Photonen. 
 
 
 f =0.2
 global kappa
 
-gamma_h=0.1
-gamma_c=2
+gamma_h=1
+gamma_c=20
 kappa=0.2
 #kappa=0.028
 kb=1
 global g
 g=14*kappa
 #g=f=0
-
+kappa=0.028
 
 b_fock=qutip.states.fock(nph,0) #m)/fock(N,#m)
 b_atom=basis(3)
@@ -342,10 +342,10 @@ def compute_drazin_inverse(matrix):
     return drazin_inverse
 """
 
+f=0.2
 anzahl=30
-step =8/anzahl
-nh=0.000000001
-f=0.00
+step =0.1
+nh=0.0001
 D_list=[]
 nh_list=[]
 Jh_list1=[]
@@ -519,8 +519,65 @@ def Drazin(matrix):
     return Ad
 
 
+from scipy.linalg import null_space
+
+import numpy as np
+from sympy import Matrix
+from scipy.sparse.linalg import dsolve
+from numpy.linalg import matrix_rank
+import scipy  as scipy
 
 
+
+
+
+
+def Drazin2(matrix):
+    
+    A=np.matrix(matrix)
+    #A=matrix
+    Ak=A
+    k=0
+    Aold=A
+    Ad=0
+    Ad1=0
+   
+    while matrix_rank(Ak) != matrix_rank(Ak*A):
+            
+        
+        k+=1
+        Ak=Ak*A
+        print(k,Ak)
+        
+    if matrix_rank(Ak) == matrix_rank(Ak*A):
+        
+        NSu=scipy.linalg.null_space(Ak)
+        NSv=np.transpose( scipy.linalg.null_space(np.transpose(Ak)))
+        dimZ1, dimZ2= NSv.shape
+        
+        Zeros=np.zeros((dimZ1,dimZ1))
+
+        D=np.block([[A,NSu],[NSv,Zeros]])
+        D_inv=np.linalg.inv(D)
+
+        
+        num_rows, num_cols = A.shape
+        Drazin_inv=D_inv[0:num_rows,0:num_cols]
+                
+    else :
+        print("error")
+        
+    Ad=qutip.Qobj(Drazin_inv,dims = [[[3, nph], [3, nph]], [[3, nph], [3, nph]]])
+    
+
+    return Ad
+
+
+
+c_op_list=colaps(nh, nc, nf)
+L=qutip.liouvillian(Hdilde,c_op_list)
+D=Drazin(L)
+print(D,D.shape)
 """"
 
 #matrix = qutip.Qobj([[1, 2, 3], [0, 0, 4], [4, 0, 1]])
@@ -546,9 +603,20 @@ d=IdV.trans()*Lstrich*D*Lstrich*qutip.to_super(rho)*qutip.operator_to_vector(rho
 print(d)
 #L=qutip.liouvillian(Hdilde,rho)
 #print(steadystate(L))
-"""
-IdV=(qutip.operator_to_vector(tensor(qutip.identity(3),qutip.identity(nph))))
 
+
+
+
+
+
+"""
+
+#do bruchbar
+
+
+
+IdV=(qutip.operator_to_vector(tensor(qutip.identity(3),qutip.identity(nph))))
+f=0.2
 anzahl=30
 step =0.1
 nh=0.0001
@@ -565,7 +633,7 @@ for i in range(anzahl):
     L=qutip.liouvillian(Hdilde,c_op_list)
     print(L)
     Lstrich=J_sup(nh,nc,nf,vk_list)
-    d_list.append(K_trace(nh, nc, nf,vk_list)+2*np.real((IdV.trans()*Lstrich*Drazin(L)*Lstrich*qutip.operator_to_vector(rho)))[0])
+    d_list.append(K_trace(nh, nc, nf,vk_list)+2*np.real((IdV.trans()*Lstrich*Drazin2(L)*Lstrich*qutip.operator_to_vector(rho)))[0])
     Jh_list2.append(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])#noesomega h  dezue
     print(np.imag((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])
     Entropy_list.append(Diverse_Loups.Entropy_ohne_omega(nh,Trans_12,a, kb,h,g,proj_3,proj_1,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_f,omega_d,omega_1,omega_2,proj_2,f,omega_3)[3])
@@ -631,3 +699,7 @@ pchis = np.array([[rho.tr() for rho in rhoix] for rhoix in rhochi])
 
 
 """
+
+
+
+
