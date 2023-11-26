@@ -54,21 +54,23 @@ Tenv=0.0000000000000000000000000001
 
 
 
-nh=5
+nh=10
 nc=0.02
 
 nf=0.02    #Beschreibt den cavity/Photonen. 
 
-f =0
+f =0.3
 global kappa
 
 gamma_h=1
-gamma_c=2
-kappa=0.2
+gamma_c=1
+kappa=0.07
+#kappa=0.2
 #kappa=0.028
 kb=1
 global g
-g=14*kappa
+g=2.8
+#g=14*kappa
 #g=f=0
 
 
@@ -143,7 +145,7 @@ c_op_list.append(np.sqrt(kappa_5)*A5)
 c_op_list.append(np.sqrt(kappa_6)*A6)
 
 
-def Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g):
+def Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d):
     H_free=omega_1*proj_1+h*omega_2*proj_2+h*omega_3*proj_3+h*omega_f*a.dag()*a
 
     H_int=h*g*(Trans_12*a.dag()+a*Trans_12.dag())
@@ -187,7 +189,7 @@ def DichteMatrix(nh, nc, nf, Hami):
 
 
 
-Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g)
+#Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
 
 rho = DichteMatrix(nh,nc,nf,Hdilde)
 
@@ -211,10 +213,6 @@ qutip.plot_wigner_fock_distribution(rho_f,colorbar='colorbar')
 
 plt.show()
 
-#Hamilton
-#print(variance(a.dag()*a, rho))
-
-#print(type(rho))
 
 """Mk=qutip.superop_reps.to_kraus(Trans_12, tol=1e-09)
 Mkt=qutip.superop_reps.to_kraus(Trans_12.dag(), tol=1e-09)
@@ -233,40 +231,7 @@ for i in range (2):
     Mkt_List.append(qutip.superop_reps.to_kraus(Lt_list[i], tol=1e-09))
 
 
-print(np.vdot(Mk_List[1],Mkt_List[1])*rho)
-#do weiss i noni gnau welli liste öb mk mit superop to kraus oder ni
-def CalculateK(Mk_List,Mkt_List,rho):
-    K=0.0
-    k=1
-    for i in range (2):
-        if i==0:
-            vk=1/(np.sqrt(2*k))
-        else:
-            vk=1/np.sqrt(k)
 
-        K=K+np.trace(np.vdot(Mk_List[i],Mkt_List[i])*rho) #vk² muess no  dezue
-        
-    return K
-
-def CalculateJ(Mk_List,Mkt_List,rho):
-    J=0.0
-    k=1
-    for i in range (2):
-        if i==0:
-            vk=1/(np.sqrt(2*k))
-        else:
-            vk=1/np.sqrt(k)
-            
-        J=J+ 2*vk*np.trace(np.vdot(Mk_List[i],Mkt_List[i])*rho) #2*vk muess no dezue
-        
-    return 2*J
-
-print("mis k  sött " ,CalculateK(Mk_List,Mkt_List,rho),"print j",CalculateJ(Mk_List,Mkt_List,rho))
-
-print(np.trace(rho))
-
-#D =j+k und das isch d zitableitig vo de varianz
-#print(L_List)
 
 ########################################################################################################################################################################
 g_list=[]
@@ -867,7 +832,7 @@ J_cav_f_list=[]
 J_tot_f_list=[]
 P_ana=[]
 Energie_vs_nh=[]
-def Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g):
+def Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d):
     H_free=omega_1*proj_1+h*omega_2*proj_2+h*omega_3*proj_3+h*omega_f*a.dag()*a
 
     H_int=h*g*(Trans_12*a.dag()+a*Trans_12.dag())
@@ -879,7 +844,7 @@ def Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g):
     Hdilde=H_int+V +(omega_2-(omega_1+omega_d))*(proj_2)+(omega_f-omega_d)*(a.dag()*a)
 
     return Hdilde
-Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g)
+Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
 
 n_list=(Diverse_Loups.EquationOfMotion3(Delta1 , Delta2 , 0 , nh, ncav , nc, gamma_c, gamma_h, g ,kappa,anzahl,step,"nh"))
 n_f_list=(Diverse_Loups.EquationOfMotion3(Delta1 , Delta2 , f , nh, ncav , nc, gamma_c, gamma_h, g ,kappa,anzahl,step,"nh"))
@@ -1144,7 +1109,6 @@ for i in range(anzahl):
     list_temp=[]
     list_temp=Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,0,omega_f,omega_2,omega_h)
     Energie_vs_g.append(list_temp)
-   
     
     list_temp2=[]
     list_temp2=Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2,omega_h)
@@ -1287,13 +1251,14 @@ a_Ana2=[]
 n_list=(Diverse_Loups.EquationOfMotion3(Delta1 , Delta2 , f , 0, ncav , nc, gamma_c, gamma_h, g ,kappa,anzahl,step,"f"))
 n_f_list=(Diverse_Loups.EquationOfMotion3(Delta1 , Delta2 , f , 5, ncav , nc, gamma_c, gamma_h, g ,kappa,anzahl,step,"f"))
 step=0.01
+F=np.linspace(0,step*anzahl,anzahl)
+Average_A=np.imag((-1j*F*(2*F**2*np.sqrt(kappa) + g**2*np.sqrt(kappa) - g**3*np.sqrt(kappa/g**2)))/((2*F**2 + g**2)*kappa**1.5))
 for i in range(anzahl):
-   
+
     
     
     ladder_list.append(Diverse_Loups.LadderOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, 0,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,f))
     sigma_list.append((-Diverse_Loups.SigmaOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, 0,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,f)*g-f)/kappa)
-     
     
     sigma_list_f.append((-Diverse_Loups.SigmaOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, 5,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,f)*g-f)/kappa)
     ladder_list_f.append(Diverse_Loups.LadderOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, 5,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,f))
@@ -1310,7 +1275,7 @@ ax.set_xlabel(r' $\frac{f}{\gamma}$', fontsize=21)
 ax.set_ylabel(r'$<a>$',fontsize=21)
 plt.title('a')
     
-
+plt.plot(F,Average_A,color='pink',label=r'$\langle a\rangle$ "from paper"')
 #plt.plot(np.asarray(f_list)[:anzahl],np.asarray(a_Ana2)[:anzahl],'*',color='green',label=r'$\langle a\rangle, (eqm), nh=5$')
 plt.plot(np.asarray(f_list)[:anzahl],np.asarray(ladder_list)[:anzahl],'-',color='black',label=r'$ \langle a\rangle , nh=0$')
 plt.plot(np.asarray(f_list)[:anzahl],np.asarray(ladder_list_f)[:anzahl],'-',color='red',label=r' $\langle a\rangle, n_h=5 $')
@@ -1386,13 +1351,9 @@ n_list=(Diverse_Loups.EquationOfMotion3(Delta1 , Delta2 , 0 , nh, ncav , nc, gam
 n_f_list=(Diverse_Loups.EquationOfMotion3(Delta1 , Delta2 , f , nh, ncav , nc, gamma_c, gamma_h, g ,kappa,anzahl,step,"nh"))
 
 for i in range(anzahl):
-   
-    
     
     ladder_list.append(Diverse_Loups.LadderOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,0))
     sigma_list.append((-Diverse_Loups.SigmaOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,0)*g-0)/kappa)
-     
-    
     sigma_list_f.append((-Diverse_Loups.SigmaOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,f)*g-f)/kappa)
     ladder_list_f.append(Diverse_Loups.LadderOperator(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,ncav,nc,h,kb,gamma_h,gamma_c,kappa,proj_2,f))
     a_Ana.append(((-n_f_list[6][i])*g-0.55)/kappa)
@@ -1465,6 +1426,7 @@ a_Ana=[]
 a_Ana2=[]
 f_list3=[]
 warm=0
+
 n_list=(Diverse_Loups.EquationOfMotion3(Delta1 , Delta2 , f , 0, ncav , nc, gamma_c, gamma_h, g ,kappa,anzahl,step,"f"))
 n_f_list=(Diverse_Loups.EquationOfMotion3(Delta1 , Delta2 , f , warm, ncav , nc, gamma_c, gamma_h, g ,kappa,anzahl,step,"f"))
 
@@ -1570,7 +1532,6 @@ for i in range(anzahl):
     P_ana.append(-2*30*f*(n_list[4][i])/omega_h)
     J_tot_list.append(J_c_list[i]+J_h_list[i]+J_cav_list[i]+P_ana[i]/omega_h)
     
-   
     nh3_list.append(nh)
     nh=nh+step
         

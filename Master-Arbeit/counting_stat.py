@@ -60,7 +60,7 @@ Tenv=0.0000000000000000000000000001
 
 
 
-nh=5
+nh=0.2
 nc=0.002
 
 nf=1   #Beschreibt den cavity/Photonen. 
@@ -71,13 +71,14 @@ global kappa
 
 gamma_h=1
 gamma_c=20
-kappa=0.2
+#kappa=0.2
 #kappa=0.028
 kb=1
 global g
-g=14*kappa
+g=2.8
+#g=14*kappa
 #g=f=0
-kappa=0.028
+kappa=0.07
 
 b_fock=qutip.states.fock(nph,0) #m)/fock(N,#m)
 b_atom=basis(3)
@@ -109,7 +110,7 @@ H_free=omega_1*proj_1+h*omega_2*proj_2+h*omega_3*proj_3+h*omega_f*a.dag()*a
 #L=qutip.to_super(np.sqrt(kappa_6)*A5)
 
 
-def Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g):
+def Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d):
     H_free=omega_1*proj_1+h*omega_2*proj_2+h*omega_3*proj_3+h*omega_f*a.dag()*a
 
     H_int=h*g*(Trans_12*a.dag()+a*Trans_12.dag())
@@ -121,8 +122,8 @@ def Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g):
     Hdilde=H_int+V +(omega_2-(omega_1+omega_d))*(proj_2)+(omega_f-omega_d)*(a.dag()*a)
 
     return Hdilde
-Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g)
-global DichteMatrix
+#Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
+#global DichteMatrix
 def DichteMatrix(nh, nc, nf, Hami):
     gamma_1=(nh+1)*gamma_h #### unsicher wegen vorfaktor 1/2 
     gamma_2=(nh)*gamma_h
@@ -352,7 +353,7 @@ Jh_list1=[]
 Entropy_list1=[]
 Q_list1=[]
 for i in range(anzahl):
-    Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g)
+    Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
     rho=DichteMatrix(nh, nc, nf, Hdilde)
     D=Dcalc(nh,nc,nf, vk_list,Hdilde)
     D_list.append(D[0])
@@ -379,7 +380,7 @@ Q_list_f=[]
 f=0
 step=1/anzahl
 for i in range(anzahl):
-    Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g)
+    Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
     rho=DichteMatrix(nh, nc, nf, Hdilde)
     D=Dcalc(nh,nc,nf, vk_list,Hdilde)
     D_list_f.append(D[0])
@@ -395,7 +396,7 @@ for i in range(anzahl):
     print(i-anzahl)
 
 
-f=0.3
+f=0.2
 nh=0.2
 g_list=[]
 D_list_g=[]
@@ -404,8 +405,10 @@ Entropy_list_g=[]
 Q_list_g=[]
 g=0
 step=2.8/anzahl
+
+
 for i in range(anzahl):
-    Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g)
+    Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
     rho=DichteMatrix(nh, nc, nf, Hdilde)
     D=Dcalc(nh,nc,nf, vk_list,Hdilde)
     D_list_g.append(D[0])
@@ -419,10 +422,39 @@ for i in range(anzahl):
     g_list.append(g)
     g+=step
     print(i-anzahl)
+    
+    
+f=0.2    
+omega_f=30
+omega_d=28
+Delta_list=[]
+step=(omega_f-omega_d)*2/anzahl
+g=2.8
+D_list_D=[]
+D_list_D=[]
+Jh_list_D=[]
+Entropy_list_D=[]
+Q_list_D=[]
+for i in range(anzahl):
+    Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
+    rho=DichteMatrix(nh, nc, nf, Hdilde)
+    D=Dcalc(nh,nc,nf, vk_list,Hdilde)
+    D_list_D.append(D[0])
+    print("bla==rho",np.trace(D))
+    Lstrich=J_sup(nh, nc, nf,vk_list)
+    Jh_list_D.append(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])#noesomega h  dezue
+    print(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])
+    Entropy_list_D.append(Diverse_Loups.Entropy_ohne_omega(nh,Trans_12,a, kb,h,g,proj_3,proj_1,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_f,omega_d,omega_1,omega_2,proj_2,f,omega_3)[3])
+    Q_list_D.append((Entropy_list_D[i])*(D_list_D[i]/(Jh_list_D[i]**2)))
+
+    Delta_list.append(omega_d-omega_f)
+    omega_d+=step
+    print(i-anzahl)
 
 
 
-fig, (ax1,ax2,ax3) = plt.subplots(3)
+
+fig, (ax1,ax2,ax3,ax4) = plt.subplots(4)
 
 ax1.set_xlabel(r' $n_h$', fontsize=19)
 ax1.set_ylabel('D')
@@ -458,14 +490,25 @@ ax3.plot(np.asarray(g_list)[:anzahl],np.asarray(D_list_g)[:anzahl],label=r' $Var
 ax3.plot(np.asarray(g_list)[:anzahl],np.asarray(Jh_list_g)[:anzahl],label=r' $\langle \langle 1|\mathcal{J}|\rho \rangle \rangle $',color='red')
 ax3.plot(np.asarray(g_list)[:anzahl],np.asarray(Q_list_g)[:anzahl],'-',label=r' $\mathcal{Q}$',color='blue')
 ax3.plot(np.asarray(g_list)[:anzahl],np.asarray(Entropy_list_g)[:anzahl],'-',label=r' $\dot{\sigma}$',color='orange')
-
-ax3.axhline(y=2)
-ax3.grid()
 legend = plt.legend(loc='upper right', shadow=True, fontsize='x-large')
 legend.get_frame().set_facecolor('white')
+ax3.axhline(y=2)
+ax3.grid()
 
 
 
+ax4.set_xlabel(r' $\Delta$', fontsize=19)
+ax4.set_ylabel(r' $\mathcal{Q}$')
+#plt.title(r' $\mathcal{Q} vs f$ ')
+ax4.plot(np.asarray(Delta_list)[:anzahl],np.asarray(D_list_D)[:anzahl],label=r' $Var \langle J \rangle $',color='black')
+ax4.plot(np.asarray(Delta_list)[:anzahl],np.asarray(Jh_list_D)[:anzahl],label=r' $\langle \langle 1|\mathcal{J}|\rho \rangle \rangle $',color='red')
+ax4.plot(np.asarray(Delta_list)[:anzahl],np.asarray(Q_list_D)[:anzahl],'-',label=r' $\mathcal{Q}$',color='blue')
+ax4.plot(np.asarray(Delta_list)[:anzahl],np.asarray(Entropy_list_D)[:anzahl],'-',label=r' $\dot{\sigma}$',color='orange')
+
+ax4.axhline(y=2)
+ax4.grid()
+legend = plt.legend(loc='upper right', shadow=True, fontsize='x-large')
+legend.get_frame().set_facecolor('white')
 
 
 
@@ -496,7 +539,7 @@ def Drazin(matrix):
     Aold=A
     Ad=0
     Ad1=0
-   
+
     while matrix_rank(Ak) != matrix_rank(Ak*A):
             
         
@@ -617,6 +660,7 @@ print(d)
 
 IdV=(qutip.operator_to_vector(tensor(qutip.identity(3),qutip.identity(nph))))
 f=0.2
+omega_f=30
 anzahl=30
 step =0.1
 nh=0.0001
@@ -626,7 +670,7 @@ Jh_list2=[]
 Entropy_list=[]
 Q_list=[]
 for i in range(anzahl):
-    Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g)
+    Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
     rho=DichteMatrix(nh, nc, nf, Hdilde)
     c_op_list=colaps(nh, nc, nf)
     rho=DichteMatrix(nh, nc, nf, Hdilde)
