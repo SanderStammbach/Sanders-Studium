@@ -46,7 +46,7 @@ omega_c=omega_3-omega_2
 omega_d=30
 
 h=1
-nph=30   # Maximale Photonen im cavity 
+nph=30  # Maximale Photonen im cavity 
  
 Th=100.    # temperature of the hot bath
 Tc=20.     # temperature of the cold bath
@@ -55,10 +55,10 @@ Tenv=0.0000000000000000000000000001
 
 
 nh=10
-nc=0.02
+nc=0.0002
 
-nf=0.02    #Beschreibt den cavity/Photonen. 
-
+#nf=0.0002    #Beschreibt den cavity/Photonen. 
+nf=2
 f =0.3
 global kappa
 
@@ -199,20 +199,117 @@ rho = DichteMatrix(nh,nc,nf,Hdilde)
 
 #print(c_op_list)
 
-
-#print(rho)
-
-
-
-print("D lösig isch:",np.trace((a*(c_op_list[4]*rho*c_op_list[4].dag()-1/2*(c_op_list[4].dag()*c_op_list[4]*rho-rho*c_op_list[4].dag()*c_op_list[4]))))-np.trace(a*a.dag()*a),"        und       ",a*(c_op_list[4]*rho*c_op_list[4].dag()-1/2*(c_op_list[4].dag()*c_op_list[4]*rho-rho*c_op_list[4].dag()*c_op_list[4])))
-
 rho_f=rho.ptrace(1)  ### State in the cavity
 print(rho)
+#print(rho)
 
-qutip.plot_wigner_fock_distribution(rho_f,colorbar='colorbar')
+xvec = np.linspace(-5,5,200)
 
+f=0
+Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
+rho = DichteMatrix(nh,nc,nf,Hdilde)
+rho_f=rho.ptrace(1)
+W_coherent = qutip.wigner(rho_f, xvec, xvec)
+
+f=0.1
+Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
+rho = DichteMatrix(nh,nc,nf,Hdilde)
+rho_f=rho.ptrace(1)
+W_thermal = qutip.wigner(rho_f, xvec, xvec)
+
+
+f=0.3
+Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
+rho = DichteMatrix(nh,nc,nf,Hdilde)
+rho_f=rho.ptrace(1)
+W_fock = qutip.wigner(rho_f, np.linspace(-10,10,200), np.linspace(-10,10,200))
+#print("wignerplot an stelle 9.9 ",W_coherent[2][0.0])
+f=0.5
+Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
+rho = DichteMatrix(nh,nc,nf,Hdilde)
+rho_f=rho.ptrace(1)
+WignerPlot = qutip.wigner(rho_f, np.linspace(-10,10,200), np.linspace(-10,10,200))
+
+# plot the results
+
+fig, axes = plt.subplots(2, 2,figsize=(12,10))
+
+cont0 = axes[0,0].contourf(xvec, xvec, W_coherent, 100)
+fig.colorbar( plt.cm.ScalarMappable(),ax=axes[0,0])
+lbl0 = axes[0,0].set_title("f=0")
+
+cont1 = axes[0,1].contourf(xvec, xvec, W_thermal, 100)
+fig.colorbar( plt.cm.ScalarMappable(),ax=axes[0,1])
+
+lbl1 = axes[0,1].set_title("f=0.1")
+
+cont0 = axes[1,0].contourf(np.linspace(-10,10,200), np.linspace(-10,10,200), W_fock, 100,colobar=True)
+fig.colorbar( plt.cm.ScalarMappable(),ax=axes[1,0])
+
+lbl2 = axes[1,0].set_title("f=0.3")
+
+cont3 = axes[1,1].contourf(np.linspace(-10,10,200), np.linspace(-10,10,200), WignerPlot, 100,colobar=True)
+
+lbl2 = axes[1,1].set_title("f=0.5")
+
+
+fig.colorbar( plt.cm.ScalarMappable())
 plt.show()
 
+#############################################################################################################################################################################
+
+xvec = np.linspace(-5,5,200)
+f=0
+nh=0.002
+Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
+rho = DichteMatrix(nh,nc,nf,Hdilde)
+rho_f=rho.ptrace(1)
+W_coherent = qutip.wigner(rho_f, xvec, xvec)
+
+nh=4
+Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
+rho = DichteMatrix(nh,nc,nf,Hdilde)
+rho_f=rho.ptrace(1)
+W_thermal = qutip.wigner(rho_f, np.linspace(-4,4,200), np.linspace(-4,4,200))
+
+
+nh=20
+Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
+rho = DichteMatrix(nh,nc,nf,Hdilde)
+rho_f=rho.ptrace(1)
+W_fock = qutip.wigner(rho_f, xvec, xvec)
+#print("wignerplot an stelle 9.9 ",W_coherent[2][0.0])
+nh=120
+Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
+rho = DichteMatrix(nh,nc,nf,Hdilde)
+rho_f=rho.ptrace(1)
+WignerPlot = qutip.wigner(rho_f, xvec, xvec)
+
+# plot the results
+
+fig, axes = plt.subplots(2, 2,figsize=(12,10))
+
+cont0 = axes[0,0].contourf(xvec, xvec, W_coherent, 100)
+fig.colorbar( plt.cm.ScalarMappable(),ax=axes[0,0])
+lbl0 = axes[0,0].set_title(r'$n_h=0.0.0002$')
+
+cont1 = axes[0,1].contourf(xvec, xvec, W_thermal, 100)
+fig.colorbar( plt.cm.ScalarMappable(),ax=axes[0,1])
+
+lbl1 = axes[0,1].set_title(r'$n_h=4$')
+
+cont0 = axes[1,0].contourf(xvec, xvec, W_fock, 100,colobar=True)
+fig.colorbar( plt.cm.ScalarMappable(),ax=axes[1,0])
+
+lbl2 = axes[1,0].set_title(r'$n_h=20$')
+
+cont3 = axes[1,1].contourf(xvec, xvec, WignerPlot, 100,colobar=True)
+
+lbl2 = axes[1,1].set_title(r'$n_h=120$')
+
+
+fig.colorbar( plt.cm.ScalarMappable())
+plt.show()
 
 """Mk=qutip.superop_reps.to_kraus(Trans_12, tol=1e-09)
 Mkt=qutip.superop_reps.to_kraus(Trans_12.dag(), tol=1e-09)
@@ -741,7 +838,7 @@ fig2.set_figwidth(13)
 f=0
 
 anzahl =100
-step=0.02
+step=0.41/anzahl
 nc=ncav=nf=0
 nh=5
 
@@ -797,110 +894,12 @@ legend = ax.legend(loc='upper right', shadow=True, fontsize='xx-large')
 legend.get_frame().set_facecolor('white')
 fig1.set_figheight(9)
 fig1.set_figwidth(13)
-
-
-
+plt.axvline(x=0)
+plt.axvline(x=0.1)
+plt.axvline(x=0.3)
+plt.axvline(x=0.5)
 ###############################################################################################
-"""""
-g = 14*kappa
 
-step=5
-
-anzahl=100
-nh=0
-nc=ncav=nf=0
-n_list=[]
-nh_list=[]
-f=0.5
-Photonnumber_list=[]
-nh2 = np.linspace(0, 70, 100)
-nh3=0
-nh3_list=[]
-J_c_list=[]
-Trace_list=[]
-nh=0 #set nh again to zero
-Anal=[]
-J_h_list=[]
-
-J_c_list=[]
-J_cav_list=[]
-J_tot_list=[]
-
-J_h_f_list=[]
-J_c_f_list=[]
-J_cav_f_list=[]
-J_tot_f_list=[]
-P_ana=[]
-Energie_vs_nh=[]
-def Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d):
-    H_free=omega_1*proj_1+h*omega_2*proj_2+h*omega_3*proj_3+h*omega_f*a.dag()*a
-
-    H_int=h*g*(Trans_12*a.dag()+a*Trans_12.dag())
-
-    V=f*a.dag()+f*a #das got glaub nid
-
-    H=H_free+H_int 
-
-    Hdilde=H_int+V +(omega_2-(omega_1+omega_d))*(proj_2)+(omega_f-omega_d)*(a.dag()*a)
-
-    return Hdilde
-Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
-
-n_list=(Diverse_Loups.EquationOfMotion3(Delta1 , Delta2 , 0 , nh, ncav , nc, gamma_c, gamma_h, g ,kappa,anzahl,step,"nh"))
-n_f_list=(Diverse_Loups.EquationOfMotion3(Delta1 , Delta2 , f , nh, ncav , nc, gamma_c, gamma_h, g ,kappa,anzahl,step,"nh"))
-n2_list=[]
-nh=0
-Power_ohne_f=[]
-for i in range(anzahl):
-   
-    #n2_list.append(Diverse_Loups.EquationOfMotion2(Delta1 , Delta2 , f , nh, ncav , nc, gamma_c, gamma_h, g , kappa))
-    list_temp=[]
-    list_temp=Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,0,omega_f,omega_2)
-    nh_list.append(nh)
-    Energie_vs_nh.append(list_temp)
-    Trace_list_temp=Diverse_Loups.ProjectorP(nh,proj_1,proj_2,proj_3,Hdilde,nc,ncav,gamma_h,gamma_c,kappa,A1,A2,A3,A4,A5,A6)
-    Trace_list.append(Trace_list_temp)
-    ist_temp=[]
-    list_temp=Diverse_Loups.Photonnumber(nh,a,proj_1,proj_2,proj_3,Hdilde,nc,ncav,gamma_h,gamma_c,kappa,A1,A2,A3,A4,A5,A6,omega_d,omega_f,omega_1,omega_2,H_int,f)
-    #g_list.append(i/100)  #Erstellt eine Liste mit Wären von g 
-    Photonnumber_list.append(list_temp)
-    Power_ohne_f.append(Diverse_Loups.P2(H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,c_op_list,omega_d,omega_f ,proj_2,0,omega_2,g))
-    
-    J_cav_list.append(30*2*kappa*(nf-n_list[0][i]))
-    J_h_list.append(150*(nh*n_list[1][i]-(nh+1)*n_list[3][i]))
-    J_c_list.append(120*(nc*n_list[2][i]-(nc+1)*n_list[3][i]))
-    J_tot_list.append(J_c_list[i]+J_h_list[i]+J_cav_list[i])
-    P_ana.append(-30*2*0.5*(n_f_list[4][i]))#mit f=0.5
-    print("ai_list=========================",n_f_list[5][i])
-    J_cav_f_list.append(30*2*kappa*(nf-n_f_list[0][i]))
-    J_h_f_list.append(150*(nh*n_f_list[1][i]-(nh+1)*n_f_list[3][i]))
-    J_c_f_list.append(120*(nc*n_f_list[2][i]-(nc+1)*n_f_list[3][i]))
-    J_tot_f_list.append(J_c_f_list[i]+J_h_list[i]+J_cav_f_list[i]+P_ana[i])
-    #J_h2_list.append(omega_h*(nh)*(Trace_list[i][1]-(nh+1)*Trace_list[i][2]))
-    nh=nh+step
-    nh3=nh3+step
-    nh3_list.append(nh)
-    nh_list.append(nh)
-fig1, ax = plt.subplots()
-ax.set_xlabel(r' $n_h$', fontsize=21)
-ax.set_ylabel('heat current')
-plt.title('')
-#plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(P_ana)[:anzahl],'--',color='blue')
-#plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Power_ohne_f)[:anzahl],'-',color='blue')
-plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(J_h_list)[:anzahl],'--',color='red')
-plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(J_tot_list)[:anzahl],'--',alpha=0.4,color='black',label=r'$\frac{J_{tot}}{\hbar\gamma_h \omega_{h}}$')
-plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(J_c_list)[:anzahl],'--',color='green')
-plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(J_cav_list)[:anzahl],'--',color='orange')
-#plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(J_h_f_list)[:anzahl],'--',alpha=0.4,color='red')
-#plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(J_tot_list)[:anzahl],'--',color='black',label=r'$\frac{J_{tot}}{\hbar\gamma_h \omega_{h}}$analytisch')
-#plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(J_c_f_list)[:anzahl],'--',alpha=0.4,color='green')
-#plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(J_cav_f_list)[:anzahl],'--',alpha=0.4,color='orange')
-plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Energie_vs_nh)[:anzahl,1],'-',color='green',label=r' $\frac{J_{c}}{\hbar\gamma_h \omega_{h}}$')
-plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Energie_vs_nh)[:anzahl,0],'-',color='red',label=r' $\frac{J_{h}}{\hbar\gamma_h \omega_{h}}$')
-plt.plot(np.asarray(nh3_list)[:anzahl],np.asarray(Energie_vs_nh)[:anzahl,2],'-',color='orange',label=r' $\frac{J_{cav}}{\hbar\gamma_h \omega_{h}}$')
-
-legend = ax.legend(loc='lower right', shadow=True, fontsize='x-large')
-legend.get_frame().set_facecolor('white')"""
 ###########################################################################################################################
 
 Delta1=Delta2=0
@@ -1030,7 +1029,10 @@ legend.get_frame().set_facecolor('white')
 fig2.set_figheight(9)
 fig2.set_figwidth(13)
 
-
+plt.axvline(x=0.1)
+plt.axvline(x=0.5)
+plt.axvline(x=11)
+plt.axvline(x=120)
 
 FigJP, ax = plt.subplots()
 ax.set_xlabel(r' $n_h$', fontsize=21)
@@ -1231,9 +1233,9 @@ plt.axvline(x=1.7)"""
 
 Delta1=Delta2=0
 gamma_h = gamma_c = 1
-g = 7*kappa
+g = 2.8
 nc = ncav = 0.0
-
+kappa=10
 Delta1=0
 Delta2=0
 anzahl=80
