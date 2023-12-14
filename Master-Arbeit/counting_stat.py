@@ -60,26 +60,25 @@ Tenv=0.0000000000000000000000000001
 
 
 
-nh=0.2
-nc=0.02
+nh_fix=nh=0.2
+nc_fix=nc=0.027
 
-nf=2  #Beschreibt den cavity/Photonen. 
+nf=1  #Beschreibt den cavity/Photonen. 
+
+f_fix=f =0.1
 
 
-f =0.3
-global kappa
-
-gamma_h=1
-gamma_c=20
+gamma_h=0.1
+gamma_c=2
 #kappa=0.2
 #kappa=0.028
 kb=1
 global g
-g=2.8
+g_fix=g=2.8
 #g=14*kappa
 #g=f=0
 #kappa=0.07
-kappa=0.07
+kappa_fix=kappa=10
 b_fock=qutip.states.fock(nph,0) #m)/fock(N,#m)
 b_atom=basis(3)
 b_comp=tensor( b_atom, b_fock)
@@ -120,6 +119,8 @@ def Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_
     H=H_free+H_int 
 
     Hdilde=H_int+V +(omega_2-(omega_1+omega_d))*(proj_2)+(omega_f-omega_d)*(a.dag()*a)
+    
+    #Hdilde = f*(Trans_12+Trans_12.dag())
 
     return Hdilde
 
@@ -184,10 +185,10 @@ A=0
 
 vk_list=[-1,1]
 #print("J==========",qutip.to_super(c_op_list[0]))
-def J_sup(nh, nc, nf,vk_list):
+def J_sup(nh, nc, nf,vk_list,collaps_list):
     J=[]
-    c_op_list=colaps(nh, nc, nf,kappa)
-    J=vk_list[0]*(qutip.to_super(c_op_list[A]))+vk_list[1]*(qutip.to_super(c_op_list[B]))
+    c_op_list=collaps_list
+    J=vk_list[0]*(qutip.to_super(collaps_list[A]))+vk_list[1]*(qutip.to_super(collaps_list[B]))
     #J = [qutip.spre(c_op_list[0]) + qutip.spost(c_op_list[0].dag())]
     #J=np.array(J)
     return J
@@ -201,7 +202,7 @@ def K_trace(nh, nc, nf,vk_list,Hdilde):
     
     return np.real(K)
 
-def K_Trace2(nh, nc, nf,vk_list,Hdilde): 
+def K_Trace2(nh, nc, nf,vk_list,Hdilde,collaps_list): 
     K=[]
     rho=DichteMatrix(nh, nc, nf, Hdilde,kappa)
     c_op_list=colaps(nh, nc, nf,kappa)
@@ -268,7 +269,7 @@ def solveZ( nh,nc,nf, vk_list,Hdilde): #Z = the Drazin inverse times  alpha
     IdV=(qutip.operator_to_vector(tensor(qutip.identity(3),qutip.identity(nph))))#bereits transponiert
 
 
-    alpha=J_sup(nh, nc, nf,vk_list)*rhoV
+    alpha=J_sup(nh, nc, nf,vk_list,c_op_list)*rhoV
         
     #print(((alpha-rhoV*IdV.trans()*alpha)))
     Rechts=alpha-rhoV*IdV.trans()*alpha
@@ -306,7 +307,7 @@ def averrageJ(nh,nc,nf, vk_list,Hdilde):
     rhoV=qutip.operator_to_vector(rho)
     
     IdV=(qutip.operator_to_vector(tensor(qutip.identity(3),qutip.identity(nph))))#bereits transponiert
-    beta=J_sup(nh, nc, nf,vk_list)*rhoV
+    beta=J_sup(nh, nc, nf,vk_list,collaps_list)*rhoV
     beta=np.real(beta)
     averrageJ=IdV.trans()*beta
     return averrageJ
@@ -345,15 +346,25 @@ def compute_drazin_inverse(matrix):
 """
 
 def Dcalc(nh,nc,nf, vk_list,Hdilde):
+    collaps_list=colaps(nh, nc, nf,kappa)
     IdV=(qutip.operator_to_vector(tensor(qutip.identity(3),qutip.identity(nph))))
     print(K_trace(nh,nc,nf,vk_list,Hdilde))
-    D= K_Trace2(nh, nc, nf,vk_list,Hdilde)-2*np.real(IdV.dag()*J_sup(nh,nc,nf, vk_list)*solveZ(nh,nc,nf, vk_list,Hdilde))
+    D= K_Trace2(nh, nc, nf,vk_list,Hdilde,collaps_list)-2*np.real(IdV.dag()*J_sup(nh,nc,nf, vk_list,collaps_list)*solveZ(nh,nc,nf, vk_list,Hdilde))
     return(D)
 
-f=0.01
+
+
+
+HdildeTest = Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
+rhoTest=DichteMatrix(nh,nc,nf,HdildeTest,kappa)
+if rhoTest.ptrace(1)[[nph-1], [nph-1]]>10**(-4):
+    print("Error",rhoTest.ptrace(1)[[nph-1], [nph-1]])
+    
+        
 anzahl=40
-step =0.1
-nh=0.001
+step =0.03
+
+nh=0.0001
 D_list=[]
 nh_list=[]
 Jh_list1=[]
@@ -361,12 +372,13 @@ Entropy_list1=[]
 Q_list1=[]
 Energy_list1=[]
 for i in range(anzahl):
+    collapse_list=colaps(nh, nc, nf,kappa)
     Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
     rho=DichteMatrix(nh, nc, nf, Hdilde,kappa)
     D=Dcalc(nh,nc,nf, vk_list,Hdilde)
     D_list.append(D[0])
     print("bla==rho",np.trace(D))
-    Lstrich=J_sup(nh, nc, nf,vk_list)
+    Lstrich=J_sup(nh, nc, nf,vk_list,collapse_list)
     Jh_list1.append(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])#noesomega h  dezue
     print(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])
     Entropy_list1.append(Diverse_Loups.Entropy_ohne_omega(nh,Trans_12,a, kb,h,g,proj_3,proj_1,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_f,omega_d,omega_1,omega_2,proj_2,f,omega_3)[3])
@@ -374,6 +386,7 @@ for i in range(anzahl):
    
     Energy_list1.append(Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2,omega_h))
     Q_list1.append((Entropy_list1[i])*(D_list[i]/(Energy_list1[i][0]**2)))
+    #Q_list1.append((Entropy_list1[i])*(D_list[i]/(Jh_list1[i]**2)))
     nh_list.append(nh)
     nh+=step
     print(i-anzahl, D_list[i])
@@ -381,13 +394,13 @@ for i in range(anzahl):
 
 
 
-nh=0.2
+nh=nh_fix
 f_list=[]
 D_list_f=[]
 Jh_list_f=[]
 Entropy_list_f=[]
 Q_list_f=[]
-f=0.02
+f=0.0
 step=0.4/anzahl
 Energy_list_f=[]
 for i in range(anzahl):
@@ -395,8 +408,9 @@ for i in range(anzahl):
     rho=DichteMatrix(nh, nc, nf, Hdilde,kappa)
     D=Dcalc(nh,nc,nf, vk_list,Hdilde)
     D_list_f.append(D[0])
+    collapse_list=colaps(nh, nc, nf,kappa)
     print("bla==rho",np.trace(D))
-    Lstrich=J_sup(nh, nc, nf,vk_list)
+    Lstrich=J_sup(nh, nc, nf,vk_list,collapse_list)
     Jh_list_f.append(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])#noesomega h  dezue
     print(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])
     Energy_list_f.append(Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2,omega_h))
@@ -408,8 +422,8 @@ for i in range(anzahl):
     print(i-anzahl)
 
 
-f=0.02
-nh=0.2
+f=f_fix
+nh=0.1
 g_list=[]
 D_list_g=[]
 Jh_list_g=[]
@@ -420,12 +434,13 @@ step=2.8/anzahl
 Energy_list_g=[]
 
 for i in range(anzahl):
+    collapse_list=colaps(nh, nc, nf,kappa)
     Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
     rho=DichteMatrix(nh, nc, nf, Hdilde,kappa)
     D=Dcalc(nh,nc,nf, vk_list,Hdilde)
     D_list_g.append(D[0])
     print("bla==rho",np.trace(D))
-    Lstrich=J_sup(nh, nc, nf,vk_list)
+    Lstrich=J_sup(nh, nc, nf,vk_list,collapse_list)
     Jh_list_g.append(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])#noesomega h  dezue
     print(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])
     Energy_list_g.append(Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2,omega_h))
@@ -436,13 +451,13 @@ for i in range(anzahl):
     g+=step
     print(i-anzahl)
     
-nh=0.2   
-f=0.0   
+
+g=g_fix
 omega_f=30
 omega_d=29
 Delta_list=[]
 step=(omega_f-omega_d)*2/anzahl
-g=2.8
+
 D_list_D=[]
 D_list_D=[]
 Jh_list_D=[]
@@ -450,12 +465,13 @@ Entropy_list_D=[]
 Q_list_D=[]
 Energy_list_O=[]
 for i in range(anzahl):
+    collapse_list=colaps(nh, nc, nf,kappa)
     Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
     rho=DichteMatrix(nh, nc, nf, Hdilde,kappa)
     D=Dcalc(nh,nc,nf, vk_list,Hdilde)
     D_list_D.append(D[0])
     print("bla==rho",np.trace(D))
-    Lstrich=J_sup(nh, nc, nf,vk_list)
+    Lstrich=J_sup(nh, nc, nf,vk_list,collapse_list)
     Jh_list_D.append(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])#noesomega h  dezue
     print(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])
     Energy_list_O.append(Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2,omega_h))
@@ -470,7 +486,7 @@ for i in range(anzahl):
 label1=r' $Var \langle J_{h} \rangle $'
 label12=r' $\langle J_{h} \rangle $'
 label3=r' $\mathcal{Q}'
-label4=r' $\dot{\sigma}-\frac{J_{cav}}{T_{cav}}$'
+label4=r' $\dot{\sigma}$'
 fig, (ax1,ax2,ax3,ax4) = plt.subplots(4)
 
 ax1.set_xlabel(r' $n_h$', fontsize=19)
@@ -507,11 +523,11 @@ ax3.plot(np.asarray(g_list)[:anzahl],np.asarray(D_list_g)[:anzahl],label=label1,
 ax3.plot(np.asarray(g_list)[:anzahl],np.asarray(Jh_list_g)[:anzahl],label=label12,color='red')
 ax3.plot(np.asarray(g_list)[:anzahl],np.asarray(Q_list_g)[:anzahl],'-',label=r' $\mathcal{Q}$',color='blue')
 ax3.plot(np.asarray(g_list)[:anzahl],np.asarray(Entropy_list_g)[:anzahl],'-',label=label4,color='orange')
-legend = plt.legend(loc='upper right', shadow=True, fontsize='x-large')
-legend.get_frame().set_facecolor('white')
+
 ax3.axhline(y=2)
 ax3.grid()
-
+legend = ax3.legend(loc='upper right', shadow=True, fontsize='x-large')
+legend.get_frame().set_facecolor('white')
 
 
 ax4.set_xlabel(r' $\Delta$', fontsize=19)
@@ -536,9 +552,9 @@ plt.show()#
 
 fig, ax= plt.subplots()
 
-plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Energy_list1)[:anzahl,0],'*',color='red',label=r' $\frac{J_{h}}{\hbar\gamma_h \omega_{h}}$')
+plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Energy_list1)[:anzahl,0],'-',color='red',label=r' $\frac{J_{h}}{\hbar\gamma_h \omega_{h}}$')
 
-plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Jh_list1)[:anzahl],label=r' $\langle \langle 1|\mathcal{J}|\rho \rangle \rangle $',color='red')
+plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Jh_list1)[:anzahl],'*',label=r' $\langle \langle 1|\mathcal{J}|\rho \rangle \rangle $',color='red')
 
 plt.show()
 
@@ -560,26 +576,28 @@ plt.show()
 
 
 
-
+g=g_fix
 omega_d=30
-nh=0.2
+nh=nh_fix
 kappa_list=[]
 D_list_f=[]
 Jh_list_f=[]
 Entropy_list_kappa=[]
 Q_list_f=[]
-f=0.0
+f=f_fix
+kappa=0
 step=10/anzahl
 Energy_list_kappa=[]
 D_list_kappa=[]
 Q_list_kappa=[]
 for i in range(anzahl):
+    collapse_list=colaps(nh, nc, nf,kappa)
     Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
     rho=DichteMatrix(nh, nc, nf, Hdilde,kappa)
     D=Dcalc(nh,nc,nf, vk_list,Hdilde)
     D_list_kappa.append(D[0])
     print("bla==rho",np.trace(D))
-    Lstrich=J_sup(nh, nc, nf,vk_list)
+    Lstrich=J_sup(nh, nc, nf,vk_list,collapse_list)
     Jh_list_f.append(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])#noesomega h  dezue
     print(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])
     Energy_list_kappa.append(Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2,omega_h))
@@ -590,28 +608,24 @@ for i in range(anzahl):
     kappa+=step
     print(i-anzahl)
 
-kappa=0.07
-nf=0.000002
-omega_d=30
-f=0.0
-anzahl=40
-step =0.1
-nh=0.2
+kappa=kappa_fix 
+
+
 D_list=[]
 nf_list=[]
 Jh_list1=[]
 Entropy_list_nf=[]
 Q_list_nf=[]
 Energy_list_nf=[]
+step=1/anzahl
 for i in range(anzahl):
-    g=2.8
-    nh=0.2
+    collapse_list=colaps(nh, nc, nf,kappa)
     Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
     rho=DichteMatrix(nh, nc, nf, Hdilde,kappa)
     D=Dcalc(nh,nc,nf, vk_list,Hdilde)
     D_list.append(D[0])
     print("bla==rho",np.trace(D))
-    Lstrich=J_sup(nh, nc, nf,vk_list)
+    Lstrich=J_sup(nh, nc, nf,vk_list,collapse_list)
     Jh_list1.append(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])#noesomega h  dezue
     print(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])
     Entropy_list_nf.append(Diverse_Loups.Entropy_ohne_omega(nh,Trans_12,a, kb,h,g,proj_3,proj_1,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_f,omega_d,omega_1,omega_2,proj_2,f,omega_3)[3])
@@ -622,6 +636,12 @@ for i in range(anzahl):
     nf_list.append(nf)
     nf+=step
     print(i-anzahl, D_list[i])
+    
+    
+    
+    
+
+
 
 
 
@@ -647,7 +667,7 @@ ax2.set_ylabel(r' $\mathcal{Q}$')
 ax2.plot(np.asarray(nf_list)[:anzahl],np.asarray(D_list)[:anzahl],label=label1,color='black')
 ax2.plot(np.asarray(nf_list)[:anzahl],np.asarray(Jh_list1)[:anzahl],label=label12,color='red')
 ax2.plot(np.asarray(nf_list)[:anzahl],np.asarray(Q_list_nf)[:anzahl],'-',label=r' $\mathcal{Q}$',color='blue')
-ax2.plot(np.asarray(nf_list)[:anzahl],np.asarray(Entropy_list1)[:anzahl],'-',label=r' $\dot{\sigma}$',color='orange')
+ax2.plot(np.asarray(nf_list)[:anzahl],np.asarray(Entropy_list_nf)[:anzahl],'-',label=r' $\dot{\sigma}$',color='orange')
 legend = ax2.legend(loc='upper right', shadow=True, fontsize='x-large')
 legend.get_frame().set_facecolor('white')
 
@@ -664,7 +684,7 @@ ax2.grid()
 plt.show()#
 
 
-
+nf=1
 
 
 
@@ -882,8 +902,8 @@ for i in range(anzahl):
     rho=DichteMatrix(nh, nc, nf, Hdilde,kappa)
     L=qutip.liouvillian(Hdilde,c_op_list)
     print(L)
-    Lstrich=J_sup(nh,nc,nf,vk_list)
-    d_list.append(K_Trace2(nh, nc, nf,vk_list,Hdilde)-2*np.real((IdV.trans()*Lstrich*Drazin2(L)*Lstrich*qutip.operator_to_vector(rho)))[0])
+    Lstrich=J_sup(nh,nc,nf,vk_list,c_op_list)
+    d_list.append(K_Trace2(nh, nc, nf,vk_list,Hdilde,c_op_list)-2*np.real((IdV.trans()*Lstrich*Drazin2(L)*Lstrich*qutip.operator_to_vector(rho)))[0])
     Jh_list2.append(np.real((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])#noesomega h  dezue
     print(np.imag((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])
     Energy_list1.append(Diverse_Loups.EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2,omega_h))

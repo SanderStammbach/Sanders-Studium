@@ -954,3 +954,17 @@ class Diverse_Loups():
 
 
             return sigma 
+        
+        
+        
+        
+        
+        
+    def High_f_Approx(kappa,f,gammac,gammah,nc,nh,g,ncav):
+            
+        Jh= (4*f**2*g**2*gammac*gammah*(-nc + nh))/(gammac*gammah*kappa**2*(gammac*nc + gammah*nh)*(nc + nh + 3*nc*nh) + 4*f**2*g**2*(gammac*(2 + 3*nc) + gammah*(2 + 3*nh)))
+        
+        Jc= gammac*((nc*(gammac*gammah*kappa**2*nc*(1 + nh)*(gammac*nc + gammah*nh) + 4*f**2*g**2*(gammac + gammah + gammac*nc + gammah*nh)))/     (gammac*gammah*kappa**2*(gammac*nc + gammah*nh)*(nc + nh + 3*nc*nh) + 4*f**2*g**2*(gammac*(2 + 3*nc) + gammah*(2 + 3*nh))) -  (1 + nc)*(1 - (gammac*gammah*kappa**2*(1 + nc)*nh*(gammac*nc + gammah*nh) + 4*f**2*g**2*(gammac + gammah + gammac*nc + gammah*nh))/        (gammac*gammah*kappa**2*(gammac*nc + gammah*nh)*(nc + nh + 3*nc*nh) + 4*f**2*g**2*(gammac*(2 + 3*nc) + gammah*(2 + 3*nh))) -  (gammac*gammah*kappa**2*nc*(1 + nh)*(gammac*nc + gammah*nh) + 4*f**2*g**2*(gammac + gammah + gammac*nc + gammah*nh))/    (gammac*gammah*kappa**2*(gammac*nc + gammah*nh)*(nc + nh + 3*nc*nh) + 4*f**2*g**2*(gammac*(2 + 3*nc) + gammah*(2 + 3*nh)))))
+        Jf= f*2*nh
+            
+        return Jh, Jc, Jf
