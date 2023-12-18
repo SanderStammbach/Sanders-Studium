@@ -65,7 +65,7 @@ nc_fix=nc=0.027
 
 nf=1  #Beschreibt den cavity/Photonen. 
 
-f_fix=f =0.1
+f_fix=f =0.15
 
 
 gamma_h=0.1
@@ -353,6 +353,10 @@ def Dcalc(nh,nc,nf, vk_list,Hdilde):
     return(D)
 
 
+def Potts(nh,nc,gammac,gammah):
+    Q= ((nc + nh + 2*nc*nh)/(-nc + nh) - (8*f**2*gammac*gammah*(-nc + nh)*(-2/(gammac*nc + gammah*nh) + (4*f**2*(gammac + gammah + 2*gammac*nc + 2*gammah*nh) + ((gammac*nc + gammah*nh)*(gammac*nc + gammah*(nh + 4*gammac*(nc + nh + 3*nc*nh))))/4.)/ (gammac*gammah + ((gammac*nc + gammah*nh)**2*(nc + nh + 3*nc*nh))/4. + f**2*(gammac*nc + gammah*nh)*(gammac*(2 + 3*nc) + gammah*(2 + 3*nh)))))/ (gammac*gammah*(gammac*nc + gammah*nh)*(nc + nh + 3*nc*nh) + 8*f**2*(gammac + gammah + (3*(gammac*nc + gammah*nh))/2.)))*np.log((nh + nc*nh)/(nc + nc*nh))
+    return Q
+
 
 
 HdildeTest = Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
@@ -363,6 +367,8 @@ if rhoTest.ptrace(1)[[nph-1], [nph-1]]>10**(-4):
         
 anzahl=40
 step =0.03
+nh_Line=np.linspace(0, 1, 100)
+Q=Potts(nh_Line,nc,gamma_c,gamma_h)
 
 nh=0.0001
 D_list=[]
@@ -492,6 +498,7 @@ fig, (ax1,ax2,ax3,ax4) = plt.subplots(4)
 ax1.set_xlabel(r' $n_h$', fontsize=19)
 ax1.set_ylabel('D')
 #plt.title(r' D vs $n_h$ ')
+ax1.plot(np.asarray(nh_Line)[:anzahl],np.asarray(Q)[:anzahl],label=label1,color='blue',alpha=0.5)
 ax1.plot(np.asarray(nh_list)[:anzahl],np.asarray(D_list)[:anzahl],label=label1,color='black')
 ax1.plot(np.asarray(nh_list)[:anzahl],np.asarray(Jh_list1)[:anzahl],label=label12,color='red')
 ax1.plot(np.asarray(nh_list)[:anzahl],np.asarray(Q_list1)[:anzahl],'-',label=r' $\mathcal{Q}$',color='blue')
