@@ -46,7 +46,7 @@ omega_c=omega_3-omega_2
 omega_d=30
 
 h=1
-nph=10  # Maximale Photonen im cavity 
+nph=30  # Maximale Photonen im cavity 
  
 Th=100.    # temperature of the hot bath
 Tc=20.     # temperature of the cold bath
@@ -90,6 +90,15 @@ vg=qutip.Qobj(qutip.qutrit_basis()[0])
 Trans_13=tensor(vg*va.dag(),qutip.identity(nph))
 Trans_23=tensor(vb*va.dag(),qutip.identity(nph))
 Trans_12=tensor(vg*vb.dag(),qutip.identity(nph))
+
+"""
+aa=operator_to_vector=tensor(Trans_13)
+IdV=(qutip.operator_to_vector(tensor(qutip.identity(3),qutip.identity(nph))))
+
+Id=np.matrix(IdV)
+c= tensor(aa.trans(),aa)
+print("c====",np.transpose(Id)*c*Id)
+print(1/0)"""
 
 proj_1=tensor(vg*vg.dag(),qutip.identity(nph))
 proj_2=tensor(vb*vb.dag(),qutip.identity(nph))
@@ -189,15 +198,17 @@ g=2.8
 kappa=0.07
 f=0.01
 gammac=gammah=1
-
+nh=5
 #Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
 
 rho = DichteMatrix(nh,nc,nf,Hdilde)
 
 nh_Line=np.linspace(0, 200, 70)
-
+f_Line=np.linspace(0, 1, 70)
 JH=Diverse_Loups.High_f_Approx(kappa,28,gamma_c,gamma_h,nc,nh_Line,g,nf)[0]
 JC=omega_c/omega_h*Diverse_Loups.High_f_Approx(kappa,28,gamma_c,gamma_h,nc,nh_Line,g,nf)[1]
+JH_f=Diverse_Loups.High_f_Approx(kappa,f_Line,gamma_c,gamma_h,nc,5,g,nf)[0]
+JC_f=omega_c/omega_h*Diverse_Loups.High_f_Approx(kappa,f_Line,gamma_c,gamma_h,nc,5,g,nf)[1]
 #JCAV=Diverse_Loups.High_f_Approx(kappa,f,gamma_c,gamma_h,nc,nh_Line,g,nf)[2]
 #JH=(4*f**2*g**2*gammac*gammah*(-nc + nh_Line))/(gammac*gammah*kappa**2*(gammac*nc + gammah*nh_Line)*(nc + nh_Line + 3*nc*nh_Line) + 4*f**2*g**2*(gammac*(2 + 3*nc) + gammah*(2 + 3*nh_Line)))
 fig3,ax1 = plt.subplots()
@@ -209,8 +220,10 @@ ax1.set_ylabel('current')
 
 print(JH)
 
-ax1.plot(nh_Line,JC,color='red',label=r'$\langle J_h \rangle $ high $f$ approx')
+ax1.plot(nh_Line,JC,color='green',label=r'$\langle J_h \rangle $ high $f$ approx')
 ax1.plot(nh_Line,JH,color='green',label=r'$\langle J_c \rangle $ high $f$ approx')
+ax1.plot(f_Line,JC_f,color='red',label=r'$\langle J_h \rangle $ high $f$ approx')
+ax1.plot(f_Line,JH_f,color='red',label=r'$\langle J_c \rangle $ high $f$ approx')
 legend = ax1.legend(loc='upper right', shadow=True, fontsize='xx-large')
 legend.get_frame().set_facecolor('white')
 fig3.set_figheight(9)

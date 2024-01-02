@@ -508,10 +508,7 @@ class Diverse_Loups():
             return(Power)
     
 
-    def Fullcounting(c_op_list):
-        x=c_op_list.qutip.eigenstates()
-
-        return x
+   
 
     def current(H_free, Trans_12, a, h,c_op_list,omega_d,omega_f ,proj_2,g,f,anzahl):
       
