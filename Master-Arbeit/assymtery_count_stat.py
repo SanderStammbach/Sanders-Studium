@@ -377,8 +377,8 @@ def Dcalc(nh,nc,nf, vk_list,Hdilde,gamma_h,gamma_c):
     return(D)
 
 
-anzahl=40
-step=0.05
+anzahl=50
+step=0.5
 D_list=[]
 nh_list=[]
 Jh_list1=[]
@@ -388,7 +388,7 @@ Entropy_list1=[]
 gamma_h=0.00001
 Energy_list1=[]
 for i in range(anzahl):
-    gamma_c=21-gamma_h
+    gamma_c=51-gamma_h
     Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
     rho=DichteMatrix(nh, nc, nf, Hdilde,kappa,gamma_h,gamma_c)
     D=Dcalc(nh,nc,nf, vk_list,Hdilde,gamma_h,gamma_c)
@@ -415,7 +415,7 @@ Entropy_list2=[]
 gamma_h=0.00001
 Energy_list2=[]
 for i in range(anzahl):
-    gamma_c=21/gamma_h
+    gamma_c=31/gamma_h
     Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
     rho=DichteMatrix(nh, nc, nf, Hdilde,kappa,gamma_h,gamma_c)
     D=Dcalc(nh,nc,nf, vk_list,Hdilde,gamma_h,gamma_c)

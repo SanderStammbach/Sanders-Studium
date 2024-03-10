@@ -73,12 +73,12 @@ class Diverse_Loups():
 
     def EnergieCalculator_mit_faktor(g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2,omega_h):
         
-        gamma_1=(nh+1)*gamma_h #### unsicher wegen vorfaktor 1/2 
+        gamma_1=(nh+1)*gamma_h#### unsicher wegen vorfaktor 1/2 
         gamma_2=(nh)*gamma_h
         gamma_3=(nc+1)*gamma_c
         gamma_4=(nc)*gamma_c
         kappa_5=(nf+1)*2*kappa ####goes to zero
-        kappa_6=(nf)*2*kappa/2
+        kappa_6=(nf)*2*kappa
 
         A1=Trans_13
         A2=Trans_13.dag()
@@ -278,7 +278,7 @@ class Diverse_Loups():
         return n 
 
        
-    def Entropy(nh,Trans_12,a, kb,h,g,H_free,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_f,omega_d,omega_1,omega_2,proj_2,f):
+    def Entropy(nh,Trans_12,a, kb,h,g,H_free,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_f,omega_d,omega_1,omega_2,proj_2,f,nph):
         
         gamma_1=(nh+1)*gamma_h #### unsicher wegen vorfaktor 1/2 
         gamma_2=(nh)*gamma_h
@@ -306,12 +306,21 @@ class Diverse_Loups():
         
         V=f*a.dag()+f*a
         H_int=h*g*(Trans_12*a.dag()+a*Trans_12.dag())
+        va=qutip.Qobj(qutip.qutrit_basis()[2])
+        vb=qutip.Qobj(qutip.qutrit_basis()[1])
+        vg=qutip.Qobj(qutip.qutrit_basis()[0])
+
+        proj_1=tensor(vg*vg.dag(),qutip.identity(nph))
+        proj_2=tensor(vb*vb.dag(),qutip.identity(nph))
+        proj_3=tensor(va*va.dag(),qutip.identity(nph))
+
+        a=qutip.tensor(qutip.identity(3),qutip.destroy(nph))
+        H_free1=omega_1*proj_1+h*omega_2*proj_2+h*120*proj_3+h*omega_f*a.dag()*a
         
-        
-        H_free1=H_free 
+       
         Hdilde=H_int+V +(omega_2-(omega_1+omega_d))*(proj_2)+(omega_f-omega_d)*(a.dag()*a)      
         rho = steadystate(Hdilde, c_op_list) ######## Are you sure its with only photons H_free?
-        rho_f=rho.ptrace(1)
+        
 
         def D(c_op_list,rho):
             D=[]
@@ -336,7 +345,7 @@ class Diverse_Loups():
         Liste_von_Q.append((np.trace(-H_free1*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1])))/(T(nh,omega_h)*omega_h))
         Liste_von_Q.append((np.trace(-H_free1*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3])))/(T(nc,omega_c)*omega_h))
         Liste_von_Q.append((np.trace(-H_free1*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5])))/(T(nf,omega_f)*omega_h))
-        Liste_von_Q.append((np.trace(-H_free1*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1])))/(T(nh,omega_h)*omega_h)+(np.trace(-H_free1*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3])))/(T(nc,omega_c)*omega_h)+(np.trace(-H_free1*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5])))/(T(nf,omega_f)*omega_h))
+        Liste_von_Q.append((np.trace(-H_free1*(D(c_op_list,rho)[0]+D(c_op_list,rho)[1])))/(T(nh,omega_h)*omega_h)+(np.trace(-H_free1*(D(c_op_list,rho)[2]+D(c_op_list,rho)[3])))/(T(nc,omega_c)*omega_h)+(np.trace(-H_free1*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5])))/(T(nf,omega_f)*omega_h))#+(np.trace(-H_free1*(D(c_op_list,rho)[4]+D(c_op_list,rho)[5])))/(T(nf,omega_f)*omega_h))
         #Liste_von_Q.append(g)  g in der liste anfügen
 
         float_list= list(np.float_(Liste_von_Q))
@@ -962,6 +971,9 @@ class Diverse_Loups():
         Jh= (4*f**2*g**2*gammac*gammah*(-nc + nh))/(gammac*gammah*kappa**2*(gammac*nc + gammah*nh)*(nc + nh + 3*nc*nh) + 4*f**2*g**2*(gammac*(2 + 3*nc) + gammah*(2 + 3*nh)))
         
         Jc= gammac*((nc*(gammac*gammah*kappa**2*nc*(1 + nh)*(gammac*nc + gammah*nh) + 4*f**2*g**2*(gammac + gammah + gammac*nc + gammah*nh)))/     (gammac*gammah*kappa**2*(gammac*nc + gammah*nh)*(nc + nh + 3*nc*nh) + 4*f**2*g**2*(gammac*(2 + 3*nc) + gammah*(2 + 3*nh))) -  (1 + nc)*(1 - (gammac*gammah*kappa**2*(1 + nc)*nh*(gammac*nc + gammah*nh) + 4*f**2*g**2*(gammac + gammah + gammac*nc + gammah*nh))/        (gammac*gammah*kappa**2*(gammac*nc + gammah*nh)*(nc + nh + 3*nc*nh) + 4*f**2*g**2*(gammac*(2 + 3*nc) + gammah*(2 + 3*nh))) -  (gammac*gammah*kappa**2*nc*(1 + nh)*(gammac*nc + gammah*nh) + 4*f**2*g**2*(gammac + gammah + gammac*nc + gammah*nh))/    (gammac*gammah*kappa**2*(gammac*nc + gammah*nh)*(nc + nh + 3*nc*nh) + 4*f**2*g**2*(gammac*(2 + 3*nc) + gammah*(2 + 3*nh)))))
-        Jf= f*2*nh
-            
-        return Jh, Jc, Jf
+        Jf= (-2*f**2)/kappa - (8*f**2*g**2*gammac*gammah*(-nc + nh))/(gammac*gammah*kappa**2*(gammac*nc + gammah*nh)*(nc + nh + 3*nc*nh) + 4*f**2*g**2*(gammac*(2 + 3*nc) + gammah*(2 + 3*nh)))
+        gammak=2*(f*g/kappa)**2/((gammac* nc + gammah* nh )/2)
+        P_PRE=-(gammac*gammah*gammak*(-nc + nh)*2)/(gammac*gammah*(nc + nh + 3*nc*nh) + 2*gammak*(gammac + gammah + (3*(gammac*nc + gammah*nh))/2.))
+        P=(2*f**2)/kappa + (4*f**2*g**2*gammac*gammah*(-nc + nh))/(gammac*gammah*kappa**2*(gammac*nc + gammah*nh)*(nc + nh + 3*nc*nh) + 4*f**2*g**2*(gammac*(2 + 3*nc) + gammah*(2 + 3*nh)))
+        
+        return Jh, Jc, Jf, P_PRE/4,Jf,P
