@@ -42,6 +42,11 @@ from glob import glob
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
+plt.rcParams.update({
+    'text.usetex': True,
+})
+
+
 #Konstante Grössen
 ##############################
 # ##########################################################################
@@ -58,7 +63,7 @@ omega_d=30
 
 h=1
 
-nph=15 # Maximale Photonen im cavity for fsc it works fine with 19
+nph=17 # Maximale Photonen im cavity for fsc it works fine with 19
  
 Th=100.    # temperature of the hot bath
 Tc=20.     # temperature of the cold bath
@@ -78,7 +83,7 @@ nf_fix=nf=0.05
 
 
 anzahl=50
-
+#anzahl=5
 gamma_h=0.1
 gamma_c=2
 
@@ -571,7 +576,7 @@ plt.title('')
 plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Q_list1)[:anzahl],'-',color='blue',linewidth=3)
 ax.axhline(y=2)
 
-
+plt.show()
     
 
     
@@ -658,9 +663,9 @@ g=g_fix
 nh=nh_fix
 f=0.001
 omega_f=30
-omega_d=29
+omega_d=29.2
 Delta_list=[]
-step=2/anzahl
+step=1.6/anzahl
 
 D_list_D=[]
 D_list_D=[]
@@ -688,8 +693,8 @@ for i in range(anzahl):
     print(i-anzahl)
 
 
-label1=r' $Var \langle J_{h} \rangle $'
-label12=r' $\langle J_{h} \rangle $'
+label1=r' $Var  \left( \frac{ J_{h} }{(~ \gamma_h \omega_{h})^2} \right)  $'
+label12=r' $\frac{\langle J_{h} \rangle }{~\gamma_h \omega_{h}} $'
 label3=r' $\mathcal{Q}'
 label4=r' $\dot{\sigma}$'
 fig, axs = plt.subplots(2,3)
@@ -718,8 +723,8 @@ axs[0,0].plot(np.asarray(nh_list)[:anzahl],np.asarray(Q_list1)[:anzahl],'-',labe
 #axs[0,0].plot(np.asarray(nh_list)[:anzahl],np.asarray(Q_List_PRE)[:anzahl],'-',label=r' $\mathcal{Q}  $',color='aqua')
 
 axs[1,0].plot(np.asarray(nh_list)[:anzahl],np.asarray(Entropy_list1)[:anzahl],'-',label=label4,color='teal')
-legend = axs[0,0].legend(loc='upper right', shadow=True, fontsize='x-large')
-legend = axs[1,0].legend(loc='upper right', shadow=True, fontsize='x-large')
+legend = axs[0,0].legend(loc='upper right', shadow=True, fontsize='xx-large')
+legend = axs[1,0].legend(loc='upper right', shadow=True, fontsize='xx-large')
 legend.get_frame().set_facecolor('white')
 
 axs[0,0].axhline(y=2)
@@ -736,8 +741,8 @@ axs[1,1].plot(np.asarray(nf_list)[:anzahl],np.asarray(D_list_nf)[:anzahl],label=
 axs[1,1].plot(np.asarray(nf_list)[:anzahl],np.asarray(Jh_list_nf)[:anzahl],label=label12,color='red')
 axs[0,1].plot(np.asarray(nf_list)[:anzahl],np.asarray(Q_list_nf)[:anzahl],'-',label=r' $\mathcal{Q}$',color='blue')
 axs[1,1].plot(np.asarray(nf_list)[:anzahl],np.asarray(Entropy_list_nf)[:anzahl],'-',label=r' $\dot{\sigma}$',color='teal')
-legend = axs[0,1].legend(loc='upper right', shadow=True, fontsize='x-large')
-legend = axs[1,1].legend(loc='upper right', shadow=True, fontsize='x-large')
+legend = axs[0,1].legend(loc='upper right', shadow=True, fontsize='xx-large')
+legend = axs[1,1].legend(loc='upper right', shadow=True, fontsize='xx-large')
 legend.get_frame().set_facecolor('white')
 axs[0,1].axhline(y=2)
 axs[1,1].grid()
@@ -748,7 +753,7 @@ axs[0,1].grid()
 
 
 
-axs[1,2].set_xlabel(r' $f/\gamma$', fontsize=23)
+axs[1,2].set_xlabel(r' $f/\gamma_h$', fontsize=23)
 axs[0,2].set_ylabel(r' ')
 #plt.title(r' $\mathcal{Q} vs f$ ')
 axs[1,2].plot(np.asarray(f_list)[:anzahl],np.asarray(D_list_f)[:anzahl],label=label1,color='black')
@@ -761,8 +766,8 @@ axs[0,2].axhline(y=2)
 axs[0,2].grid()
 axs[1,2].grid()
 
-legend = axs[0,2].legend(loc='upper right', shadow=True, fontsize='x-large')
-legend = axs[1,2].legend(loc='upper right', shadow=True, fontsize='x-large')
+legend = axs[0,2].legend(loc='upper right', shadow=True, fontsize='xx-large')
+legend = axs[1,2].legend(loc='upper right', shadow=True, fontsize='xx-large')
 legend.get_frame().set_facecolor('white')
 
 
@@ -777,7 +782,7 @@ plt.show()#
 
 fig, ax= plt.subplots()
 
-plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Energy_list1)[:anzahl,0],'-',color='red',label=r' $\frac{J_{h}}{\hbar\gamma_h \omega_{h}}$')
+plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Energy_list1)[:anzahl,0],'-',color='red',label=r' $\frac{J_{h}}{~\gamma_h \omega_{h}}$')
 
 plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Jh_list1)[:anzahl],'*',label=r' $\langle \langle 1|\mathcal{J}|\rho \rangle \rangle $',color='red')
 
@@ -834,7 +839,7 @@ kappa=kappa_fix
 
 fig, ax= plt.subplots()
 
-plt.plot(np.asarray(kappa_list)[:anzahl],np.asarray(Energy_list_kappa)[:anzahl,0],'-',color='red',label=r' $\frac{J_{h}}{\hbar\gamma_h \omega_{h}}$')
+plt.plot(np.asarray(kappa_list)[:anzahl],np.asarray(Energy_list_kappa)[:anzahl,0],'-',color='red',label=r' $\frac{J_{h}}{~\gamma_h \omega_{h}}$')
 
 plt.plot(np.asarray(kappa_list)[:anzahl],np.asarray(Jh_list_kappa)[:anzahl],'*',label=r' $\langle \langle 1|\mathcal{J}|\rho \rangle \rangle $',color='red')
 
@@ -891,8 +896,8 @@ axs2[1,0].plot(np.asarray(kappa_list)[:anzahl],np.asarray(D_list_kappa)[:anzahl]
 axs2[1,0].plot(np.asarray(kappa_list)[:anzahl],np.asarray(Jh_list_kappa)[:anzahl],label=label12,color='red')
 axs2[0,0].plot(np.asarray(kappa_list)[:anzahl],np.asarray(Q_list_kappa)[:anzahl],'-',label=r' $\mathcal{Q}$',color='blue')
 axs2[1,0].plot(np.asarray(kappa_list)[:anzahl],np.asarray(Entropy_list_kappa)[:anzahl],'-',label=r' $\dot{\sigma}$',color='orange')
-legend = axs2[0,1].legend(loc='upper right', shadow=True, fontsize='x-large')
-legend = axs2[1,1].legend(loc='upper right', shadow=True, fontsize='x-large')
+legend = axs2[0,1].legend(loc='upper right', shadow=True, fontsize='xx-large')
+legend = axs2[1,1].legend(loc='upper right', shadow=True, fontsize='xx-large')
 legend.get_frame().set_facecolor('white')
 axs2[0,0].axhline(y=2)
 axs2[1,0].grid()
@@ -900,15 +905,15 @@ axs2[0,0].grid()
 
 
 
-axs2[1,1].set_xlabel(r' $\Delta_1$', fontsize=23)
+axs2[1,1].set_xlabel(r' $\frac{\Delta_1}{\gamma_h}$', fontsize=23)
 #axs2[1,1].set_ylabel(r' $\mathcal{Q}$')
 #plt.title(r' $\mathcal{Q} vs f$ ')
 axs2[1,1].plot(np.asarray(Delta_list)[:anzahl],np.asarray(D_list_D)[:anzahl],label=label1,color='black')
 axs2[1,1].plot(np.asarray(Delta_list)[:anzahl],np.asarray(Jh_list_D)[:anzahl],label=label12,color='red')
 axs2[0,1].plot(np.asarray(Delta_list)[:anzahl],np.asarray(Q_list_D)[:anzahl],'-',label=r' $\mathcal{Q}$',color='blue')
 axs2[1,1].plot(np.asarray(Delta_list)[:anzahl],np.asarray(Entropy_list_D)[:anzahl],'-',label=label4,color='teal')
-legend = axs2[0,1].legend(loc='upper right', shadow=True, fontsize='x-large')
-legend = axs2[1,1].legend(loc='upper right', shadow=True, fontsize='x-large')
+legend = axs2[0,1].legend(loc='upper right', shadow=True, fontsize='xx-large')
+legend = axs2[1,1].legend(loc='upper right', shadow=True, fontsize='xx-large')
 legend.get_frame().set_facecolor('white')
 #ax2.axhline(y=2)
 axs2[0,1].grid()
@@ -916,7 +921,7 @@ axs2[0,1].axhline(y=2)
 axs2[1,1].grid()
 
 
-legend = plt.legend(loc='upper right', shadow=True, fontsize='x-large')
+legend = plt.legend(loc='upper right', shadow=True, fontsize='xx-large')
 legend.get_frame().set_facecolor('white')
 
 
@@ -931,13 +936,13 @@ axs2[1,2].plot(np.asarray(g_list)[:anzahl],np.asarray(Entropy_list_g)[:anzahl],'
 axs2[0,2].axhline(y=2)
 axs2[1,2].grid()
 axs2[0,2].grid()
-legend = axs2[0,2].legend(loc='upper right', shadow=True, fontsize='x-large')
-legend = axs2[1,2].legend(loc='upper right', shadow=True, fontsize='x-large')
+legend = axs2[0,2].legend(loc='upper right', shadow=True, fontsize='xx-large')
+legend = axs2[1,2].legend(loc='upper right', shadow=True, fontsize='xx-large')
 legend.get_frame().set_facecolor('white')
 
 
-fig.set_figheight(9)
-fig.set_figwidth(13)
+fig2.set_figheight(9)
+fig2.set_figwidth(13)
 plt.savefig('plot.png', dpi=1500)
 plt.show()
 
@@ -1031,12 +1036,12 @@ Energy_list_f2=[]
 
 
 for i in range(anzahl):
-    g_fix=g=0.15
+    g_fix=g=0.015
 
 
-    kappa_fix=kappa=2
+    kappa=0.2
    
-    nh_fix=nh=5
+    nh=5
     nf=0.09
     Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
     rho=DichteMatrix(nh, nc, nf, Hdilde,kappa)
@@ -1071,7 +1076,7 @@ for i in range(anzahl):
 
 fig4, axs = plt.subplots(2,2)
 
-axs[1,0].set_xlabel(r' $f/\gamma$', fontsize=23)
+axs[1,0].set_xlabel(r' $f/\gamma_h$', fontsize=23)
 #axs2[0,0].set_ylabel(r' $\mathcal{Q}$')
 #plt.title(r' D vs $n_h$ ')
 axs[0,0].set_title(r' a)', fontsize=23)
@@ -1081,21 +1086,21 @@ axs[0,1].tick_params( labelsize=tz)
 axs[1,1].tick_params( labelsize=tz)
 axs[1,0].tick_params( labelsize=tz)
 
-axs[1,0].set_xlabel(r' $f/\gamma$', fontsize=23)
+axs[1,0].set_xlabel(r' $f/\gamma_h$', fontsize=23)
 axs[0,0].set_ylabel(r'', fontsize=23)
 #plt.title(r' $\mathcal{Q} vs f$ ')
 axs[1,0].plot(np.asarray(f_list1)[:anzahl],np.asarray(D_list_f1)[:anzahl],label=label1,color='black')
 axs[1,0].plot(np.asarray(f_list1)[:anzahl],np.asarray(Jh_list_f1)[:anzahl],label=label12,color='red')
-axs[0,0].plot(np.asarray(f_list1)[:anzahl],np.asarray(Q_list_f1)[:anzahl],'-',label=r' $\mathcal{Q}$',color='blue')
-axs[0,0].plot(np.asarray(f_list1),np.asarray(Potts_f2),'-',label=r' $\mathcal{Q}$',color='aqua')
+axs[0,0].plot(np.asarray(f_list1)[:anzahl],np.asarray(Q_list_f1)[:anzahl],'-',label=r' $\mathcal{Q\prime}$',color='blue')
+axs[0,0].plot(np.asarray(f_list1),np.asarray(Potts_f2),'-',label=r' $\mathcal{Q\prime \prime}$',color='aqua')
 axs[1,0].plot(np.asarray(f_list1)[:anzahl],np.asarray(Entropy_list_f1)[:anzahl],'-',label=label4,color='teal')
 
 axs[0,0].axhline(y=2)
 axs[0,0].grid()
 axs[1,0].grid()
 
-legend = axs[0,0].legend(loc='upper right', shadow=True, fontsize='x-large')
-legend = axs[1,0].legend(loc='upper right', shadow=True, fontsize='x-large')
+legend = axs[0,0].legend(loc='upper right', shadow=True, fontsize='xx-large')
+legend = axs[1,0].legend(loc='upper right', shadow=True, fontsize='xx-large')
 legend.get_frame().set_facecolor('white')
 
 
@@ -1104,23 +1109,24 @@ legend.get_frame().set_facecolor('white')
 
 
 
-axs[1,1].set_xlabel(r' $f/\gamma$', fontsize=23)
+axs[1,1].set_xlabel(r' $f/\gamma_h$', fontsize=23)
 axs[0,1].set_ylabel(r' ', fontsize=23)
 #plt.title(r' $\mathcal{Q} vs f$ ')
 axs[1,1].plot(np.asarray(f_list2)[:anzahl],np.asarray(D_list_f2)[:anzahl],label=label1,color='black')
 axs[1,1].plot(np.asarray(f_list2)[:anzahl],np.asarray(Jh_list_f2)[:anzahl],label=label12,color='red')
 axs[0,1].plot(np.asarray(f_list2)[:anzahl],np.asarray(Q_list_f2)[:anzahl],'-',label=r' $\mathcal{Q}$',color='blue')
-axs[0,1].plot(np.asarray(f_list2),np.asarray(Potts_f2),'-',label=r' $\mathcal{Q}$',color='aqua')
+axs[0,1].plot(np.asarray(f_list2),np.asarray(Potts_f2),'-',label=r' $\mathcal{Q\prime \prime}$',color='aqua')
 axs[1,1].plot(np.asarray(f_list2)[:anzahl],np.asarray(Entropy_list_f2)[:anzahl],'-',label=label4,color='teal')
 
 axs[0,1].axhline(y=2)
 axs[0,1].grid()
 axs[1,1].grid()
 
-legend = axs[0,1].legend(loc='upper right', shadow=True, fontsize='x-large')
-legend = axs[1,1].legend(loc='upper right', shadow=True, fontsize='x-large')
+legend = axs[0,1].legend(loc='upper right', shadow=True, fontsize='xx-large')
+legend = axs[1,1].legend(loc='upper right', shadow=True, fontsize='xx-large')
 legend.get_frame().set_facecolor('white')
-
+fig4.set_figheight(9)
+fig4.set_figwidth(13)
 plt.show()
 
 
@@ -1259,11 +1265,18 @@ print(d)
 
 
 IdV=(qutip.operator_to_vector(tensor(qutip.identity(3),qutip.identity(nph))))
-f=0.0
+nh_fix=nh=0.0013
+f=0
+kappa=0.002
+nc_fix=nc=0.028
+g=2.8
+nf_fix=nf=0.05
 omega_f=30
 anzahl=40
-step =0.008/anzahl
-nc=0.027
+step =0.08/anzahl
+
+nc=0.0004
+omega_d=30
 nh_list=[]
 d_list=[]
 Jh_list2=[]
@@ -1283,7 +1296,7 @@ for i in range(anzahl):
     print(np.imag((IdV.trans()*Lstrich*qutip.operator_to_vector(rho)))[0])
     Energy_list1.append(EnergieCalculator_mit_faktor(c_op_list,g,H_free, Trans_12, Trans_13, Trans_23, a, nh,nf,nc,h,kb,gamma_h,gamma_c,kappa,omega_d,proj_2,f,omega_f,omega_2,omega_h))
     Entropy_list.append(Entropy_ohne_omega(c_op_list,nh,Trans_12,a, kb,h,g,proj_3,proj_1,nc,nf,gamma_h,gamma_c,kappa,Trans_13,Trans_23,omega_f,omega_d,omega_1,omega_2,proj_2,f,omega_3)[3])
-    Q_list.append((Entropy_list[i])*(d_list[i]/(Energy_list1[i][0]**2)))
+    Q_list.append((Entropy_list[i])*(d_list[i]/(Jh_list2[i][0]**2)))
     
     nh_list.append(nc)
     nc=nc+step
@@ -1297,9 +1310,9 @@ for i in range(anzahl):
 
 fig3, ax = plt.subplots()
 
-ax.set_xlabel(r' $n_h$', fontsize=23)
+ax.set_xlabel(r' $n_c$', fontsize=23)
 ax.set_ylabel('D')
-plt.title(r' D vs $n_h$ ')
+plt.title(r' D vs $n_c$ ')
 plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(d_list)[:anzahl],label=r' $Var \langle J \rangle $',color='black')
 plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Jh_list2)[:anzahl],label=r' $\langle \langle 1|\mathcal{J}|\rho \rangle \rangle $',color='red')
 plt.plot(np.asarray(nh_list)[:anzahl],np.asarray(Q_list)[:anzahl],'-',label=r' $\mathcal{Q}$',color='blue')
