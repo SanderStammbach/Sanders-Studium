@@ -59,7 +59,7 @@ omega_c=omega_3-omega_2
 omega_d=30
 
 h=1
-nph=80  # Maximale Photonen im cavity 
+nph=30  # Maximale Photonen im cavity 
  
 Th=100.    # temperature of the hot bath
 Tc=20.     # temperature of the cold bath
@@ -173,10 +173,11 @@ def Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_
     H_int=h*g*(Trans_12*a.dag()+a*Trans_12.dag())
 
     V=f*a.dag()+f*a #das got glaub nid
-
+    S=qutip.squeezing(a,a,-1j*1)
+    
     H=H_free+H_int 
 
-    Hdilde=H_int+V +(omega_2-(omega_1+omega_d))*(proj_2)+(omega_f-omega_d)*(a.dag()*a)
+    Hdilde=H_int+V.dag() +(omega_2-(omega_1+omega_d))*(proj_2)+(omega_f-omega_d)*(a.dag()*a)
 
     return Hdilde
 
@@ -302,11 +303,14 @@ mark_inset(ax, axins, loc1=2, loc2=4, fc="none", ec="0.5")
 plt.draw()
 plt.show()
 """
-#print(c_op_list)
 
-rho_f=rho.ptrace(1)  ### State in the cavity
-print(rho)
-#print(rho)
+f=0.2
+Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,0.3,0,omega_d)
+rho1 = DichteMatrix(0.01,0.01,0.01,Hdilde)
+rho_c=rho1.ptrace(1)
+qutip.plot_wigner_fock_distribution(rho_c,colorbar='colorbar')
+
+
 
 xvec = np.linspace(-5,5,200)
 
@@ -378,13 +382,13 @@ rho_f=rho.ptrace(1)
 W_thermal = qutip.wigner(rho_f, np.linspace(-4,4,200), np.linspace(-4,4,200))
 
 
-nh=20
+nh=11
 Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
 rho = DichteMatrix(nh,nc,nf,Hdilde)
 rho_f=rho.ptrace(1)
 W_fock = qutip.wigner(rho_f, xvec, xvec)
 #print("wignerplot an stelle 9.9 ",W_coherent[2][0.0])
-nh=120
+nh=195
 Hdilde=Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_d)
 rho = DichteMatrix(nh,nc,nf,Hdilde)
 rho_f=rho.ptrace(1)
@@ -406,11 +410,11 @@ lbl1 = axes[0,1].set_title(r'$n_h=4$')
 cont0 = axes[1,0].contourf(xvec, xvec, W_fock, 100,colobar=True)
 fig.colorbar( plt.cm.ScalarMappable(),ax=axes[1,0])
 
-lbl2 = axes[1,0].set_title(r'$n_h=20$')
+lbl2 = axes[1,0].set_title(r'$n_h=11$')
 
 cont3 = axes[1,1].contourf(xvec, xvec, WignerPlot, 100,colobar=True)
 
-lbl2 = axes[1,1].set_title(r'$n_h=120$')
+lbl2 = axes[1,1].set_title(r'$n_h=195$')
 
 
 fig.colorbar( plt.cm.ScalarMappable())
@@ -1262,7 +1266,7 @@ fig2.set_figwidth(13)
 ax1.axvline(x=0.1)
 ax1.axvline(x=0.5)
 ax1.axvline(x=11)
-ax1.axvline(x=120)
+ax1.axvline(x=195)
 
 
 

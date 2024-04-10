@@ -145,7 +145,7 @@ a=qutip.tensor(qutip.identity(3),qutip.destroy(nph))
 H_free=omega_1*proj_1+h*omega_2*proj_2+h*omega_3*proj_3+h*omega_f*a.dag()*a
 #H_free=1*proj_1+1*proj_2+1*proj_3+1*(a.dag()*a)
 
-
+S=qutip.squeezing(a,a,-1j*1)
 #print(qutip.to_super(np.sqrt(kappa_6)*A5))
 #L=qutip.to_super(np.sqrt(kappa_6)*A5)
 
@@ -159,7 +159,7 @@ def Hamilton(omega_1,proj_1,omega_2,proj_2,omega_3,proj_3,h,omega_f,a,f,g,omega_
 
     H=H_free+H_int 
 
-    Hdilde=H_int+V +(omega_2-(omega_1+omega_d))*(proj_2)+(omega_f-omega_d)*(a.dag()*a)
+    Hdilde=H_int+ S*V*S.dag() +(omega_2-(omega_1+omega_d))*(proj_2)+(omega_f-omega_d)*(a.dag()*a)
     
     #Hdilde = f*(Trans_12+Trans_12.dag())
 
