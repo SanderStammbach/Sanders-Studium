@@ -31,6 +31,7 @@ class Redfield:
             return self._lam
         else:  # Relaxations-induzierendes Rauschen
             return (self._lam / 2) * (wk / (2 * np.pi)) * (wk > 0.0)
+        
 
     def Rsolver(self):
         """Löst das System mit brmesolve."""
