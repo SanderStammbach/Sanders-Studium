@@ -1,0 +1,304 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\title{formeln}
+\author{sander.stammbach }
+\date{December 2024}
+\usepackage[latin1]{inputenc}
+\usepackage{color}
+\begin{document}
+\pagecolor{black}   % schwarzer Seitenhintergrund
+\color{white} 
+\maketitle
+
+\section{Introduction}
+
+
+\section*{HEOM Gleichungen}
+
+\[
+\dot{\rho}_s(t) = \mathcal{L}_s \rho_s(t) - i \sum_{R,I} \Big([\hat{Q}, \rho_{01}] + [\hat{Q}, \rho_{10}^\dagger] \Big)
+\]
+
+\[
+\dot{\rho}_{10} = \mathcal{L}_s \rho_{10} - (\nu_0^I + \nu_0^R) \rho_{10} - i [c_0^R, \hat{Q}] \rho_s(t) + i c_0^I \{ \hat{Q},\rho_s(t)\}
+\]
+
+\[
+\dot{\rho}_{01} = \mathcal{L}_s \rho_{01} - (\nu_0^I + \nu_0^R) \rho_{01} - i c_1^R [\hat{Q},\rho_s(t)] + i c_1^I \{ \hat{Q},\rho_s(t)\}
+\]
+
+\[
+\dot{\rho}_{20} = \mathcal{L}_s \rho_{20} - (2 \nu_0^R + 2 \nu_0^I) \rho_{20} - i 2 c_0^R [\hat{Q}, \rho_{10}]
+\]
+
+\[
+\dot{\rho}_{11} = \mathcal{L}_s \rho_{11} - (\nu_0^R + \nu_0^I) \rho_{11} - i \Big(c_0^R \hat{Q} \rho_{01} + c_1^I \{ \hat{Q}, \rho_{10} \} + \{ \hat{Q}, \rho_{01} \}\Big)
+\]
+\[
++ \sum_{R,I} \Big( - [\hat{Q}, \rho_{21}] + [\hat{Q}, \rho_{12}] \Big)
+\]
+
+\[
+\dot{\rho}_{02} = \mathcal{L}_s \rho_{02} - (2 \nu_0^R + 2 \nu_0^I) \rho_{02} - i 2 c_1^R \Big([\hat{Q}, \rho_{01}] + \{\hat{Q}, \rho_{01}\} \Big)
+\]
+\[
++ \sum_{R,I} \Big( - [\hat{Q}, \rho_{03}] + [\hat{Q}, \rho_{12}] \Big)
+\]
+
+
+\section*{Korrelationsfunktionen und Drude-Lorentz-Modell}
+\begin{equation}
+    \hat{H}_{tot}=\hat{H}_{sys_free_evolution}+\hat{H}_{int}+\hat{H}_{bath}
+\end{equation}
+\begin{equation}
+    \hat{H}_{int}=\hat{Q}\dot \sum_k g(w_k)* (\hat{b}^{\dagger}+\hat{b})
+\end{equation}
+
+\[
+C(t) = \hbar \sum_k g_k^2 \left( C^R_k + i C^I_k \right) e^{-\gamma_k t}
+\]
+
+\[
+C(t) = C^R(t) + i C^I(t),
+\]
+
+\[
+C^R(t) = \sum_k C_k^R e^{-\gamma_k t}, \quad C^I(t) = \sum_k C_k^I e^{-\gamma_k t}.
+\]
+
+\subsection*{Drude-Lorentz-Spektraldichte}
+\[
+J(\omega) = \frac{4 g^2 \gamma \omega}{\omega^2 + \gamma^2}.
+\]
+
+\subsection*{Reale und Imaginäre Teile der Korrelationsfunktion}
+\[
+C_k^R = 
+\begin{cases} 
+g^2 \gamma \cdot \coth(\beta \gamma / 2), & k = 0 \\
+\frac{4 g^2 \gamma \omega_k}{(\nu_k^2 - \gamma^2)}, & k > 0
+\end{cases}
+\]
+
+\[
+C_k^I = 
+\begin{cases} 
+g^2 \gamma, & k = 0 \\
+0, & k > 0
+\end{cases}
+\]
+
+\subsection*{Zusammenhang zwischen Parametern und Frequenzen}
+\[
+\omega_k = \frac{2 \pi k}{\beta}, \quad \text{für } k > 0.
+\]
+
+\subsection*{Liouvillian der Systemdynamik}
+\[
+\mathcal{L}_s = -i [H, \rho_s].
+\]
+
+\subsection*{Rekonstruktion von \( C(t) \)}
+\[
+C_k = C_k^R + i C_k^I,
+\]
+
+\[
+C(t) = \sum_k C_k e^{-\gamma_k t}.
+\]
+$\nu$
+
+
+
+\[
+C(t) = \sum_{k=0}^\infty c_k e^{-\nu_k t}
+\]
+
+\[
+\nu_k = 
+\begin{cases} 
+\gamma & k = 0 \\
+\frac{2\pi k}{\beta} & k \geq 1
+\end{cases}
+\]
+
+\[
+c_k = 
+\begin{cases} 
+\lambda \gamma \left[\cot\left(\frac{\beta \gamma}{2}\right) - i \right] & k = 0 \\
+\frac{4 \lambda \gamma \nu_k}{\left(\nu_k^2 - \gamma^2\right) \beta} & k \geq 1
+\end{cases}
+\]
+
+\begin{align*}
+\rho(Q_f, Q_f', t) &= \int \mathcal{D}[Q] \int \mathcal{D}[Q'] 
+e^{\phi_f^*\phi_f+\phi^*\phi}\Bigg[ \\
+&\quad
+e^{\int_{t_0}^t dt_2 \int_{t_0}^{t_2} dt_1 V^{\times}(Q, Q', t) \Big(
+\sum_k c_k^R e^{-i \nu_k^R (t_2 - t_1)} V^x(Q, Q', t_1)
+- \sum_k c_k^I e^{-i \nu_k^I (t_2 - t_1)} V^o(Q, Q', t_1) \Big)}  \\
+&\quad 
+\rho(Q, Q', t_0)e^{S_0[Q,t]-S_0[Q',t]}  \\
+&\quad 
+\Bigg] e^{\phi_f^*\phi'_f+\phi'^*\phi'} .
+\end{align*}
+
+
+
+
+
+\begin{align*}
+\partial_t\rho(Q_f, Q_f', t) &= \int \mathcal{D}[Q] \int \mathcal{D}[Q'] 
+e^{\phi_f^*\phi_f+\phi_f^*\phi}\Bigg[ \\
+&\quad
+ e^{\int_{t_0}^t dt_2 \int_{t_0}^{t_2} dt_1 V^{\times}(Q, Q', t) \Big(
+\sum_k c_k^R e^{-i \nu_k^R (t_2 - t_1)} V^{\times}(Q, Q', t_1)
+- \sum_k c_k^I e^{-i \nu_k^I (t_2 - t_1)} V^o(Q, Q', t_1) \Big)} \Bigg( \\
+&\quad 
+\rho(Q, Q', t_0)e^{S_0[Q,t]-S_0[Q',t]} \Big[ \\
+&\quad \textcolor{red}{ 
+ V^{\times}(Q_f, Q_f', t)} \cdot \int_{t_0}^t dt_1 \sum_k \Big(
+c_k^R e^{-i \nu_k^R (t - t_1)} V^x(Q, Q', t_1)
+- i \, c_k^I e^{-i \nu_k^I (t - t_1)} V^o(Q, Q', t_1) 
+\Big) \\
+&\quad 
++\frac{i}{\hbar} \Big(H_0(Q(t)) - H_0(Q'(t))\Big) \Big] \\
+&\quad
+\Bigg] e^{\phi_f^*\phi'_f+\phi'^*\phi'} .
+\end{align*}
+
+
+\begin{align*}
+\rho_1(Q_f, Q_f', t) &= \int \mathcal{D}[Q] \int \mathcal{D}[Q'] 
+e^{\phi_f^*\phi_f+\phi_f^*\phi}\Bigg[ \\
+&\quad
+e^{\int_{t_0}^t dt_2 \int_{t_0}^{t_2} dt_1 V^{\times}(Q, Q', t) \Big(
+\sum_k c_k^R e^{-i \nu_k^R (t_2 - t_1)} V^{\times}(Q, Q', t_1)
+- \sum_k c_k^I e^{-i \nu_k^I (t_2 - t_1)} V^o(Q, Q', t_1) \Big)} \Bigg( \\
+&\quad 
+\rho(Q, Q', t_0)e^{S_0[Q,t]-S_0[Q',t]}  \\
+&\quad 
+\cdot \int_{t_0}^t dt_1 \sum_k \Big(
+c_k^R e^{-i \nu_k^R (t - t_1)} V^{\times}(Q, Q', t_1)
+- i \, c_k^I e^{-i \nu_k^I (t - t_1)} V^o(Q, Q', t_1)
+\Big) \\
+&\quad
+\Bigg) \Bigg] e^{\phi_f^*\phi'_f+\phi'^*\phi'} .
+\end{align*}
+
+
+
+
+\begin{align*}
+\partial_t\rho_1(Q_f, Q_f', t) &= \int \mathcal{D}[Q] \int \mathcal{D}[Q'] 
+e^{\phi_f^*\phi_f+\phi_f^*\phi}\Bigg[ \\
+&\quad
+e^{\int_{t_0}^t dt_2 \int_{t_0}^{t_2} dt_1 V^{\times}(Q, Q', t) \Big(
+\sum_k c_k^R e^{-i \nu_k^R (t_2 - t_1)} V^{\times}(Q, Q', t_1)
+- \sum_k c_k^I e^{-i \nu_k^I (t_2 - t_1)} V^o(Q, Q', t_1) \Big)} \Bigg( \\
+&\quad 
+\rho(Q, Q', t_0)e^{S_0[Q,t]-S_0[Q',t]} \Big[\\
+&\quad 
++\textcolor{red}{V^{\times}(Q_f, Q_f', t)} \cdot \int_{t_0}^t dt_1 \sum_k \Big(
+c_k^R e^{-i \nu_k^R (t - t_1)} V^{\times}(Q, Q', t_1)
+- i \, c_k^I e^{-i \nu_k^I (t - t_1)} V^o(Q, Q', t_1)
+\Big) \\
+&\quad 
+\cdot \int_0^t dt_1 \sum_{k'} 
+\Big(
+c_{k'}^R e^{-i \nu_k'^R (t - t_1)} V^x(Q, Q', t_1)
+- i \, c_{k'}^I e^{-i \nu_{k'}^I (t - t_1)} V^o(Q, Q', t_1)
+\Big) \\
+&\quad \\
+&\quad + \int_{t_0}^t 
+\Big(
+- i \sum_k c_k^R e^{-i \nu_k^R (t - t_1)} \textcolor{green}{\nu_k^R } V^{\times}(Q, Q', t_1)
+- \sum_k c_k^I e^{-i \nu_k^I (t - t_1)} \textcolor{green}{\nu_k^I} V^o(Q, Q', t_1)
+\Big) \\
+&\quad + 
+\sum_k \textcolor{blue}{c_k^R} V^{\times}(Q_f, Q_f', t) - i \, \textcolor{blue}{c_k^I} V^o(Q_f, Q_f', t) \Big] \\
+&\quad+ 
+\frac{i}{\hbar} \Big(H_0(Q_f) - H_0(Q_f)\Big)\rho(Q, Q', t_0)e^{S_0[Q,t]-S_0[Q',t]} \\
+&\quad 
+\cdot \int_{t_0}^t dt_1 \sum_k 
+\Big(
+c_k^R e^{-i \nu_k^R (t - t_1)} V^x(Q, Q', t_1)
+- i \, c_k^I e^{-i \nu_k^I (t - t_1)} V^o(Q, Q', t_1)\Bigg)\\
+&\quad
+\Bigg] e^{\phi_f^*\phi'_f+\phi_f'^*\phi'} .
+\end{align*}
+
+
+
+
+
+
+\begin{align*}
+\partial_t\rho_1(Q_f, Q_f', t) &= \int \mathcal{D}[Q] \int \mathcal{D}[Q'] 
+e^{\phi_f^*\phi_f+\phi_f^*\phi}\Bigg[ \\
+&\quad
+e^{\int_{t_0}^t dt_2 \int_{t_0}^{t_2} dt_1 V^{\times}(Q, Q', t) \Big(
+\sum_k c_k^R e^{-i \nu_k^R (t_2 - t_1)} V^{\times}(Q, Q', t_1)
+- \sum_k c_k^I e^{-i \nu_k^I (t_2 - t_1)} V^o(Q, Q', t_1) \Big)} \Bigg( \\
+&\quad 
+\rho(Q, Q', t_0)e^{S_0[Q,t]-S_0[Q',t]} \Big[\\
+&\quad
+\textcolor{red}{V^{\times}(Q_f, Q_f', t)}
+\cdot \int_{t_0}^t dt_1 \sum_k \Big(
+c_k^R e^{-i \nu_k^R (t - t_1)} V^{\times}(Q, Q', t_1)
+- i \, c_k^I e^{-i \nu_k^I (t - t_1)} V^o(Q, Q', t_1)
+\Big) \\
+&\quad 
+\cdot \int_0^t dt_1 
+\Big(
+c_1^R e^{-i \nu_1^R (t - t_1)} V^{\times}(Q, Q', t_1)
+- i \, c_1^I e^{-i \nu_1^I (t - t_1)} V^o(Q, Q', t_1)
+\Big) \\
+&\quad + \int_{t_0}^t 
+\Big(
+- i c_1^R e^{-i \nu_1^R (t - t_1)} \nu_1^R V^{\times}(Q, Q', t_1)
+- c_1^I e^{-i \nu_1^I (t - t_1)} \nu_1^I V^o(Q, Q', t_1)
+\Big) \\
+&\quad
++ \textcolor{blue}{c_1^R} V^{\times}(Q_f, Q_f', t) - i \textcolor{blue}{c_1^I} V^o(Q_f, Q_f', t) \Big] \\
+&\quad
++ \frac{i}{\hbar} \Big(H_0(Q_f) - H_0(Q_f)\Big)\rho(Q, Q', t_0)e^{S_0[Q,t]-S_0[Q',t]} \\
+&\quad 
+\cdot \int_{t_0}^t dt_1 \Big(
+c_1^R e^{-i \nu_1^R (t - t_1)} V^{\times}(Q, Q', t_1)
+- i \, c_1^I e^{-i \nu_1^I (t - t_1)} V^o(Q, Q', t_1)\Bigg)\\
+&\quad
+\Bigg] e^{\phi_f^*\phi'_f+\phi_f'^*\phi'} .
+\end{align*}
+
+
+
+
+\begin{align*}
+\rho_2(Q_f, Q_f', t) &= \int \mathcal{D}[Q] \int \mathcal{D}[Q'] 
+e^{\phi_f^*\phi_f+\phi_f^*\phi}\Bigg[ \\
+&\quad
+e^{\int_{t_0}^t dt_2 \int_{t_0}^{t_2} dt_1 V^{\times}(Q, Q', t) \Big(
+\sum_k c_k^R e^{-i \nu_k^R (t_2 - t_1)} V^x(Q, Q', t_1)
+- \sum_k c_k^I e^{-i \nu_k^I (t_2 - t_1)} V^o(Q, Q', t_1) \Big)} \\
+&\quad 
+\rho(Q, Q', t_0)e^{S_0[Q,t]-S_0[Q',t]} \Big[\\
+&\quad 
+\cdot \int_{t_0}^t dt_1 \sum_k \Big(
+c_k^R e^{-i \nu_k^R (t - t_1)} V^{\times}(Q, Q', t_1)
+- i \, c_k^I e^{-i \nu_k^I (t - t_1)} V^o(Q, Q', t_1)
+\Big) \\
+&\quad 
+\cdot \int_0^t dt_1 \sum_{k'} 
+\Big(
+c_{k'}^R e^{-i \nu_k'^R (t - t_1)} V^{\times}(Q, Q', t_1)
+- i \, c_{k'}^I e^{-i \nu_{k'}^I (t - t_1)} V^o(Q, Q', t_1)
+\Big) \\
+&\quad 
+\Bigg] e^{\phi_f^*\phi'_f+\phi_f'^*\phi'} .
+\end{align*}
+
+\end{document}
