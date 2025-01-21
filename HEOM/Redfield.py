@@ -4,7 +4,7 @@ from qutip import *
 import matplotlib.pyplot as plt
 
 class Redfield:
-    def __init__(self, H=None, rho0=None, Q=None, a=None, ad=None, w0=None, gamma=None, lam=None, tlist=None,spectrum=None):
+    def __init__(self, H=None, rho0=None, Q=None, a=None, ad=None, w0=None, gamma=None, lam=None, tlist=None,spectrum=None,e_ops=None):
         # Initialisierung der Attribute mit Standardwerten, wenn keine Parameter angegeben wurden
         self.a = a if a is not None else destroy(2)  # Vernichtungsoperator (Standard-Qubit)
         self.ad = ad if ad is not None else self.a.dag()  # Steigerungsoperator
@@ -14,6 +14,7 @@ class Redfield:
         self.Q = Q if Q is not None else np.sqrt(self._lam)*(self.ad+self.a)
         self._w0 = w0 if w0 is not None else 1
         self._gamma = gamma if gamma is not None else 0.5
+        self.e_ops = e_ops if gamma is not None else Q 
 
         self._tlist = tlist if tlist is not None else np.linspace(0, 10, 100)
         # self.ohmic_spectrum=spectrum if spectrum is not None else self.ohmic_spectrum
@@ -25,6 +26,7 @@ class Redfield:
 
         # self.a_ops = [[self.a,self.spectrum], [ self.ad, self.spectrum]]  # Liste von Kollapsoperatoren und spektralen Dichten
         self.a_ops=[[Q,self.spectrum]]
+        
     def ohmic_spectrum(self, wk):
         """Ohmsche spektrale Dichte."""
         if wk == 0.0:  # Dephasierungs-induzierendes Rauschen
@@ -35,9 +37,9 @@ class Redfield:
 
     def Rsolver(self):
         """Löst das System mit brmesolve."""
-        e_ops = [self.a, self.ad]  # Beobachtungsoperatoren
+        #e_ops = [self.a, self.ad]  # Beobachtungsoperatoren
         # Berechnung mit brmesolve
-        result_brme = brmesolve(self._H, self._rho0, self._tlist, self.a_ops, e_ops=e_ops)
+        result_brme = brmesolve(self._H, self._rho0, self._tlist, self.a_ops, e_ops=self.e_ops)
         return result_brme
 
     def plot_results(self, result):
@@ -80,7 +82,7 @@ if __name__ == "__main__":
     redfield_solver = Redfield(H=None, rho0=psi0, Q=None, w0=w0, gamma=None, lam=lam, tlist=tlist)
 
     # Löse das System
-    rho_t_redfield = redfield_solver.Rsolver()
+  
 
     # Plotte die Ergebnisse
-    redfield_solver.plot_results(rho_t_redfield)
+    #redfield_solver.plot_results(rho_t_redfield)
